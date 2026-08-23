@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>myROBOT-V12 Development</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#07111f;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    background:linear-gradient(135deg,#0d1d35,#12365a);
+    padding:18px 15px;
+    text-align:center;
+    border-bottom:1px solid #24486b;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#00e5ff;
+}
+
+.dev{
+    margin-top:5px;
+    font-size:12px;
+    color:#9fb8ce;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    padding:14px;
+}
+
+.card{
+    background:#0d1a2b;
+    border:1px solid #203a55;
+    border-radius:16px;
+    padding:17px;
+    margin-bottom:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+.title{
+    color:#00e5ff;
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.clock{
+    text-align:center;
+    font-size:34px;
+    font-weight:bold;
+    color:#00ff91;
+}
+
+.date{
+    text-align:center;
+    margin-top:6px;
+    color:#9db1c5;
+    font-size:14px;
+}
+
+.status-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.status-box{
+    background:#081321;
+    border-radius:12px;
+    padding:14px 10px;
+    text-align:center;
+}
+
+.status-icon{
+    font-size:25px;
+}
+
+.status-label{
+    color:#8fa5ba;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.online{
+    color:#00ff91;
+    font-weight:bold;
+}
+
+.offline{
+    color:#ff5262;
+    font-weight:bold;
+}
+
+.timer-display{
+    text-align:center;
+    font-size:38px;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin:10px 0 15px;
+}
+
+.buttons{
+    display:flex;
+    gap:8px;
+}
+
+button{
+    flex:1;
+    border:0;
+    border-radius:10px;
+    padding:12px 5px;
+    background:#00bcd4;
+    color:#001018;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+.stop{
+    background:#ff4757;
+    color:white;
+}
+
+.reset{
+    background:#52657a;
+    color:white;
+}
+
+.gps-data{
+    background:#050c15;
+    padding:13px;
+    border-radius:10px;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.log{
+    max-height:180px;
+    overflow:auto;
+    background:#050c15;
+    padding:12px;
+    border-radius:10px;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.7;
+    color:#00ff91;
+}
+
+.active{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(0,255,145,.08);
+    color:#00ff91;
+    font-weight:bold;
+}
+
+.dot{
+    width:9px;
+    height:9px;
+    background:#00ff91;
+    border-radius:50%;
+    box-shadow:0 0 10px #00ff91;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#61758a;
+    font-size:11px;
+}
+
+@media(max-width:400px){
+    .clock{font-size:28px;}
+    .timer-display{font-size:32px;}
+    button{font-size:11px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🤖 myROBOT-V12</div>
+    <div class="dev">Development • Asep Pudin New</div>
+</header>
+
+<div class="container">
+
+<!-- STATUS AKTIF -->
+<div class="card">
+    <div class="active">
+        <span class="dot"></span>
+        SYSTEM AKTIF
+    </div>
+</div>
+
+<!-- JAM & TANGGAL -->
+<div class="card">
+    <div class="title">🕐 Waktu Sistem</div>
+
+    <div class="clock" id="clock">00:00:00</div>
+    <div class="date" id="date">Loading...</div>
+</div>
+
+<!-- STATUS -->
+<div class="card">
+    <div class="title">📡 Status Perangkat</div>
+
+    <div class="status-grid">
+
+        <div class="status-box">
+            <div class="status-icon">🌐</div>
+            <div class="status-label">INTERNET</div>
+            <div id="internetStatus" class="online">
+                ONLINE
+            </div>
+        </div>
+
+        <div class="status-box">
+            <div class="status-icon">🤖</div>
+            <div class="status-label">SYSTEM</div>
+            <div class="online">
+                AKTIF
+            </div>
+        </div>
+
+        <div class="status-box">
+            <div class="status-icon">📱</div>
+            <div class="status-label">DEVICE</div>
+            <div class="online">
+                MOBILE
+            </div>
+        </div>
+
+        <div class="status-box">
+            <div class="status-icon">📍</div>
+            <div class="status-label">GPS</div>
+            <div id="gpsStatus" class="offline">
+                BELUM AKTIF
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- TIMER -->
+<div class="card">
+    <div class="title">⏱️ Timer</div>
+
+    <div class="timer-display" id="timer">
+        00:00:00
+    </div>
+
+    <div class="buttons">
+        <button onclick="startTimer()">START</button>
+        <button onclick="pauseTimer()">PAUSE</button>
+        <button class="reset" onclick="resetTimer()">RESET</button>
+    </div>
+</div>
+
+<!-- GPS -->
+<div class="card">
+    <div class="title">📍 GPS Location Log</div>
+
+    <div class="gps-data" id="gpsData">
+        Latitude : -<br>
+        Longitude: -<br>
+        Accuracy : -
+    </div>
+
+    <br>
+
+    <button onclick="startGPS()">
+        AKTIFKAN GPS
+    </button>
+</div>
+
+<!-- LOG -->
+<div class="card">
+    <div class="title">📋 System Log</div>
+
+    <div class="log" id="systemLog">
+        [SYSTEM] myROBOT-V12 starting...<br>
+        [SYSTEM] Developer: Asep Pudin<br>
+        [SYSTEM] Interface: Mobile Ready<br>
+        [SYSTEM] Status: ACTIVE<br>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    myROBOT-V12 Development<br>
+    Asep Pudin © 2026
+</footer>
+
+
+<script>
+
+/* =========================
+   JAM & TANGGAL
+========================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    let h = String(now.getHours()).padStart(2,'0');
+    let m = String(now.getMinutes()).padStart(2,'0');
+    let s = String(now.getSeconds()).padStart(2,'0');
+
+    document.getElementById("clock").innerText =
+        h + ":" + m + ":" + s;
+
+    const options = {
+        weekday:'long',
+        year:'numeric',
+        month:'long',
+        day:'numeric'
+    };
+
+    document.getElementById("date").innerText =
+        now.toLocaleDateString('id-ID',options);
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+
+/* =========================
+   INTERNET STATUS
+========================= */
+
+function updateInternet(){
+
+    const status =
+        document.getElementById("internetStatus");
+
+    if(navigator.onLine){
+
+        status.innerText="ONLINE";
+        status.className="online";
+
+        addLog("[NETWORK] Internet ONLINE");
+
+    }else{
+
+        status.innerText="OFFLINE";
+        status.className="offline";
+
+        addLog("[NETWORK] Internet OFFLINE");
+    }
+}
+
+window.addEventListener("online",updateInternet);
+window.addEventListener("offline",updateInternet);
+
+updateInternet();
+
+
+/* =========================
+   TIMER
+========================= */
+
+let timerSeconds = 0;
+let timerInterval = null;
+
+function updateTimer(){
+
+    let h = Math.floor(timerSeconds / 3600);
+    let m = Math.floor((timerSeconds % 3600) / 60);
+    let s = timerSeconds % 60;
+
+    document.getElementById("timer").innerText =
+        String(h).padStart(2,'0') + ":" +
+        String(m).padStart(2,'0') + ":" +
+        String(s).padStart(2,'0');
+}
+
+function startTimer(){
+
+    if(timerInterval !== null) return;
+
+    timerInterval = setInterval(function(){
+
+        timerSeconds++;
+        updateTimer();
+
+    },1000);
+
+    addLog("[TIMER] Timer START");
+}
+
+function pauseTimer(){
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+
+    addLog("[TIMER] Timer PAUSE");
+}
+
+function resetTimer(){
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+    timerSeconds = 0;
+
+    updateTimer();
+
+    addLog("[TIMER] Timer RESET");
+}
+
+
+/* =========================
+   GPS
+========================= */
+
+function startGPS(){
+
+    if(!navigator.geolocation){
+
+        addLog("[GPS] Browser tidak mendukung GPS");
+        return;
+    }
+
+    document.getElementById("gpsStatus").innerText =
+        "MENCARI...";
+
+    document.getElementById("gpsStatus").className =
+        "online";
+
+    addLog("[GPS] Meminta lokasi perangkat...");
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            const lat =
+                position.coords.latitude;
+
+            const lon =
+                position.coords.longitude;
+
+            const acc =
+                position.coords.accuracy;
+
+            document.getElementById("gpsData").innerHTML =
+                "Latitude : " + lat + "<br>" +
+                "Longitude: " + lon + "<br>" +
+                "Accuracy : ±" + Math.round(acc) + " meter";
+
+            document.getElementById("gpsStatus").innerText =
+                "AKTIF";
+
+            document.getElementById("gpsStatus").className =
+                "online";
+
+            addLog(
+                "[GPS] LOCATION OK | " +
+                lat + ", " + lon
+            );
+        },
+
+        function(error){
+
+            document.getElementById("gpsStatus").innerText =
+                "ERROR";
+
+            document.getElementById("gpsStatus").className =
+                "offline";
+
+            addLog(
+                "[GPS] Gagal mendapatkan lokasi"
+            );
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:10000,
+            maximumAge:0
+        }
+    );
+}
+
+
+/* =========================
+   SYSTEM LOG
+========================= */
+
+function addLog(message){
+
+    const log =
+        document.getElementById("systemLog");
+
+    const now = new Date();
+
+    const time =
+        now.toLocaleTimeString('id-ID');
+
+    log.innerHTML +=
+        "[" + time + "] " + message + "<br>";
+
+    log.scrollTop = log.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>
