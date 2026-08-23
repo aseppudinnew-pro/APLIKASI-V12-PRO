@@ -1392,6 +1392,228 @@ color:var(--cyan);
 font-size:12px;
 
 }
+  .gps-popup{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,5,12,.88);
+
+    backdrop-filter:
+        blur(10px);
+
+}
+
+.gps-popup.show{
+
+    display:flex;
+
+}
+
+.gps-popup-box{
+
+    width:100%;
+
+    max-width:390px;
+
+    padding:25px 20px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #071d30,
+            #020912
+        );
+
+    border:
+        1px solid
+        rgba(0,229,255,.45);
+
+    box-shadow:
+        0 0 50px
+        rgba(0,229,255,.25);
+
+    animation:
+        gpsPopupIn
+        .35s
+        ease-out;
+
+}
+
+@keyframes gpsPopupIn{
+
+    from{
+
+        transform:
+            scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:
+            scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.gps-big-icon{
+
+    font-size:58px;
+
+    margin-bottom:12px;
+
+    animation:
+        gpsPulse
+        1.5s
+        infinite;
+
+}
+
+@keyframes gpsPulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+        filter:
+            drop-shadow(
+                0 0 5px
+                #00e5ff
+            );
+
+    }
+
+    50%{
+
+        transform:scale(1.12);
+
+        filter:
+            drop-shadow(
+                0 0 25px
+                #00e5ff
+            );
+
+    }
+
+}
+
+.gps-popup-title{
+
+    color:#00e5ff;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    margin-bottom:12px;
+
+}
+
+.gps-popup-text{
+
+    color:#d8edf5;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+
+}
+
+.gps-warning{
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,209,102,.08);
+
+    border:
+        1px solid
+        rgba(255,209,102,.25);
+
+    color:#ffd166;
+
+    font-size:11px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+
+}
+
+.gps-enable-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00ff91,
+            #00a96a
+        );
+
+    color:#00140d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,255,145,.25);
+
+}
+
+.gps-later-btn{
+
+    width:100%;
+
+    margin-top:8px;
+
+    padding:11px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#718b9c;
+
+    font-size:11px;
+
+}
 
 
 /* =====================================================
@@ -1455,6 +1677,46 @@ font-size:11px;
 
 
 <body>
+
+  <div id="gpsPopup" class="gps-popup">
+
+    <div class="gps-popup-box">
+
+        <div class="gps-big-icon">📍</div>
+
+        <div class="gps-popup-title">
+            GPS BELUM AKTIF
+        </div>
+
+        <div class="gps-popup-text">
+            myROBOT-V12 membutuhkan akses lokasi
+            untuk menjalankan GPS Tracking secara realtime.
+        </div>
+
+        <div class="gps-warning">
+            ⚠️ Aktifkan Lokasi/GPS dan izinkan akses lokasi
+            ketika Chrome meminta izin.
+        </div>
+
+        <button
+            class="gps-enable-btn"
+            onclick="forceEnableGPS()">
+
+            📍 AKTIFKAN GPS
+
+        </button>
+
+        <button
+            class="gps-later-btn"
+            onclick="closeGPSPopup()">
+
+            NANTI
+
+        </button>
+
+    </div>
+
+  </div>
 
 
 <!-- =====================================================
@@ -4698,7 +4960,186 @@ function stopGPS(){
 
   }
 
+  /* ==========================================
+   AUTO GPS CHECK
+========================================== */
+
+let gpsPopupShown = false;
+
+
+/* Tampilkan popup */
+
+function showGPSPopup(){
+
+    const popup =
+        document.getElementById("gpsPopup");
+
+    if(!popup) return;
+
+    popup.classList.add("show");
+
+    gpsPopupShown = true;
+
+    log(
+        "[GPS] GPS belum aktif - popup ditampilkan"
+    );
+
+    setTimeout(function(){
+
+        speak(
+            "GPS belum aktif. " +
+            "Silakan aktifkan lokasi untuk menggunakan " +
+            "myROBOT V12."
+        );
+
+    },500);
+
+}
+
+
+/* Tutup popup */
+
+function closeGPSPopup(){
+
+    document
+        .getElementById("gpsPopup")
+        .classList.remove("show");
+
+    log(
+        "[GPS] User memilih NANTI"
+    );
+
+}
+
+
+/* ==========================================
+   CEK GPS
+========================================== */
+
+function checkGPSOnStartup(){
+
+    if(!navigator.geolocation){
+
+        log(
+            "[GPS] Geolocation tidak didukung"
+        );
+
+        return;
+
+    }
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            /* GPS tersedia */
+
+            log(
+                "[GPS] GPS sudah tersedia saat startup"
+            );
+
+            gpsSuccess(position);
+
+        },
+
+        function(error){
+
+            log(
+                "[GPS] Startup GPS check: ERROR " +
+                error.code
+            );
+
+
+            /*
+             * Code 1 = permission denied
+             * Code 2 = location unavailable
+             * Code 3 = timeout
+             */
+
+            if(
+                error.code === 1 ||
+                error.code === 2
+            ){
+
+                setTimeout(
+                    showGPSPopup,
+                    1200
+                );
+
+            }
+
+        },
+
+        {
+
+            enableHighAccuracy:true,
+
+            timeout:5000,
+
+            maximumAge:0
+
+        }
+
+    );
+
+}
+
+
+/* ==========================================
+   TOMBOL POPUP
+========================================== */
+
+function forceEnableGPS(){
+
+    clickSound();
+
+    vibrate();
+
+
+    document
+        .getElementById("gpsPopup")
+        .classList.remove("show");
+
+
+    speak(
+        "Silakan izinkan akses lokasi."
+    );
+
+
+    log(
+        "[GPS] User memilih AKTIFKAN GPS"
+    );
+
+
+    /*
+     * Jalankan fungsi GPS utama
+     */
+
+    activateGPS();
+
+}
+
+
+/* ==========================================
+   STARTUP
+========================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        setTimeout(
+            checkGPSOnStartup,
+            1500
+        );
+
+    }
+);
+
 </script>
+
+  
 
 </body>
 </html>
