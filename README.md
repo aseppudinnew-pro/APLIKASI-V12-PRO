@@ -7,6 +7,9 @@ Version: V12.0 Development
 Platform: Web / Mobile Browser
 Repository: GitHub
 
+Download Aplikasi:
+https://github.com/aseppudinnew-pro/APLIKASI-V12-PRO/raw/refs/heads/main/myROBOTV12app-release.apk
+
 ---
 
 📌 Tentang
