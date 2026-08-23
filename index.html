@@ -2350,31 +2350,76 @@ rel="noopener">
 <section class="card">
 
     <div class="title">
-        🌋 GEMPA TERKINI BMKG
+        🌋 GEMPA TERKINI • BMKG
     </div>
 
-    <div
-        id="earthquakeStatus"
-        class="value yellow">
-        MENGAMBIL DATA...
-    </div>
-
-    <br>
-
-    <div
-        id="earthquakeList"
-        class="log"
-        style="height:250px">
-        Menghubungkan ke informasi gempa BMKG...
+    <div id="earthquakeStatus"
+         class="value green">
+        🛰️ MENGHUBUNGKAN BMKG...
     </div>
 
     <br>
 
-    <button onclick="loadEarthquakes()">
-        🔄 CEK GEMPA TERKINI
+    <div class="grid">
+
+        <div class="info">
+            <div class="label">MAGNITUDO</div>
+            <div id="quakeMag"
+                 class="value red">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">KEDALAMAN</div>
+            <div id="quakeDepth"
+                 class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">WAKTU</div>
+            <div id="quakeTime"
+                 class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">LOKASI</div>
+            <div id="quakeLocation"
+                 class="value">
+                -
+            </div>
+        </div>
+
+    </div>
+
+    <div id="quakeInfo"
+         class="gps"
+         style="margin-top:12px">
+
+        Menunggu data BMKG...
+
+    </div>
+
+    <br>
+
+    <button onclick="loadBMKGQuake()">
+        🔄 UPDATE GEMPA BMKG
     </button>
 
+    <div class="date"
+         style="margin-top:10px">
+
+        Sumber:
+        BMKG • Data Gempabumi Terbuka
+
+    </div>
+
 </section>
+
 
 
 <!-- PERMISSIONS -->
@@ -4111,7 +4156,7 @@ marker=
 L.marker(point)
 .addTo(map)
 .bindPopup(
-"📍 myROBOT-V13<br>GPS LOCKED"
+"📍 myROBOT-V12<br>GPS LOCKED"
 );
 
 }else{
@@ -5711,6 +5756,877 @@ function getAQIText(aqi){
 
   </script>
 
+
+  
+<script>
+  /* =====================================================
+   MYROBOT V12 PRO
+   WEATHER + AIR QUALITY
+===================================================== */
+
+
+/* =====================================================
+   WEATHER CODE
+===================================================== */
+
+function weatherCodeText(code){
+
+    const weather = {
+
+        0: "☀️ Cerah",
+
+        1: "🌤️ Cerah",
+
+        2: "⛅ Berawan Sebagian",
+
+        3: "☁️ Mendung",
+
+        45: "🌫️ Berkabut",
+
+        48: "🌫️ Kabut",
+
+        51: "🌦️ Gerimis Ringan",
+
+        53: "🌦️ Gerimis",
+
+        55: "🌧️ Gerimis Lebat",
+
+        61: "🌧️ Hujan Ringan",
+
+        63: "🌧️ Hujan",
+
+        65: "🌧️ Hujan Lebat",
+
+        71: "❄️ Salju Ringan",
+
+        73: "❄️ Salju",
+
+        75: "❄️ Salju Lebat",
+
+        80: "🌦️ Hujan Lokal",
+
+        81: "🌧️ Hujan",
+
+        82: "⛈️ Hujan Lebat",
+
+        95: "⛈️ Badai Petir",
+
+        96: "⛈️ Petir + Hujan Es",
+
+        99: "⛈️ Petir + Hujan Es"
+
+    };
+
+    return weather[code] || "🌍 Tidak diketahui";
+
+}
+
+
+/* =====================================================
+   LOAD WEATHER
+===================================================== */
+
+async function loadWeather(lat, lon){
+
+    console.log(
+        "MYROBOT WEATHER:",
+        lat,
+        lon
+    );
+
+
+    log(
+        "[WEATHER] Mengambil data cuaca..."
+    );
+
+
+    try{
+
+        const url =
+            "https://api.open-meteo.com/v1/forecast" +
+
+            "?latitude=" +
+            encodeURIComponent(lat) +
+
+            "&longitude=" +
+            encodeURIComponent(lon) +
+
+            "&current=" +
+
+            "temperature_2m," +
+
+            "relative_humidity_2m," +
+
+            "apparent_temperature," +
+
+            "precipitation," +
+
+            "weather_code," +
+
+            "wind_speed_10m," +
+
+            "wind_direction_10m" +
+
+            "&timezone=auto";
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "WEATHER DATA:",
+            data
+        );
+
+
+        if(
+            !data.current
+        ){
+
+            throw new Error(
+                "Data current tidak tersedia"
+            );
+
+        }
+
+
+        const current =
+            data.current;
+
+
+        /* SUHU */
+
+        document.getElementById(
+            "temperature"
+        ).innerText =
+
+            Number(
+                current.temperature_2m
+            ).toFixed(1)
+            +
+            " °C";
+
+
+        /* KONDISI */
+
+        document.getElementById(
+            "weatherCondition"
+        ).innerText =
+
+            weatherCodeText(
+                current.weather_code
+            );
+
+
+        /* KELEMBAPAN */
+
+        document.getElementById(
+            "humidity"
+        ).innerText =
+
+            current.relative_humidity_2m
+            +
+            " %";
+
+
+        /* ANGIN */
+
+        document.getElementById(
+            "wind"
+        ).innerText =
+
+            Number(
+                current.wind_speed_10m
+            ).toFixed(1)
+            +
+            " km/h";
+
+
+        /* UPDATE */
+
+        document.getElementById(
+            "weatherUpdated"
+        ).innerText =
+
+            "🟢 Update: " +
+            new Date()
+            .toLocaleTimeString(
+                "id-ID"
+            );
+
+
+        log(
+            "[WEATHER] " +
+
+            Number(
+                current.temperature_2m
+            ).toFixed(1) +
+
+            "°C | " +
+
+            weatherCodeText(
+                current.weather_code
+            )
+        );
+
+
+        /* AIR QUALITY */
+
+        loadAirQuality(
+            lat,
+            lon
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "WEATHER ERROR:",
+            error
+        );
+
+
+        document.getElementById(
+            "temperature"
+        ).innerText =
+            "ERROR";
+
+
+        document.getElementById(
+            "weatherCondition"
+        ).innerText =
+            "GAGAL";
+
+
+        document.getElementById(
+            "humidity"
+        ).innerText =
+            "-";
+
+
+        document.getElementById(
+            "wind"
+        ).innerText =
+            "-";
+
+
+        document.getElementById(
+            "weatherUpdated"
+        ).innerText =
+
+            "🔴 Gagal mengambil cuaca";
+
+
+        log(
+            "[WEATHER] ERROR: " +
+            error.message
+        );
+
+    }
+
+}
+
+  /* =====================================================
+   BMKG EARTHQUAKE
+===================================================== */
+
+let lastEarthquakeID = null;
+
+
+/* =====================================================
+   LOAD GEMPA TERBARU
+===================================================== */
+
+async function loadBMKGQuake(){
+
+    log(
+        "[BMKG] Mengambil data gempa terbaru..."
+    );
+
+
+    const status =
+        document.getElementById(
+            "earthquakeStatus"
+        );
+
+
+    status.innerText =
+        "🛰️ MENGAMBIL DATA BMKG...";
+
+
+    try{
+
+        const response =
+            await fetch(
+                "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json",
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "BMKG:",
+            data
+        );
+
+
+        const quake =
+            data.Infogempa.gempa;
+
+
+        if(!quake){
+
+            throw new Error(
+                "Data gempa kosong"
+            );
+
+        }
+
+
+        /* ==========================================
+           DATA GEMPA
+        ========================================== */
+
+        const magnitude =
+            quake.Magnitude || "-";
+
+
+        const depth =
+            quake.Kedalaman || "-";
+
+
+        const wilayah =
+            quake.Wilayah || "-";
+
+
+        const waktu =
+            quake.Tanggal +
+            " • " +
+            quake.Jam;
+
+
+        const dirasakan =
+            quake.Dirasakan || "";
+
+
+        const potensi =
+            quake.Potensi || "";
+
+
+        const koordinat =
+            quake.Lintang +
+            " • " +
+            quake.Bujur;
+
+
+        /* ==========================================
+           TAMPILKAN
+        ========================================== */
+
+        document.getElementById(
+            "quakeMag"
+        ).innerText =
+            "M " +
+            magnitude;
+
+
+        document.getElementById(
+            "quakeDepth"
+        ).innerText =
+            depth;
+
+
+        document.getElementById(
+            "quakeTime"
+        ).innerText =
+            waktu;
+
+
+        document.getElementById(
+            "quakeLocation"
+        ).innerText =
+            wilayah;
+
+
+        document.getElementById(
+            "quakeInfo"
+        ).innerHTML =
+
+            "📍 Koordinat : " +
+            koordinat +
+
+            "<br>" +
+
+            "🌊 Potensi : " +
+            (
+                potensi ||
+                "Tidak ada informasi"
+            ) +
+
+            "<br>" +
+
+            "👥 Dirasakan : " +
+            (
+                dirasakan ||
+                "Tidak ada informasi"
+            );
+
+
+        status.innerText =
+            "🟢 TERHUBUNG • DATA BMKG TERBARU";
+
+
+        status.className =
+            "value green";
+
+
+        log(
+            "[BMKG] Gempa M" +
+            magnitude +
+            " • " +
+            wilayah
+        );
+
+
+        /* ==========================================
+           CEK GEMPA BARU
+        ========================================== */
+
+        const earthquakeID =
+            quake.Shakemap ||
+            (
+                quake.Tanggal +
+                quake.Jam +
+                quake.Magnitude +
+                quake.Wilayah
+            );
+
+
+        if(
+            lastEarthquakeID !== null &&
+            lastEarthquakeID !== earthquakeID
+        ){
+
+            notify(
+                "🌋 GEMPA TERBARU BMKG",
+                "Gempa M" +
+                magnitude +
+                " • " +
+                wilayah
+            );
+
+
+            speak(
+                "Informasi gempa terbaru dari BMKG. " +
+                "Magnitudo " +
+                magnitude +
+                ". " +
+                wilayah
+            );
+
+
+            vibrate();
+
+        }
+
+
+        lastEarthquakeID =
+            earthquakeID;
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "BMKG ERROR:",
+            error
+        );
+
+
+        status.innerText =
+            "🔴 BMKG OFFLINE / GAGAL TERHUBUNG";
+
+
+        status.className =
+            "value red";
+
+
+        document.getElementById(
+            "quakeInfo"
+        ).innerText =
+
+            "Tidak dapat mengambil data BMKG.";
+
+
+        log(
+            "[BMKG] ERROR: " +
+            error.message
+        );
+
+    }
+
+          }
+
+
+/* =====================================================
+   AIR QUALITY
+===================================================== */
+
+async function loadAirQuality(lat, lon){
+
+    log(
+        "[AIR] Mengambil kualitas udara..."
+    );
+
+
+    try{
+
+        const url =
+
+            "https://air-quality-api.open-meteo.com/v1/air-quality" +
+
+            "?latitude=" +
+            encodeURIComponent(lat) +
+
+            "&longitude=" +
+            encodeURIComponent(lon) +
+
+            "&current=" +
+
+            "pm10," +
+
+            "pm2_5," +
+
+            "us_aqi" +
+
+            "&timezone=auto";
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "AIR DATA:",
+            data
+        );
+
+
+        if(
+            !data.current
+        ){
+
+            throw new Error(
+                "Data udara tidak tersedia"
+            );
+
+        }
+
+
+        const current =
+            data.current;
+
+
+        const pm25 =
+            Number(
+                current.pm2_5
+            );
+
+
+        const pm10 =
+            Number(
+                current.pm10
+            );
+
+
+        const aqi =
+            Number(
+                current.us_aqi
+            );
+
+
+        /* PM2.5 */
+
+        document.getElementById(
+            "pm25"
+        ).innerText =
+
+            isNaN(pm25)
+            ?
+            "-"
+            :
+            pm25.toFixed(1)
+            +
+            " µg/m³";
+
+
+        /* PM10 */
+
+        document.getElementById(
+            "pm10"
+        ).innerText =
+
+            isNaN(pm10)
+            ?
+            "-"
+            :
+            pm10.toFixed(1)
+            +
+            " µg/m³";
+
+
+        /* AQI */
+
+        document.getElementById(
+            "airQuality"
+        ).innerText =
+
+            isNaN(aqi)
+            ?
+            "-"
+            :
+            "AQI " +
+            aqi +
+            " • " +
+            getAQIText(aqi);
+
+
+        log(
+            "[AIR] AQI " +
+            aqi +
+            " | PM2.5 " +
+            pm25
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "AIR ERROR:",
+            error
+        );
+
+
+        document.getElementById(
+            "pm25"
+        ).innerText =
+            "ERROR";
+
+
+        document.getElementById(
+            "pm10"
+        ).innerText =
+            "ERROR";
+
+
+        document.getElementById(
+            "airQuality"
+        ).innerText =
+            "GAGAL";
+
+
+        log(
+            "[AIR] ERROR: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   AQI TEXT
+===================================================== */
+
+function getAQIText(aqi){
+
+    if(aqi <= 50)
+        return "BAIK";
+
+    if(aqi <= 100)
+        return "SEDANG";
+
+    if(aqi <= 150)
+        return "TIDAK SEHAT";
+
+    if(aqi <= 200)
+        return "TIDAK SEHAT";
+
+    if(aqi <= 300)
+        return "SANGAT TIDAK SEHAT";
+
+    return "BERBAHAYA";
+
+}
+
+
+/* =====================================================
+   REVERSE LOCATION
+===================================================== */
+
+async function reverseLocation(lat, lon){
+
+    try{
+
+        const url =
+            "https://nominatim.openstreetmap.org/reverse" +
+
+            "?format=jsonv2" +
+
+            "&lat=" +
+            encodeURIComponent(lat) +
+
+            "&lon=" +
+            encodeURIComponent(lon) +
+
+            "&zoom=10" +
+
+            "&accept-language=id";
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const address =
+            data.address || {};
+
+
+        const location =
+
+            address.village ||
+
+            address.town ||
+
+            address.city ||
+
+            address.county ||
+
+            address.state ||
+
+            "Lokasi GPS";
+
+
+        document.getElementById(
+            "weatherLocation"
+        ).innerText =
+            location;
+
+
+        log(
+            "[LOCATION] " +
+            location
+        );
+
+    }
+
+    catch(error){
+
+        document.getElementById(
+            "weatherLocation"
+        ).innerText =
+
+            "GPS " +
+
+            Number(lat)
+                .toFixed(4) +
+
+            ", " +
+
+            Number(lon)
+                .toFixed(4);
+
+
+        log(
+            "[LOCATION] Reverse geocode gagal"
+        );
+
+    }
+
+  }
+</script>
   
 
 </body>
