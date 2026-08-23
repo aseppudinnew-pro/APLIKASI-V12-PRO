@@ -10,6 +10,9 @@ Repository: GitHub
 Download Aplikasi:
 https://github.com/aseppudinnew-pro/APLIKASI-V12-PRO/raw/refs/heads/main/myROBOTV12app-release.apk
 
+Review Aplikasi:
+https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/
+
 ---
 
 📌 Tentang
