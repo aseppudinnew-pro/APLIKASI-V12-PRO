@@ -1952,6 +1952,10 @@ onclick="startGPS()">
 
 </button>
 
+  <button id="gpsButton" onclick="activateGPS()">
+    📍 AKTIFKAN GPS
+</button>
+
 
 <button
 class="btn-red"
@@ -4283,6 +4287,416 @@ $("boot")
 },
 180
 );
+
+  let gpsActive = false;
+let gpsWatchId = null;
+
+/* ==========================================
+   SUARA ROBOT / GOOGLE STYLE
+========================================== */
+
+function speak(text){
+
+    if(!("speechSynthesis" in window)){
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const voice = new SpeechSynthesisUtterance(text);
+
+    voice.lang = "id-ID";
+    voice.rate = 0.95;
+    voice.pitch = 1.0;
+    voice.volume = 1.0;
+
+    window.speechSynthesis.speak(voice);
+}
+
+
+/* ==========================================
+   SUARA KLIK
+========================================== */
+
+function clickSound(){
+
+    try{
+
+        const audio =
+            new Audio(
+                "data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="
+            );
+
+        audio.volume = 0.5;
+
+        audio.play().catch(()=>{});
+
+    }catch(e){}
+
+}
+
+
+/* ==========================================
+   AKTIFKAN GPS
+========================================== */
+
+function activateGPS(){
+
+    clickSound();
+
+    vibrate();
+
+    log("[GPS] Tombol AKTIFKAN GPS ditekan");
+
+    /* HTTPS */
+
+    if(
+        !window.isSecureContext &&
+        location.hostname !== "localhost"
+    ){
+
+        speak(
+            "GPS membutuhkan koneksi aman HTTPS."
+        );
+
+        alert(
+            "⚠️ GPS membutuhkan HTTPS.\n\n" +
+            "Buka aplikasi melalui GitHub Pages."
+        );
+
+        return;
+    }
+
+
+    /* GEOLOCATION */
+
+    if(!navigator.geolocation){
+
+        speak(
+            "GPS tidak didukung oleh browser ini."
+        );
+
+        alert(
+            "❌ Browser tidak mendukung GPS."
+        );
+
+        return;
+    }
+
+
+    /* POPUP */
+
+    const izin =
+        confirm(
+            "📍 IZINKAN AKSES LOKASI\n\n" +
+            "myROBOT-V12 membutuhkan akses lokasi " +
+            "untuk mengaktifkan GPS realtime.\n\n" +
+            "Tekan OK untuk melanjutkan."
+        );
+
+
+    if(!izin){
+
+        speak(
+            "Akses GPS dibatalkan."
+        );
+
+        log(
+            "[GPS] User membatalkan permintaan lokasi"
+        );
+
+        return;
+    }
+
+
+    speak(
+        "Silakan izinkan akses lokasi untuk mengaktifkan GPS."
+    );
+
+
+    document.getElementById(
+        "gpsStatus"
+    ).innerText =
+        "REQUESTING";
+
+
+    document.getElementById(
+        "gpsStatus"
+    ).className =
+        "value yellow";
+
+
+    document.getElementById(
+        "gpsData"
+    ).innerHTML =
+        "📍 Meminta izin lokasi...<br><br>" +
+        "Silakan pilih IZINKAN pada popup Chrome.";
+
+
+    log(
+        "[GPS] Meminta izin lokasi Android..."
+    );
+
+
+    /* REQUEST GPS */
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            gpsActive = true;
+
+            speak(
+                "GPS berhasil diaktifkan."
+            );
+
+            log(
+                "[GPS] Permission GRANTED"
+            );
+
+
+            gpsSuccess(position);
+
+
+            /* REALTIME TRACKING */
+
+            if(gpsWatchId !== null){
+
+                navigator.geolocation.clearWatch(
+                    gpsWatchId
+                );
+
+            }
+
+
+            gpsWatchId =
+                navigator.geolocation.watchPosition(
+
+                    gpsSuccess,
+
+                    gpsError,
+
+                    {
+                        enableHighAccuracy:true,
+                        timeout:30000,
+                        maximumAge:1000
+                    }
+
+                );
+
+
+            document.getElementById(
+                "gpsButton"
+            ).innerText =
+                "🟢 GPS AKTIF";
+
+
+        },
+
+
+        function(error){
+
+            gpsActive = false;
+
+            gpsError(error);
+
+        },
+
+
+        {
+            enableHighAccuracy:true,
+            timeout:30000,
+            maximumAge:0
+        }
+
+    );
+
+}
+
+
+/* ==========================================
+   GPS ERROR
+========================================== */
+
+function gpsError(error){
+
+    let message = "";
+
+    if(error.code === 1){
+
+        message =
+            "Izin lokasi ditolak.";
+
+    }
+
+    else if(error.code === 2){
+
+        message =
+            "Lokasi tidak tersedia.";
+
+    }
+
+    else if(error.code === 3){
+
+        message =
+            "GPS membutuhkan waktu terlalu lama.";
+
+    }
+
+    else{
+
+        message =
+            "Terjadi kesalahan GPS.";
+
+    }
+
+
+    document.getElementById(
+        "gpsStatus"
+    ).innerText =
+        "ERROR";
+
+
+    document.getElementById(
+        "gpsStatus"
+    ).className =
+        "value red";
+
+
+    document.getElementById(
+        "gpsData"
+    ).innerHTML =
+
+        "⚠️ GPS ERROR<br><br>" +
+
+        "Code : " +
+        error.code +
+        "<br>" +
+
+        "Status : " +
+        message;
+
+
+    log(
+        "[GPS] ERROR " +
+        error.code +
+        " • " +
+        message
+    );
+
+
+    vibrate();
+
+
+    if(error.code === 1){
+
+        speak(
+            "Akses lokasi ditolak. " +
+            "Silakan izinkan lokasi untuk Chrome."
+        );
+
+
+        alert(
+
+            "❌ IZIN LOKASI DITOLAK\n\n" +
+
+            "Aktifkan izin lokasi Chrome:\n\n" +
+
+            "Pengaturan HP\n" +
+            "→ Aplikasi\n" +
+            "→ Chrome\n" +
+            "→ Izin\n" +
+            "→ Lokasi\n" +
+            "→ Izinkan saat menggunakan aplikasi\n\n" +
+
+            "Kemudian buka kembali myROBOT-V12."
+
+        );
+
+    }
+
+
+    if(error.code === 2){
+
+        speak(
+            "Lokasi tidak tersedia. " +
+            "Silakan aktifkan GPS pada HP."
+        );
+
+
+        alert(
+
+            "📍 LOKASI TIDAK TERSEDIA\n\n" +
+
+            "Pastikan fitur Lokasi/GPS HP aktif.\n\n" +
+
+            "Kemudian tekan tombol AKTIFKAN GPS lagi."
+
+        );
+
+    }
+
+
+    if(error.code === 3){
+
+        speak(
+            "GPS timeout. " +
+            "Silakan coba lagi di tempat terbuka."
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   STOP GPS
+========================================== */
+
+function stopGPS(){
+
+    if(gpsWatchId !== null){
+
+        navigator.geolocation.clearWatch(
+            gpsWatchId
+        );
+
+        gpsWatchId = null;
+
+    }
+
+
+    gpsActive = false;
+
+
+    document.getElementById(
+        "gpsStatus"
+    ).innerText =
+        "NOT ACTIVE";
+
+
+    document.getElementById(
+        "gpsStatus"
+    ).className =
+        "value red";
+
+
+    document.getElementById(
+        "gpsButton"
+    ).innerText =
+        "📍 AKTIFKAN GPS";
+
+
+    speak(
+        "GPS tracking dihentikan."
+    );
+
+
+    log(
+        "[GPS] Tracking STOPPED"
+    );
+
+  }
 
 </script>
 
