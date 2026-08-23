@@ -2263,6 +2263,120 @@ rel="noopener">
 </section>
 
 
+  <!-- ===================================================
+     WEATHER + AIR QUALITY
+=================================================== -->
+
+<section class="card">
+
+    <div class="title">
+        🌦️ CUACA & KONDISI UDARA
+    </div>
+
+    <div class="grid">
+
+        <div class="info">
+            <div class="label">LOKASI</div>
+            <div id="weatherLocation" class="value">
+                MENUNGGU GPS
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">SUHU</div>
+            <div id="temperature" class="value green">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">KONDISI</div>
+            <div id="weatherCondition" class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">KELEMBAPAN</div>
+            <div id="humidity" class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">ANGIN</div>
+            <div id="wind" class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">PM2.5</div>
+            <div id="pm25" class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">PM10</div>
+            <div id="pm10" class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">KUALITAS UDARA</div>
+            <div id="airQuality" class="value green">
+                -
+            </div>
+        </div>
+
+    </div>
+
+    <div
+        id="weatherUpdated"
+        class="date"
+        style="margin-top:12px">
+        Menunggu data...
+    </div>
+
+</section>
+
+
+<!-- ===================================================
+     EARTHQUAKE
+=================================================== -->
+
+<section class="card">
+
+    <div class="title">
+        🌋 GEMPA TERKINI BMKG
+    </div>
+
+    <div
+        id="earthquakeStatus"
+        class="value yellow">
+        MENGAMBIL DATA...
+    </div>
+
+    <br>
+
+    <div
+        id="earthquakeList"
+        class="log"
+        style="height:250px">
+        Menghubungkan ke informasi gempa BMKG...
+    </div>
+
+    <br>
+
+    <button onclick="loadEarthquakes()">
+        🔄 CEK GEMPA TERKINI
+    </button>
+
+</section>
+
+
 <!-- PERMISSIONS -->
 
 <section class="card">
@@ -2409,7 +2523,7 @@ class="card install">
 
 <div class="install-box">
 
-📲 myROBOT-V13 siap dipasang
+📲 myROBOT-V12 siap dipasang
 sebagai aplikasi Android
 
 <br><br>
@@ -2449,6 +2563,340 @@ crossorigin="">
 
 <script>
 
+/* =====================================================
+   WEATHER
+===================================================== */
+
+let weatherLat = null;
+let weatherLon = null;
+
+function weatherCodeText(code){
+
+    const data = {
+
+        0:"☀️ Cerah",
+
+        1:"🌤️ Cerah Berawan",
+
+        2:"⛅ Berawan Sebagian",
+
+        3:"☁️ Mendung",
+
+        45:"🌫️ Berkabut",
+
+        48:"🌫️ Kabut",
+
+        51:"🌦️ Gerimis Ringan",
+
+        53:"🌦️ Gerimis",
+
+        55:"🌧️ Gerimis Lebat",
+
+        61:"🌧️ Hujan Ringan",
+
+        63:"🌧️ Hujan",
+
+        65:"🌧️ Hujan Lebat",
+
+        71:"❄️ Salju Ringan",
+
+        73:"❄️ Salju",
+
+        75:"❄️ Salju Lebat",
+
+        80:"🌦️ Hujan Lokal",
+
+        81:"🌧️ Hujan",
+
+        82:"⛈️ Hujan Lebat",
+
+        95:"⛈️ Badai Petir",
+
+        96:"⛈️ Badai Petir + Hujan Es",
+
+        99:"⛈️ Badai Petir + Hujan Es"
+
+    };
+
+    return data[code] || "🌍 Tidak diketahui";
+
+}
+
+
+/* =====================================================
+   LOAD WEATHER
+===================================================== */
+
+async function loadWeather(lat, lon){
+
+    weatherLat = lat;
+    weatherLon = lon;
+
+    log(
+        "[WEATHER] Mengambil data cuaca..."
+    );
+
+    try{
+
+        const weatherURL =
+            "https://api.open-meteo.com/v1/forecast" +
+
+            "?latitude=" + lat +
+
+            "&longitude=" + lon +
+
+            "&current=" +
+
+            "temperature_2m," +
+
+            "relative_humidity_2m," +
+
+            "apparent_temperature," +
+
+            "precipitation," +
+
+            "weather_code," +
+
+            "wind_speed_10m," +
+
+            "wind_direction_10m" +
+
+            "&timezone=auto";
+
+
+        const response =
+            await fetch(weatherURL);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Weather API error"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const c =
+            data.current;
+
+
+        document.getElementById(
+            "temperature"
+        ).innerText =
+            c.temperature_2m +
+            " °C";
+
+
+        document.getElementById(
+            "weatherCondition"
+        ).innerText =
+            weatherCodeText(
+                c.weather_code
+            );
+
+
+        document.getElementById(
+            "humidity"
+        ).innerText =
+            c.relative_humidity_2m +
+            " %";
+
+
+        document.getElementById(
+            "wind"
+        ).innerText =
+            c.wind_speed_10m +
+            " km/h";
+
+
+        document.getElementById(
+            "weatherUpdated"
+        ).innerText =
+            "Update: " +
+            new Date().toLocaleTimeString(
+                "id-ID"
+            );
+
+
+        log(
+            "[WEATHER] " +
+            c.temperature_2m +
+            "°C • " +
+            weatherCodeText(
+                c.weather_code
+            )
+        );
+
+
+        loadAirQuality(
+            lat,
+            lon
+        );
+
+
+    }catch(error){
+
+        log(
+            "[WEATHER] ERROR: " +
+            error.message
+        );
+
+        document.getElementById(
+            "weatherCondition"
+        ).innerText =
+            "DATA ERROR";
+
+    }
+
+}
+
+
+/* =====================================================
+   AIR QUALITY
+===================================================== */
+
+async function loadAirQuality(lat, lon){
+
+    try{
+
+        const url =
+
+            "https://air-quality-api.open-meteo.com/v1/air-quality" +
+
+            "?latitude=" + lat +
+
+            "&longitude=" + lon +
+
+            "&current=" +
+
+            "pm10," +
+
+            "pm2_5," +
+
+            "us_aqi" +
+
+            "&timezone=auto";
+
+
+        const response =
+            await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Air Quality API error"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const c =
+            data.current;
+
+
+        const pm25 =
+            Number(c.pm2_5);
+
+
+        const pm10 =
+            Number(c.pm10);
+
+
+        const aqi =
+            Number(c.us_aqi);
+
+
+        document.getElementById(
+            "pm25"
+        ).innerText =
+            isNaN(pm25)
+            ?
+            "-"
+            :
+            pm25.toFixed(1) +
+            " µg/m³";
+
+
+        document.getElementById(
+            "pm10"
+        ).innerText =
+            isNaN(pm10)
+            ?
+            "-"
+            :
+            pm10.toFixed(1) +
+            " µg/m³";
+
+
+        document.getElementById(
+            "airQuality"
+        ).innerText =
+            "AQI " +
+            aqi +
+            " • " +
+            getAQIText(aqi);
+
+
+        log(
+            "[AIR] AQI " +
+            aqi +
+            " • PM2.5 " +
+            pm25
+        );
+
+
+    }catch(error){
+
+        log(
+            "[AIR] ERROR: " +
+            error.message
+        );
+
+        document.getElementById(
+            "airQuality"
+        ).innerText =
+            "DATA ERROR";
+
+    }
+
+}
+
+
+/* =====================================================
+   AQI
+===================================================== */
+
+function getAQIText(aqi){
+
+    if(aqi <= 50)
+        return "BAIK";
+
+    if(aqi <= 100)
+        return "SEDANG";
+
+    if(aqi <= 150)
+        return "TIDAK SEHAT";
+
+    if(aqi <= 200)
+        return "TIDAK SEHAT";
+
+    if(aqi <= 300)
+        return "SANGAT TIDAK SEHAT";
+
+    return "BERBAHAYA";
+
+}
+  
 /* =====================================================
 GLOBAL
 ===================================================== */
@@ -3594,6 +4042,18 @@ c.latitude;
 currentLon=
 c.longitude;
 
+  /* WEATHER AUTO UPDATE */
+
+loadWeather(
+    c.latitude,
+    c.longitude
+);
+
+  reverseLocation(
+    c.latitude,
+    c.longitude
+);
+
 
 const accuracy=
 Math.round(
@@ -4442,7 +4902,7 @@ loadLogs();
 
 
 log(
-"[SYSTEM] myROBOT-V13.0 STARTING"
+"[SYSTEM] myROBOT-V12.0 STARTING"
 );
 
 log(
@@ -5138,6 +5598,118 @@ window.addEventListener(
 );
 
 </script>
+
+  <script>
+
+/* =====================================================
+   WEATHER
+===================================================== */
+
+async function loadWeather(lat, lon){
+
+    // kode weather kamu di sini...
+
+}
+
+
+/* =====================================================
+   AIR QUALITY
+===================================================== */
+
+async function loadAirQuality(lat, lon){
+
+    // kode air quality kamu di sini...
+
+}
+
+
+/* =====================================================
+   REVERSE LOCATION
+===================================================== */
+
+async function reverseLocation(lat, lon){
+
+    try{
+
+        const url =
+            "https://nominatim.openstreetmap.org/reverse" +
+            "?format=jsonv2" +
+            "&lat=" + lat +
+            "&lon=" + lon +
+            "&zoom=10" +
+            "&accept-language=id";
+
+        const response =
+            await fetch(url);
+
+        const data =
+            await response.json();
+
+        const address =
+            data.address || {};
+
+        const location =
+            address.village ||
+            address.town ||
+            address.city ||
+            address.county ||
+            address.state ||
+            "Lokasi GPS";
+
+
+        document.getElementById(
+            "weatherLocation"
+        ).innerText =
+            location;
+
+
+        log(
+            "[LOCATION] " +
+            location
+        );
+
+
+    }catch(error){
+
+        document.getElementById(
+            "weatherLocation"
+        ).innerText =
+            "GPS " +
+            lat.toFixed(4) +
+            ", " +
+            lon.toFixed(4);
+
+    }
+
+}
+
+
+/* =====================================================
+   AQI
+===================================================== */
+
+function getAQIText(aqi){
+
+    if(aqi <= 50)
+        return "BAIK";
+
+    if(aqi <= 100)
+        return "SEDANG";
+
+    if(aqi <= 150)
+        return "TIDAK SEHAT";
+
+    if(aqi <= 200)
+        return "TIDAK SEHAT";
+
+    if(aqi <= 300)
+        return "SANGAT TIDAK SEHAT";
+
+    return "BERBAHAYA";
+
+}
+
+  </script>
 
   
 
