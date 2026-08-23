@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>myROBOT-V12 Development</title>
+<title>myROBOT-V12 Dashboard</title>
 
 <style>
 *{
@@ -15,52 +15,52 @@
 }
 
 body{
-    background:#050d18;
-    color:white;
+    background:#040b14;
+    color:#fff;
     min-height:100vh;
 }
 
 header{
-    background:linear-gradient(135deg,#081a30,#0d4268);
-    padding:20px 15px;
+    padding:22px 15px;
     text-align:center;
-    border-bottom:1px solid #1d5275;
-    box-shadow:0 5px 25px rgba(0,200,255,.12);
+    background:
+    linear-gradient(135deg,#071b30,#0b4265);
+    border-bottom:1px solid #1d5778;
+    box-shadow:0 0 25px rgba(0,229,255,.12);
 }
 
 .logo{
-    font-size:25px;
-    font-weight:bold;
     color:#00e5ff;
-    text-shadow:0 0 12px rgba(0,229,255,.5);
+    font-size:26px;
+    font-weight:bold;
+    text-shadow:0 0 15px #00e5ff;
 }
 
 .version{
-    margin-top:5px;
+    color:#7ea8c4;
     font-size:11px;
-    color:#8db8d5;
+    margin-top:5px;
 }
 
 .dev{
-    margin-top:4px;
+    color:#b9d1df;
     font-size:12px;
-    color:#b6cddd;
+    margin-top:4px;
 }
 
 .container{
-    width:100%;
     max-width:720px;
     margin:auto;
     padding:14px;
 }
 
 .card{
-    background:linear-gradient(145deg,#0b1829,#0a1422);
-    border:1px solid #1b3852;
+    background:#091522;
+    border:1px solid #19364e;
     border-radius:17px;
     padding:17px;
     margin-bottom:14px;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
 }
 
 .title{
@@ -72,14 +72,14 @@ header{
 
 .active{
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     gap:9px;
-    padding:12px;
+    padding:13px;
     border-radius:12px;
-    background:rgba(0,255,145,.07);
-    border:1px solid rgba(0,255,145,.15);
     color:#00ff91;
+    background:rgba(0,255,145,.06);
+    border:1px solid rgba(0,255,145,.2);
     font-weight:bold;
 }
 
@@ -88,95 +88,69 @@ header{
     height:9px;
     background:#00ff91;
     border-radius:50%;
-    box-shadow:0 0 12px #00ff91;
+    box-shadow:0 0 14px #00ff91;
 }
 
 .clock{
     text-align:center;
-    font-size:38px;
-    font-weight:bold;
     color:#00ff91;
+    font-size:39px;
+    font-weight:bold;
     letter-spacing:2px;
 }
 
 .date{
     text-align:center;
+    color:#8ba6ba;
+    font-size:13px;
     margin-top:7px;
-    color:#9db1c5;
-    font-size:13px;
 }
 
-.status-grid{
+.grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:9px;
 }
 
-.status-box{
-    background:#07111e;
-    border:1px solid #172d42;
-    border-radius:13px;
-    padding:14px 8px;
-    text-align:center;
+.box{
+    background:#050d17;
+    border:1px solid #142b3e;
+    border-radius:12px;
+    padding:13px 9px;
 }
 
-.status-icon{
-    font-size:24px;
-}
-
-.status-label{
-    color:#7f99ae;
+.label{
+    color:#66859b;
     font-size:10px;
-    margin-top:5px;
+    margin-bottom:5px;
 }
 
-.online{
-    color:#00ff91;
-    font-weight:bold;
-    font-size:13px;
-    margin-top:3px;
-}
-
-.offline{
-    color:#ff5262;
-    font-weight:bold;
-    font-size:13px;
-    margin-top:3px;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-}
-
-.info{
-    background:#07111e;
-    border-radius:10px;
-    padding:10px;
-    border:1px solid #172d42;
-}
-
-.info-label{
-    color:#718da5;
-    font-size:10px;
-    margin-bottom:4px;
-}
-
-.info-value{
-    color:#dff7ff;
+.value{
+    color:#dffaff;
     font-size:12px;
     font-weight:bold;
     word-break:break-word;
 }
 
-.timer-display{
+.green{
+    color:#00ff91;
+}
+
+.red{
+    color:#ff5262;
+}
+
+.center{
     text-align:center;
+}
+
+.timer{
+    color:#00ff91;
     font-size:40px;
     font-weight:bold;
     letter-spacing:3px;
-    margin:8px 0 17px;
-    color:#00ff91;
+    text-align:center;
+    margin:7px 0 17px;
 }
 
 .buttons{
@@ -186,91 +160,98 @@ header{
 
 button{
     flex:1;
+    padding:12px 5px;
     border:0;
     border-radius:10px;
-    padding:12px 5px;
-    background:#00bcd4;
+    background:#00c6df;
     color:#001018;
     font-weight:bold;
-    cursor:pointer;
 }
 
 button:active{
     transform:scale(.96);
 }
 
-.stop{
+.redbtn{
     background:#ff4757;
-    color:white;
+    color:#fff;
 }
 
-.reset{
-    background:#52657a;
-    color:white;
+.graybtn{
+    background:#53687a;
+    color:#fff;
 }
 
-.gps-data{
+.gps{
     background:#030910;
+    border:1px solid #14283a;
     padding:13px;
-    border-radius:10px;
+    border-radius:11px;
     font-family:monospace;
     font-size:12px;
-    line-height:1.8;
-    word-break:break-word;
-    border:1px solid #142536;
+    line-height:1.9;
+}
+
+.mapbtn{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    background:#00bcd4;
+    color:#001018;
+    padding:12px;
+    border-radius:10px;
+    font-weight:bold;
+    margin-top:10px;
 }
 
 .log{
-    max-height:200px;
-    overflow:auto;
-    background:#030910;
-    padding:12px;
-    border-radius:10px;
+    background:#02070d;
+    color:#00ff91;
     font-family:monospace;
     font-size:11px;
     line-height:1.8;
-    color:#00ff91;
-    border:1px solid #142536;
+    padding:12px;
+    border-radius:10px;
+    max-height:220px;
+    overflow:auto;
+    border:1px solid #14283a;
 }
 
 .progress{
-    height:7px;
-    background:#142333;
+    width:100%;
+    height:8px;
+    background:#142536;
     border-radius:10px;
     overflow:hidden;
     margin-top:8px;
 }
 
-.progress-bar{
+.bar{
     height:100%;
     width:0%;
     background:#00ff91;
-    border-radius:10px;
+    transition:.4s;
 }
 
 footer{
     text-align:center;
-    padding:20px;
-    color:#61758a;
+    color:#526a7d;
     font-size:10px;
+    padding:20px;
 }
 
 @media(max-width:400px){
 
     .clock{
-        font-size:29px;
+        font-size:30px;
     }
 
-    .timer-display{
+    .timer{
         font-size:32px;
     }
 
     button{
         font-size:11px;
-    }
-
-    .info-grid{
-        grid-template-columns:1fr 1fr;
     }
 }
 </style>
@@ -280,15 +261,15 @@ footer{
 
 <header>
 
-    <div class="logo">🤖 myROBOT-V12</div>
+<div class="logo">🤖 myROBOT-V12</div>
 
-    <div class="version">
-        DEVELOPMENT V12.1
-    </div>
+<div class="version">
+DEVELOPMENT V12.2
+</div>
 
-    <div class="dev">
-        Asep Pudin New
-    </div>
+<div class="dev">
+Asep Pudin New • Android Monitoring
+</div>
 
 </header>
 
@@ -296,17 +277,14 @@ footer{
 <div class="container">
 
 
-<!-- SYSTEM ACTIVE -->
+<!-- SYSTEM -->
 
 <div class="card">
 
-    <div class="active">
-
-        <span class="dot"></span>
-
-        SYSTEM AKTIF
-
-    </div>
+<div class="active">
+<span class="dot"></span>
+SYSTEM ACTIVE
+</div>
 
 </div>
 
@@ -315,17 +293,17 @@ footer{
 
 <div class="card">
 
-    <div class="title">
-        🕐 WAKTU SISTEM
-    </div>
+<div class="title">
+🕐 REALTIME SYSTEM
+</div>
 
-    <div class="clock" id="clock">
-        00:00:00
-    </div>
+<div class="clock" id="clock">
+00:00:00
+</div>
 
-    <div class="date" id="date">
-        Loading...
-    </div>
+<div class="date" id="date">
+Loading...
+</div>
 
 </div>
 
@@ -334,203 +312,112 @@ footer{
 
 <div class="card">
 
-    <div class="title">
-        📡 STATUS PERANGKAT
-    </div>
+<div class="title">
+📡 SYSTEM STATUS
+</div>
 
-    <div class="status-grid">
+<div class="grid">
 
+<div class="box">
+<div class="label">🌐 INTERNET</div>
+<div id="internet" class="value green">
+ONLINE
+</div>
+</div>
 
-        <div class="status-box">
+<div class="box">
+<div class="label">📱 DEVICE</div>
+<div id="deviceStatus" class="value green">
+ANDROID
+</div>
+</div>
 
-            <div class="status-icon">🌐</div>
+<div class="box">
+<div class="label">📍 GPS</div>
+<div id="gpsStatus" class="value red">
+NOT ACTIVE
+</div>
+</div>
 
-            <div class="status-label">
-                INTERNET
-            </div>
+<div class="box">
+<div class="label">⚙️ SYSTEM</div>
+<div class="value green">
+ACTIVE
+</div>
+</div>
 
-            <div id="internetStatus"
-                 class="online">
-                ONLINE
-            </div>
-
-        </div>
-
-
-        <div class="status-box">
-
-            <div class="status-icon">🤖</div>
-
-            <div class="status-label">
-                SYSTEM
-            </div>
-
-            <div class="online">
-                AKTIF
-            </div>
-
-        </div>
-
-
-        <div class="status-box">
-
-            <div class="status-icon">📱</div>
-
-            <div class="status-label">
-                DEVICE
-            </div>
-
-            <div id="deviceStatus"
-                 class="online">
-                ANDROID
-            </div>
-
-        </div>
-
-
-        <div class="status-box">
-
-            <div class="status-icon">📍</div>
-
-            <div class="status-label">
-                GPS
-            </div>
-
-            <div id="gpsStatus"
-                 class="offline">
-                BELUM AKTIF
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- DEVICE INFORMATION -->
+<!-- DEVICE -->
 
 <div class="card">
 
-    <div class="title">
-        📱 DEVICE INFORMATION
-    </div>
+<div class="title">
+📱 DEVICE INFORMATION
+</div>
 
-    <div class="info-grid">
+<div class="grid">
 
+<div class="box">
+<div class="label">DEVICE</div>
+<div id="device" class="value">
+Checking...
+</div>
+</div>
 
-        <div class="info">
+<div class="box">
+<div class="label">MODEL</div>
+<div id="model" class="value">
+Checking...
+</div>
+</div>
 
-            <div class="info-label">
-                DEVICE
-            </div>
+<div class="box">
+<div class="label">OS</div>
+<div id="os" class="value">
+Checking...
+</div>
+</div>
 
-            <div class="info-value"
-                 id="deviceType">
-                -
-            </div>
+<div class="box">
+<div class="label">BROWSER</div>
+<div id="browser" class="value">
+Checking...
+</div>
+</div>
 
-        </div>
+<div class="box">
+<div class="label">SCREEN</div>
+<div id="screen" class="value">
+Checking...
+</div>
+</div>
 
+<div class="box">
+<div class="label">NETWORK</div>
+<div id="network" class="value">
+Checking...
+</div>
+</div>
 
-        <div class="info">
+<div class="box">
+<div class="label">PUBLIC IP</div>
+<div id="ip" class="value">
+Checking...
+</div>
+</div>
 
-            <div class="info-label">
-                MODEL / USER AGENT
-            </div>
+<div class="box">
+<div class="label">BATTERY</div>
+<div id="battery" class="value">
+Checking...
+</div>
+</div>
 
-            <div class="info-value"
-                 id="deviceModel">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-label">
-                OS
-            </div>
-
-            <div class="info-value"
-                 id="osInfo">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-label">
-                BROWSER
-            </div>
-
-            <div class="info-value"
-                 id="browserInfo">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-label">
-                SCREEN
-            </div>
-
-            <div class="info-value"
-                 id="screenInfo">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-label">
-                NETWORK
-            </div>
-
-            <div class="info-value"
-                 id="networkInfo">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-label">
-                IP ADDRESS
-            </div>
-
-            <div class="info-value"
-                 id="ipInfo">
-                Checking...
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-label">
-                BATTERY
-            </div>
-
-            <div class="info-value"
-                 id="batteryInfo">
-                Checking...
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
@@ -539,21 +426,19 @@ footer{
 
 <div class="card">
 
-    <div class="title">
-        🔋 BATTERY
-    </div>
+<div class="title">
+🔋 BATTERY MONITOR
+</div>
 
-    <div id="batteryText">
-        Checking battery...
-    </div>
+<div id="batteryText">
+Checking...
+</div>
 
-    <div class="progress">
+<div class="progress">
 
-        <div class="progress-bar"
-             id="batteryBar">
-        </div>
+<div class="bar" id="batteryBar"></div>
 
-    </div>
+</div>
 
 </div>
 
@@ -562,33 +447,29 @@ footer{
 
 <div class="card">
 
-    <div class="title">
-        ⏱️ SYSTEM TIMER
-    </div>
+<div class="title">
+⏱️ SYSTEM TIMER
+</div>
 
-    <div class="timer-display"
-         id="timer">
+<div class="timer" id="timer">
+00:00:00
+</div>
 
-        00:00:00
+<div class="buttons">
 
-    </div>
+<button onclick="startTimer()">
+START
+</button>
 
-    <div class="buttons">
+<button onclick="pauseTimer()">
+PAUSE
+</button>
 
-        <button onclick="startTimer()">
-            START
-        </button>
+<button class="graybtn" onclick="resetTimer()">
+RESET
+</button>
 
-        <button onclick="pauseTimer()">
-            PAUSE
-        </button>
-
-        <button class="reset"
-                onclick="resetTimer()">
-            RESET
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -597,24 +478,32 @@ footer{
 
 <div class="card">
 
-    <div class="title">
-        📍 GPS LOCATION
-    </div>
+<div class="title">
+📍 GPS LOCATION MONITOR
+</div>
 
-    <div class="gps-data"
-         id="gpsData">
+<div class="gps" id="gpsData">
 
-        Latitude : -<br>
-        Longitude: -<br>
-        Accuracy : -
+Latitude : -<br>
+Longitude: -<br>
+Accuracy : -<br>
+Status   : WAITING
 
-    </div>
+</div>
 
-    <br>
+<button onclick="startGPS()" style="margin-top:10px;">
+📍 AKTIFKAN GPS
+</button>
 
-    <button onclick="startGPS()">
-        📍 AKTIFKAN GPS
-    </button>
+<a
+id="mapButton"
+class="mapbtn"
+href="#"
+target="_blank"
+style="display:none;"
+>
+🗺️ BUKA GOOGLE MAPS
+</a>
 
 </div>
 
@@ -623,19 +512,17 @@ footer{
 
 <div class="card">
 
-    <div class="title">
-        📋 SYSTEM LOG
-    </div>
+<div class="title">
+📋 SYSTEM ACTIVITY LOG
+</div>
 
-    <div class="log"
-         id="systemLog">
+<div class="log" id="log"></div>
 
-        [SYSTEM] myROBOT-V12 starting...<br>
-        [SYSTEM] Developer: Asep Pudin<br>
-        [SYSTEM] Interface: Mobile Ready<br>
-        [SYSTEM] Status: ACTIVE<br>
+<br>
 
-    </div>
+<button class="graybtn" onclick="clearLogs()">
+CLEAR LOG
+</button>
 
 </div>
 
@@ -645,8 +532,8 @@ footer{
 
 <footer>
 
-    myROBOT-V12 Development V12.1<br>
-    Asep Pudin © 2026
+myROBOT-V12 Development V12.2<br>
+Asep Pudin © 2026
 
 </footer>
 
@@ -658,47 +545,86 @@ footer{
    CLOCK
 ========================= */
 
-function updateClock(){
+function clock(){
 
-    const now = new Date();
+const d=new Date();
 
-    let h =
-        String(now.getHours()).padStart(2,'0');
+document.getElementById("clock").innerText=
 
-    let m =
-        String(now.getMinutes()).padStart(2,'0');
+String(d.getHours()).padStart(2,"0")+":"+
+String(d.getMinutes()).padStart(2,"0")+":"+
+String(d.getSeconds()).padStart(2,"0");
 
-    let s =
-        String(now.getSeconds()).padStart(2,'0');
+document.getElementById("date").innerText=
 
-
-    document.getElementById("clock")
-        .innerText =
-        h + ":" + m + ":" + s;
-
-
-    const options = {
-
-        weekday:'long',
-        year:'numeric',
-        month:'long',
-        day:'numeric'
-
-    };
-
-
-    document.getElementById("date")
-        .innerText =
-        now.toLocaleDateString(
-            'id-ID',
-            options
-        );
+d.toLocaleDateString(
+"id-ID",
+{
+weekday:"long",
+year:"numeric",
+month:"long",
+day:"numeric"
+}
+);
 
 }
 
-setInterval(updateClock,1000);
+setInterval(clock,1000);
+clock();
 
-updateClock();
+
+
+/* =========================
+   LOG
+========================= */
+
+function log(message){
+
+const box=document.getElementById("log");
+
+const time=new Date()
+.toLocaleTimeString("id-ID");
+
+const line=
+"["+time+"] "+message;
+
+box.innerHTML+=line+"<br>";
+
+box.scrollTop=box.scrollHeight;
+
+localStorage.setItem(
+"robotLogs",
+box.innerHTML
+);
+
+}
+
+function loadLogs(){
+
+const old=
+localStorage.getItem("robotLogs");
+
+if(old){
+
+document.getElementById("log")
+.innerHTML=old;
+
+}
+
+}
+
+function clearLogs(){
+
+localStorage.removeItem("robotLogs");
+
+document.getElementById("log")
+.innerHTML="";
+
+log("[SYSTEM] LOG CLEARED");
+
+}
+
+loadLogs();
 
 
 
@@ -706,226 +632,225 @@ updateClock();
    INTERNET
 ========================= */
 
-function updateInternet(){
+function internetStatus(){
 
-    const status =
-        document.getElementById(
-            "internetStatus"
-        );
+const el=
+document.getElementById("internet");
 
+if(navigator.onLine){
 
-    if(navigator.onLine){
+el.innerText="ONLINE";
+el.className="value green";
 
-        status.innerText =
-            "ONLINE";
+log("[NETWORK] Internet ONLINE");
 
-        status.className =
-            "online";
+}else{
 
-    }else{
+el.innerText="OFFLINE";
+el.className="value red";
 
-        status.innerText =
-            "OFFLINE";
+log("[NETWORK] Internet OFFLINE");
 
-        status.className =
-            "offline";
-
-    }
+}
 
 }
 
 window.addEventListener(
-    "online",
-    updateInternet
+"online",
+internetStatus
 );
 
 window.addEventListener(
-    "offline",
-    updateInternet
+"offline",
+internetStatus
 );
 
-updateInternet();
+internetStatus();
 
 
 
 /* =========================
-   DEVICE DETECTION
+   DEVICE
 ========================= */
 
-function detectDevice(){
+async function deviceInfo(){
 
-    const ua =
-        navigator.userAgent;
+const ua=navigator.userAgent;
 
+let device="ANDROID";
 
-    let device =
-        "Desktop";
+if(/Android/i.test(ua)){
 
+device="ANDROID";
 
-    if(/Android/i.test(ua)){
+}else if(
+/iPhone|iPad|iPod/i.test(ua)
+){
 
-        device =
-            "Android";
+device="iOS";
 
-    }else if(
-        /iPhone|iPad|iPod/i.test(ua)
-    ){
+}else{
 
-        device =
-            "iOS";
+device="DESKTOP";
 
-    }
+}
 
+document.getElementById("device")
+.innerText=device;
 
-    document.getElementById(
-        "deviceType"
-    ).innerText = device;
-
-
-    document.getElementById(
-        "deviceStatus"
-    ).innerText = device;
+document.getElementById("deviceStatus")
+.innerText=device;
 
 
-    document.getElementById(
-        "osInfo"
-    ).innerText =
-        getOS(ua);
 
+/* MODEL */
 
-    document.getElementById(
-        "browserInfo"
-    ).innerText =
-        getBrowser(ua);
+let model="NOT AVAILABLE";
 
+if(navigator.userAgentData){
 
-    document.getElementById(
-        "deviceModel"
-    ).innerText =
-        getDeviceModel(ua);
+try{
 
+const data=
+await navigator.userAgentData
+.getHighEntropyValues([
+"model",
+"platform",
+"platformVersion",
+"fullVersionList"
+]);
 
-    document.getElementById(
-        "screenInfo"
-    ).innerText =
-        screen.width +
-        " × " +
-        screen.height;
+if(data.model){
 
+model=data.model;
 
-    addLog(
-        "[DEVICE] " +
-        device +
-        " detected"
-    );
+}
+
+if(data.platform){
+
+document.getElementById("os")
+.innerText=
+data.platform+
+(
+data.platformVersion
+?
+" "+data.platformVersion
+:""
+);
+
+}
+
+if(data.fullVersionList){
+
+const chrome=
+data.fullVersionList.find(
+x=>x.brand.includes("Chrome")
+);
+
+if(chrome){
+
+document.getElementById("browser")
+.innerText=
+"Chrome "+chrome.version;
+
+}
+
+}
+
+}catch(e){}
 
 }
 
 
 
-/* =========================
-   OS
-========================= */
+/* FALLBACK MODEL */
 
-function getOS(ua){
+if(model==="NOT AVAILABLE"){
 
-    if(/Android/i.test(ua)){
+if(/X670/i.test(ua)){
 
-        let match =
-            ua.match(/Android\s([0-9\.]+)/i);
+model="Infinix X670";
 
-        return match
-            ? "Android " + match[1]
-            : "Android";
+}else{
 
-    }
+model="Android Device";
 
+}
 
-    if(/iPhone|iPad|iPod/i.test(ua)){
+}
 
-        return "iOS";
-
-    }
+document.getElementById("model")
+.innerText=model;
 
 
-    if(/Windows/i.test(ua)){
 
-        return "Windows";
+/* OS FALLBACK */
 
-    }
+if(
+document.getElementById("os")
+.innerText==="Checking..."
+){
 
+const match=
+ua.match(/Android\s([0-9.]+)/i);
 
-    if(/Mac OS/i.test(ua)){
-
-        return "macOS";
-
-    }
-
-
-    return "Unknown";
+document.getElementById("os")
+.innerText=
+match
+?
+"Android "+match[1]
+:"Android";
 
 }
 
 
 
-/* =========================
-   BROWSER
-========================= */
+/* BROWSER FALLBACK */
 
-function getBrowser(ua){
+if(
+document.getElementById("browser")
+.innerText==="Checking..."
+){
 
-    if(/Edg/i.test(ua))
-        return "Microsoft Edge";
+if(/Chrome/i.test(ua)){
 
-    if(/OPR/i.test(ua))
-        return "Opera";
+const match=
+ua.match(/Chrome\/([\d.]+)/i);
 
-    if(/Chrome/i.test(ua))
-        return "Google Chrome";
+document.getElementById("browser")
+.innerText=
+match
+?
+"Chrome "+match[1]
+:"Chrome";
 
-    if(/Firefox/i.test(ua))
-        return "Firefox";
+}else{
 
-    if(/Safari/i.test(ua))
-        return "Safari";
+document.getElementById("browser")
+.innerText=
+"Mobile Browser";
 
-    return "Browser";
+}
 
 }
 
 
 
-/* =========================
-   DEVICE MODEL
-========================= */
+/* SCREEN */
 
-function getDeviceModel(ua){
-
-    if(/Android/i.test(ua)){
-
-        let match =
-            ua.match(/Android.*?;\s*([^;)]+?)(?:\s+Build\/[^;)]+)?[;)]/i);
-
-        if(match){
-
-            return match[1].trim();
-
-        }
-
-        return "Android Device";
-
-    }
+document.getElementById("screen")
+.innerText=
+screen.width+" × "+screen.height;
 
 
-    if(/iPhone/i.test(ua))
-        return "iPhone";
 
-    if(/iPad/i.test(ua))
-        return "iPad";
-
-    return "Desktop";
+log(
+"[DEVICE] "+model+" detected"
+);
 
 }
+
+deviceInfo();
 
 
 
@@ -933,87 +858,82 @@ function getDeviceModel(ua){
    NETWORK
 ========================= */
 
-function getNetwork(){
+function networkInfo(){
 
-    const connection =
-        navigator.connection ||
-        navigator.mozConnection ||
-        navigator.webkitConnection;
+const c=
+navigator.connection ||
+navigator.mozConnection ||
+navigator.webkitConnection;
 
+if(c){
 
-    if(connection){
+let type=
+c.effectiveType ||
+c.type ||
+"UNKNOWN";
 
-        let type =
-            connection.effectiveType ||
-            connection.type ||
-            "Unknown";
+let down=
+c.downlink
+?
+c.downlink+" Mbps"
+:"";
 
+document.getElementById("network")
+.innerText=
+type.toUpperCase()+
+(down?" • "+down:"");
 
-        document.getElementById(
-            "networkInfo"
-        ).innerText =
-            type.toUpperCase();
+}else{
 
-    }else{
-
-        document.getElementById(
-            "networkInfo"
-        ).innerText =
-            navigator.onLine
-            ? "ONLINE"
-            : "OFFLINE";
-
-    }
+document.getElementById("network")
+.innerText=
+navigator.onLine
+?
+"ONLINE"
+:"OFFLINE";
 
 }
 
-getNetwork();
+}
+
+networkInfo();
 
 
 
 /* =========================
-   PUBLIC IP
+   IP PUBLIC
 ========================= */
 
 async function getIP(){
 
-    try{
+try{
 
-        const response =
-            await fetch(
-                "https://api.ipify.org?format=json"
-            );
+const response=
+await fetch(
+"https://api.ipify.org?format=json"
+);
 
+const data=
+await response.json();
 
-        const data =
-            await response.json();
+document.getElementById("ip")
+.innerText=data.ip;
 
+log(
+"[NETWORK] PUBLIC IP: "+data.ip
+);
 
-        document.getElementById(
-            "ipInfo"
-        ).innerText =
-            data.ip;
+}catch(e){
 
+document.getElementById("ip")
+.innerText=
+"NOT AVAILABLE";
 
-        addLog(
-            "[NETWORK] Public IP detected: " +
-            data.ip
-        );
+log(
+"[NETWORK] IP unavailable"
+);
 
-
-    }catch(error){
-
-        document.getElementById(
-            "ipInfo"
-        ).innerText =
-            "Tidak tersedia";
-
-
-        addLog(
-            "[NETWORK] IP tidak dapat dibaca"
-        );
-
-    }
+}
 
 }
 
@@ -1025,195 +945,77 @@ getIP();
    BATTERY
 ========================= */
 
-async function getBattery(){
+async function batteryInfo(){
 
-    if(!navigator.getBattery){
+if(!navigator.getBattery){
 
-        document.getElementById(
-            "batteryInfo"
-        ).innerText =
-            "Tidak didukung";
+document.getElementById("battery")
+.innerText=
+"NOT SUPPORTED";
 
-        document.getElementById(
-            "batteryText"
-        ).innerText =
-            "Battery API tidak didukung browser";
+document.getElementById("batteryText")
+.innerText=
+"Battery API tidak didukung";
 
-        return;
-
-    }
-
-
-    try{
-
-        const battery =
-            await navigator.getBattery();
-
-
-        function updateBattery(){
-
-            const level =
-                Math.round(
-                    battery.level * 100
-                );
-
-
-            const charging =
-                battery.charging
-                ? "⚡ CHARGING"
-                : "🔋 NOT CHARGING";
-
-
-            document.getElementById(
-                "batteryInfo"
-            ).innerText =
-                level + "% " + charging;
-
-
-            document.getElementById(
-                "batteryText"
-            ).innerText =
-                level + "% • " + charging;
-
-
-            document.getElementById(
-                "batteryBar"
-            ).style.width =
-                level + "%";
-
-        }
-
-
-        updateBattery();
-
-
-        battery.addEventListener(
-            "levelchange",
-            updateBattery
-        );
-
-
-        battery.addEventListener(
-            "chargingchange",
-            updateBattery
-        );
-
-
-    }catch(error){
-
-        document.getElementById(
-            "batteryInfo"
-        ).innerText =
-            "Tidak tersedia";
-
-    }
+return;
 
 }
 
-getBattery();
+try{
 
+const b=
+await navigator.getBattery();
 
+function update(){
 
-/* =========================
-   TIMER
-========================= */
+const level=
+Math.round(b.level*100);
 
-let timerSeconds = 0;
+const charge=
+b.charging
+?
+"⚡ CHARGING"
+:"🔋 NOT CHARGING";
 
-let timerInterval = null;
+document.getElementById("battery")
+.innerText=
+level+"%";
 
+document.getElementById("batteryText")
+.innerText=
+level+"% • "+charge;
 
-function updateTimer(){
-
-    let h =
-        Math.floor(
-            timerSeconds / 3600
-        );
-
-
-    let m =
-        Math.floor(
-            (timerSeconds % 3600) / 60
-        );
-
-
-    let s =
-        timerSeconds % 60;
-
-
-    document.getElementById(
-        "timer"
-    ).innerText =
-
-        String(h).padStart(2,'0')
-        + ":" +
-
-        String(m).padStart(2,'0')
-        + ":" +
-
-        String(s).padStart(2,'0');
+document.getElementById("batteryBar")
+.style.width=
+level+"%";
 
 }
 
+update();
 
-function startTimer(){
+b.addEventListener(
+"levelchange",
+update
+);
 
-    if(timerInterval !== null)
-        return;
+b.addEventListener(
+"chargingchange",
+update
+);
 
+log("[BATTERY] Monitor READY");
 
-    timerInterval =
-        setInterval(function(){
+}catch(e){
 
-            timerSeconds++;
-
-            updateTimer();
-
-        },1000);
-
-
-    addLog(
-        "[TIMER] Timer START"
-    );
-
-}
-
-
-function pauseTimer(){
-
-    clearInterval(
-        timerInterval
-    );
-
-    timerInterval = null;
-
-
-    addLog(
-        "[TIMER] Timer PAUSE"
-    );
+document.getElementById("battery")
+.innerText=
+"NOT AVAILABLE";
 
 }
 
-
-function resetTimer(){
-
-    clearInterval(
-        timerInterval
-    );
-
-
-    timerInterval = null;
-
-    timerSeconds = 0;
-
-    updateTimer();
-
-
-    addLog(
-        "[TIMER] Timer RESET"
-    );
-
 }
+
+batteryInfo();
 
 
 
@@ -1221,188 +1023,238 @@ function resetTimer(){
    GPS
 ========================= */
 
+let currentLat=null;
+let currentLon=null;
+
 function startGPS(){
 
-    if(!navigator.geolocation){
+const status=
+document.getElementById("gpsStatus");
 
-        addLog(
-            "[GPS] Browser tidak mendukung GPS"
-        );
+const data=
+document.getElementById("gpsData");
 
-        return;
+if(!navigator.geolocation){
 
-    }
+status.innerText="NOT SUPPORTED";
+status.className="value red";
 
+data.innerHTML=
+"GPS tidak didukung browser";
 
-    document.getElementById(
-        "gpsStatus"
-    ).innerText =
-        "MENCARI...";
+return;
 
+}
 
-    document.getElementById(
-        "gpsStatus"
-    ).className =
-        "online";
+if(
+location.protocol!=="https:" &&
+location.hostname!=="localhost"
+){
 
+data.innerHTML=
+"GPS membutuhkan HTTPS.<br>"+
+"Gunakan GitHub Pages.";
 
-    addLog(
-        "[GPS] Meminta lokasi perangkat..."
-    );
+log(
+"[GPS] HTTPS diperlukan"
+);
 
+return;
 
-    navigator.geolocation.getCurrentPosition(
+}
 
-        function(position){
+status.innerText="SEARCHING...";
+status.className="value";
 
-            const lat =
-                position.coords.latitude;
+data.innerHTML=
+"Latitude : Mencari...<br>"+
+"Longitude: Mencari...<br>"+
+"Accuracy : Mencari...<br>"+
+"Status   : SEARCHING";
 
+log(
+"[GPS] Requesting location..."
+);
 
-            const lon =
-                position.coords.longitude;
+navigator.geolocation.getCurrentPosition(
 
+function(position){
 
-            const acc =
-                position.coords.accuracy;
+currentLat=
+position.coords.latitude;
 
+currentLon=
+position.coords.longitude;
 
-            document.getElementById(
-                "gpsData"
-            ).innerHTML =
+const accuracy=
+Math.round(
+position.coords.accuracy
+);
 
-                "Latitude : " +
-                lat +
-                "<br>" +
+status.innerText="ACTIVE";
+status.className="value green";
 
-                "Longitude: " +
-                lon +
-                "<br>" +
+data.innerHTML=
 
-                "Accuracy : ±" +
-                Math.round(acc) +
-                " meter";
-
-
-            document.getElementById(
-                "gpsStatus"
-            ).innerText =
-                "AKTIF";
-
-
-            document.getElementById(
-                "gpsStatus"
-            ).className =
-                "online";
-
-
-            addLog(
-
-                "[GPS] LOCATION OK | "
-                + lat +
-                ", " +
-                lon
-
-            );
-
-        },
+"Latitude : "+currentLat+"<br>"+
+"Longitude: "+currentLon+"<br>"+
+"Accuracy : ±"+accuracy+" meter<br>"+
+"Status   : GPS LOCKED";
 
 
-        function(error){
+const map=
+document.getElementById(
+"mapButton"
+);
 
-            document.getElementById(
-                "gpsStatus"
-            ).innerText =
-                "ERROR";
+map.href=
+"https://www.google.com/maps?q="+
+currentLat+","+currentLon;
 
-
-            document.getElementById(
-                "gpsStatus"
-            ).className =
-                "offline";
+map.style.display="block";
 
 
-            addLog(
-                "[GPS] Gagal mendapatkan lokasi"
-            );
+log(
+"[GPS] LOCKED | "+
+currentLat+", "+currentLon+
+" | ±"+accuracy+"m"
+);
 
-        },
+},
 
+function(error){
 
-        {
+status.innerText="ERROR";
+status.className="value red";
 
-            enableHighAccuracy:true,
+let message="Unknown";
 
-            timeout:10000,
+if(error.code===1)
+message="Izin lokasi ditolak";
 
-            maximumAge:0
+if(error.code===2)
+message="Lokasi tidak tersedia";
 
-        }
+if(error.code===3)
+message="GPS timeout";
 
-    );
+data.innerHTML=
+"GPS ERROR<br>"+
+"Kode : "+error.code+
+"<br>Pesan : "+message;
+
+log(
+"[GPS] ERROR "+error.code+
+" - "+message
+);
+
+},
+
+{
+
+enableHighAccuracy:true,
+
+timeout:20000,
+
+maximumAge:0
+
+}
+
+);
 
 }
 
 
 
 /* =========================
-   SYSTEM LOG
+   TIMER
 ========================= */
 
-function addLog(message){
+let seconds=0;
+let timer=null;
 
-    const log =
-        document.getElementById(
-            "systemLog"
-        );
+function updateTimer(){
 
+const h=
+Math.floor(seconds/3600);
 
-    const now =
-        new Date();
+const m=
+Math.floor((seconds%3600)/60);
 
+const s=
+seconds%60;
 
-    const time =
-        now.toLocaleTimeString(
-            'id-ID'
-        );
+document.getElementById("timer")
+.innerText=
 
+String(h).padStart(2,"0")+":"+
+String(m).padStart(2,"0")+":"+
+String(s).padStart(2,"0");
 
-    log.innerHTML +=
+}
 
-        "[" +
-        time +
-        "] " +
-        message +
-        "<br>";
+function startTimer(){
 
+if(timer!==null)
+return;
 
-    log.scrollTop =
-        log.scrollHeight;
+timer=setInterval(()=>{
+
+seconds++;
+updateTimer();
+
+},1000);
+
+log("[TIMER] START");
+
+}
+
+function pauseTimer(){
+
+clearInterval(timer);
+
+timer=null;
+
+log("[TIMER] PAUSE");
+
+}
+
+function resetTimer(){
+
+clearInterval(timer);
+
+timer=null;
+
+seconds=0;
+
+updateTimer();
+
+log("[TIMER] RESET");
 
 }
 
 
 
 /* =========================
-   START SYSTEM
+   START
 ========================= */
 
-detectDevice();
+updateTimer();
 
-addLog(
-    "[SYSTEM] myROBOT-V12 V12.1 READY"
+log(
+"[SYSTEM] myROBOT-V12 V12.2 STARTING"
 );
 
-addLog(
-    "[SYSTEM] Android Device Interface READY"
+log(
+"[SYSTEM] Mobile Monitoring READY"
 );
 
-addLog(
-    "[SYSTEM] GPS Module READY"
+log(
+"[SYSTEM] LocalStorage READY"
 );
 
-addLog(
-    "[SYSTEM] Network Monitor READY"
+log(
+"[SYSTEM] GPS MODULE READY"
 );
 
 </script>
