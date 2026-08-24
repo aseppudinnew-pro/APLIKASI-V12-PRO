@@ -1934,6 +1934,122 @@ CHECKING
 
 </div>
 
+  <!-- =====================================================
+     NETWORK MONITOR PRO
+===================================================== -->
+
+<section class="card">
+
+    <div class="title">
+        📡 NETWORK MONITOR PRO
+    </div>
+
+    <div class="grid">
+
+        <div class="info">
+            <div class="label">STATUS</div>
+            <div id="netStatus"
+                 class="value green">
+                🟢 ONLINE
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">SOURCE</div>
+            <div id="netSource"
+                 class="value">
+                CHECKING
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">NETWORK</div>
+            <div id="netType"
+                 class="value">
+                CHECKING
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">PING</div>
+            <div id="netPing"
+                 class="value">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">DOWNLOAD</div>
+            <div id="netDownload"
+                 class="value green">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">UPLOAD</div>
+            <div id="netUpload"
+                 class="value green">
+                -
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">SIGNAL</div>
+            <div id="netSignal"
+                 class="value green">
+                CHECKING
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">LAST TEST</div>
+            <div id="netLastTest"
+                 class="value">
+                -
+            </div>
+        </div>
+
+    </div>
+
+    <div style="margin-top:15px">
+
+        <div class="label">
+            NETWORK QUALITY
+        </div>
+
+        <div class="battery-bar">
+
+            <div
+                id="networkQualityBar"
+                class="battery-fill"
+                style="width:0%">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        id="networkQualityText"
+        class="active"
+        style="margin-top:12px">
+
+        📡 CHECKING NETWORK...
+
+    </div>
+
+    <br>
+
+    <button
+        onclick="runNetworkTest()">
+
+        🚀 TEST NETWORK
+
+    </button>
+
+</section>
+
 
 <div
 style="text-align:center;margin-top:14px">
@@ -6626,6 +6742,951 @@ async function reverseLocation(lat, lon){
     }
 
   }
+
+  /* =====================================================
+   NETWORK MONITOR PRO
+===================================================== */
+
+let networkTesting = false;
+
+
+/* =====================================================
+   GET NETWORK SOURCE
+===================================================== */
+
+function getNetworkSource(){
+
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+
+
+    if(!connection){
+
+        return "🌐 BROWSER";
+
+    }
+
+
+    const type =
+        connection.type ||
+        "";
+
+
+    if(
+        type === "wifi"
+    ){
+
+        return "📶 WI-FI";
+
+    }
+
+
+    if(
+        type === "cellular"
+    ){
+
+        return "📱 SIM / CELLULAR";
+
+    }
+
+
+    if(
+        type === "ethernet"
+    ){
+
+        return "🔌 ETHERNET";
+
+    }
+
+
+    /*
+       Jika browser hanya memberikan
+       effectiveType, sumber sebenarnya
+       tidak dapat dipastikan.
+    */
+
+    return "🌐 NETWORK";
+
+}
+
+
+/* =====================================================
+   GET NETWORK TYPE
+===================================================== */
+
+function getNetworkType(){
+
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+
+
+    if(!connection){
+
+        return "UNKNOWN";
+
+    }
+
+
+    if(
+        connection.effectiveType
+    ){
+
+        return connection
+            .effectiveType
+            .toUpperCase();
+
+    }
+
+
+    if(
+        connection.type
+    ){
+
+        return connection
+            .type
+            .toUpperCase();
+
+    }
+
+
+    return "UNKNOWN";
+
+}
+
+
+/* =====================================================
+   SIGNAL QUALITY
+===================================================== */
+
+function getSignalQuality(){
+
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+
+
+    if(!connection){
+
+        return {
+            text:"NETWORK",
+            score:50
+        };
+
+    }
+
+
+    const type =
+        connection.effectiveType;
+
+
+    if(type === "4g"){
+
+        return {
+            text:"4G • GOOD",
+            score:85
+        };
+
+    }
+
+
+    if(type === "3g"){
+
+        return {
+            text:"3G • MEDIUM",
+            score:55
+        };
+
+    }
+
+
+    if(type === "2g"){
+
+        return {
+            text:"2G • LOW",
+            score:25
+        };
+
+    }
+
+
+    if(type === "slow-2g"){
+
+        return {
+            text:"VERY LOW",
+            score:10
+        };
+
+    }
+
+
+    return {
+        text:"NETWORK",
+        score:50
+    };
+
+}
+
+
+/* =====================================================
+   PING TEST
+===================================================== */
+
+async function testPing(){
+
+    const start =
+        performance.now();
+
+
+    try{
+
+        await fetch(
+            "https://www.google.com/generate_204",
+            {
+                method:"GET",
+                cache:"no-store",
+                mode:"no-cors"
+            }
+        );
+
+
+        const end =
+            performance.now();
+
+
+        return Math.round(
+            end - start
+        );
+
+    }
+
+    catch(error){
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   DOWNLOAD TEST
+===================================================== */
+
+async function testDownload(){
+
+    try{
+
+        /*
+           Mengambil file kecil untuk
+           mengukur koneksi.
+
+           Hasil adalah estimasi,
+           bukan speed test operator
+           profesional.
+        */
+
+        const size =
+            1000000;
+
+
+        const start =
+            performance.now();
+
+
+        const response =
+            await fetch(
+                "https://speed.cloudflare.com/__down?bytes=" +
+                size +
+                "&cache=" +
+                Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        const blob =
+            await response.blob();
+
+
+        const end =
+            performance.now();
+
+
+        const seconds =
+            (end - start) / 1000;
+
+
+        const megabits =
+            (
+                blob.size *
+                8
+            ) /
+            seconds /
+            1000000;
+
+
+        return Number(
+            megabits.toFixed(2)
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "DOWNLOAD TEST:",
+            error
+        );
+
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   UPLOAD TEST
+===================================================== */
+
+async function testUpload(){
+
+    try{
+
+        const data =
+            new Uint8Array(
+                300000
+            );
+
+
+        const start =
+            performance.now();
+
+
+        await fetch(
+            "https://httpbin.org/post?cache=" +
+            Date.now(),
+            {
+                method:"POST",
+
+                body:data,
+
+                cache:"no-store"
+            }
+        );
+
+
+        const end =
+            performance.now();
+
+
+        const seconds =
+            (end - start) / 1000;
+
+
+        const megabits =
+            (
+                data.length *
+                8
+            ) /
+            seconds /
+            1000000;
+
+
+        return Number(
+            megabits.toFixed(2)
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "UPLOAD TEST:",
+            error
+        );
+
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   NETWORK QUALITY
+===================================================== */
+
+function calculateNetworkQuality(
+    ping,
+    download,
+    upload
+){
+
+    let score = 0;
+
+
+    /* PING */
+
+    if(
+        ping !== null
+    ){
+
+        if(ping <= 30){
+
+            score += 30;
+
+        }
+
+        else if(ping <= 60){
+
+            score += 25;
+
+        }
+
+        else if(ping <= 100){
+
+            score += 18;
+
+        }
+
+        else if(ping <= 200){
+
+            score += 10;
+
+        }
+
+        else{
+
+            score += 5;
+
+        }
+
+    }
+
+
+    /* DOWNLOAD */
+
+    if(
+        download !== null
+    ){
+
+        if(download >= 50){
+
+            score += 40;
+
+        }
+
+        else if(download >= 20){
+
+            score += 35;
+
+        }
+
+        else if(download >= 10){
+
+            score += 25;
+
+        }
+
+        else if(download >= 5){
+
+            score += 15;
+
+        }
+
+        else{
+
+            score += 5;
+
+        }
+
+    }
+
+
+    /* UPLOAD */
+
+    if(
+        upload !== null
+    ){
+
+        if(upload >= 20){
+
+            score += 30;
+
+        }
+
+        else if(upload >= 10){
+
+            score += 25;
+
+        }
+
+        else if(upload >= 5){
+
+            score += 18;
+
+        }
+
+        else if(upload >= 2){
+
+            score += 10;
+
+        }
+
+        else{
+
+            score += 5;
+
+        }
+
+    }
+
+
+    return Math.min(
+        score,
+        100
+    );
+
+}
+
+
+/* =====================================================
+   RUN NETWORK TEST
+===================================================== */
+
+async function runNetworkTest(){
+
+    if(networkTesting){
+
+        return;
+
+    }
+
+
+    networkTesting = true;
+
+
+    document.getElementById(
+        "networkQualityText"
+    ).innerText =
+        "📡 TESTING NETWORK...";
+
+
+    document.getElementById(
+        "networkQualityText"
+    ).className =
+        "active";
+
+
+    log(
+        "[NETWORK] Starting network test..."
+    );
+
+
+    /* STATUS */
+
+    if(
+        navigator.onLine
+    ){
+
+        document.getElementById(
+            "netStatus"
+        ).innerText =
+            "🟢 ONLINE";
+
+        document.getElementById(
+            "netStatus"
+        ).className =
+            "value green";
+
+    }
+
+    else{
+
+        document.getElementById(
+            "netStatus"
+        ).innerText =
+            "🔴 OFFLINE";
+
+        document.getElementById(
+            "netStatus"
+        ).className =
+            "value red";
+
+
+        networkTesting =
+            false;
+
+
+        return;
+
+    }
+
+
+    /* SOURCE */
+
+    document.getElementById(
+        "netSource"
+    ).innerText =
+        getNetworkSource();
+
+
+    /* NETWORK */
+
+    document.getElementById(
+        "netType"
+    ).innerText =
+        getNetworkType();
+
+
+    /* SIGNAL */
+
+    const signal =
+        getSignalQuality();
+
+
+    document.getElementById(
+        "netSignal"
+    ).innerText =
+        signal.text;
+
+
+    /* PING */
+
+    document.getElementById(
+        "netPing"
+    ).innerText =
+        "TESTING...";
+
+
+    const ping =
+        await testPing();
+
+
+    document.getElementById(
+        "netPing"
+    ).innerText =
+        ping !== null
+        ?
+        ping + " ms"
+        :
+        "ERROR";
+
+
+    /* DOWNLOAD */
+
+    document.getElementById(
+        "netDownload"
+    ).innerText =
+        "TESTING...";
+
+
+    const download =
+        await testDownload();
+
+
+    document.getElementById(
+        "netDownload"
+    ).innerText =
+
+        download !== null
+        ?
+        download +
+        " Mbps"
+        :
+        "ERROR";
+
+
+    /* UPLOAD */
+
+    document.getElementById(
+        "netUpload"
+    ).innerText =
+        "TESTING...";
+
+
+    const upload =
+        await testUpload();
+
+
+    document.getElementById(
+        "netUpload"
+    ).innerText =
+
+        upload !== null
+        ?
+        upload +
+        " Mbps"
+        :
+        "ERROR";
+
+
+    /* LAST TEST */
+
+    const now =
+        new Date();
+
+
+    document.getElementById(
+        "netLastTest"
+    ).innerText =
+
+        now.toLocaleTimeString(
+            "id-ID"
+        );
+
+
+    /* QUALITY */
+
+    const quality =
+        calculateNetworkQuality(
+            ping,
+            download,
+            upload
+        );
+
+
+    document.getElementById(
+        "networkQualityBar"
+    ).style.width =
+        quality + "%";
+
+
+    let qualityText;
+
+
+    if(quality >= 80){
+
+        qualityText =
+            "🟢 NETWORK EXCELLENT";
+
+    }
+
+    else if(quality >= 60){
+
+        qualityText =
+            "🟢 NETWORK GOOD";
+
+    }
+
+    else if(quality >= 40){
+
+        qualityText =
+            "🟡 NETWORK MEDIUM";
+
+    }
+
+    else{
+
+        qualityText =
+            "🔴 NETWORK POOR";
+
+    }
+
+
+    document.getElementById(
+        "networkQualityText"
+    ).innerText =
+        qualityText;
+
+
+    /* LOG */
+
+    log(
+        "[NETWORK] " +
+        "PING=" +
+        (ping ?? "-") +
+        "ms | " +
+        "DOWN=" +
+        (download ?? "-") +
+        "Mbps | " +
+        "UP=" +
+        (upload ?? "-") +
+        "Mbps"
+    );
+
+
+    networkTesting =
+        false;
+
+}
+
+
+/* =====================================================
+   AUTO NETWORK UPDATE
+===================================================== */
+
+function updateNetworkMonitor(){
+
+    const status =
+        document.getElementById(
+            "netStatus"
+        );
+
+
+    if(
+        navigator.onLine
+    ){
+
+        status.innerText =
+            "🟢 ONLINE";
+
+        status.className =
+            "value green";
+
+    }
+
+    else{
+
+        status.innerText =
+            "🔴 OFFLINE";
+
+        status.className =
+            "value red";
+
+    }
+
+
+    document.getElementById(
+        "netSource"
+    ).innerText =
+        getNetworkSource();
+
+
+    document.getElementById(
+        "netType"
+    ).innerText =
+        getNetworkType();
+
+
+    const signal =
+        getSignalQuality();
+
+
+    document.getElementById(
+        "netSignal"
+    ).innerText =
+        signal.text;
+
+}
+
+
+/* =====================================================
+   NETWORK EVENTS
+===================================================== */
+
+window.addEventListener(
+    "online",
+    function(){
+
+        updateNetworkMonitor();
+
+        log(
+            "[NETWORK] 🟢 Internet ONLINE"
+        );
+
+        runNetworkTest();
+
+    }
+);
+
+
+window.addEventListener(
+    "offline",
+    function(){
+
+        updateNetworkMonitor();
+
+        log(
+            "[NETWORK] 🔴 Internet OFFLINE"
+        );
+
+        document.getElementById(
+            "netStatus"
+        ).innerText =
+            "🔴 OFFLINE";
+
+        document.getElementById(
+            "netStatus"
+        ).className =
+            "value red";
+
+    }
+);
+
+
+/* CONNECTION CHANGE */
+
+if(
+    navigator.connection
+){
+
+    navigator.connection.addEventListener(
+        "change",
+        function(){
+
+            updateNetworkMonitor();
+
+            log(
+                "[NETWORK] Connection changed"
+            );
+
+            runNetworkTest();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   START NETWORK MONITOR
+===================================================== */
+
+updateNetworkMonitor();
+
+
+/*
+   Jalankan test pertama
+*/
+
+setTimeout(
+    function(){
+
+        runNetworkTest();
+
+    },
+    3000
+);
+
+
+/*
+   Test otomatis setiap 60 detik
+*/
+
+setInterval(
+    function(){
+
+        if(
+            navigator.onLine
+        ){
+
+            runNetworkTest();
+
+        }
+
+    },
+    60000
+);
 </script>
   
 
