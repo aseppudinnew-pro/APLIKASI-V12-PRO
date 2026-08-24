@@ -44,6 +44,213 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 integrity="sha256-p4NxAoJBhIINfQ3Ue6yK6M0l7x4V4jXJ6f3G8f6cQ7M="
 crossorigin="">
 
+  ‎<style>
+‎*{
+‎    box-sizing:border-box;
+‎    margin:0;
+‎    padding:0;
+‎    font-family:Arial,sans-serif;
+‎}
+‎
+‎body{
+‎    background:#050b12;
+‎    color:#e9faff;
+‎    min-height:100vh;
+‎    padding:12px;
+‎}
+‎
+‎.header{
+‎    border:1px solid #00eaff;
+‎    border-radius:18px;
+‎    padding:16px;
+‎    background:linear-gradient(135deg,#07151f,#031019);
+‎    box-shadow:0 0 20px #00eaff44;
+‎    margin-bottom:12px;
+‎}
+‎
+‎.logo{
+‎    font-size:24px;
+‎    font-weight:bold;
+‎    color:#00eaff;
+‎}
+‎
+‎.sub{
+‎    color:#8faab5;
+‎    font-size:12px;
+‎    margin-top:5px;
+‎}
+‎
+‎.status{
+‎    margin-top:12px;
+‎    display:flex;
+‎    gap:8px;
+‎    flex-wrap:wrap;
+‎}
+‎
+‎.badge{
+‎    padding:7px 10px;
+‎    border-radius:20px;
+‎    font-size:11px;
+‎    background:#10222b;
+‎    border:1px solid #244652;
+‎}
+‎
+‎.online{
+‎    color:#00ff88;
+‎    border-color:#00ff88;
+‎}
+‎
+‎.gps{
+‎    color:#00eaff;
+‎    border-color:#00eaff;
+‎}
+‎
+‎section{
+‎    margin-bottom:14px;
+‎}
+‎
+‎.title{
+‎    font-size:15px;
+‎    color:#00eaff;
+‎    margin-bottom:8px;
+‎    font-weight:bold;
+‎}
+‎
+‎.card{
+‎    background:#08131c;
+‎    border:1px solid #173440;
+‎    border-radius:16px;
+‎    padding:14px;
+‎    margin-bottom:10px;
+‎    box-shadow:0 0 12px #0008;
+‎}
+‎
+‎.location{
+‎    font-size:18px;
+‎    font-weight:bold;
+‎}
+‎
+‎.coordinates{
+‎    font-size:11px;
+‎    color:#8caab5;
+‎    margin-top:5px;
+‎}
+‎
+‎.weather-main{
+‎    display:flex;
+‎    align-items:center;
+‎    justify-content:space-between;
+‎}
+‎
+‎.temp{
+‎    font-size:46px;
+‎    font-weight:bold;
+‎    color:#fff;
+‎}
+‎
+‎.weather-icon{
+‎    font-size:50px;
+‎}
+‎
+‎.condition{
+‎    color:#00eaff;
+‎    font-size:15px;
+‎}
+‎
+‎.grid{
+‎    display:grid;
+‎    grid-template-columns:repeat(2,1fr);
+‎    gap:8px;
+‎}
+‎
+‎.item{
+‎    background:#0b1b25;
+‎    border-radius:12px;
+‎    padding:11px;
+‎    border:1px solid #193744;
+‎}
+‎
+‎.label{
+‎    font-size:10px;
+‎    color:#77939e;
+‎    margin-bottom:5px;
+‎}
+‎
+‎.value{
+‎    font-size:16px;
+‎    font-weight:bold;
+‎}
+‎
+‎.air-good{
+‎    color:#00ff88;
+‎}
+‎
+‎.air-medium{
+‎    color:#ffe600;
+‎}
+‎
+‎.air-bad{
+‎    color:#ff7043;
+‎}
+‎
+‎.air-danger{
+‎    color:#ff1744;
+‎}
+‎
+‎.aqi{
+‎    text-align:center;
+‎    padding:15px;
+‎}
+‎
+‎.aqi-number{
+‎    font-size:45px;
+‎    font-weight:bold;
+‎}
+‎
+‎.aqi-label{
+‎    font-size:15px;
+‎    margin-top:3px;
+‎}
+‎
+‎button{
+‎    width:100%;
+‎    padding:13px;
+‎    border:1px solid #00eaff;
+‎    border-radius:12px;
+‎    background:#071b24;
+‎    color:#00eaff;
+‎    font-weight:bold;
+‎    margin-top:8px;
+‎}
+‎
+‎button:active{
+‎    transform:scale(.98);
+‎}
+‎
+‎.log{
+‎    max-height:180px;
+‎    overflow:auto;
+‎    font-size:11px;
+‎    line-height:1.7;
+‎    color:#8fb1bc;
+‎}
+‎
+‎.footer{
+‎    text-align:center;
+‎    color:#536b74;
+‎    font-size:10px;
+‎    padding:15px;
+‎}
+‎
+‎.loading{
+‎    color:#ffe600;
+‎}
+‎
+‎.error{
+‎    color:#ff5252;
+‎}
+‎</style>
+
 
 <style>
 
@@ -2758,6 +2965,271 @@ rel="noopener">
     </div>
 
 </section>
+
+‎
+‎
+‎<div class="header">
+‎
+‎    <div class="logo">🤖 myROBOT-V12</div>
+‎    <div class="sub">
+‎        GPS • WEATHER • AIR QUALITY • NETWORK MONITOR
+‎    </div>
+‎
+‎    <div class="status">
+‎        <div id="networkStatus" class="badge">📡 CHECKING...</div>
+‎        <div id="gpsStatus" class="badge">📍 GPS WAITING</div>
+‎        <div id="updateStatus" class="badge">🔄 WAITING</div>
+‎    </div>
+‎
+‎</div>
+‎
+‎
+‎<!-- LOCATION -->
+‎
+‎<section>
+‎
+‎<div class="title">📍 LOKASI GPS</div>
+‎
+‎<div class="card">
+‎
+‎    <div id="locationName" class="location">
+‎        Mendeteksi lokasi...
+‎    </div>
+‎
+‎    <div id="locationDetail" class="coordinates">
+‎        Menunggu GPS HP
+‎    </div>
+‎
+‎</div>
+‎
+‎</section>
+‎
+‎
+‎<!-- WEATHER -->
+‎
+‎<section>
+‎
+‎<div class="title">🌤️ CUACA DETAIL</div>
+‎
+‎<div class="card">
+‎
+‎    <div class="weather-main">
+‎
+‎        <div>
+‎
+‎            <div id="temperature" class="temp">
+‎                --°
+‎            </div>
+‎
+‎            <div id="condition" class="condition">
+‎                Memuat cuaca...
+‎            </div>
+‎
+‎        </div>
+‎
+‎        <div id="weatherIcon" class="weather-icon">
+‎            🌤️
+‎        </div>
+‎
+‎    </div>
+‎
+‎</div>
+‎
+‎
+‎<div class="grid">
+‎
+‎    <div class="item">
+‎        <div class="label">TERASA SEPERTI</div>
+‎        <div id="feels" class="value">-- °C</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">KELEMBAPAN</div>
+‎        <div id="humidity" class="value">-- %</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">ANGIN</div>
+‎        <div id="wind" class="value">-- km/j</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">ARAH ANGIN</div>
+‎        <div id="windDirection" class="value">--</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">HEMBUSAN ANGIN</div>
+‎        <div id="gust" class="value">-- km/j</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">PELUANG HUJAN</div>
+‎        <div id="rainChance" class="value">-- %</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">CURAH HUJAN</div>
+‎        <div id="rain" class="value">-- mm</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">TEKANAN UDARA</div>
+‎        <div id="pressure" class="value">-- hPa</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">TITIK EMBUN</div>
+‎        <div id="dew" class="value">-- °C</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">VISIBILITAS</div>
+‎        <div id="visibility" class="value">-- km</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">TUTUPAN AWAN</div>
+‎        <div id="cloud" class="value">-- %</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">UV INDEX</div>
+‎        <div id="uv" class="value">--</div>
+‎    </div>
+‎
+‎</div>
+‎
+‎</section>
+‎
+‎
+‎<!-- AIR QUALITY -->
+‎
+‎<section>
+‎
+‎<div class="title">🌫️ KONDISI UDARA</div>
+‎
+‎<div class="card aqi">
+‎
+‎    <div class="label">
+‎        AIR QUALITY INDEX
+‎    </div>
+‎
+‎    <div id="aqi" class="aqi-number">
+‎        --
+‎    </div>
+‎
+‎    <div id="aqiLabel" class="aqi-label">
+‎        Memuat...
+‎    </div>
+‎
+‎</div>
+‎
+‎
+‎<div class="grid">
+‎
+‎    <div class="item">
+‎        <div class="label">PM2.5</div>
+‎        <div id="pm25" class="value">-- µg/m³</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">PM10</div>
+‎        <div id="pm10" class="value">-- µg/m³</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">CO</div>
+‎        <div id="co" class="value">-- µg/m³</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">NO₂</div>
+‎        <div id="no2" class="value">-- µg/m³</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">SO₂</div>
+‎        <div id="so2" class="value">-- µg/m³</div>
+‎    </div>
+‎
+‎    <div class="item">
+‎        <div class="label">O₃</div>
+‎        <div id="o3" class="value">-- µg/m³</div>
+‎    </div>
+‎
+‎</div>
+‎
+‎</section>
+‎
+‎
+‎<!-- GPS -->
+‎
+‎<section>
+‎
+‎<div class="title">🛰️ DATA GPS</div>
+‎
+‎<div class="card">
+‎
+‎    <div class="grid">
+‎
+‎        <div class="item">
+‎            <div class="label">LATITUDE</div>
+‎            <div id="lat" class="value">--</div>
+‎        </div>
+‎
+‎        <div class="item">
+‎            <div class="label">LONGITUDE</div>
+‎            <div id="lon" class="value">--</div>
+‎        </div>
+‎
+‎        <div class="item">
+‎            <div class="label">AKURASI</div>
+‎            <div id="accuracy" class="value">-- m</div>
+‎        </div>
+‎
+‎        <div class="item">
+‎            <div class="label">UPDATE</div>
+‎            <div id="gpsTime" class="value">--</div>
+‎        </div>
+‎
+‎    </div>
+‎
+‎</div>
+‎
+‎<button onclick="getGPS()">
+‎    📍 UPDATE LOKASI SEKARANG
+‎</button>
+‎
+‎</section>
+‎
+‎
+‎<!-- LOG -->
+‎
+‎<section>
+‎
+‎<div class="title">📋 REALTIME LOG</div>
+‎
+‎<div class="card">
+‎
+‎    <div id="log" class="log"></div>
+‎
+‎</div>
+‎
+‎</section>
+‎
+‎
+‎<div class="footer">
+‎    myROBOT-V12 • GPS Weather Monitor<br>
+‎    Weather & Air Quality by Open-Meteo
+‎</div>
+‎
+‎
+
+‎
+‎
+‎
+  
 
 
 <!-- ===================================================
@@ -9892,6 +10364,679 @@ function restoreAlarm(){
 restoreAlarm();
   
 </script>
+
+
+          ‎<script>
+‎
+‎let currentLat = null;
+‎let currentLon = null;
+‎
+‎const $ = id => document.getElementById(id);
+‎
+‎
+‎/* =========================
+‎   LOG SYSTEM
+‎========================= */
+‎
+‎function addLog(message){
+‎
+‎    const time = new Date().toLocaleTimeString('id-ID');
+‎
+‎    const div = document.createElement("div");
+‎
+‎    div.innerHTML =
+‎        "[" + time + "] " + message;
+‎
+‎    $("log").prepend(div);
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   NETWORK
+‎========================= */
+‎
+‎function updateNetwork(){
+‎
+‎    if(navigator.onLine){
+‎
+‎        $("networkStatus").innerHTML =
+‎            "📡 ONLINE";
+‎
+‎        $("networkStatus").className =
+‎            "badge online";
+‎
+‎    }else{
+‎
+‎        $("networkStatus").innerHTML =
+‎            "📡 OFFLINE";
+‎
+‎        $("networkStatus").className =
+‎            "badge error";
+‎
+‎    }
+‎
+‎}
+‎
+‎window.addEventListener("online",updateNetwork);
+‎window.addEventListener("offline",updateNetwork);
+‎
+‎updateNetwork();
+‎
+‎
+‎/* =========================
+‎   WEATHER DESCRIPTION
+‎========================= */
+‎
+‎function weatherDescription(code){
+‎
+‎    const map = {
+‎
+‎        0:["☀️","Cerah"],
+‎        1:["🌤️","Cerah berawan"],
+‎        2:["⛅","Berawan sebagian"],
+‎        3:["☁️","Mendung"],
+‎
+‎        45:["🌫️","Berkabut"],
+‎        48:["🌫️","Kabut"],
+‎
+‎        51:["🌦️","Gerimis ringan"],
+‎        53:["🌦️","Gerimis"],
+‎        55:["🌧️","Gerimis lebat"],
+‎
+‎        61:["🌧️","Hujan ringan"],
+‎        63:["🌧️","Hujan sedang"],
+‎        65:["🌧️","Hujan lebat"],
+‎
+‎        71:["🌨️","Salju ringan"],
+‎        73:["🌨️","Salju"],
+‎        75:["❄️","Salju lebat"],
+‎
+‎        80:["🌦️","Hujan lokal"],
+‎        81:["🌧️","Hujan lokal"],
+‎        82:["⛈️","Hujan sangat lebat"],
+‎
+‎        95:["⛈️","Badai petir"],
+‎        96:["⛈️","Badai petir + hujan es"],
+‎        99:["⛈️","Badai petir kuat"]
+‎
+‎    };
+‎
+‎    return map[code] || ["🌤️","Tidak diketahui"];
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   WIND DIRECTION
+‎========================= */
+‎
+‎function windDirection(deg){
+‎
+‎    const dirs = [
+‎        "U","UTL","TL","TTL",
+‎        "T","TTG","TG","STG",
+‎        "S","SBD","BD","BBD",
+‎        "B","BBL","BL","UBL"
+‎    ];
+‎
+‎    return dirs[
+‎        Math.round(deg / 22.5) % 16
+‎    ];
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   AIR QUALITY
+‎========================= */
+‎
+‎function aqiStatus(aqi){
+‎
+‎    if(aqi === null || isNaN(aqi))
+‎        return ["--",""];
+‎
+‎    if(aqi <= 50)
+‎        return ["BAIK","air-good"];
+‎
+‎    if(aqi <= 100)
+‎        return ["SEDANG","air-medium"];
+‎
+‎    if(aqi <= 150)
+‎        return ["TIDAK SEHAT BAGI KELOMPOK RENTAN","air-bad"];
+‎
+‎    if(aqi <= 200)
+‎        return ["TIDAK SEHAT","air-bad"];
+‎
+‎    return ["SANGAT TIDAK SEHAT","air-danger"];
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   GET WEATHER
+‎========================= */
+‎
+‎async function getWeather(lat,lon){
+‎
+‎    try{
+‎
+‎        addLog("🌤️ Mengambil data cuaca...");
+‎
+‎        const url =
+‎        "https://api.open-meteo.com/v1/forecast" +
+‎
+‎        "?latitude=" + lat +
+‎
+‎        "&longitude=" + lon +
+‎
+‎        "&current=" +
+‎
+‎        "temperature_2m," +
+‎        "relative_humidity_2m," +
+‎        "apparent_temperature," +
+‎        "precipitation," +
+‎        "rain," +
+‎        "weather_code," +
+‎        "pressure_msl," +
+‎        "cloud_cover," +
+‎        "wind_speed_10m," +
+‎        "wind_direction_10m," +
+‎        "wind_gusts_10m," +
+‎        "visibility," +
+‎        "dew_point_2m" +
+‎
+‎        "&hourly=" +
+‎        "precipitation_probability," +
+‎        "uv_index" +
+‎
+‎        "&daily=sunrise,sunset" +
+‎
+‎        "&timezone=auto" +
+‎
+‎        "&forecast_days=1";
+‎
+‎        const response =
+‎            await fetch(url);
+‎
+‎        if(!response.ok)
+‎            throw new Error("Weather API error");
+‎
+‎        const data =
+‎            await response.json();
+‎
+‎        const c = data.current;
+‎
+‎        const weather =
+‎            weatherDescription(c.weather_code);
+‎
+‎        $("temperature").innerHTML =
+‎            Math.round(c.temperature_2m) + "°";
+‎
+‎        $("condition").innerHTML =
+‎            weather[0] + " " + weather[1];
+‎
+‎        $("weatherIcon").innerHTML =
+‎            weather[0];
+‎
+‎        $("feels").innerHTML =
+‎            Math.round(c.apparent_temperature) + " °C";
+‎
+‎        $("humidity").innerHTML =
+‎            c.relative_humidity_2m + " %";
+‎
+‎        $("wind").innerHTML =
+‎            c.wind_speed_10m.toFixed(1) + " km/j";
+‎
+‎        $("windDirection").innerHTML =
+‎            windDirection(c.wind_direction_10m)
+‎" (" +
+‎            Math.round(c.wind_direction_10m)
+‎"°)";
+‎
+‎        $("gust").innerHTML =
+‎            c.wind_gusts_10m.toFixed(1) + " km/j";
+‎
+‎        $("rain").innerHTML =
+‎            c.precipitation.toFixed(1) + " mm";
+‎
+‎        $("pressure").innerHTML =
+‎            Math.round(c.pressure_msl) + " hPa";
+‎
+‎        $("dew").innerHTML =
+‎            Math.round(c.dew_point_2m) + " °C";
+‎
+‎        $("visibility").innerHTML =
+‎            (c.visibility / 1000).toFixed(1) + " km";
+‎
+‎        $("cloud").innerHTML =
+‎            c.cloud_cover + " %";
+‎
+‎        const probability =
+‎            data.hourly
+‎            ?.precipitation_probability?.[0];
+‎
+‎        $("rainChance").innerHTML =
+‎            (probability ?? "--") + " %";
+‎
+‎        const uv =
+‎            data.hourly?.uv_index?.[0];
+‎
+‎        $("uv").innerHTML =
+‎            uv !== undefined
+‎            ? Number(uv).toFixed(1)
+‎            : "--";
+‎
+‎        $("updateStatus").innerHTML =
+‎            "🔄 UPDATED " +
+‎            new Date().toLocaleTimeString("id-ID");
+‎
+‎        addLog("✅ Data cuaca berhasil diperbarui");
+‎
+‎    }catch(error){
+‎
+‎        console.error(error);
+‎
+‎        addLog(
+‎            "❌ Gagal mengambil data cuaca"
+‎        );
+‎
+‎    }
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   AIR QUALITY
+‎========================= */
+‎
+‎async function getAirQuality(lat,lon){
+‎
+‎    try{
+‎
+‎        addLog("🌫️ Mengambil kualitas udara...");
+‎
+‎        const url =
+‎        "https://air-quality-api.open-meteo.com/v1/air-quality" +
+‎
+‎        "?latitude=" + lat +
+‎
+‎        "&longitude=" + lon +
+‎
+‎        "&current=" +
+‎        "european_aqi," +
+‎        "us_aqi," +
+‎        "pm10," +
+‎        "pm2_5," +
+‎        "carbon_monoxide," +
+‎        "nitrogen_dioxide," +
+‎        "sulphur_dioxide," +
+‎        "ozone";
+‎
+‎        const response =
+‎            await fetch(url);
+‎
+‎        if(!response.ok)
+‎            throw new Error("Air Quality API error");
+‎
+‎        const data =
+‎            await response.json();
+‎
+‎        const c =
+‎            data.current;
+‎
+‎        const aqi =
+‎            c.european_aqi ??
+‎            c.us_aqi;
+‎
+‎        $("aqi").innerHTML =
+‎            aqi !== undefined
+‎            ? Math.round(aqi)
+‎            : "--";
+‎
+‎        const status =
+‎            aqiStatus(aqi);
+‎
+‎        $("aqiLabel").innerHTML =
+‎            status[0];
+‎
+‎        $("aqiLabel").className =
+‎            "aqi-label " + status[1];
+‎
+‎        $("pm25").innerHTML =
+‎            Number(c.pm2_5 ?? 0).toFixed(1)
+‎" µg/m³";
+‎
+‎        $("pm10").innerHTML =
+‎            Number(c.pm10 ?? 0).toFixed(1)
+‎" µg/m³";
+‎
+‎        $("co").innerHTML =
+‎            Number(c.carbon_monoxide ?? 0).toFixed(1)
+‎" µg/m³";
+‎
+‎        $("no2").innerHTML =
+‎            Number(c.nitrogen_dioxide ?? 0).toFixed(1)
+‎" µg/m³";
+‎
+‎        $("so2").innerHTML =
+‎            Number(c.sulphur_dioxide ?? 0).toFixed(1)
+‎" µg/m³";
+‎
+‎        $("o3").innerHTML =
+‎            Number(c.ozone ?? 0).toFixed(1)
+‎" µg/m³";
+‎
+‎        addLog(
+‎            "✅ Kondisi udara diperbarui"
+‎        );
+‎
+‎    }catch(error){
+‎
+‎        console.error(error);
+‎
+‎        addLog(
+‎            "❌ Gagal mengambil kualitas udara"
+‎        );
+‎
+‎    }
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   REVERSE GPS
+‎========================= */
+‎
+‎async function reverseGPS(lat,lon){
+‎
+‎    try{
+‎
+‎        addLog(
+‎            "📍 Mencari desa berdasarkan koordinat GPS..."
+‎        );
+‎
+‎        const url =
+‎        "https://nominatim.openstreetmap.org/reverse" +
+‎
+‎        "?lat=" + lat +
+‎
+‎        "&lon=" + lon +
+‎
+‎        "&format=json" +
+‎
+‎        "&zoom=18" +
+‎
+‎        "&addressdetails=1";
+‎
+‎        const response =
+‎            await fetch(url,{
+‎                headers:{
+‎                    "Accept-Language":"id"
+‎                }
+‎            });
+‎
+‎        const data =
+‎            await response.json();
+‎
+‎        const a =
+‎            data.address || {};
+‎
+‎        /*
+‎Nominatim dapat memberikan beberapa
+‎tingkat wilayah:
+‎         *
+‎village
+‎town
+‎municipality
+‎suburb
+‎county
+‎state
+‎         */
+‎
+‎        const desa =
+‎            a.village ||
+‎            a.hamlet ||
+‎            a.town ||
+‎            a.suburb ||
+‎            "Lokasi GPS";
+‎
+‎        const kecamatan =
+‎            a.municipality ||
+‎            a.county ||
+‎            "";
+‎
+‎        const kabupaten =
+‎            a.city_district ||
+‎            a.city ||
+‎            a.county ||
+‎            "";
+‎
+‎        const provinsi =
+‎            a.state ||
+‎            "";
+‎
+‎        let lokasi = desa;
+‎
+‎        if(kecamatan)
+‎            lokasi +=
+‎                " • " + kecamatan;
+‎
+‎        if(kabupaten &&
+‎           kabupaten !== kecamatan)
+‎            lokasi +=
+‎                " • " + kabupaten;
+‎
+‎        $("locationName").innerHTML =
+‎            "📍 " + lokasi;
+‎
+‎        $("locationDetail").innerHTML =
+‎            provinsi +
+‎            "<br>" +
+‎            lat.toFixed(6) +
+‎            ", " +
+‎            lon.toFixed(6);
+‎
+‎        addLog(
+‎            "📍 Lokasi: " + lokasi
+‎        );
+‎
+‎    }catch(error){
+‎
+‎        $("locationName").innerHTML =
+‎            "📍 Lempuing / OKI";
+‎
+‎        $("locationDetail").innerHTML =
+‎            lat.toFixed(6) +
+‎            ", " +
+‎            lon.toFixed(6);
+‎
+‎        addLog(
+‎            "⚠️ Nama desa gagal dibaca, GPS tetap digunakan"
+‎        );
+‎
+‎    }
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   GET GPS
+‎========================= */
+‎
+‎function getGPS(){
+‎
+‎    if(!navigator.geolocation){
+‎
+‎        $("gpsStatus").innerHTML =
+‎            "📍 GPS TIDAK DIDUKUNG";
+‎
+‎        addLog(
+‎            "❌ Browser tidak mendukung GPS"
+‎        );
+‎
+‎        return;
+‎    }
+‎
+‎    $("gpsStatus").innerHTML =
+‎        "📍 MENCARI GPS...";
+‎
+‎    $("gpsStatus").className =
+‎        "badge gps";
+‎
+‎    addLog(
+‎        "🛰️ Meminta lokasi GPS HP..."
+‎    );
+‎
+‎    navigator.geolocation.getCurrentPosition(
+‎
+‎        async function(position){
+‎
+‎            currentLat =
+‎                position.coords.latitude;
+‎
+‎            currentLon =
+‎                position.coords.longitude;
+‎
+‎            const accuracy =
+‎                position.coords.accuracy;
+‎
+‎            $("lat").innerHTML =
+‎                currentLat.toFixed(6);
+‎
+‎            $("lon").innerHTML =
+‎                currentLon.toFixed(6);
+‎
+‎            $("accuracy").innerHTML =
+‎                Math.round(accuracy) + " m";
+‎
+‎            $("gpsTime").innerHTML =
+‎                new Date().toLocaleTimeString(
+‎                    "id-ID"
+‎                );
+‎
+‎            $("gpsStatus").innerHTML =
+‎                "📍 GPS ACTIVE";
+‎
+‎            $("gpsStatus").className =
+‎                "badge gps";
+‎
+‎            addLog(
+‎                "✅ GPS aktif • Akurasi " +
+‎                Math.round(accuracy) +
+‎                " meter"
+‎            );
+‎
+‎            await reverseGPS(
+‎                currentLat,
+‎                currentLon
+‎            );
+‎
+‎            await getWeather(
+‎                currentLat,
+‎                currentLon
+‎            );
+‎
+‎            await getAirQuality(
+‎                currentLat,
+‎                currentLon
+‎            );
+‎
+‎        },
+‎
+‎        function(error){
+‎
+‎            $("gpsStatus").innerHTML =
+‎                "📍 GPS ERROR";
+‎
+‎            $("gpsStatus").className =
+‎                "badge error";
+‎
+‎            let message =
+‎                "GPS gagal";
+‎
+‎            if(error.code === 1)
+‎                message =
+‎                    "Izin lokasi ditolak";
+‎
+‎            if(error.code === 2)
+‎                message =
+‎                    "Lokasi tidak tersedia";
+‎
+‎            if(error.code === 3)
+‎                message =
+‎                    "GPS timeout";
+‎
+‎            addLog(
+‎                "❌ " + message
+‎            );
+‎
+‎        },
+‎
+‎        {
+‎            enableHighAccuracy:true,
+‎            timeout:15000,
+‎            maximumAge:60000
+‎        }
+‎
+‎    );
+‎
+‎}
+‎
+‎
+‎/* =========================
+‎   AUTO GPS
+‎========================= */
+‎
+‎window.addEventListener(
+‎    "load",
+‎    function(){
+‎
+‎        addLog(
+‎            "🤖 myROBOT-V12 dimulai"
+‎        );
+‎
+‎        setTimeout(
+‎            getGPS,
+‎            800
+‎        );
+‎
+‎    }
+‎);
+‎
+‎
+‎/* =========================
+‎   AUTO REFRESH
+‎========================= */
+‎
+‎setInterval(
+‎
+‎    function(){
+‎
+‎        if(
+‎            currentLat !== null &&
+‎            currentLon !== null
+‎        ){
+‎
+‎            getWeather(
+‎                currentLat,
+‎                currentLon
+‎            );
+‎
+‎            getAirQuality(
+‎                currentLat,
+‎                currentLon
+‎            );
+‎
+‎        }
+‎
+‎    },
+‎
+‎    15 * 60 * 1000
+‎
+‎);
+‎
+‎</script>
   
 
 </body>
