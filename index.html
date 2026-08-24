@@ -495,6 +495,52 @@ rgba(0,229,255,.04);
 
 }
 
+  /* =====================================================
+   TRACKING PRO
+===================================================== */
+
+#trackingStatus{
+    transition:
+        .3s ease;
+}
+
+.track-active{
+    color:var(--green);
+    border-color:
+        rgba(0,255,145,.5);
+
+    background:
+        rgba(0,255,145,.08);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,255,145,.15);
+}
+
+.track-stop{
+    color:var(--red);
+    border-color:
+        rgba(255,64,85,.4);
+
+    background:
+        rgba(255,64,85,.06);
+}
+
+#trackDistance,
+#trackSpeed,
+#trackAverage,
+#trackMax{
+    text-shadow:
+        0 0 8px
+        rgba(0,255,145,.25);
+}
+
+.track-point{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
 
 .badge.green{
 
@@ -2273,6 +2319,100 @@ START
 </button>
 
 
+  <!-- =====================================================
+     REMINDER & ALARM
+===================================================== -->
+
+<section class="card">
+
+    <div class="title">
+        🔔 CATATAN & ALARM
+    </div>
+
+    <div class="grid">
+
+        <div class="info">
+
+            <div class="label">
+                WAKTU ALARM
+            </div>
+
+            <input
+                id="alarmTime"
+                type="time"
+                style="
+                    width:100%;
+                    padding:11px;
+                    border-radius:10px;
+                    border:1px solid #17364e;
+                    background:#02070c;
+                    color:#e9fbff;
+                    font-size:16px;
+                "
+            >
+
+        </div>
+
+        <div class="info">
+
+            <div class="label">
+                CATATAN
+            </div>
+
+            <input
+                id="alarmNote"
+                type="text"
+                placeholder="Contoh: Cek GPS / Semprot padi"
+                style="
+                    width:100%;
+                    padding:11px;
+                    border-radius:10px;
+                    border:1px solid #17364e;
+                    background:#02070c;
+                    color:#e9fbff;
+                    font-size:13px;
+                "
+            >
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="buttons">
+
+        <button
+            class="btn-green"
+            onclick="setAlarm()">
+
+            🔔 SET ALARM
+
+        </button>
+
+        <button
+            class="btn-red"
+            onclick="cancelAlarm()">
+
+            ❌ BATAL
+
+        </button>
+
+    </div>
+
+    <br>
+
+    <div
+        id="alarmStatus"
+        class="active">
+
+        ⏰ BELUM ADA ALARM
+
+    </div>
+
+</section>
+
+
 <button
 onclick="pauseTimer()">
 
@@ -2375,6 +2515,164 @@ rel="noopener">
 </a>
 
 </div>
+
+</section>
+
+
+  <!-- =====================================================
+     TRACKING PRO
+===================================================== -->
+
+<section class="card">
+
+    <div class="title">
+        🛰️ TRACKING PRO
+    </div>
+
+    <div id="trackingStatus"
+         class="active">
+
+        <span class="dot"></span>
+        TRACKING READY
+
+    </div>
+
+    <br>
+
+    <div class="grid">
+
+        <div class="info">
+            <div class="label">TRACKING TIME</div>
+            <div id="trackDuration"
+                 class="value green">
+                00:00:00
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">DISTANCE</div>
+            <div id="trackDistance"
+                 class="value green">
+                0.00 km
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">SPEED</div>
+            <div id="trackSpeed"
+                 class="value">
+                0.0 km/h
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">AVERAGE SPEED</div>
+            <div id="trackAverage"
+                 class="value">
+                0.0 km/h
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">MAX SPEED</div>
+            <div id="trackMax"
+                 class="value">
+                0.0 km/h
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="label">GPS POINTS</div>
+            <div id="trackPoints"
+                 class="value">
+                0
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="gps">
+
+        START :
+        <span id="trackStart">
+            -
+        </span>
+
+        <br>
+
+        LAST UPDATE :
+        <span id="trackLast">
+            -
+        </span>
+
+        <br>
+
+        GPS STATUS :
+        <span id="trackGPS"
+              class="green">
+            READY
+        </span>
+
+    </div>
+
+    <br>
+
+    <div class="buttons">
+
+        <button
+            class="btn-green"
+            onclick="startTracking()">
+
+            ▶ START
+
+        </button>
+
+        <button
+            class="btn-red"
+            onclick="stopTracking()">
+
+            ⏹ STOP
+
+        </button>
+
+        <button
+            class="btn-gray"
+            onclick="resetTracking()">
+
+            RESET
+
+        </button>
+
+    </div>
+
+    <br>
+
+    <div class="buttons">
+
+        <button
+            onclick="exportCSV()">
+
+            📄 CSV
+
+        </button>
+
+        <button
+            onclick="exportJSON()">
+
+            📦 JSON
+
+        </button>
+
+        <button
+            onclick="exportGPX()">
+
+            🗺️ GPX
+
+        </button>
+
+    </div>
 
 </section>
 
@@ -7687,6 +7985,1909 @@ setInterval(
     },
     60000
 );
+
+
+  /* =====================================================
+   TRACKING PRO ENGINE
+===================================================== */
+
+let trackingActive = false;
+
+let trackingWatchID = null;
+
+let trackingPoints = [];
+
+let trackingDistance = 0;
+
+let trackingStartTime = null;
+
+let trackingStopTime = null;
+
+let trackingTimer = null;
+
+let trackingMaxSpeed = 0;
+
+let trackingTotalSpeed = 0;
+
+let trackingSpeedSamples = 0;
+
+let trackingPolyline = null;
+
+
+/* =====================================================
+   DISTANCE CALCULATOR
+===================================================== */
+
+function calculateDistance(
+    lat1,
+    lon1,
+    lat2,
+    lon2
+){
+
+    const R = 6371000;
+
+    const dLat =
+        (lat2-lat1)
+        *
+        Math.PI/180;
+
+    const dLon =
+        (lon2-lon1)
+        *
+        Math.PI/180;
+
+
+    const a =
+        Math.sin(dLat/2)
+        *
+        Math.sin(dLat/2)
+        +
+
+        Math.cos(
+            lat1 *
+            Math.PI/180
+        )
+        *
+
+        Math.cos(
+            lat2 *
+            Math.PI/180
+        )
+        *
+
+        Math.sin(dLon/2)
+        *
+        Math.sin(dLon/2);
+
+
+    const c =
+        2 *
+        Math.atan2(
+            Math.sqrt(a),
+            Math.sqrt(1-a)
+        );
+
+
+    return R*c;
+
+}
+
+
+/* =====================================================
+   FORMAT TIME
+===================================================== */
+
+function formatTrackingTime(
+    seconds
+){
+
+    const h =
+        Math.floor(
+            seconds / 3600
+        );
+
+    const m =
+        Math.floor(
+            (seconds % 3600)/60
+        );
+
+    const s =
+        Math.floor(
+            seconds % 60
+        );
+
+
+    return (
+        String(h).padStart(2,"0")
+        +
+        ":"
+        +
+        String(m).padStart(2,"0")
+        +
+        ":"
+        +
+        String(s).padStart(2,"0")
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE TRACK TIMER
+===================================================== */
+
+function updateTrackingTimer(){
+
+    if(!trackingStartTime)
+        return;
+
+
+    const now =
+        trackingActive
+        ?
+        Date.now()
+        :
+        trackingStopTime;
+
+
+    const seconds =
+        Math.floor(
+            (now -
+             trackingStartTime)
+            /1000
+        );
+
+
+    document.getElementById(
+        "trackDuration"
+    ).innerText =
+        formatTrackingTime(
+            seconds
+        );
+
+}
+
+
+/* =====================================================
+   START TRACKING
+===================================================== */
+
+function startTracking(){
+
+    if(trackingActive){
+
+        log(
+            "[TRACKING] Already active"
+        );
+
+        return;
+
+    }
+
+
+    if(!navigator.geolocation){
+
+        alert(
+            "GPS tidak didukung browser."
+        );
+
+        return;
+
+    }
+
+
+    trackingActive =
+        true;
+
+
+    trackingStartTime =
+        Date.now();
+
+
+    trackingStopTime =
+        null;
+
+
+    trackingPoints =
+        [];
+
+    trackingDistance =
+        0;
+
+    trackingMaxSpeed =
+        0;
+
+    trackingTotalSpeed =
+        0;
+
+    trackingSpeedSamples =
+        0;
+
+
+    document.getElementById(
+        "trackStart"
+    ).innerText =
+        new Date()
+        .toLocaleString(
+            "id-ID"
+        );
+
+
+    document.getElementById(
+        "trackingStatus"
+    ).innerHTML =
+        '<span class="dot"></span> TRACKING ACTIVE';
+
+
+    document.getElementById(
+        "trackingStatus"
+    ).className =
+        "active track-active";
+
+
+    document.getElementById(
+        "trackGPS"
+    ).innerText =
+        "SEARCHING";
+
+
+    document.getElementById(
+        "trackGPS"
+    ).className =
+        "yellow";
+
+
+    if(trackingPolyline){
+
+        map.removeLayer(
+            trackingPolyline
+        );
+
+    }
+
+
+    trackingPolyline =
+        L.polyline(
+            [],
+            {
+                color:"#00e5ff",
+                weight:4,
+                opacity:.85
+            }
+        ).addTo(map);
+
+
+    trackingTimer =
+        setInterval(
+            updateTrackingTimer,
+            1000
+        );
+
+
+    trackingWatchID =
+        navigator.geolocation.watchPosition(
+
+            trackingGPS,
+
+            trackingGPSError,
+
+            {
+                enableHighAccuracy:true,
+
+                timeout:15000,
+
+                maximumAge:1000
+            }
+
+        );
+
+
+    log(
+        "[TRACKING] ▶ START"
+    );
+
+
+    vibrate();
+
+
+    if(
+        typeof speak ===
+        "function"
+    ){
+
+        speak(
+            "Pelacakan dimulai"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   GPS TRACKING
+===================================================== */
+
+function trackingGPS(
+    position
+){
+
+    if(!trackingActive)
+        return;
+
+
+    const c =
+        position.coords;
+
+
+    const lat =
+        c.latitude;
+
+    const lon =
+        c.longitude;
+
+
+    const speed =
+        c.speed !== null
+        ?
+        Math.max(
+            0,
+            c.speed * 3.6
+        )
+        :
+        0;
+
+
+    const point = {
+
+        lat:lat,
+
+        lon:lon,
+
+        accuracy:
+            c.accuracy,
+
+        altitude:
+            c.altitude,
+
+        speed:speed,
+
+        timestamp:
+            Date.now()
+
+    };
+
+
+    /* ================================================
+       DISTANCE
+    ================================================= */
+
+
+    if(
+        trackingPoints.length > 0
+    ){
+
+        const previous =
+            trackingPoints[
+                trackingPoints.length-1
+            ];
+
+
+        const distance =
+            calculateDistance(
+                previous.lat,
+                previous.lon,
+                lat,
+                lon
+            );
+
+
+        /*
+           Abaikan perpindahan yang
+           terlalu kecil atau GPS jump.
+        */
+
+        if(
+            distance >= 2 &&
+            distance < 1000
+        ){
+
+            trackingDistance +=
+                distance;
+
+        }
+
+    }
+
+
+    trackingPoints.push(
+        point
+    );
+
+
+    /* ================================================
+       SPEED
+    ================================================= */
+
+
+    trackingTotalSpeed +=
+        speed;
+
+    trackingSpeedSamples++;
+
+
+    if(
+        speed >
+        trackingMaxSpeed
+    ){
+
+        trackingMaxSpeed =
+            speed;
+
+    }
+
+
+    const averageSpeed =
+        trackingSpeedSamples > 0
+        ?
+        trackingTotalSpeed /
+        trackingSpeedSamples
+        :
+        0;
+
+
+    /* ================================================
+       UPDATE UI
+    ================================================= */
+
+
+    document.getElementById(
+        "trackDistance"
+    ).innerText =
+
+        (
+            trackingDistance /
+            1000
+        ).toFixed(2)
+        +
+        " km";
+
+
+    document.getElementById(
+        "trackSpeed"
+    ).innerText =
+
+        speed.toFixed(1)
+        +
+        " km/h";
+
+
+    document.getElementById(
+        "trackAverage"
+    ).innerText =
+
+        averageSpeed.toFixed(1)
+        +
+        " km/h";
+
+
+    document.getElementById(
+        "trackMax"
+    ).innerText =
+
+        trackingMaxSpeed.toFixed(1)
+        +
+        " km/h";
+
+
+    document.getElementById(
+        "trackPoints"
+    ).innerText =
+        trackingPoints.length;
+
+
+    document.getElementById(
+        "trackLast"
+    ).innerText =
+        new Date()
+        .toLocaleTimeString(
+            "id-ID"
+        );
+
+
+    document.getElementById(
+        "trackGPS"
+    ).innerText =
+        "LOCKED ±"+
+        Math.round(
+            c.accuracy
+        )+
+        " m";
+
+
+    document.getElementById(
+        "trackGPS"
+    ).className =
+        "green";
+
+
+    /* ================================================
+       MAP
+    ================================================= */
+
+
+    const mapPoint =
+        [
+            lat,
+            lon
+        ];
+
+
+    if(trackingPolyline){
+
+        trackingPolyline.addLatLng(
+            mapPoint
+        );
+
+    }
+
+
+    if(
+        typeof marker !==
+        "undefined" &&
+        marker
+    ){
+
+        marker.setLatLng(
+            mapPoint
+        );
+
+    }
+
+
+    if(
+        typeof accuracyCircle !==
+        "undefined" &&
+        accuracyCircle
+    ){
+
+        accuracyCircle.setLatLng(
+            mapPoint
+        );
+
+        accuracyCircle.setRadius(
+            c.accuracy
+        );
+
+    }
+
+
+    if(map){
+
+        map.setView(
+            mapPoint,
+            17,
+            {
+                animate:true
+            }
+        );
+
+    }
+
+
+    /* ================================================
+       EXISTING GPS DATA
+    ================================================= */
+
+
+    currentLat =
+        lat;
+
+    currentLon =
+        lon;
+
+
+    document.getElementById(
+        "gpsData"
+    ).innerHTML =
+
+        "Latitude : "+
+        lat+
+        "<br>"+
+        "Longitude: "+
+        lon+
+        "<br>"+
+        "Accuracy : ±"+
+        Math.round(
+            c.accuracy
+        )+
+        " meter"+
+        "<br>"+
+        "Altitude : "+
+        (
+            c.altitude !== null
+            ?
+            Math.round(
+                c.altitude
+            )+
+            " m"
+            :
+            "-"
+        )+
+        "<br>"+
+        "Speed    : "+
+        speed.toFixed(1)+
+        " km/h"+
+        "<br>"+
+        "Status   : GPS TRACKING";
+
+
+    /* ================================================
+       MAP LINKS
+    ================================================= */
+
+
+    document.getElementById(
+        "googleMaps"
+    ).href =
+
+        "https://www.google.com/maps?q="+
+        lat+
+        ","+
+        lon;
+
+
+    document.getElementById(
+        "osm"
+    ).href =
+
+        "https://www.openstreetmap.org/?mlat="+
+        lat+
+        "&mlon="+
+        lon+
+        "#map=18/"+
+        lat+
+        "/"+
+        lon;
+
+
+    /* ================================================
+       LOG
+    ================================================= */
+
+
+    log(
+        "[TRACK] "+
+        lat.toFixed(6)+
+        ","+
+        lon.toFixed(6)+
+        " | "+
+        speed.toFixed(1)+
+        " km/h"
+    );
+
+
+    /* ================================================
+       SAVE
+    ================================================= */
+
+    saveTracking();
+
+}
+
+
+/* =====================================================
+   GPS ERROR
+===================================================== */
+
+function trackingGPSError(
+    error
+){
+
+    document.getElementById(
+        "trackGPS"
+    ).innerText =
+        "GPS ERROR";
+
+
+    document.getElementById(
+        "trackGPS"
+    ).className =
+        "red";
+
+
+    let message =
+        "GPS tidak tersedia";
+
+
+    if(
+        error.code === 1
+    ){
+
+        message =
+            "Izin GPS ditolak";
+
+    }
+
+    else if(
+        error.code === 2
+    ){
+
+        message =
+            "Lokasi tidak tersedia";
+
+    }
+
+    else if(
+        error.code === 3
+    ){
+
+        message =
+            "GPS timeout";
+
+    }
+
+
+    log(
+        "[TRACKING] ⚠ "+
+        message
+    );
+
+
+    notify(
+        "myROBOT-V12",
+        message
+    );
+
+
+    vibrate();
+
+}
+
+
+/* =====================================================
+   STOP TRACKING
+===================================================== */
+
+function stopTracking(){
+
+    if(!trackingActive){
+
+        return;
+
+    }
+
+
+    trackingActive =
+        false;
+
+
+    trackingStopTime =
+        Date.now();
+
+
+    if(
+        trackingWatchID !==
+        null
+    ){
+
+        navigator.geolocation
+            .clearWatch(
+                trackingWatchID
+            );
+
+        trackingWatchID =
+            null;
+
+    }
+
+
+    if(trackingTimer){
+
+        clearInterval(
+            trackingTimer
+        );
+
+        trackingTimer =
+            null;
+
+    }
+
+
+    updateTrackingTimer();
+
+
+    document.getElementById(
+        "trackingStatus"
+    ).innerHTML =
+        "⏹ TRACKING STOPPED";
+
+
+    document.getElementById(
+        "trackingStatus"
+    ).className =
+        "active track-stop";
+
+
+    log(
+        "[TRACKING] ⏹ STOP | "+
+        (
+            trackingDistance/
+            1000
+        ).toFixed(2)+
+        " km"
+    );
+
+
+    saveTracking();
+
+
+    vibrate();
+
+
+    if(
+        typeof speak ===
+        "function"
+    ){
+
+        speak(
+            "Pelacakan dihentikan"
+        );
+
+    }
+
+
+    notify(
+        "myROBOT-V12",
+        "Tracking dihentikan"
+    );
+
+}
+
+
+/* =====================================================
+   RESET TRACKING
+===================================================== */
+
+function resetTracking(){
+
+    stopTracking();
+
+
+    trackingPoints =
+        [];
+
+    trackingDistance =
+        0;
+
+    trackingMaxSpeed =
+        0;
+
+    trackingTotalSpeed =
+        0;
+
+    trackingSpeedSamples =
+        0;
+
+    trackingStartTime =
+        null;
+
+    trackingStopTime =
+        null;
+
+
+    if(trackingPolyline){
+
+        map.removeLayer(
+            trackingPolyline
+        );
+
+        trackingPolyline =
+            null;
+
+    }
+
+
+    document.getElementById(
+        "trackingStatus"
+    ).innerHTML =
+        '<span class="dot"></span> TRACKING READY';
+
+
+    document.getElementById(
+        "trackingStatus"
+    ).className =
+        "active";
+
+
+    document.getElementById(
+        "trackDuration"
+    ).innerText =
+        "00:00:00";
+
+
+    document.getElementById(
+        "trackDistance"
+    ).innerText =
+        "0.00 km";
+
+
+    document.getElementById(
+        "trackSpeed"
+    ).innerText =
+        "0.0 km/h";
+
+
+    document.getElementById(
+        "trackAverage"
+    ).innerText =
+        "0.0 km/h";
+
+
+    document.getElementById(
+        "trackMax"
+    ).innerText =
+        "0.0 km/h";
+
+
+    document.getElementById(
+        "trackPoints"
+    ).innerText =
+        "0";
+
+
+    document.getElementById(
+        "trackStart"
+    ).innerText =
+        "-";
+
+
+    document.getElementById(
+        "trackLast"
+    ).innerText =
+        "-";
+
+
+    document.getElementById(
+        "trackGPS"
+    ).innerText =
+        "READY";
+
+
+    document.getElementById(
+        "trackGPS"
+    ).className =
+        "green";
+
+
+    localStorage.removeItem(
+        "myrobot_tracking"
+    );
+
+
+    log(
+        "[TRACKING] RESET"
+    );
+
+}
+
+
+/* =====================================================
+   SAVE TRACKING
+===================================================== */
+
+function saveTracking(){
+
+    const data = {
+
+        start:
+            trackingStartTime,
+
+        stop:
+            trackingStopTime,
+
+        distance:
+            trackingDistance,
+
+        maxSpeed:
+            trackingMaxSpeed,
+
+        points:
+            trackingPoints
+
+    };
+
+
+    localStorage.setItem(
+        "myrobot_tracking",
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =====================================================
+   DOWNLOAD FILE
+===================================================== */
+
+function downloadFile(
+    content,
+    filename,
+    type
+){
+
+    const blob =
+        new Blob(
+            [content],
+            {
+                type:type
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const a =
+        document.createElement(
+            "a"
+        );
+
+
+    a.href =
+        url;
+
+    a.download =
+        filename;
+
+
+    document.body.appendChild(
+        a
+    );
+
+
+    a.click();
+
+
+    a.remove();
+
+
+    setTimeout(
+        function(){
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
+        1000
+    );
+
+}
+
+
+/* =====================================================
+   EXPORT JSON
+===================================================== */
+
+function exportJSON(){
+
+    if(
+        trackingPoints.length === 0
+    ){
+
+        alert(
+            "Belum ada data tracking."
+        );
+
+        return;
+
+    }
+
+
+    const data = {
+
+        application:
+            "myROBOT-V12",
+
+        version:
+            "V12 PRO",
+
+        start:
+            trackingStartTime,
+
+        stop:
+            trackingStopTime,
+
+        distance_km:
+            Number(
+                (
+                    trackingDistance/
+                    1000
+                ).toFixed(3)
+            ),
+
+        max_speed_kmh:
+            Number(
+                trackingMaxSpeed.toFixed(2)
+            ),
+
+        points:
+            trackingPoints
+
+    };
+
+
+    downloadFile(
+
+        JSON.stringify(
+            data,
+            null,
+            2
+        ),
+
+        "myROBOT-V12-tracking.json",
+
+        "application/json"
+
+    );
+
+
+    log(
+        "[TRACKING] JSON exported"
+    );
+
+}
+
+
+/* =====================================================
+   EXPORT CSV
+===================================================== */
+
+function exportCSV(){
+
+    if(
+        trackingPoints.length === 0
+    ){
+
+        alert(
+            "Belum ada data tracking."
+        );
+
+        return;
+
+    }
+
+
+    let csv =
+        "No,Time,Latitude,Longitude,Accuracy,Altitude,Speed_kmh\n";
+
+
+    trackingPoints.forEach(
+        function(p,index){
+
+            csv +=
+
+                (index+1)+","+
+
+                new Date(
+                    p.timestamp
+                ).toISOString()+","+
+
+                p.lat+","+
+
+                p.lon+","+
+
+                p.accuracy+","+
+
+                (
+                    p.altitude ??
+                    ""
+                )+","+
+
+                p.speed.toFixed(2)+
+
+                "\n";
+
+        }
+    );
+
+
+    downloadFile(
+
+        csv,
+
+        "myROBOT-V12-tracking.csv",
+
+        "text/csv"
+
+    );
+
+
+    log(
+        "[TRACKING] CSV exported"
+    );
+
+}
+
+
+/* =====================================================
+   EXPORT GPX
+===================================================== */
+
+function exportGPX(){
+
+    if(
+        trackingPoints.length === 0
+    ){
+
+        alert(
+            "Belum ada data tracking."
+        );
+
+        return;
+
+    }
+
+
+    let gpx =
+
+`<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1"
+creator="myROBOT-V12"
+xmlns="http://www.topografix.com/GPX/1/1">
+
+<trk>
+
+<name>myROBOT-V12 Tracking</name>
+
+<trkseg>
+`;
+
+
+    trackingPoints.forEach(
+        function(p){
+
+            gpx +=
+
+`<trkpt lat="${p.lat}" lon="${p.lon}">
+<ele>${p.altitude ?? 0}</ele>
+<time>${new Date(p.timestamp).toISOString()}</time>
+</trkpt>
+`;
+
+        }
+    );
+
+
+    gpx +=
+
+`</trkseg>
+
+</trk>
+
+</gpx>`;
+
+
+    downloadFile(
+
+        gpx,
+
+        "myROBOT-V12-tracking.gpx",
+
+        "application/gpx+xml"
+
+    );
+
+
+    log(
+        "[TRACKING] GPX exported"
+    );
+
+}
+
+
+/* =====================================================
+   RESTORE TRACKING
+===================================================== */
+
+function restoreTracking(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "myrobot_tracking"
+            );
+
+
+        if(!saved)
+            return;
+
+
+        const data =
+            JSON.parse(
+                saved
+            );
+
+
+        trackingPoints =
+            data.points || [];
+
+
+        trackingDistance =
+            data.distance || 0;
+
+
+        trackingMaxSpeed =
+            data.maxSpeed || 0;
+
+
+        trackingStartTime =
+            data.start || null;
+
+
+        trackingStopTime =
+            data.stop || null;
+
+
+        document.getElementById(
+            "trackDistance"
+        ).innerText =
+
+            (
+                trackingDistance/
+                1000
+            ).toFixed(2)+
+            " km";
+
+
+        document.getElementById(
+            "trackMax"
+        ).innerText =
+
+            trackingMaxSpeed.toFixed(1)+
+            " km/h";
+
+
+        document.getElementById(
+            "trackPoints"
+        ).innerText =
+            trackingPoints.length;
+
+
+        if(
+            trackingPoints.length > 0
+        ){
+
+            if(trackingPolyline){
+
+                map.removeLayer(
+                    trackingPolyline
+                );
+
+            }
+
+
+            const coords =
+                trackingPoints.map(
+                    p =>
+                        [
+                            p.lat,
+                            p.lon
+                        ]
+                );
+
+
+            trackingPolyline =
+                L.polyline(
+                    coords,
+                    {
+                        color:"#00e5ff",
+                        weight:4,
+                        opacity:.85
+                    }
+                ).addTo(map);
+
+
+            map.fitBounds(
+                trackingPolyline
+                    .getBounds(),
+                {
+                    padding:[20,20]
+                }
+            );
+
+        }
+
+
+        log(
+            "[TRACKING] Saved track restored"
+        );
+
+    }
+
+    catch(error){
+
+        log(
+            "[TRACKING] Restore error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RESTORE AFTER MAP READY
+===================================================== */
+
+setTimeout(
+    restoreTracking,
+    1000
+);
+
+/* =====================================================
+   REMINDER & ALARM
+===================================================== */
+
+let alarmTimer = null;
+
+let alarmActive = false;
+
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+function speak(text){
+
+    if(
+        !("speechSynthesis" in window)
+    ){
+
+        return;
+
+    }
+
+
+    speechSynthesis.cancel();
+
+
+    const voice =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+
+    voice.lang =
+        "id-ID";
+
+    voice.rate =
+        0.95;
+
+    voice.pitch =
+        1;
+
+
+    speechSynthesis.speak(
+        voice
+    );
+
+}
+
+
+/* =====================================================
+   SET ALARM
+===================================================== */
+
+function setAlarm(){
+
+    const time =
+        document.getElementById(
+            "alarmTime"
+        ).value;
+
+
+    const note =
+        document.getElementById(
+            "alarmNote"
+        ).value.trim();
+
+
+    if(!time){
+
+        alert(
+            "Pilih waktu alarm terlebih dahulu."
+        );
+
+        return;
+
+    }
+
+
+    const now =
+        new Date();
+
+
+    const parts =
+        time.split(":");
+
+
+    const alarm =
+        new Date();
+
+
+    alarm.setHours(
+        Number(parts[0])
+    );
+
+    alarm.setMinutes(
+        Number(parts[1])
+    );
+
+    alarm.setSeconds(0);
+
+    alarm.setMilliseconds(0);
+
+
+    /*
+       Kalau waktunya sudah lewat,
+       jadwalkan untuk besok.
+    */
+
+    if(
+        alarm <= now
+    ){
+
+        alarm.setDate(
+            alarm.getDate()+1
+        );
+
+    }
+
+
+    const delay =
+        alarm.getTime() -
+        now.getTime();
+
+
+    if(alarmTimer){
+
+        clearTimeout(
+            alarmTimer
+        );
+
+    }
+
+
+    alarmActive =
+        true;
+
+
+    const noteText =
+        note ||
+        "Pengingat myROBOT-V12";
+
+
+    document.getElementById(
+        "alarmStatus"
+    ).innerText =
+
+        "🔔 ALARM AKTIF • "+
+        time+
+        " • "+
+        noteText;
+
+
+    document.getElementById(
+        "alarmStatus"
+    ).className =
+        "active";
+
+
+    alarmTimer =
+        setTimeout(
+            function(){
+
+                triggerAlarm(
+                    noteText
+                );
+
+            },
+            delay
+        );
+
+
+    /*
+       Simpan alarm
+    */
+
+    localStorage.setItem(
+        "myrobot_alarm",
+        JSON.stringify({
+
+            time:time,
+
+            note:noteText,
+
+            timestamp:
+                alarm.getTime()
+
+        })
+    );
+
+
+    log(
+        "[ALARM] SET "+
+        time+
+        " | "+
+        noteText
+    );
+
+
+    /*
+       Test suara untuk memastikan
+       browser sudah mendapatkan
+       interaksi pengguna.
+    */
+
+    speak(
+        "Alarm berhasil diatur"
+    );
+
+}
+
+
+/* =====================================================
+   TRIGGER ALARM
+===================================================== */
+
+function triggerAlarm(
+    note
+){
+
+    alarmActive =
+        false;
+
+
+    document.getElementById(
+        "alarmStatus"
+    ).innerText =
+
+        "🚨 ALARM! "+
+        note;
+
+
+    document.getElementById(
+        "alarmStatus"
+    ).className =
+        "active track-stop";
+
+
+    /*
+       Getar
+    */
+
+    if(
+        navigator.vibrate
+    ){
+
+        navigator.vibrate(
+            [
+                500,
+                200,
+                500,
+                200,
+                1000
+            ]
+        );
+
+    }
+
+
+    /*
+       Suara
+    */
+
+    speak(
+        "Pengingat. "+
+        note
+    );
+
+
+    /*
+       Notification
+    */
+
+    notify(
+        "🔔 myROBOT-V12",
+        note
+    );
+
+
+    /*
+       Popup
+    */
+
+    alert(
+        "🔔 ALARM\n\n"+
+        note
+    );
+
+
+    log(
+        "[ALARM] TRIGGERED | "+
+        note
+    );
+
+
+    localStorage.removeItem(
+        "myrobot_alarm"
+    );
+
+}
+
+
+/* =====================================================
+   CANCEL ALARM
+===================================================== */
+
+function cancelAlarm(){
+
+    if(alarmTimer){
+
+        clearTimeout(
+            alarmTimer
+        );
+
+        alarmTimer =
+            null;
+
+    }
+
+
+    alarmActive =
+        false;
+
+
+    localStorage.removeItem(
+        "myrobot_alarm"
+    );
+
+
+    document.getElementById(
+        "alarmStatus"
+    ).innerText =
+        "⏰ BELUM ADA ALARM";
+
+
+    document.getElementById(
+        "alarmStatus"
+    ).className =
+        "active";
+
+
+    log(
+        "[ALARM] CANCELLED"
+    );
+
+}
+
+
+/* =====================================================
+   RESTORE ALARM
+===================================================== */
+
+function restoreAlarm(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "myrobot_alarm"
+            );
+
+
+        if(!saved)
+            return;
+
+
+        const data =
+            JSON.parse(
+                saved
+            );
+
+
+        const remaining =
+            data.timestamp -
+            Date.now();
+
+
+        /*
+           Alarm masih berlaku
+        */
+
+        if(
+            remaining > 0
+        ){
+
+            alarmActive =
+                true;
+
+
+            document.getElementById(
+                "alarmTime"
+            ).value =
+                data.time;
+
+
+            document.getElementById(
+                "alarmNote"
+            ).value =
+                data.note;
+
+
+            document.getElementById(
+                "alarmStatus"
+            ).innerText =
+
+                "🔔 ALARM AKTIF • "+
+                data.time+
+                " • "+
+                data.note;
+
+
+            alarmTimer =
+                setTimeout(
+                    function(){
+
+                        triggerAlarm(
+                            data.note
+                        );
+
+                    },
+                    remaining
+                );
+
+
+            log(
+                "[ALARM] Restored"
+            );
+
+        }
+
+        else{
+
+            localStorage.removeItem(
+                "myrobot_alarm"
+            );
+
+        }
+
+    }
+
+    catch(error){
+
+        localStorage.removeItem(
+            "myrobot_alarm"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+restoreAlarm();
+  
 </script>
   
 
