@@ -1753,6 +1753,100 @@ function formatTime(
     );
 
 }
+/* =========================================
+   KLIK MAP → OPENSTREETMAP
+========================================= */
+
+let clickMarker = null;
+
+map.on("click", function(e) {
+
+    const lat = e.latlng.lat;
+    const lon = e.latlng.lng;
+
+    /* Hapus marker sebelumnya */
+
+    if (clickMarker) {
+        map.removeLayer(clickMarker);
+    }
+
+    /* Marker lokasi yang diklik */
+
+    clickMarker = L.marker([
+        lat,
+        lon
+    ]).addTo(map);
+
+    /* URL OpenStreetMap */
+
+    const osmURL =
+        "https://www.openstreetmap.org/?mlat=" +
+        lat +
+        "&mlon=" +
+        lon +
+        "#map=18/" +
+        lat +
+        "/" +
+        lon;
+
+
+    /* Popup */
+
+    clickMarker.bindPopup(`
+
+        <div style="
+            min-width:190px;
+            text-align:center;
+        ">
+
+            <b style="
+                color:#00aa66;
+                font-size:15px;
+            ">
+                📍 LOKASI DIPILIH
+            </b>
+
+            <hr>
+
+            <div style="
+                font-size:12px;
+                margin-bottom:8px;
+            ">
+
+                Latitude:<br>
+                <b>${lat.toFixed(7)}</b>
+
+                <br><br>
+
+                Longitude:<br>
+                <b>${lon.toFixed(7)}</b>
+
+            </div>
+
+            <a
+                href="${osmURL}"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="
+                    display:block;
+                    background:#00aa66;
+                    color:white;
+                    text-decoration:none;
+                    padding:10px;
+                    border-radius:8px;
+                    font-weight:bold;
+                    margin-top:8px;
+                "
+            >
+                🗺️ OPEN STREET MAP
+            </a>
+
+        </div>
+
+    `).openPopup();
+
+});
+      
 
 
 /* =========================================
