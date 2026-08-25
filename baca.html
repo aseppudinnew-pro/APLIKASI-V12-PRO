@@ -1,321 +1,615 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>myROBOT-V12 • GPX Reader</title>
+<meta charset="UTF-8">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
-        body {
-            background: #07111f;
-            color: #fff;
-            min-height: 100vh;
-            padding: 15px;
-        }
+<title>myROBOT-V12 • GPX Tracker</title>
 
-        .container {
-            max-width: 700px;
-            margin: auto;
-        }
+<!-- Leaflet -->
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 
-        .header {
-            text-align: center;
-            padding: 20px 10px;
-        }
+<style>
 
-        .header h1 {
-            color: #00ff88;
-            font-size: 25px;
-            text-shadow: 0 0 10px #00ff88;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
 
-        .header p {
-            color: #8da2b8;
-            margin-top: 6px;
-            font-size: 13px;
-        }
+body{
+    background:#06101c;
+    color:white;
+    min-height:100vh;
+}
 
-        .upload-box {
-            border: 2px dashed #00ff88;
-            border-radius: 18px;
-            padding: 30px 15px;
-            text-align: center;
-            background: rgba(0, 255, 136, 0.05);
-            margin-bottom: 15px;
-        }
+.container{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:12px;
+}
 
-        .upload-icon {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
+/* HEADER */
 
-        .upload-box label {
-            display: inline-block;
-            background: #00ff88;
-            color: #001b0d;
-            padding: 13px 22px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0,255,136,.4);
-        }
+.header{
+    text-align:center;
+    padding:15px 5px;
+}
 
-        #gpxFile {
-            display: none;
-        }
+.header h1{
+    color:#00ff88;
+    font-size:26px;
+    text-shadow:0 0 12px rgba(0,255,136,.7);
+}
 
-        #fileName {
-            margin-top: 12px;
-            color: #8da2b8;
-            font-size: 13px;
-        }
+.header p{
+    color:#8da2b8;
+    font-size:13px;
+    margin-top:5px;
+}
 
-        .status {
-            background: #0d1b2a;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #1d344d;
-        }
+/* UPLOAD */
 
-        .status-title {
-            color: #00ff88;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
+.upload-box{
+    border:2px dashed #00ff88;
+    border-radius:18px;
+    padding:25px 15px;
+    text-align:center;
+    background:rgba(0,255,136,.04);
+    margin-bottom:12px;
+}
 
-        .status-text {
-            color: #b9c8d8;
-            font-size: 13px;
-        }
+.upload-icon{
+    font-size:45px;
+    margin-bottom:10px;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+.upload-label{
+    display:inline-block;
+    background:#00ff88;
+    color:#001b0d;
+    padding:13px 22px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-        .card {
-            background: #0d1b2a;
-            border: 1px solid #1d344d;
-            border-radius: 14px;
-            padding: 15px;
-        }
+#gpxFile{
+    display:none;
+}
 
-        .card-title {
-            color: #7f95aa;
-            font-size: 12px;
-        }
+#fileName{
+    margin-top:10px;
+    color:#91a4b7;
+    font-size:13px;
+}
 
-        .card-value {
-            color: #00ff88;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 7px;
-            word-break: break-word;
-        }
+/* STATUS */
 
-        .table-box {
-            background: #0d1b2a;
-            border-radius: 15px;
-            padding: 12px;
-            border: 1px solid #1d344d;
-            overflow-x: auto;
-        }
+.status{
+    background:#0b1a2a;
+    border:1px solid #1d344d;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:12px;
+}
 
-        .table-box h3 {
-            color: #00ff88;
-            margin-bottom: 12px;
-        }
+.status-title{
+    color:#00ff88;
+    font-weight:bold;
+    margin-bottom:6px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px;
-        }
+.status-text{
+    color:#b8c7d6;
+    font-size:13px;
+}
 
-        th,
-        td {
-            border-bottom: 1px solid #1d344d;
-            padding: 9px;
-            text-align: left;
-            font-size: 12px;
-        }
+/* GRID */
 
-        th {
-            color: #00ff88;
-        }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+    margin-bottom:12px;
+}
 
-        td {
-            color: #c5d2df;
-        }
+.card{
+    background:#0b1a2a;
+    border:1px solid #1d344d;
+    border-radius:14px;
+    padding:13px;
+}
 
-        .raw-box {
-            margin-top: 15px;
-            background: #050b12;
-            border: 1px solid #1d344d;
-            border-radius: 15px;
-            padding: 12px;
-        }
+.card-title{
+    color:#7e94a9;
+    font-size:11px;
+}
 
-        .raw-box h3 {
-            color: #00ff88;
-            margin-bottom: 10px;
-        }
+.card-value{
+    color:#00ff88;
+    font-size:17px;
+    font-weight:bold;
+    margin-top:6px;
+    word-break:break-word;
+}
 
-        pre {
-            white-space: pre-wrap;
-            word-break: break-word;
-            color: #8da2b8;
-            font-size: 11px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
+/* LOCATION */
 
-        .empty {
-            text-align: center;
-            color: #62758a;
-            padding: 30px 10px;
-        }
+.location-box{
+    background:#0b1a2a;
+    border:1px solid #1d344d;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:12px;
+}
 
-        .error {
-            color: #ff5c5c;
-        }
+.location-title{
+    color:#00ff88;
+    font-weight:bold;
+    margin-bottom:10px;
+}
 
-        @media (max-width: 450px) {
-            body {
-                padding: 10px;
-            }
+.location-row{
+    padding:7px 0;
+    border-bottom:1px solid #182d42;
+    font-size:13px;
+}
 
-            .grid {
-                grid-template-columns: 1fr 1fr;
-            }
+.location-row:last-child{
+    border-bottom:none;
+}
 
-            .card-value {
-                font-size: 15px;
-            }
-        }
-    </style>
+.location-label{
+    color:#71879b;
+}
+
+.location-value{
+    color:#e5edf5;
+    margin-top:3px;
+}
+
+/* MAP */
+
+.map-box{
+    background:#0b1a2a;
+    border:1px solid #1d344d;
+    border-radius:15px;
+    padding:8px;
+    margin-bottom:12px;
+}
+
+.map-title{
+    color:#00ff88;
+    font-weight:bold;
+    padding:7px;
+}
+
+#map{
+    width:100%;
+    height:400px;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+/* TABLE */
+
+.table-box{
+    background:#0b1a2a;
+    border:1px solid #1d344d;
+    border-radius:15px;
+    padding:12px;
+    margin-bottom:12px;
+    overflow-x:auto;
+}
+
+.table-title{
+    color:#00ff88;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+th,
+td{
+    border-bottom:1px solid #1b3044;
+    padding:8px;
+    text-align:left;
+    font-size:11px;
+}
+
+th{
+    color:#00ff88;
+}
+
+td{
+    color:#c4d0dc;
+}
+
+/* RAW */
+
+.raw-box{
+    background:#050b12;
+    border:1px solid #1d344d;
+    border-radius:15px;
+    padding:12px;
+}
+
+.raw-title{
+    color:#00ff88;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+pre{
+    color:#8296a9;
+    font-size:10px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    max-height:250px;
+    overflow:auto;
+}
+
+/* ERROR */
+
+.error{
+    color:#ff5d5d;
+}
+
+.success{
+    color:#00ff88;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .container{
+        padding:8px;
+    }
+
+    .header h1{
+        font-size:22px;
+    }
+
+    #map{
+        height:330px;
+    }
+
+    .card-value{
+        font-size:14px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="container">
 
+    <!-- HEADER -->
+
     <div class="header">
+
         <h1>🤖 myROBOT-V12</h1>
-        <p>GPS Tracking • GPX Reader</p>
+
+        <p>
+            GPS TRACKING • GPX READER
+        </p>
+
     </div>
 
-    <!-- UPLOAD GPX -->
+
+    <!-- UPLOAD -->
+
     <div class="upload-box">
 
-        <div class="upload-icon">📂</div>
+        <div class="upload-icon">
+            📂
+        </div>
 
-        <label for="gpxFile">
+        <label
+            class="upload-label"
+            for="gpxFile">
+
             PILIH FILE GPX
+
         </label>
 
         <input
-            type="file"
             id="gpxFile"
+            type="file"
             accept=".gpx,application/gpx+xml,application/xml,text/xml">
 
         <div id="fileName">
-            Belum ada file dipilih
+            Belum ada file GPX
         </div>
 
     </div>
 
+
     <!-- STATUS -->
+
     <div class="status">
 
         <div class="status-title">
-            📡 STATUS
+            📡 STATUS SISTEM
         </div>
 
-        <div id="statusText" class="status-text">
+        <div
+            id="statusText"
+            class="status-text">
+
             Menunggu file GPX...
+
         </div>
 
     </div>
 
-    <!-- SUMMARY -->
+
+    <!-- STATISTIK -->
+
     <div class="grid">
 
         <div class="card">
-            <div class="card-title">📍 JUMLAH TITIK</div>
-            <div id="totalPoint" class="card-value">0</div>
+
+            <div class="card-title">
+                📍 JUMLAH TITIK
+            </div>
+
+            <div
+                id="totalPoint"
+                class="card-value">
+
+                0
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <div class="card-title">📏 JARAK</div>
-            <div id="distance" class="card-value">0 m</div>
-        </div>
 
         <div class="card">
-            <div class="card-title">⛰️ ELEVASI</div>
-            <div id="elevation" class="card-value">0 m</div>
+
+            <div class="card-title">
+                📏 TOTAL JARAK
+            </div>
+
+            <div
+                id="distance"
+                class="card-value">
+
+                0 m
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <div class="card-title">⏱️ DURASI</div>
-            <div id="duration" class="card-value">00:00:00</div>
-        </div>
 
         <div class="card">
-            <div class="card-title">🚀 KECEPATAN RATA-RATA</div>
-            <div id="avgSpeed" class="card-value">0 km/jam</div>
+
+            <div class="card-title">
+                ⏱️ DURASI
+            </div>
+
+            <div
+                id="duration"
+                class="card-value">
+
+                00:00:00
+
+            </div>
+
         </div>
 
+
         <div class="card">
-            <div class="card-title">📈 KECEPATAN MAKS</div>
-            <div id="maxSpeed" class="card-value">0 km/jam</div>
+
+            <div class="card-title">
+                🚗 RATA-RATA
+            </div>
+
+            <div
+                id="avgSpeed"
+                class="card-value">
+
+                0 km/jam
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                🚀 KECEPATAN MAKS
+            </div>
+
+            <div
+                id="maxSpeed"
+                class="card-value">
+
+                0 km/jam
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                ⛰️ ELEVASI
+            </div>
+
+            <div
+                id="elevation"
+                class="card-value">
+
+                0 m
+
+            </div>
+
         </div>
 
     </div>
 
-    <!-- GPS POINT TABLE -->
-    <div class="table-box">
 
-        <h3>📋 DATA GPS</h3>
+    <!-- LOCATION -->
 
-        <div id="emptyData" class="empty">
-            Belum ada data GPS
+    <div class="location-box">
+
+        <div class="location-title">
+            📍 INFORMASI LOKASI
         </div>
 
-        <table id="gpsTable" style="display:none;">
+
+        <div class="location-row">
+
+            <div class="location-label">
+                TITIK AWAL
+            </div>
+
+            <div
+                id="startLocation"
+                class="location-value">
+
+                Belum ada data
+
+            </div>
+
+        </div>
+
+
+        <div class="location-row">
+
+            <div class="location-label">
+                TITIK AKHIR
+            </div>
+
+            <div
+                id="endLocation"
+                class="location-value">
+
+                Belum ada data
+
+            </div>
+
+        </div>
+
+
+        <div class="location-row">
+
+            <div class="location-label">
+                KOORDINAT AWAL
+            </div>
+
+            <div
+                id="startCoordinate"
+                class="location-value">
+
+                -
+
+            </div>
+
+        </div>
+
+
+        <div class="location-row">
+
+            <div class="location-label">
+                KOORDINAT AKHIR
+            </div>
+
+            <div
+                id="endCoordinate"
+                class="location-value">
+
+                -
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAP -->
+
+    <div class="map-box">
+
+        <div class="map-title">
+            🗺️ PETA TRACKING
+        </div>
+
+        <div id="map"></div>
+
+    </div>
+
+
+    <!-- GPS TABLE -->
+
+    <div class="table-box">
+
+        <div class="table-title">
+            📋 DATA GPS
+        </div>
+
+        <table id="gpsTable">
 
             <thead>
+
                 <tr>
+
                     <th>No</th>
+
                     <th>Latitude</th>
+
                     <th>Longitude</th>
+
                     <th>Elevasi</th>
+
                     <th>Waktu</th>
+
                 </tr>
+
             </thead>
 
-            <tbody id="gpsBody"></tbody>
+            <tbody id="gpsBody">
+
+            </tbody>
 
         </table>
 
     </div>
 
-    <!-- RAW GPX -->
+
+    <!-- RAW -->
+
     <div class="raw-box">
 
-        <h3>🧾 GPX RAW DATA</h3>
+        <div class="raw-title">
+            🧾 GPX RAW DATA
+        </div>
 
         <pre id="rawData">
 Belum ada file GPX.
@@ -326,197 +620,334 @@ Belum ada file GPX.
 </div>
 
 
+<!-- LEAFLET -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
 <script>
 
-const gpxFile = document.getElementById("gpxFile");
+/* =========================================
+   ELEMENT
+========================================= */
 
-const fileName = document.getElementById("fileName");
+const gpxFile =
+    document.getElementById("gpxFile");
 
-const statusText = document.getElementById("statusText");
+const fileName =
+    document.getElementById("fileName");
 
-const totalPoint = document.getElementById("totalPoint");
+const statusText =
+    document.getElementById("statusText");
 
-const distanceElement = document.getElementById("distance");
+const totalPoint =
+    document.getElementById("totalPoint");
 
-const elevationElement = document.getElementById("elevation");
+const distanceElement =
+    document.getElementById("distance");
 
-const durationElement = document.getElementById("duration");
+const durationElement =
+    document.getElementById("duration");
 
-const avgSpeedElement = document.getElementById("avgSpeed");
+const avgSpeedElement =
+    document.getElementById("avgSpeed");
 
-const maxSpeedElement = document.getElementById("maxSpeed");
+const maxSpeedElement =
+    document.getElementById("maxSpeed");
 
-const gpsTable = document.getElementById("gpsTable");
+const elevationElement =
+    document.getElementById("elevation");
 
-const gpsBody = document.getElementById("gpsBody");
+const gpsBody =
+    document.getElementById("gpsBody");
 
-const emptyData = document.getElementById("emptyData");
+const rawData =
+    document.getElementById("rawData");
 
-const rawData = document.getElementById("rawData");
+const startLocation =
+    document.getElementById("startLocation");
+
+const endLocation =
+    document.getElementById("endLocation");
+
+const startCoordinate =
+    document.getElementById("startCoordinate");
+
+const endCoordinate =
+    document.getElementById("endCoordinate");
 
 
-/*
-========================================
-UPLOAD FILE GPX
-========================================
-*/
+/* =========================================
+   MAP
+========================================= */
 
-gpxFile.addEventListener("change", function () {
+const map =
+    L.map("map").setView(
+        [-3.904527,104.8964117],
+        15
+    );
 
-    const file = this.files[0];
 
-    if (!file) {
-        return;
+L.tileLayer(
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        maxZoom:19,
+        attribution:
+            '&copy; OpenStreetMap contributors'
     }
+).addTo(map);
 
-    fileName.textContent = "📄 " + file.name;
 
-    if (!file.name.toLowerCase().endsWith(".gpx")) {
+let trackLine = null;
 
-        statusText.innerHTML =
-            '<span class="error">❌ File bukan GPX</span>';
+let startMarker = null;
 
-        return;
+let endMarker = null;
+
+
+/* =========================================
+   UPLOAD GPX
+========================================= */
+
+gpxFile.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+        if(!file){
+            return;
+        }
+
+
+        fileName.textContent =
+            "📄 " + file.name;
+
+
+        if(
+            !file.name
+                .toLowerCase()
+                .endsWith(".gpx")
+        ){
+
+            statusText.innerHTML =
+                '<span class="error">' +
+                '❌ File harus berformat GPX' +
+                '</span>';
+
+            return;
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event){
+
+                const text =
+                    event.target.result;
+
+                rawData.textContent =
+                    text;
+
+                readGPX(text);
+
+            };
+
+
+        reader.onerror =
+            function(){
+
+                statusText.innerHTML =
+                    '<span class="error">' +
+                    '❌ File gagal dibaca' +
+                    '</span>';
+
+            };
+
+
+        reader.readAsText(file);
+
     }
-
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-
-        const gpxText = event.target.result;
-
-        rawData.textContent = gpxText;
-
-        readGPX(gpxText);
-
-    };
-
-    reader.onerror = function () {
-
-        statusText.innerHTML =
-            '<span class="error">❌ Gagal membaca file</span>';
-
-    };
-
-    reader.readAsText(file);
-
-});
+);
 
 
-/*
-========================================
-MEMBACA GPX
-========================================
-*/
+/* =========================================
+   READ GPX
+========================================= */
 
-function readGPX(gpxText) {
+function readGPX(text){
 
-    try {
+    try{
 
-        const parser = new DOMParser();
+        const parser =
+            new DOMParser();
 
-        const xml = parser.parseFromString(
-            gpxText,
-            "application/xml"
-        );
 
-        const parserError =
-            xml.querySelector("parsererror");
+        const xml =
+            parser.parseFromString(
+                text,
+                "application/xml"
+            );
 
-        if (parserError) {
+
+        if(
+            xml.querySelector("parsererror")
+        ){
 
             throw new Error(
-                "Format GPX tidak valid"
+                "Format XML/GPX tidak valid"
             );
 
         }
 
-        /*
-        Ambil semua trkpt
-        */
 
         const points =
             Array.from(
-                xml.getElementsByTagName("trkpt")
+                xml.getElementsByTagName(
+                    "trkpt"
+                )
             );
 
-        if (points.length === 0) {
+
+        if(points.length === 0){
 
             throw new Error(
-                "Tidak ditemukan titik GPS"
+                "Tidak ada titik trkpt"
             );
 
         }
 
+
         const gpsData = [];
 
-        points.forEach(function(point) {
 
-            const lat =
-                parseFloat(
-                    point.getAttribute("lat")
-                );
+        points.forEach(
+            function(point){
 
-            const lon =
-                parseFloat(
-                    point.getAttribute("lon")
-                );
+                const lat =
+                    parseFloat(
+                        point.getAttribute("lat")
+                    );
 
-            const eleElement =
-                point.getElementsByTagName("ele")[0];
 
-            const timeElement =
-                point.getElementsByTagName("time")[0];
+                const lon =
+                    parseFloat(
+                        point.getAttribute("lon")
+                    );
 
-            const ele =
-                eleElement
-                    ? parseFloat(eleElement.textContent)
+
+                const eleNode =
+                    point.getElementsByTagName(
+                        "ele"
+                    )[0];
+
+
+                const timeNode =
+                    point.getElementsByTagName(
+                        "time"
+                    )[0];
+
+
+                const ele =
+                    eleNode
+                    ? parseFloat(
+                        eleNode.textContent
+                    )
                     : null;
 
-            const time =
-                timeElement
-                    ? timeElement.textContent
+
+                const time =
+                    timeNode
+                    ? timeNode.textContent.trim()
                     : null;
 
-            gpsData.push({
 
-                lat: lat,
+                gpsData.push({
 
-                lon: lon,
+                    lat:lat,
 
-                ele: ele,
+                    lon:lon,
 
-                time: time
+                    ele:ele,
 
-            });
+                    time:time
 
-        });
+                });
+
+            }
+        );
 
 
-        /*
-        Tampilkan data
-        */
+        /* Tampilkan tabel */
 
         showGPSData(gpsData);
 
 
-        /*
-        Hitung statistik
-        */
+        /* Statistik */
 
-        calculateStatistics(gpsData);
+        calculateStatistics(
+            gpsData
+        );
+
+
+        /* Track peta */
+
+        drawTrack(
+            gpsData
+        );
+
+
+        /* Lokasi */
+
+        showCoordinates(
+            gpsData
+        );
+
+
+        /* Reverse geocoding */
+
+        if(gpsData.length > 0){
+
+            getLocationName(
+                gpsData[0].lat,
+                gpsData[0].lon,
+                startLocation
+            );
+
+
+            if(gpsData.length > 1){
+
+                getLocationName(
+                    gpsData[gpsData.length-1].lat,
+                    gpsData[gpsData.length-1].lon,
+                    endLocation
+                );
+
+            }
+
+        }
 
 
         statusText.innerHTML =
-            "🟢 GPX berhasil dibaca — " +
+            '<span class="success">' +
+            '🟢 GPX berhasil dibaca — ' +
             gpsData.length +
-            " titik GPS ditemukan.";
+            ' titik GPS ditemukan.' +
+            '</span>';
 
 
-    } catch (error) {
+    }
+    catch(error){
 
         statusText.innerHTML =
-            '<span class="error">❌ ' +
+            '<span class="error">' +
+            '❌ ' +
             error.message +
             '</span>';
 
@@ -525,111 +956,376 @@ function readGPX(gpxText) {
 }
 
 
-/*
-========================================
-TAMPILKAN DATA GPS
-========================================
-*/
+/* =========================================
+   TABLE
+========================================= */
 
-function showGPSData(data) {
+function showGPSData(data){
 
     gpsBody.innerHTML = "";
 
-    emptyData.style.display = "none";
 
-    gpsTable.style.display = "table";
+    data.forEach(
+        function(point,index){
 
-    data.forEach(function(point, index) {
-
-        const row =
-            document.createElement("tr");
-
-        row.innerHTML = `
-
-            <td>${index + 1}</td>
-
-            <td>${point.lat}</td>
-
-            <td>${point.lon}</td>
-
-            <td>
-                ${
-                    point.ele !== null
-                    ? point.ele.toFixed(2) + " m"
-                    : "-"
-                }
-            </td>
-
-            <td>
-                ${
-                    point.time
-                    ? formatTime(point.time)
-                    : "-"
-                }
-            </td>
-
-        `;
-
-        gpsBody.appendChild(row);
-
-    });
-
-}
+            const row =
+                document.createElement("tr");
 
 
-/*
-========================================
-FORMAT WAKTU
-========================================
-*/
+            row.innerHTML = `
 
-function formatTime(time) {
+                <td>${index+1}</td>
 
-    const date =
-        new Date(time);
+                <td>
+                    ${point.lat.toFixed(7)}
+                </td>
 
-    if (isNaN(date.getTime())) {
-        return time;
-    }
+                <td>
+                    ${point.lon.toFixed(7)}
+                </td>
 
-    return date.toLocaleString(
-        "id-ID",
-        {
-            dateStyle: "short",
-            timeStyle: "medium"
+                <td>
+                    ${
+                        point.ele !== null
+                        ? point.ele.toFixed(2)+" m"
+                        : "-"
+                    }
+                </td>
+
+                <td>
+                    ${
+                        point.time
+                        ? formatTime(point.time)
+                        : "-"
+                    }
+                </td>
+
+            `;
+
+
+            gpsBody.appendChild(row);
+
         }
     );
 
 }
 
 
-/*
-========================================
-HITUNG STATISTIK
-========================================
-*/
+/* =========================================
+   DRAW TRACK
+========================================= */
 
-function calculateStatistics(data) {
+function drawTrack(data){
+
+    const coordinates =
+        data.map(
+            p => [
+                p.lat,
+                p.lon
+            ]
+        );
+
+
+    if(trackLine){
+
+        map.removeLayer(
+            trackLine
+        );
+
+    }
+
+
+    if(startMarker){
+
+        map.removeLayer(
+            startMarker
+        );
+
+    }
+
+
+    if(endMarker){
+
+        map.removeLayer(
+            endMarker
+        );
+
+    }
+
+
+    trackLine =
+        L.polyline(
+            coordinates,
+            {
+                weight:5,
+                opacity:.9
+            }
+        ).addTo(map);
+
+
+    /* START */
+
+    const start =
+        data[0];
+
+
+    startMarker =
+        L.marker([
+            start.lat,
+            start.lon
+        ])
+        .addTo(map)
+        .bindPopup(
+            "🟢 <b>Titik Awal</b><br>" +
+            start.lat.toFixed(7) +
+            ", " +
+            start.lon.toFixed(7)
+        );
+
+
+    /* END */
+
+    const end =
+        data[data.length-1];
+
+
+    endMarker =
+        L.marker([
+            end.lat,
+            end.lon
+        ])
+        .addTo(map)
+        .bindPopup(
+            "🔴 <b>Titik Akhir</b><br>" +
+            end.lat.toFixed(7) +
+            ", " +
+            end.lon.toFixed(7)
+        );
+
+
+    map.fitBounds(
+        trackLine.getBounds(),
+        {
+            padding:[25,25]
+        }
+    );
+
+}
+
+
+/* =========================================
+   COORDINATE
+========================================= */
+
+function showCoordinates(data){
+
+    const start =
+        data[0];
+
+    const end =
+        data[data.length-1];
+
+
+    startCoordinate.textContent =
+        start.lat.toFixed(7) +
+        ", " +
+        start.lon.toFixed(7);
+
+
+    endCoordinate.textContent =
+        end.lat.toFixed(7) +
+        ", " +
+        end.lon.toFixed(7);
+
+}
+
+
+/* =========================================
+   REVERSE GEOCODING
+========================================= */
+
+async function getLocationName(
+    lat,
+    lon,
+    element
+){
+
+    element.textContent =
+        "🔎 Mencari nama lokasi...";
+
+
+    try{
+
+        const url =
+            "https://nominatim.openstreetmap.org/reverse" +
+            "?format=jsonv2" +
+            "&lat=" + encodeURIComponent(lat) +
+            "&lon=" + encodeURIComponent(lon) +
+            "&zoom=18" +
+            "&addressdetails=1";
+
+
+        const response =
+            await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Server lokasi tidak tersedia"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(!data){
+
+            throw new Error(
+                "Lokasi tidak ditemukan"
+            );
+
+        }
+
+
+        const address =
+            data.address || {};
+
+
+        const parts = [];
+
+
+        /*
+        Nama tempat
+        */
+
+        if(address.road){
+
+            parts.push(
+                address.road
+            );
+
+        }
+
+
+        if(address.village){
+
+            parts.push(
+                address.village
+            );
+
+        }
+        else if(address.suburb){
+
+            parts.push(
+                address.suburb
+            );
+
+        }
+
+
+        if(address.town){
+
+            parts.push(
+                address.town
+            );
+
+        }
+        else if(address.city){
+
+            parts.push(
+                address.city
+            );
+
+        }
+
+
+        if(address.county){
+
+            parts.push(
+                address.county
+            );
+
+        }
+
+
+        if(address.state){
+
+            parts.push(
+                address.state
+            );
+
+        }
+
+
+        if(address.country){
+
+            parts.push(
+                address.country
+            );
+
+        }
+
+
+        if(parts.length > 0){
+
+            element.innerHTML =
+                parts.join(
+                    "<br>"
+                );
+
+        }
+        else{
+
+            element.textContent =
+                data.display_name ||
+                "Nama lokasi tidak tersedia";
+
+        }
+
+    }
+    catch(error){
+
+        element.innerHTML =
+            '<span class="error">' +
+            '⚠️ Nama lokasi tidak dapat diambil' +
+            '</span>';
+
+    }
+
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+function calculateStatistics(data){
 
     totalPoint.textContent =
         data.length;
 
 
-    /*
-    Hitung jarak
-    */
-
     let totalDistance = 0;
 
     let maxSpeed = 0;
 
-    for (let i = 1; i < data.length; i++) {
+
+    for(
+        let i=1;
+        i<data.length;
+        i++
+    ){
 
         const previous =
-            data[i - 1];
+            data[i-1];
 
         const current =
             data[i];
+
 
         const distance =
             calculateDistance(
@@ -639,38 +1335,47 @@ function calculateStatistics(data) {
                 current.lon
             );
 
-        totalDistance += distance;
+
+        totalDistance +=
+            distance;
 
 
-        /*
-        Hitung kecepatan
-        */
-
-        if (
+        if(
             previous.time &&
             current.time
-        ) {
+        ){
 
             const t1 =
-                new Date(previous.time)
-                .getTime();
+                new Date(
+                    previous.time
+                ).getTime();
+
 
             const t2 =
-                new Date(current.time)
-                .getTime();
+                new Date(
+                    current.time
+                ).getTime();
+
 
             const seconds =
-                (t2 - t1) / 1000;
+                (t2-t1)/1000;
 
-            if (seconds > 0) {
+
+            if(seconds>0){
 
                 const speed =
-                    (distance / 1000) /
-                    (seconds / 3600);
+                    (
+                        distance/1000
+                    ) /
+                    (
+                        seconds/3600
+                    );
 
-                if (speed > maxSpeed) {
 
-                    maxSpeed = speed;
+                if(speed > maxSpeed){
+
+                    maxSpeed =
+                        speed;
 
                 }
 
@@ -682,25 +1387,101 @@ function calculateStatistics(data) {
 
 
     distanceElement.textContent =
-        formatDistance(totalDistance);
+        formatDistance(
+            totalDistance
+        );
 
 
-    /*
-    Elevasi
-    */
+    maxSpeedElement.textContent =
+        maxSpeed.toFixed(2) +
+        " km/jam";
+
+
+    /* DURASI */
+
+    let durationSeconds = 0;
+
+
+    if(
+        data.length > 1 &&
+        data[0].time &&
+        data[data.length-1].time
+    ){
+
+        const start =
+            new Date(
+                data[0].time
+            ).getTime();
+
+
+        const end =
+            new Date(
+                data[data.length-1].time
+            ).getTime();
+
+
+        durationSeconds =
+            Math.max(
+                0,
+                (end-start)/1000
+            );
+
+    }
+
+
+    durationElement.textContent =
+        formatDuration(
+            durationSeconds
+        );
+
+
+    /* RATA-RATA */
+
+    if(durationSeconds > 0){
+
+        const avgSpeed =
+            (
+                totalDistance/1000
+            ) /
+            (
+                durationSeconds/3600
+            );
+
+
+        avgSpeedElement.textContent =
+            avgSpeed.toFixed(2) +
+            " km/jam";
+
+    }
+
+
+    /* ELEVASI */
 
     const elevations =
         data
-            .filter(p => p.ele !== null)
-            .map(p => p.ele);
+        .filter(
+            p =>
+            p.ele !== null &&
+            Number.isFinite(p.ele)
+        )
+        .map(
+            p => p.ele
+        );
 
-    if (elevations.length > 0) {
 
-        const maxElevation =
-            Math.max(...elevations);
+    if(elevations.length > 0){
 
         const minElevation =
-            Math.min(...elevations);
+            Math.min(
+                ...elevations
+            );
+
+
+        const maxElevation =
+            Math.max(
+                ...elevations
+            );
+
 
         elevationElement.textContent =
             minElevation.toFixed(1) +
@@ -710,163 +1491,177 @@ function calculateStatistics(data) {
 
     }
 
-
-    /*
-    Durasi
-    */
-
-    let durationSeconds = 0;
-
-    if (
-        data.length > 1 &&
-        data[0].time &&
-        data[data.length - 1].time
-    ) {
-
-        const start =
-            new Date(data[0].time)
-            .getTime();
-
-        const end =
-            new Date(
-                data[data.length - 1].time
-            ).getTime();
-
-        durationSeconds =
-            Math.max(
-                0,
-                (end - start) / 1000
-            );
-
-    }
-
-    durationElement.textContent =
-        formatDuration(durationSeconds);
-
-
-    /*
-    Kecepatan rata-rata
-    */
-
-    if (durationSeconds > 0) {
-
-        const averageSpeed =
-            (totalDistance / 1000) /
-            (durationSeconds / 3600);
-
-        avgSpeedElement.textContent =
-            averageSpeed.toFixed(2) +
-            " km/jam";
-
-    }
-
-
-    maxSpeedElement.textContent =
-        maxSpeed.toFixed(2) +
-        " km/jam";
-
 }
 
 
-/*
-========================================
-HAVERSINE
-========================================
-*/
+/* =========================================
+   HAVERSINE
+========================================= */
 
 function calculateDistance(
     lat1,
     lon1,
     lat2,
     lon2
-) {
+){
 
-    const R = 6371000;
+    const R =
+        6371000;
+
 
     const toRad =
-        degrees =>
-        degrees * Math.PI / 180;
+        function(deg){
+
+            return deg *
+                   Math.PI /
+                   180;
+
+        };
+
 
     const dLat =
-        toRad(lat2 - lat1);
+        toRad(
+            lat2-lat1
+        );
+
 
     const dLon =
-        toRad(lon2 - lon1);
+        toRad(
+            lon2-lon1
+        );
+
 
     const a =
-        Math.sin(dLat / 2) *
-        Math.sin(dLat / 2) +
+        Math.sin(dLat/2) *
+        Math.sin(dLat/2) +
 
-        Math.cos(toRad(lat1)) *
-        Math.cos(toRad(lat2)) *
+        Math.cos(
+            toRad(lat1)
+        ) *
 
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+        Math.cos(
+            toRad(lat2)
+        ) *
+
+        Math.sin(dLon/2) *
+        Math.sin(dLon/2);
+
 
     const c =
         2 *
         Math.atan2(
             Math.sqrt(a),
-            Math.sqrt(1 - a)
+            Math.sqrt(1-a)
         );
 
-    return R * c;
+
+    return R*c;
 
 }
 
 
-/*
-========================================
-FORMAT JARAK
-========================================
-*/
+/* =========================================
+   FORMAT DISTANCE
+========================================= */
 
-function formatDistance(meters) {
+function formatDistance(
+    meters
+){
 
-    if (meters < 1000) {
+    if(meters < 1000){
 
-        return meters.toFixed(1) + " m";
+        return (
+            meters.toFixed(1) +
+            " m"
+        );
 
     }
 
+
     return (
-        meters / 1000
-    ).toFixed(2) + " km";
+        meters/1000
+    ).toFixed(2) +
+    " km";
 
 }
 
 
-/*
-========================================
-FORMAT DURASI
-========================================
-*/
+/* =========================================
+   FORMAT TIME
+========================================= */
 
-function formatDuration(seconds) {
+function formatTime(
+    time
+){
+
+    const date =
+        new Date(time);
+
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
+
+        return time;
+
+    }
+
+
+    return date.toLocaleString(
+        "id-ID",
+        {
+            dateStyle:"short",
+            timeStyle:"medium"
+        }
+    );
+
+}
+
+
+/* =========================================
+   FORMAT DURATION
+========================================= */
+
+function formatDuration(
+    seconds
+){
 
     seconds =
         Math.floor(seconds);
 
+
     const hours =
-        Math.floor(seconds / 3600);
+        Math.floor(
+            seconds/3600
+        );
+
 
     const minutes =
         Math.floor(
-            (seconds % 3600) / 60
+            (seconds%3600)/60
         );
 
+
     const secs =
-        seconds % 60;
+        seconds%60;
+
 
     return (
 
-        String(hours).padStart(2, "0") +
+        String(hours)
+        .padStart(2,"0") +
+
         ":" +
 
-        String(minutes).padStart(2, "0") +
+        String(minutes)
+        .padStart(2,"0") +
+
         ":" +
 
-        String(secs).padStart(2, "0")
+        String(secs)
+        .padStart(2,"0")
 
     );
 
