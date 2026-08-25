@@ -12,7 +12,7 @@
 
 <title>myROBOT-V12 • GPX Tracker</title>
 
-<!-- Leaflet -->
+<!-- LEAFLET -->
 <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -40,7 +40,10 @@ body{
     padding:12px;
 }
 
-/* HEADER */
+
+/* ===============================
+   HEADER
+================================ */
 
 .header{
     text-align:center;
@@ -50,7 +53,8 @@ body{
 .header h1{
     color:#00ff88;
     font-size:26px;
-    text-shadow:0 0 12px rgba(0,255,136,.7);
+    text-shadow:
+        0 0 12px rgba(0,255,136,.7);
 }
 
 .header p{
@@ -59,7 +63,10 @@ body{
     margin-top:5px;
 }
 
-/* UPLOAD */
+
+/* ===============================
+   UPLOAD
+================================ */
 
 .upload-box{
     border:2px dashed #00ff88;
@@ -95,7 +102,10 @@ body{
     font-size:13px;
 }
 
-/* STATUS */
+
+/* ===============================
+   STATUS
+================================ */
 
 .status{
     background:#0b1a2a;
@@ -116,7 +126,10 @@ body{
     font-size:13px;
 }
 
-/* GRID */
+
+/* ===============================
+   STATISTIC GRID
+================================ */
 
 .grid{
     display:grid;
@@ -145,7 +158,10 @@ body{
     word-break:break-word;
 }
 
-/* LOCATION */
+
+/* ===============================
+   LOCATION
+================================ */
 
 .location-box{
     background:#0b1a2a;
@@ -162,7 +178,7 @@ body{
 }
 
 .location-row{
-    padding:7px 0;
+    padding:8px 0;
     border-bottom:1px solid #182d42;
     font-size:13px;
 }
@@ -180,7 +196,10 @@ body{
     margin-top:3px;
 }
 
-/* MAP */
+
+/* ===============================
+   MAP
+================================ */
 
 .map-box{
     background:#0b1a2a;
@@ -203,7 +222,10 @@ body{
     overflow:hidden;
 }
 
-/* TABLE */
+
+/* ===============================
+   TABLE
+================================ */
 
 .table-box{
     background:#0b1a2a;
@@ -242,7 +264,10 @@ td{
     color:#c4d0dc;
 }
 
-/* RAW */
+
+/* ===============================
+   RAW GPX
+================================ */
 
 .raw-box{
     background:#050b12;
@@ -266,7 +291,10 @@ pre{
     overflow:auto;
 }
 
-/* ERROR */
+
+/* ===============================
+   STATUS COLORS
+================================ */
 
 .error{
     color:#ff5d5d;
@@ -276,7 +304,10 @@ pre{
     color:#00ff88;
 }
 
-/* MOBILE */
+
+/* ===============================
+   MOBILE
+================================ */
 
 @media(max-width:500px){
 
@@ -302,325 +333,363 @@ pre{
 
 </head>
 
+
 <body>
 
 <div class="container">
 
-    <!-- HEADER -->
 
-    <div class="header">
+<!-- ===============================
+     HEADER
+================================ -->
 
-        <h1>🤖 myROBOT-V12</h1>
+<div class="header">
 
-        <p>
-            GPS TRACKING • GPX READER
-        </p>
+    <h1>🤖 myROBOT-V12</h1>
 
+    <p>
+        GPS TRACKING • GPX READER
+    </p>
+
+</div>
+
+
+<!-- ===============================
+     UPLOAD GPX
+================================ -->
+
+<div class="upload-box">
+
+    <div class="upload-icon">
+        📂
     </div>
 
+    <label
+        class="upload-label"
+        for="gpxFile">
 
-    <!-- UPLOAD -->
+        PILIH FILE GPX
 
-    <div class="upload-box">
+    </label>
 
-        <div class="upload-icon">
-            📂
-        </div>
+    <input
+        id="gpxFile"
+        type="file"
+        accept=".gpx,application/gpx+xml,application/xml,text/xml">
 
-        <label
-            class="upload-label"
-            for="gpxFile">
+    <div id="fileName">
 
-            PILIH FILE GPX
-
-        </label>
-
-        <input
-            id="gpxFile"
-            type="file"
-            accept=".gpx,application/gpx+xml,application/xml,text/xml">
-
-        <div id="fileName">
-            Belum ada file GPX
-        </div>
-
-    </div>
-
-
-    <!-- STATUS -->
-
-    <div class="status">
-
-        <div class="status-title">
-            📡 STATUS SISTEM
-        </div>
-
-        <div
-            id="statusText"
-            class="status-text">
-
-            Menunggu file GPX...
-
-        </div>
-
-    </div>
-
-
-    <!-- STATISTIK -->
-
-    <div class="grid">
-
-        <div class="card">
-
-            <div class="card-title">
-                📍 JUMLAH TITIK
-            </div>
-
-            <div
-                id="totalPoint"
-                class="card-value">
-
-                0
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                📏 TOTAL JARAK
-            </div>
-
-            <div
-                id="distance"
-                class="card-value">
-
-                0 m
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                ⏱️ DURASI
-            </div>
-
-            <div
-                id="duration"
-                class="card-value">
-
-                00:00:00
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                🚗 RATA-RATA
-            </div>
-
-            <div
-                id="avgSpeed"
-                class="card-value">
-
-                0 km/jam
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                🚀 KECEPATAN MAKS
-            </div>
-
-            <div
-                id="maxSpeed"
-                class="card-value">
-
-                0 km/jam
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                ⛰️ ELEVASI
-            </div>
-
-            <div
-                id="elevation"
-                class="card-value">
-
-                0 m
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- LOCATION -->
-
-    <div class="location-box">
-
-        <div class="location-title">
-            📍 INFORMASI LOKASI
-        </div>
-
-
-        <div class="location-row">
-
-            <div class="location-label">
-                TITIK AWAL
-            </div>
-
-            <div
-                id="startLocation"
-                class="location-value">
-
-                Belum ada data
-
-            </div>
-
-        </div>
-
-
-        <div class="location-row">
-
-            <div class="location-label">
-                TITIK AKHIR
-            </div>
-
-            <div
-                id="endLocation"
-                class="location-value">
-
-                Belum ada data
-
-            </div>
-
-        </div>
-
-
-        <div class="location-row">
-
-            <div class="location-label">
-                KOORDINAT AWAL
-            </div>
-
-            <div
-                id="startCoordinate"
-                class="location-value">
-
-                -
-
-            </div>
-
-        </div>
-
-
-        <div class="location-row">
-
-            <div class="location-label">
-                KOORDINAT AKHIR
-            </div>
-
-            <div
-                id="endCoordinate"
-                class="location-value">
-
-                -
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- MAP -->
-
-    <div class="map-box">
-
-        <div class="map-title">
-            🗺️ PETA TRACKING
-        </div>
-
-        <div id="map"></div>
-
-    </div>
-
-
-    <!-- GPS TABLE -->
-
-    <div class="table-box">
-
-        <div class="table-title">
-            📋 DATA GPS
-        </div>
-
-        <table id="gpsTable">
-
-            <thead>
-
-                <tr>
-
-                    <th>No</th>
-
-                    <th>Latitude</th>
-
-                    <th>Longitude</th>
-
-                    <th>Elevasi</th>
-
-                    <th>Waktu</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="gpsBody">
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-
-    <!-- RAW -->
-
-    <div class="raw-box">
-
-        <div class="raw-title">
-            🧾 GPX RAW DATA
-        </div>
-
-        <pre id="rawData">
-Belum ada file GPX.
-        </pre>
+        Belum ada file GPX
 
     </div>
 
 </div>
 
 
-<!-- LEAFLET -->
+<!-- ===============================
+     STATUS
+================================ -->
+
+<div class="status">
+
+    <div class="status-title">
+
+        📡 STATUS SISTEM
+
+    </div>
+
+    <div
+        id="statusText"
+        class="status-text">
+
+        Menunggu file GPX...
+
+    </div>
+
+</div>
+
+
+<!-- ===============================
+     STATISTIK
+================================ -->
+
+<div class="grid">
+
+
+    <div class="card">
+
+        <div class="card-title">
+            📍 JUMLAH TITIK
+        </div>
+
+        <div
+            id="totalPoint"
+            class="card-value">
+
+            0
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            📏 TOTAL JARAK
+        </div>
+
+        <div
+            id="distance"
+            class="card-value">
+
+            0 m
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            ⏱️ DURASI
+        </div>
+
+        <div
+            id="duration"
+            class="card-value">
+
+            00:00:00
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            🚗 RATA-RATA
+        </div>
+
+        <div
+            id="avgSpeed"
+            class="card-value">
+
+            0 km/jam
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            🚀 KECEPATAN MAKS
+        </div>
+
+        <div
+            id="maxSpeed"
+            class="card-value">
+
+            0 km/jam
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            ⛰️ ELEVASI
+        </div>
+
+        <div
+            id="elevation"
+            class="card-value">
+
+            0 m
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===============================
+     LOCATION
+================================ -->
+
+<div class="location-box">
+
+    <div class="location-title">
+
+        📍 INFORMASI LOKASI
+
+    </div>
+
+
+    <div class="location-row">
+
+        <div class="location-label">
+            TITIK AWAL
+        </div>
+
+        <div
+            id="startLocation"
+            class="location-value">
+
+            Belum ada data
+
+        </div>
+
+    </div>
+
+
+    <div class="location-row">
+
+        <div class="location-label">
+            TITIK AKHIR
+        </div>
+
+        <div
+            id="endLocation"
+            class="location-value">
+
+            Belum ada data
+
+        </div>
+
+    </div>
+
+
+    <div class="location-row">
+
+        <div class="location-label">
+            KOORDINAT AWAL
+        </div>
+
+        <div
+            id="startCoordinate"
+            class="location-value">
+
+            -
+
+        </div>
+
+    </div>
+
+
+    <div class="location-row">
+
+        <div class="location-label">
+            KOORDINAT AKHIR
+        </div>
+
+        <div
+            id="endCoordinate"
+            class="location-value">
+
+            -
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===============================
+     MAP
+================================ -->
+
+<div class="map-box">
+
+    <div class="map-title">
+
+        🗺️ PETA TRACKING
+
+    </div>
+
+    <div id="map"></div>
+
+</div>
+
+
+<!-- ===============================
+     TABLE GPS
+================================ -->
+
+<div class="table-box">
+
+    <div class="table-title">
+
+        📋 DATA GPS
+
+    </div>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>No</th>
+
+                <th>Latitude</th>
+
+                <th>Longitude</th>
+
+                <th>Elevasi</th>
+
+                <th>Waktu</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="gpsBody">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- ===============================
+     RAW GPX
+================================ -->
+
+<div class="raw-box">
+
+    <div class="raw-title">
+
+        🧾 GPX RAW DATA
+
+    </div>
+
+    <pre id="rawData">
+
+Belum ada file GPX.
+
+    </pre>
+
+</div>
+
+
+</div>
+
+
+<!-- ===============================
+     LEAFLET
+================================ -->
 
 <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
@@ -694,8 +763,10 @@ L.tileLayer(
     "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
         maxZoom:19,
+
         attribution:
             '&copy; OpenStreetMap contributors'
+
     }
 ).addTo(map);
 
@@ -705,6 +776,8 @@ let trackLine = null;
 let startMarker = null;
 
 let endMarker = null;
+
+let clickMarker = null;
 
 
 /* =========================================
@@ -752,8 +825,10 @@ gpxFile.addEventListener(
                 const text =
                     event.target.result;
 
+
                 rawData.textContent =
                     text;
+
 
                 readGPX(text);
 
@@ -818,7 +893,7 @@ function readGPX(text){
         if(points.length === 0){
 
             throw new Error(
-                "Tidak ada titik trkpt"
+                "Tidak ada titik GPS"
             );
 
         }
@@ -884,33 +959,25 @@ function readGPX(text){
         );
 
 
-        /* Tampilkan tabel */
+        showGPSData(
+            gpsData
+        );
 
-        showGPSData(gpsData);
-
-
-        /* Statistik */
 
         calculateStatistics(
             gpsData
         );
 
 
-        /* Track peta */
-
         drawTrack(
             gpsData
         );
 
 
-        /* Lokasi */
-
         showCoordinates(
             gpsData
         );
 
-
-        /* Reverse geocoding */
 
         if(gpsData.length > 0){
 
@@ -957,7 +1024,7 @@ function readGPX(text){
 
 
 /* =========================================
-   TABLE
+   SHOW GPS DATA
 ========================================= */
 
 function showGPSData(data){
@@ -974,7 +1041,9 @@ function showGPSData(data){
 
             row.innerHTML = `
 
-                <td>${index+1}</td>
+                <td>
+                    ${index + 1}
+                </td>
 
                 <td>
                     ${point.lat.toFixed(7)}
@@ -987,7 +1056,7 @@ function showGPSData(data){
                 <td>
                     ${
                         point.ele !== null
-                        ? point.ele.toFixed(2)+" m"
+                        ? point.ele.toFixed(2) + " m"
                         : "-"
                     }
                 </td>
@@ -1003,7 +1072,9 @@ function showGPSData(data){
             `;
 
 
-            gpsBody.appendChild(row);
+            gpsBody.appendChild(
+                row
+            );
 
         }
     );
@@ -1026,6 +1097,8 @@ function drawTrack(data){
         );
 
 
+    /* Hapus track lama */
+
     if(trackLine){
 
         map.removeLayer(
@@ -1034,6 +1107,8 @@ function drawTrack(data){
 
     }
 
+
+    /* Hapus marker lama */
 
     if(startMarker){
 
@@ -1053,6 +1128,8 @@ function drawTrack(data){
     }
 
 
+    /* Buat garis */
+
     trackLine =
         L.polyline(
             coordinates,
@@ -1063,7 +1140,9 @@ function drawTrack(data){
         ).addTo(map);
 
 
-    /* START */
+    /* ===============================
+       TITIK AWAL
+    =============================== */
 
     const start =
         data[0];
@@ -1075,153 +1154,29 @@ function drawTrack(data){
             start.lon
         ])
         .addTo(map)
-        .bindPopup(
-            "🟢 <b>Titik Awal</b><br>" +
-            start.lat.toFixed(7) +
-            ", " +
-            start.lon.toFixed(7)
-        );
+        .bindPopup(`
+
+            <b>🟢 TITIK AWAL</b>
+
+            <br><br>
+
+            Latitude:<br>
+            ${start.lat.toFixed(7)}
+
+            <br><br>
+
+            Longitude:<br>
+            ${start.lon.toFixed(7)}
+
+        `);
 
 
-
-      /* =========================================
-   KLIK / TAP PETA
-========================================= */
-
-let clickMarker = null;
-
-map.on("click", async function(e){
-
-    const lat = e.latlng.lat;
-    const lon = e.latlng.lng;
-
-    /* Hapus marker klik sebelumnya */
-
-    if(clickMarker){
-
-        map.removeLayer(clickMarker);
-
-    }
-
-    /* Buat marker baru */
-
-    clickMarker = L.marker([
-        lat,
-        lon
-    ]).addTo(map);
-
-    /* Popup sementara */
-
-    clickMarker.bindPopup(`
-        <b>📍 TITIK DIPILIH</b><br><br>
-
-        Latitude:<br>
-        ${lat.toFixed(7)}<br><br>
-
-        Longitude:<br>
-        ${lon.toFixed(7)}<br><br>
-
-        🔎 Mencari nama lokasi...
-    `).openPopup();
-
-
-    /* Cari nama lokasi */
-
-    try{
-
-        const url =
-            "https://nominatim.openstreetmap.org/reverse" +
-            "?format=jsonv2" +
-            "&lat=" + encodeURIComponent(lat) +
-            "&lon=" + encodeURIComponent(lon) +
-            "&zoom=18" +
-            "&addressdetails=1";
-
-
-        const response =
-            await fetch(url);
-
-
-        if(!response.ok){
-
-            throw new Error(
-                "Gagal mengambil lokasi"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        const address =
-            data.address || {};
-
-
-        const lokasi =
-            data.display_name ||
-            "Nama lokasi tidak tersedia";
-
-
-        clickMarker
-            .setPopupContent(`
-
-                <b>📍 TITIK DIPILIH</b>
-
-                <hr>
-
-                <b>Latitude</b><br>
-                ${lat.toFixed(7)}
-
-                <br><br>
-
-                <b>Longitude</b><br>
-                ${lon.toFixed(7)}
-
-                <br><br>
-
-                <b>🏠 Lokasi</b><br>
-                ${lokasi}
-
-            `)
-            .openPopup();
-
-
-    }
-    catch(error){
-
-        clickMarker
-            .setPopupContent(`
-
-                <b>📍 TITIK DIPILIH</b>
-
-                <hr>
-
-                Latitude:<br>
-                ${lat.toFixed(7)}
-
-                <br><br>
-
-                Longitude:<br>
-                ${lon.toFixed(7)}
-
-                <br><br>
-
-                ⚠️ Nama lokasi tidak dapat
-                ditemukan.
-
-            `)
-            .openPopup();
-
-    }
-
-});
-
-    /* END */
+    /* ===============================
+       TITIK AKHIR
+    =============================== */
 
     const end =
-        data[data.length-1];
+        data[data.length - 1];
 
 
     endMarker =
@@ -1230,22 +1185,162 @@ map.on("click", async function(e){
             end.lon
         ])
         .addTo(map)
-        .bindPopup(
-            "🔴 <b>Titik Akhir</b><br>" +
-            end.lat.toFixed(7) +
-            ", " +
-            end.lon.toFixed(7)
-        );
+        .bindPopup(`
 
+            <b>🔴 TITIK AKHIR</b>
+
+            <br><br>
+
+            Latitude:<br>
+            ${end.lat.toFixed(7)}
+
+            <br><br>
+
+            Longitude:<br>
+            ${end.lon.toFixed(7)}
+
+        `);
+
+
+    /* Fokus ke track */
 
     map.fitBounds(
         trackLine.getBounds(),
         {
-            padding:[25,25]
+            padding:[
+                25,
+                25
+            ]
         }
     );
 
 }
+
+
+/* =========================================
+   KLIK / TAP MAP
+   → OPEN STREET MAP
+========================================= */
+
+map.on(
+    "click",
+    function(e){
+
+        const lat =
+            e.latlng.lat;
+
+        const lon =
+            e.latlng.lng;
+
+
+        /* Hapus marker klik */
+
+        if(clickMarker){
+
+            map.removeLayer(
+                clickMarker
+            );
+
+        }
+
+
+        /* Buat marker */
+
+        clickMarker =
+            L.marker([
+                lat,
+                lon
+            ])
+            .addTo(map);
+
+
+        /* URL OPENSTREETMAP */
+
+        const osmURL =
+            "https://www.openstreetmap.org/" +
+            "?mlat=" + lat +
+            "&mlon=" + lon +
+            "#map=18/" +
+            lat +
+            "/" +
+            lon;
+
+
+        /* Popup */
+
+        clickMarker
+            .bindPopup(`
+
+                <div style="
+                    min-width:210px;
+                    text-align:center;
+                    font-family:Arial;
+                ">
+
+                    <div style="
+                        color:#00aa66;
+                        font-size:16px;
+                        font-weight:bold;
+                        margin-bottom:8px;
+                    ">
+
+                        📍 LOKASI DIPILIH
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <div style="
+                        font-size:12px;
+                        line-height:1.5;
+                        margin:10px 0;
+                    ">
+
+                        <b>Latitude</b><br>
+
+                        ${lat.toFixed(7)}
+
+
+                        <br><br>
+
+
+                        <b>Longitude</b><br>
+
+                        ${lon.toFixed(7)}
+
+                    </div>
+
+
+                    <a
+                        href="${osmURL}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+
+                        style="
+                            display:block;
+                            background:#00aa66;
+                            color:white;
+                            text-decoration:none;
+                            padding:11px;
+                            border-radius:9px;
+                            font-weight:bold;
+                            margin-top:10px;
+                        "
+                    >
+
+                        🗺️ OPEN STREET MAP
+
+                    </a>
+
+                </div>
+
+            `)
+            .openPopup();
+
+    }
+);
 
 
 /* =========================================
@@ -1258,7 +1353,7 @@ function showCoordinates(data){
         data[0];
 
     const end =
-        data[data.length-1];
+        data[data.length - 1];
 
 
     startCoordinate.textContent =
@@ -1294,14 +1389,18 @@ async function getLocationName(
         const url =
             "https://nominatim.openstreetmap.org/reverse" +
             "?format=jsonv2" +
-            "&lat=" + encodeURIComponent(lat) +
-            "&lon=" + encodeURIComponent(lon) +
+            "&lat=" +
+            encodeURIComponent(lat) +
+            "&lon=" +
+            encodeURIComponent(lon) +
             "&zoom=18" +
             "&addressdetails=1";
 
 
         const response =
-            await fetch(url);
+            await fetch(
+                url
+            );
 
 
         if(!response.ok){
@@ -1317,25 +1416,12 @@ async function getLocationName(
             await response.json();
 
 
-        if(!data){
-
-            throw new Error(
-                "Lokasi tidak ditemukan"
-            );
-
-        }
-
-
         const address =
             data.address || {};
 
 
         const parts = [];
 
-
-        /*
-        Nama tempat
-        */
 
         if(address.road){
 
@@ -1450,13 +1536,13 @@ function calculateStatistics(data){
 
 
     for(
-        let i=1;
-        i<data.length;
+        let i = 1;
+        i < data.length;
         i++
     ){
 
         const previous =
-            data[i-1];
+            data[i - 1];
 
         const current =
             data[i];
@@ -1474,6 +1560,8 @@ function calculateStatistics(data){
         totalDistance +=
             distance;
 
+
+        /* SPEED */
 
         if(
             previous.time &&
@@ -1493,21 +1581,24 @@ function calculateStatistics(data){
 
 
             const seconds =
-                (t2-t1)/1000;
+                (t2 - t1) /
+                1000;
 
 
-            if(seconds>0){
+            if(seconds > 0){
 
                 const speed =
                     (
-                        distance/1000
+                        distance / 1000
                     ) /
                     (
-                        seconds/3600
+                        seconds / 3600
                     );
 
 
-                if(speed > maxSpeed){
+                if(
+                    speed > maxSpeed
+                ){
 
                     maxSpeed =
                         speed;
@@ -1521,11 +1612,15 @@ function calculateStatistics(data){
     }
 
 
+    /* JARAK */
+
     distanceElement.textContent =
         formatDistance(
             totalDistance
         );
 
+
+    /* MAX SPEED */
 
     maxSpeedElement.textContent =
         maxSpeed.toFixed(2) +
@@ -1540,7 +1635,7 @@ function calculateStatistics(data){
     if(
         data.length > 1 &&
         data[0].time &&
-        data[data.length-1].time
+        data[data.length - 1].time
     ){
 
         const start =
@@ -1551,14 +1646,14 @@ function calculateStatistics(data){
 
         const end =
             new Date(
-                data[data.length-1].time
+                data[data.length - 1].time
             ).getTime();
 
 
         durationSeconds =
             Math.max(
                 0,
-                (end-start)/1000
+                (end - start) / 1000
             );
 
     }
@@ -1570,21 +1665,23 @@ function calculateStatistics(data){
         );
 
 
-    /* RATA-RATA */
+    /* AVERAGE SPEED */
 
-    if(durationSeconds > 0){
+    if(
+        durationSeconds > 0
+    ){
 
-        const avgSpeed =
+        const averageSpeed =
             (
-                totalDistance/1000
+                totalDistance / 1000
             ) /
             (
-                durationSeconds/3600
+                durationSeconds / 3600
             );
 
 
         avgSpeedElement.textContent =
-            avgSpeed.toFixed(2) +
+            averageSpeed.toFixed(2) +
             " km/jam";
 
     }
@@ -1596,15 +1693,20 @@ function calculateStatistics(data){
         data
         .filter(
             p =>
-            p.ele !== null &&
-            Number.isFinite(p.ele)
+                p.ele !== null &&
+                Number.isFinite(
+                    p.ele
+                )
         )
         .map(
-            p => p.ele
+            p =>
+                p.ele
         );
 
 
-    if(elevations.length > 0){
+    if(
+        elevations.length > 0
+    ){
 
         const minElevation =
             Math.min(
@@ -1647,28 +1749,34 @@ function calculateDistance(
     const toRad =
         function(deg){
 
-            return deg *
-                   Math.PI /
-                   180;
+            return (
+                deg *
+                Math.PI /
+                180
+            );
 
         };
 
 
     const dLat =
         toRad(
-            lat2-lat1
+            lat2 - lat1
         );
 
 
     const dLon =
         toRad(
-            lon2-lon1
+            lon2 - lon1
         );
 
 
     const a =
-        Math.sin(dLat/2) *
-        Math.sin(dLat/2) +
+        Math.sin(
+            dLat / 2
+        ) *
+        Math.sin(
+            dLat / 2
+        ) +
 
         Math.cos(
             toRad(lat1)
@@ -1678,19 +1786,23 @@ function calculateDistance(
             toRad(lat2)
         ) *
 
-        Math.sin(dLon/2) *
-        Math.sin(dLon/2);
+        Math.sin(
+            dLon / 2
+        ) *
+        Math.sin(
+            dLon / 2
+        );
 
 
     const c =
         2 *
         Math.atan2(
             Math.sqrt(a),
-            Math.sqrt(1-a)
+            Math.sqrt(1 - a)
         );
 
 
-    return R*c;
+    return R * c;
 
 }
 
@@ -1703,7 +1815,9 @@ function formatDistance(
     meters
 ){
 
-    if(meters < 1000){
+    if(
+        meters < 1000
+    ){
 
         return (
             meters.toFixed(1) +
@@ -1714,7 +1828,7 @@ function formatDistance(
 
 
     return (
-        meters/1000
+        meters / 1000
     ).toFixed(2) +
     " km";
 
@@ -1730,7 +1844,9 @@ function formatTime(
 ){
 
     const date =
-        new Date(time);
+        new Date(
+            time
+        );
 
 
     if(
@@ -1753,100 +1869,6 @@ function formatTime(
     );
 
 }
-/* =========================================
-   KLIK MAP → OPENSTREETMAP
-========================================= */
-
-let clickMarker = null;
-
-map.on("click", function(e) {
-
-    const lat = e.latlng.lat;
-    const lon = e.latlng.lng;
-
-    /* Hapus marker sebelumnya */
-
-    if (clickMarker) {
-        map.removeLayer(clickMarker);
-    }
-
-    /* Marker lokasi yang diklik */
-
-    clickMarker = L.marker([
-        lat,
-        lon
-    ]).addTo(map);
-
-    /* URL OpenStreetMap */
-
-    const osmURL =
-        "https://www.openstreetmap.org/?mlat=" +
-        lat +
-        "&mlon=" +
-        lon +
-        "#map=18/" +
-        lat +
-        "/" +
-        lon;
-
-
-    /* Popup */
-
-    clickMarker.bindPopup(`
-
-        <div style="
-            min-width:190px;
-            text-align:center;
-        ">
-
-            <b style="
-                color:#00aa66;
-                font-size:15px;
-            ">
-                📍 LOKASI DIPILIH
-            </b>
-
-            <hr>
-
-            <div style="
-                font-size:12px;
-                margin-bottom:8px;
-            ">
-
-                Latitude:<br>
-                <b>${lat.toFixed(7)}</b>
-
-                <br><br>
-
-                Longitude:<br>
-                <b>${lon.toFixed(7)}</b>
-
-            </div>
-
-            <a
-                href="${osmURL}"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="
-                    display:block;
-                    background:#00aa66;
-                    color:white;
-                    text-decoration:none;
-                    padding:10px;
-                    border-radius:8px;
-                    font-weight:bold;
-                    margin-top:8px;
-                "
-            >
-                🗺️ OPEN STREET MAP
-            </a>
-
-        </div>
-
-    `).openPopup();
-
-});
-      
 
 
 /* =========================================
@@ -1858,39 +1880,41 @@ function formatDuration(
 ){
 
     seconds =
-        Math.floor(seconds);
+        Math.floor(
+            seconds
+        );
 
 
     const hours =
         Math.floor(
-            seconds/3600
+            seconds / 3600
         );
 
 
     const minutes =
         Math.floor(
-            (seconds%3600)/60
+            (seconds % 3600) / 60
         );
 
 
     const secs =
-        seconds%60;
+        seconds % 60;
 
 
     return (
 
         String(hours)
-        .padStart(2,"0") +
+            .padStart(2,"0") +
 
         ":" +
 
         String(minutes)
-        .padStart(2,"0") +
+            .padStart(2,"0") +
 
         ":" +
 
         String(secs)
-        .padStart(2,"0")
+            .padStart(2,"0")
 
     );
 
