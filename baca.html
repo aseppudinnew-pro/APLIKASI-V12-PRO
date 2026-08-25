@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>myROBOT-V12 • GPX Reader</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #07111f;
+            color: #fff;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .header h1 {
+            color: #00ff88;
+            font-size: 25px;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        .header p {
+            color: #8da2b8;
+            margin-top: 6px;
+            font-size: 13px;
+        }
+
+        .upload-box {
+            border: 2px dashed #00ff88;
+            border-radius: 18px;
+            padding: 30px 15px;
+            text-align: center;
+            background: rgba(0, 255, 136, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .upload-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .upload-box label {
+            display: inline-block;
+            background: #00ff88;
+            color: #001b0d;
+            padding: 13px 22px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,255,136,.4);
+        }
+
+        #gpxFile {
+            display: none;
+        }
+
+        #fileName {
+            margin-top: 12px;
+            color: #8da2b8;
+            font-size: 13px;
+        }
+
+        .status {
+            background: #0d1b2a;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #1d344d;
+        }
+
+        .status-title {
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .status-text {
+            color: #b9c8d8;
+            font-size: 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #0d1b2a;
+            border: 1px solid #1d344d;
+            border-radius: 14px;
+            padding: 15px;
+        }
+
+        .card-title {
+            color: #7f95aa;
+            font-size: 12px;
+        }
+
+        .card-value {
+            color: #00ff88;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 7px;
+            word-break: break-word;
+        }
+
+        .table-box {
+            background: #0d1b2a;
+            border-radius: 15px;
+            padding: 12px;
+            border: 1px solid #1d344d;
+            overflow-x: auto;
+        }
+
+        .table-box h3 {
+            color: #00ff88;
+            margin-bottom: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #1d344d;
+            padding: 9px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        th {
+            color: #00ff88;
+        }
+
+        td {
+            color: #c5d2df;
+        }
+
+        .raw-box {
+            margin-top: 15px;
+            background: #050b12;
+            border: 1px solid #1d344d;
+            border-radius: 15px;
+            padding: 12px;
+        }
+
+        .raw-box h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: #8da2b8;
+            font-size: 11px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .empty {
+            text-align: center;
+            color: #62758a;
+            padding: 30px 10px;
+        }
+
+        .error {
+            color: #ff5c5c;
+        }
+
+        @media (max-width: 450px) {
+            body {
+                padding: 10px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card-value {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🤖 myROBOT-V12</h1>
+        <p>GPS Tracking • GPX Reader</p>
+    </div>
+
+    <!-- UPLOAD GPX -->
+    <div class="upload-box">
+
+        <div class="upload-icon">📂</div>
+
+        <label for="gpxFile">
+            PILIH FILE GPX
+        </label>
+
+        <input
+            type="file"
+            id="gpxFile"
+            accept=".gpx,application/gpx+xml,application/xml,text/xml">
+
+        <div id="fileName">
+            Belum ada file dipilih
+        </div>
+
+    </div>
+
+    <!-- STATUS -->
+    <div class="status">
+
+        <div class="status-title">
+            📡 STATUS
+        </div>
+
+        <div id="statusText" class="status-text">
+            Menunggu file GPX...
+        </div>
+
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-title">📍 JUMLAH TITIK</div>
+            <div id="totalPoint" class="card-value">0</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📏 JARAK</div>
+            <div id="distance" class="card-value">0 m</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⛰️ ELEVASI</div>
+            <div id="elevation" class="card-value">0 m</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⏱️ DURASI</div>
+            <div id="duration" class="card-value">00:00:00</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🚀 KECEPATAN RATA-RATA</div>
+            <div id="avgSpeed" class="card-value">0 km/jam</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📈 KECEPATAN MAKS</div>
+            <div id="maxSpeed" class="card-value">0 km/jam</div>
+        </div>
+
+    </div>
+
+    <!-- GPS POINT TABLE -->
+    <div class="table-box">
+
+        <h3>📋 DATA GPS</h3>
+
+        <div id="emptyData" class="empty">
+            Belum ada data GPS
+        </div>
+
+        <table id="gpsTable" style="display:none;">
+
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Elevasi</th>
+                    <th>Waktu</th>
+                </tr>
+            </thead>
+
+            <tbody id="gpsBody"></tbody>
+
+        </table>
+
+    </div>
+
+    <!-- RAW GPX -->
+    <div class="raw-box">
+
+        <h3>🧾 GPX RAW DATA</h3>
+
+        <pre id="rawData">
+Belum ada file GPX.
+        </pre>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const gpxFile = document.getElementById("gpxFile");
+
+const fileName = document.getElementById("fileName");
+
+const statusText = document.getElementById("statusText");
+
+const totalPoint = document.getElementById("totalPoint");
+
+const distanceElement = document.getElementById("distance");
+
+const elevationElement = document.getElementById("elevation");
+
+const durationElement = document.getElementById("duration");
+
+const avgSpeedElement = document.getElementById("avgSpeed");
+
+const maxSpeedElement = document.getElementById("maxSpeed");
+
+const gpsTable = document.getElementById("gpsTable");
+
+const gpsBody = document.getElementById("gpsBody");
+
+const emptyData = document.getElementById("emptyData");
+
+const rawData = document.getElementById("rawData");
+
+
+/*
+========================================
+UPLOAD FILE GPX
+========================================
+*/
+
+gpxFile.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    fileName.textContent = "📄 " + file.name;
+
+    if (!file.name.toLowerCase().endsWith(".gpx")) {
+
+        statusText.innerHTML =
+            '<span class="error">❌ File bukan GPX</span>';
+
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+
+        const gpxText = event.target.result;
+
+        rawData.textContent = gpxText;
+
+        readGPX(gpxText);
+
+    };
+
+    reader.onerror = function () {
+
+        statusText.innerHTML =
+            '<span class="error">❌ Gagal membaca file</span>';
+
+    };
+
+    reader.readAsText(file);
+
+});
+
+
+/*
+========================================
+MEMBACA GPX
+========================================
+*/
+
+function readGPX(gpxText) {
+
+    try {
+
+        const parser = new DOMParser();
+
+        const xml = parser.parseFromString(
+            gpxText,
+            "application/xml"
+        );
+
+        const parserError =
+            xml.querySelector("parsererror");
+
+        if (parserError) {
+
+            throw new Error(
+                "Format GPX tidak valid"
+            );
+
+        }
+
+        /*
+        Ambil semua trkpt
+        */
+
+        const points =
+            Array.from(
+                xml.getElementsByTagName("trkpt")
+            );
+
+        if (points.length === 0) {
+
+            throw new Error(
+                "Tidak ditemukan titik GPS"
+            );
+
+        }
+
+        const gpsData = [];
+
+        points.forEach(function(point) {
+
+            const lat =
+                parseFloat(
+                    point.getAttribute("lat")
+                );
+
+            const lon =
+                parseFloat(
+                    point.getAttribute("lon")
+                );
+
+            const eleElement =
+                point.getElementsByTagName("ele")[0];
+
+            const timeElement =
+                point.getElementsByTagName("time")[0];
+
+            const ele =
+                eleElement
+                    ? parseFloat(eleElement.textContent)
+                    : null;
+
+            const time =
+                timeElement
+                    ? timeElement.textContent
+                    : null;
+
+            gpsData.push({
+
+                lat: lat,
+
+                lon: lon,
+
+                ele: ele,
+
+                time: time
+
+            });
+
+        });
+
+
+        /*
+        Tampilkan data
+        */
+
+        showGPSData(gpsData);
+
+
+        /*
+        Hitung statistik
+        */
+
+        calculateStatistics(gpsData);
+
+
+        statusText.innerHTML =
+            "🟢 GPX berhasil dibaca — " +
+            gpsData.length +
+            " titik GPS ditemukan.";
+
+
+    } catch (error) {
+
+        statusText.innerHTML =
+            '<span class="error">❌ ' +
+            error.message +
+            '</span>';
+
+    }
+
+}
+
+
+/*
+========================================
+TAMPILKAN DATA GPS
+========================================
+*/
+
+function showGPSData(data) {
+
+    gpsBody.innerHTML = "";
+
+    emptyData.style.display = "none";
+
+    gpsTable.style.display = "table";
+
+    data.forEach(function(point, index) {
+
+        const row =
+            document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>${point.lat}</td>
+
+            <td>${point.lon}</td>
+
+            <td>
+                ${
+                    point.ele !== null
+                    ? point.ele.toFixed(2) + " m"
+                    : "-"
+                }
+            </td>
+
+            <td>
+                ${
+                    point.time
+                    ? formatTime(point.time)
+                    : "-"
+                }
+            </td>
+
+        `;
+
+        gpsBody.appendChild(row);
+
+    });
+
+}
+
+
+/*
+========================================
+FORMAT WAKTU
+========================================
+*/
+
+function formatTime(time) {
+
+    const date =
+        new Date(time);
+
+    if (isNaN(date.getTime())) {
+        return time;
+    }
+
+    return date.toLocaleString(
+        "id-ID",
+        {
+            dateStyle: "short",
+            timeStyle: "medium"
+        }
+    );
+
+}
+
+
+/*
+========================================
+HITUNG STATISTIK
+========================================
+*/
+
+function calculateStatistics(data) {
+
+    totalPoint.textContent =
+        data.length;
+
+
+    /*
+    Hitung jarak
+    */
+
+    let totalDistance = 0;
+
+    let maxSpeed = 0;
+
+    for (let i = 1; i < data.length; i++) {
+
+        const previous =
+            data[i - 1];
+
+        const current =
+            data[i];
+
+        const distance =
+            calculateDistance(
+                previous.lat,
+                previous.lon,
+                current.lat,
+                current.lon
+            );
+
+        totalDistance += distance;
+
+
+        /*
+        Hitung kecepatan
+        */
+
+        if (
+            previous.time &&
+            current.time
+        ) {
+
+            const t1 =
+                new Date(previous.time)
+                .getTime();
+
+            const t2 =
+                new Date(current.time)
+                .getTime();
+
+            const seconds =
+                (t2 - t1) / 1000;
+
+            if (seconds > 0) {
+
+                const speed =
+                    (distance / 1000) /
+                    (seconds / 3600);
+
+                if (speed > maxSpeed) {
+
+                    maxSpeed = speed;
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    distanceElement.textContent =
+        formatDistance(totalDistance);
+
+
+    /*
+    Elevasi
+    */
+
+    const elevations =
+        data
+            .filter(p => p.ele !== null)
+            .map(p => p.ele);
+
+    if (elevations.length > 0) {
+
+        const maxElevation =
+            Math.max(...elevations);
+
+        const minElevation =
+            Math.min(...elevations);
+
+        elevationElement.textContent =
+            minElevation.toFixed(1) +
+            " - " +
+            maxElevation.toFixed(1) +
+            " m";
+
+    }
+
+
+    /*
+    Durasi
+    */
+
+    let durationSeconds = 0;
+
+    if (
+        data.length > 1 &&
+        data[0].time &&
+        data[data.length - 1].time
+    ) {
+
+        const start =
+            new Date(data[0].time)
+            .getTime();
+
+        const end =
+            new Date(
+                data[data.length - 1].time
+            ).getTime();
+
+        durationSeconds =
+            Math.max(
+                0,
+                (end - start) / 1000
+            );
+
+    }
+
+    durationElement.textContent =
+        formatDuration(durationSeconds);
+
+
+    /*
+    Kecepatan rata-rata
+    */
+
+    if (durationSeconds > 0) {
+
+        const averageSpeed =
+            (totalDistance / 1000) /
+            (durationSeconds / 3600);
+
+        avgSpeedElement.textContent =
+            averageSpeed.toFixed(2) +
+            " km/jam";
+
+    }
+
+
+    maxSpeedElement.textContent =
+        maxSpeed.toFixed(2) +
+        " km/jam";
+
+}
+
+
+/*
+========================================
+HAVERSINE
+========================================
+*/
+
+function calculateDistance(
+    lat1,
+    lon1,
+    lat2,
+    lon2
+) {
+
+    const R = 6371000;
+
+    const toRad =
+        degrees =>
+        degrees * Math.PI / 180;
+
+    const dLat =
+        toRad(lat2 - lat1);
+
+    const dLon =
+        toRad(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) *
+        Math.sin(dLat / 2) +
+
+        Math.cos(toRad(lat1)) *
+        Math.cos(toRad(lat2)) *
+
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+
+    const c =
+        2 *
+        Math.atan2(
+            Math.sqrt(a),
+            Math.sqrt(1 - a)
+        );
+
+    return R * c;
+
+}
+
+
+/*
+========================================
+FORMAT JARAK
+========================================
+*/
+
+function formatDistance(meters) {
+
+    if (meters < 1000) {
+
+        return meters.toFixed(1) + " m";
+
+    }
+
+    return (
+        meters / 1000
+    ).toFixed(2) + " km";
+
+}
+
+
+/*
+========================================
+FORMAT DURASI
+========================================
+*/
+
+function formatDuration(seconds) {
+
+    seconds =
+        Math.floor(seconds);
+
+    const hours =
+        Math.floor(seconds / 3600);
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+    const secs =
+        seconds % 60;
+
+    return (
+
+        String(hours).padStart(2, "0") +
+        ":" +
+
+        String(minutes).padStart(2, "0") +
+        ":" +
+
+        String(secs).padStart(2, "0")
+
+    );
+
+}
+
+</script>
+
+</body>
+</html>
