@@ -1083,6 +1083,141 @@ function drawTrack(data){
         );
 
 
+
+      /* =========================================
+   KLIK / TAP PETA
+========================================= */
+
+let clickMarker = null;
+
+map.on("click", async function(e){
+
+    const lat = e.latlng.lat;
+    const lon = e.latlng.lng;
+
+    /* Hapus marker klik sebelumnya */
+
+    if(clickMarker){
+
+        map.removeLayer(clickMarker);
+
+    }
+
+    /* Buat marker baru */
+
+    clickMarker = L.marker([
+        lat,
+        lon
+    ]).addTo(map);
+
+    /* Popup sementara */
+
+    clickMarker.bindPopup(`
+        <b>📍 TITIK DIPILIH</b><br><br>
+
+        Latitude:<br>
+        ${lat.toFixed(7)}<br><br>
+
+        Longitude:<br>
+        ${lon.toFixed(7)}<br><br>
+
+        🔎 Mencari nama lokasi...
+    `).openPopup();
+
+
+    /* Cari nama lokasi */
+
+    try{
+
+        const url =
+            "https://nominatim.openstreetmap.org/reverse" +
+            "?format=jsonv2" +
+            "&lat=" + encodeURIComponent(lat) +
+            "&lon=" + encodeURIComponent(lon) +
+            "&zoom=18" +
+            "&addressdetails=1";
+
+
+        const response =
+            await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Gagal mengambil lokasi"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const address =
+            data.address || {};
+
+
+        const lokasi =
+            data.display_name ||
+            "Nama lokasi tidak tersedia";
+
+
+        clickMarker
+            .setPopupContent(`
+
+                <b>📍 TITIK DIPILIH</b>
+
+                <hr>
+
+                <b>Latitude</b><br>
+                ${lat.toFixed(7)}
+
+                <br><br>
+
+                <b>Longitude</b><br>
+                ${lon.toFixed(7)}
+
+                <br><br>
+
+                <b>🏠 Lokasi</b><br>
+                ${lokasi}
+
+            `)
+            .openPopup();
+
+
+    }
+    catch(error){
+
+        clickMarker
+            .setPopupContent(`
+
+                <b>📍 TITIK DIPILIH</b>
+
+                <hr>
+
+                Latitude:<br>
+                ${lat.toFixed(7)}
+
+                <br><br>
+
+                Longitude:<br>
+                ${lon.toFixed(7)}
+
+                <br><br>
+
+                ⚠️ Nama lokasi tidak dapat
+                ditemukan.
+
+            `)
+            .openPopup();
+
+    }
+
+});
+
     /* END */
 
     const end =
