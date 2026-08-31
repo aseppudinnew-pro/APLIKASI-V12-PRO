@@ -1,533 +1,1492 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no">
+
+<meta name="theme-color"
+content="#061525">
 
 <title>myROBOT NETWORK TOPOLOGY</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 body{
-    background:
-    linear-gradient(180deg,#030914,#07182a);
-    color:#fff;
+
     min-height:100vh;
+
+    color:white;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #10304c 0%,
+        #061321 45%,
+        #020812 100%
+    );
+
 }
 
 .container{
+
     width:100%;
     max-width:760px;
+
     margin:auto;
+
     padding:12px;
+
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
+
     background:
-    linear-gradient(135deg,#087cff,#00c6ff);
+    linear-gradient(
+        135deg,
+        #087cff,
+        #00b8ff,
+        #0755a0
+    );
+
+    border-radius:24px;
+
     padding:20px;
-    border-radius:22px;
+
     margin-bottom:12px;
-    box-shadow:0 12px 35px rgba(0,0,0,.4);
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.45);
+
 }
 
 .header h1{
-    font-size:22px;
+
+    font-size:23px;
+
 }
 
 .header p{
+
     margin-top:7px;
-    font-size:12px;
+
+    font-size:11px;
+
     opacity:.9;
+
 }
 
-/* STATUS */
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status-card{
-    background:#0d2035;
-    border:1px solid #1d405f;
+
+    background:
+    rgba(13,31,49,.95);
+
+    border:
+    1px solid
+    #1b405e;
+
     border-radius:18px;
+
     padding:15px;
+
     margin-bottom:12px;
+
 }
 
 .status-row{
+
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+    space-between;
+
     align-items:center;
+
 }
 
-.status-online{
-    color:#22c55e;
+.online-text{
+
+    color:#4ade80;
+
     font-weight:bold;
+
 }
 
-.status-offline{
-    color:#ef4444;
+.offline-text{
+
+    color:#fb7185;
+
     font-weight:bold;
+
 }
 
-/* TOPOLOGY */
+
+/* =====================================================
+   TOPOLOGY
+===================================================== */
 
 .topology{
-    background:#0a1728;
-    border:1px solid #173651;
-    border-radius:20px;
+
+    background:
+
+    radial-gradient(
+        circle at center,
+        #0d2942,
+        #061321 70%
+    );
+
+    border:
+    1px solid
+    #17405e;
+
+    border-radius:25px;
+
     padding:15px;
+
     margin-bottom:12px;
+
+    overflow:hidden;
+
 }
 
-.top-title{
+.topology-title{
+
     text-align:center;
+
     font-size:16px;
+
     font-weight:bold;
-    margin-bottom:18px;
+
+    margin-bottom:20px;
+
 }
 
-.node{
+
+/* =====================================================
+   TOWER
+===================================================== */
+
+.tower-area{
+
     position:relative;
-    text-align:center;
-    background:#112940;
-    border:1px solid #245276;
-    border-radius:17px;
-    padding:15px;
-    margin:10px auto;
+
+    min-height:650px;
+
 }
 
-.node.isp{
-    max-width:280px;
-    background:linear-gradient(135deg,#075aa8,#087cff);
-}
 
-.node.router{
-    max-width:320px;
-    background:linear-gradient(135deg,#152d47,#0b4771);
-}
+/* =====================================================
+   INTERNET NODE
+===================================================== */
 
-.connection{
-    height:28px;
-    width:3px;
-    background:#16bfff;
+.internet-node{
+
+    position:relative;
+
+    z-index:5;
+
+    width:180px;
+
     margin:auto;
-    box-shadow:0 0 12px #16bfff;
-    animation:flow 1s infinite;
+
+    padding:15px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0869c9,
+        #00a9e8
+    );
+
+    border:
+    2px solid
+    #38c8ff;
+
+    box-shadow:
+    0 0 25px
+    rgba(0,190,255,.45);
+
 }
 
-@keyframes flow{
-    0%{
-        opacity:.3;
-    }
-    50%{
+.internet-icon{
+
+    font-size:35px;
+
+}
+
+.internet-title{
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    margin-top:5px;
+
+}
+
+.internet-sub{
+
+    font-size:10px;
+
+    opacity:.8;
+
+}
+
+
+/* =====================================================
+   MAIN TOWER
+===================================================== */
+
+.tower{
+
+    position:absolute;
+
+    top:105px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:130px;
+
+    height:270px;
+
+}
+
+
+/* tower legs */
+
+.tower-leg{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:5px;
+
+    height:240px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #5c7991,
+        #1b405a
+    );
+
+}
+
+.tower-leg.left{
+
+    left:15px;
+
+    transform:
+    rotate(8deg);
+
+}
+
+.tower-leg.right{
+
+    right:15px;
+
+    transform:
+    rotate(-8deg);
+
+}
+
+
+/* tower cross bars */
+
+.cross{
+
+    position:absolute;
+
+    left:18px;
+
+    right:18px;
+
+    height:4px;
+
+    background:#39728f;
+
+    transform:rotate(0deg);
+
+}
+
+.cross1{top:40px;}
+.cross2{top:85px;}
+.cross3{top:130px;}
+.cross4{top:175px;}
+.cross5{top:220px;}
+
+
+/* antenna */
+
+.antenna{
+
+    position:absolute;
+
+    top:-18px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:5px;
+
+    height:55px;
+
+    background:#79dfff;
+
+}
+
+.antenna-light{
+
+    position:absolute;
+
+    top:-27px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#ff394f;
+
+    box-shadow:
+    0 0 15px
+    #ff394f;
+
+    animation:
+    blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+    0%,100%{
         opacity:1;
     }
-    100%{
-        opacity:.3;
+
+    50%{
+        opacity:.25;
     }
+
 }
 
-/* USERS */
+
+/* =====================================================
+   RADIO WAVES
+===================================================== */
+
+.wave{
+
+    position:absolute;
+
+    top:-45px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    border:
+    2px solid
+    #22cfff;
+
+    border-radius:50%;
+
+    opacity:0;
+
+    animation:
+    wave 2.5s infinite;
+
+}
+
+.wave1{
+
+    width:70px;
+    height:70px;
+
+}
+
+.wave2{
+
+    width:120px;
+    height:120px;
+
+    animation-delay:
+    .7s;
+
+}
+
+.wave3{
+
+    width:180px;
+    height:180px;
+
+    animation-delay:
+    1.4s;
+
+}
+
+@keyframes wave{
+
+    0%{
+
+        transform:
+        translateX(-50%)
+        scale(.5);
+
+        opacity:.8;
+
+    }
+
+    100%{
+
+        transform:
+        translateX(-50%)
+        scale(1.3);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =====================================================
+   MIKROTIK
+===================================================== */
+
+.router-node{
+
+    position:absolute;
+
+    top:390px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    z-index:5;
+
+    width:210px;
+
+    padding:15px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #172f47,
+        #0a5679
+    );
+
+    border:
+    2px solid
+    #25bfff;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 0 25px
+    rgba(0,190,255,.35);
+
+}
+
+.router-icon{
+
+    font-size:30px;
+
+}
+
+.router-name{
+
+    font-weight:bold;
+
+    margin-top:4px;
+
+}
+
+.router-ip{
+
+    font-size:11px;
+
+    color:#62d5ff;
+
+    margin-top:4px;
+
+}
+
+
+/* =====================================================
+   CONNECTION LINE
+===================================================== */
+
+.main-line{
+
+    position:absolute;
+
+    top:65px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:4px;
+
+    height:330px;
+
+    background:
+    #16445f;
+
+    overflow:hidden;
+
+}
+
+.data-flow{
+
+    position:absolute;
+
+    width:4px;
+
+    height:70px;
+
+    background:
+    linear-gradient(
+        180deg,
+        transparent,
+        #29d7ff,
+        transparent
+    );
+
+    animation:
+    flowDown 1.4s
+    linear infinite;
+
+}
+
+@keyframes flowDown{
+
+    from{
+        top:-80px;
+    }
+
+    to{
+        top:330px;
+    }
+
+}
+
+
+/* =====================================================
+   USER CONNECTIONS
+===================================================== */
+
+.user-lines{
+
+    position:absolute;
+
+    top:505px;
+
+    left:0;
+
+    right:0;
+
+    height:80px;
+
+}
+
+.user-lines::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:15px;
+
+    left:10%;
+
+    right:10%;
+
+    height:3px;
+
+    background:#17445f;
+
+}
+
+.user-dot{
+
+    position:absolute;
+
+    top:9px;
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 15px
+    #22c55e;
+
+}
+
+
+/* =====================================================
+   USERS
+===================================================== */
 
 .users{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:8px;
+
+    position:absolute;
+
+    top:525px;
+
+    left:0;
+
+    right:0;
+
 }
 
-.user{
-    background:#101f31;
-    border:1px solid #1c3d58;
-    border-radius:18px;
-    padding:15px;
+.user-card{
+
     position:relative;
-    overflow:hidden;
+
+    background:
+    #102337;
+
+    border:
+    1px solid
+    #23506c;
+
+    border-radius:15px;
+
+    padding:10px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
-.user.online{
-    border-color:#16864b;
-    box-shadow:
-    0 0 18px rgba(34,197,94,.12);
+.user-card:active{
+
+    transform:
+    scale(.95);
+
 }
 
-.user.offline{
-    border-color:#63303a;
-    opacity:.75;
+.user-card.online{
+
+    border-color:
+    #16864b;
+
 }
 
-.user-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:12px;
+.user-card.offline{
+
+    border-color:
+    #73313e;
+
+    opacity:.7;
+
+}
+
+.user-avatar{
+
+    font-size:27px;
+
 }
 
 .user-name{
-    font-size:18px;
+
+    font-size:12px;
+
     font-weight:bold;
+
+    margin-top:4px;
+
 }
 
-.badge{
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
+.user-status{
+
+    font-size:9px;
+
+    margin-top:5px;
+
 }
 
-.badge.online{
-    background:#124d32;
+.user-card.online
+.user-status{
+
     color:#4ade80;
+
 }
 
-.badge.offline{
-    background:#4b1d25;
-    color:#ff7d8b;
+.user-card.offline
+.user-status{
+
+    color:#fb7185;
+
 }
 
-.user-info{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-}
 
-.info{
-    background:#162a40;
-    padding:11px;
-    border-radius:12px;
-}
-
-.label{
-    color:#7e99b2;
-    font-size:10px;
-    margin-bottom:4px;
-}
-
-.value{
-    font-size:14px;
-    font-weight:bold;
-}
-
-.speed{
-    color:#53c9ff;
-}
-
-.download{
-    color:#60a5fa;
-}
-
-.upload{
-    color:#c084fc;
-}
-
-.gps{
-    color:#4ade80;
-}
-
-/* SPEED */
-
-.speed-box{
-    margin-top:10px;
-    background:#0b192a;
-    border-radius:13px;
-    padding:12px;
-}
-
-.speed-title{
-    font-size:11px;
-    color:#89a3bb;
-    margin-bottom:8px;
-}
-
-.speed-bar{
-    width:100%;
-    height:8px;
-    background:#203449;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.speed-fill{
-    height:100%;
-    width:0%;
-    background:#16bfff;
-    transition:.5s;
-}
-
-/* BUTTON */
+/* =====================================================
+   BUTTON
+===================================================== */
 
 button{
+
     width:100%;
+
     border:0;
-    padding:15px;
+
     border-radius:15px;
-    margin-top:10px;
+
+    padding:15px;
+
+    margin-bottom:10px;
+
     color:white;
-    background:#087cff;
+
     font-size:15px;
+
     font-weight:bold;
+
+    background:#087cff;
+
 }
 
 button:active{
-    transform:scale(.98);
+
+    transform:
+    scale(.98);
+
 }
 
-.test{
+.speed-button{
+
     background:#159447;
+
 }
 
-.danger{
-    background:#a92738;
+.sound-button{
+
+    background:#7135b8;
+
 }
 
-/* LOG */
+
+/* =====================================================
+   LOG
+===================================================== */
 
 .log{
-    background:#071321;
-    border:1px solid #183149;
-    border-radius:16px;
-    padding:12px;
-    margin-top:12px;
-    max-height:220px;
+
+    max-height:200px;
+
     overflow:auto;
+
+    background:#06111d;
+
+    border:
+    1px solid
+    #19364c;
+
+    border-radius:15px;
+
+    padding:10px;
+
 }
 
 .log-item{
-    font-size:11px;
-    color:#91a8bd;
+
     padding:7px 0;
-    border-bottom:1px solid #16293c;
+
+    border-bottom:
+    1px solid
+    #14293b;
+
+    font-size:10px;
+
+    color:#91a8bb;
+
 }
 
 .log-online{
+
     color:#4ade80;
+
 }
 
 .log-offline{
+
     color:#fb7185;
+
 }
 
-/* POPUP */
+
+/* =====================================================
+   DETAIL POPUP
+===================================================== */
 
 .overlay{
+
     display:none;
+
     position:fixed;
+
     inset:0;
+
     z-index:9999;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(5px);
+
+    background:
+    rgba(0,0,0,.78);
+
+    backdrop-filter:
+    blur(7px);
+
     align-items:center;
+
     justify-content:center;
-    padding:20px;
+
+    padding:15px;
+
 }
 
-.popup{
+.detail{
+
     width:100%;
-    max-width:400px;
-    background:#111f30;
-    border:2px solid #087cff;
-    border-radius:24px;
-    padding:25px;
-    text-align:center;
-    animation:popup .25s ease;
+
+    max-width:430px;
+
+    max-height:
+    90vh;
+
+    overflow:auto;
+
+    background:
+    linear-gradient(
+        160deg,
+        #0c1d2f,
+        #102c45
+    );
+
+    border:
+    2px solid
+    #168ed1;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    animation:
+    popup .25s ease;
+
 }
 
 @keyframes popup{
+
     from{
-        transform:scale(.7);
+
+        transform:
+        scale(.75);
+
         opacity:0;
+
     }
+
     to{
-        transform:scale(1);
+
+        transform:
+        scale(1);
+
         opacity:1;
+
     }
+
 }
 
-.popup-icon{
-    font-size:60px;
+.detail-head{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
 }
 
-.popup-title{
+.detail-avatar{
+
+    font-size:55px;
+
+}
+
+.detail-name{
+
     font-size:23px;
+
     font-weight:bold;
-    margin:10px 0;
+
 }
 
-.popup-message{
-    color:#b7c9da;
-    line-height:1.6;
+.detail-status{
+
+    margin-top:5px;
+
+    font-size:13px;
+
+}
+
+.detail-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:8px;
+
+}
+
+.detail-item{
+
+    background:#162d43;
+
+    border-radius:13px;
+
+    padding:12px;
+
+}
+
+.detail-label{
+
+    font-size:9px;
+
+    color:#7894ab;
+
+    margin-bottom:5px;
+
+}
+
+.detail-value{
+
     font-size:14px;
+
+    font-weight:bold;
+
+}
+
+.blue{
+    color:#53caff;
+}
+
+.green{
+    color:#4ade80;
+}
+
+.purple{
+    color:#c084fc;
+}
+
+.red{
+    color:#fb7185;
 }
 
 .close{
-    background:#087cff;
+
+    margin-top:15px;
+
+    margin-bottom:0;
+
+    background:#d83249;
+
 }
 
-/* FOOTER */
 
-.footer{
+/* =====================================================
+   POPUP ALERT
+===================================================== */
+
+.alert-popup{
+
     text-align:center;
-    color:#607990;
-    font-size:10px;
-    line-height:1.6;
-    padding:20px 5px;
+
 }
 
-@media(max-width:380px){
+.alert-icon{
 
-    .user-info{
-        grid-template-columns:1fr;
+    font-size:60px;
+
+}
+
+.alert-title{
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    margin:10px 0;
+
+}
+
+.alert-message{
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    color:#b8c9d8;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:430px){
+
+    .users{
+
+        grid-template-columns:
+        repeat(3,1fr);
+
+    }
+
+    .user-card{
+
+        padding:7px;
+
     }
 
 }
+
+@media(max-width:350px){
+
+    .users{
+
+        grid-template-columns:
+        1fr;
+
+        top:520px;
+
+    }
+
+    .tower-area{
+
+        min-height:850px;
+
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+
 <div class="container">
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <div class="header">
-    <h1>🗼 myROBOT NETWORK TOPOLOGY</h1>
-    <p>
-        ISP • MikroTik • User • Status • Uptime • Traffic • Speed • GPS
-    </p>
+
+<h1>
+🗼 myROBOT NETWORK TOPOLOGY
+</h1>
+
+<p>
+JDN ISP • MikroTik • Monitoring Per User
+</p>
+
 </div>
 
-<!-- STATUS -->
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
 
 <div class="status-card">
 
 <div class="status-row">
-    <div>
-        📡 STATUS MIKROTIK
-    </div>
 
-    <div id="routerStatus"
-         class="status-online">
-        🟢 ONLINE
-    </div>
+<span>
+📡 STATUS MIKROTIK
+</span>
+
+<span
+id="routerStatus"
+class="online-text">
+
+🟢 ONLINE
+
+</span>
+
 </div>
 
 <br>
 
 <div class="status-row">
-    <div>
-        👥 USER AKTIF
-    </div>
 
-    <div id="activeUsers">
-        0
-    </div>
+<span>
+👥 USER AKTIF
+</span>
+
+<strong
+id="activeUsers">
+
+0
+
+</strong>
+
 </div>
 
 </div>
 
-<!-- TOPOLOGY -->
+
+<!-- =====================================================
+     TOPOLOGY
+===================================================== -->
 
 <div class="topology">
 
-<div class="top-title">
-    🌐 TOPOLOGI JARINGAN AKTIF
-</div>
+<div class="topology-title">
 
-<div class="node isp">
-    🌐 JDN / ISP
-    <br>
-    <small>Internet</small>
-</div>
-
-<div class="connection"></div>
-
-<div class="node router">
-    📡 MIKROTIK
-    <br>
-    <small id="routerIP">
-        10.10.80.252
-    </small>
-</div>
-
-<div class="connection"></div>
-
-<div id="userTopology"
-     class="users">
-</div>
+🗼 TOPOLOGI JARINGAN AKTIF
 
 </div>
 
-<!-- BUTTON -->
 
-<button onclick="refreshNetwork()">
-    🔄 REFRESH JARINGAN
+<div class="tower-area">
+
+
+<!-- INTERNET -->
+
+<div class="internet-node">
+
+<div class="internet-icon">
+🌐
+</div>
+
+<div class="internet-title">
+JDN ISP
+</div>
+
+<div class="internet-sub">
+INTERNET
+</div>
+
+</div>
+
+
+<!-- MAIN LINE -->
+
+<div class="main-line">
+
+<div class="data-flow"></div>
+
+</div>
+
+
+<!-- TOWER -->
+
+<div class="tower">
+
+<div class="antenna"></div>
+
+<div class="antenna-light"></div>
+
+<div class="wave wave1"></div>
+<div class="wave wave2"></div>
+<div class="wave wave3"></div>
+
+<div class="tower-leg left"></div>
+
+<div class="tower-leg right"></div>
+
+<div class="cross cross1"></div>
+<div class="cross cross2"></div>
+<div class="cross cross3"></div>
+<div class="cross cross4"></div>
+<div class="cross cross5"></div>
+
+</div>
+
+
+<!-- MIKROTIK -->
+
+<div class="router-node">
+
+<div class="router-icon">
+📡
+</div>
+
+<div class="router-name">
+MIKROTIK
+</div>
+
+<div class="router-ip">
+10.10.80.252
+</div>
+
+</div>
+
+
+<!-- USER -->
+
+<div
+id="userLines"
+class="user-lines">
+</div>
+
+
+<div
+id="users"
+class="users">
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     CONTROL
+===================================================== -->
+
+<button
+onclick="refreshNetwork()">
+
+🔄 REFRESH JARINGAN
+
 </button>
 
-<button class="test"
-        onclick="testAllUsers()">
-    ⚡ TEST SPEED SEMUA USER
+
+<button
+class="speed-button"
+onclick="testAllSpeed()">
+
+⚡ TEST SPEED USER
+
 </button>
 
-<button class="danger"
-        onclick="enableSound()">
-    🔊 AKTIFKAN SUARA NOTIFIKASI
+
+<button
+class="sound-button"
+onclick="toggleSound()">
+
+🔊 AKTIFKAN SUARA
+
 </button>
 
-<!-- LOG -->
+
+<!-- =====================================================
+     LOG
+===================================================== -->
 
 <div class="status-card">
 
-<div class="label">
-    📋 LOG PERUBAHAN JARINGAN
-</div>
+<div class="detail-label">
 
-<div id="log"
-     class="log">
-</div>
+📋 RIWAYAT PERUBAHAN
 
 </div>
 
-<div class="footer">
-
-<strong>myROBOT NETWORK TOPOLOGY</strong>
 <br>
-Monitoring status jaringan per-user
-<br>
-Versi HTML — siap dikembangkan ke API MikroTik
+
+<div
+id="log"
+class="log">
+</div>
+
+</div>
+
+
+<div class="status-card">
+
+<div class="status-row">
+
+<span>
+🔄 AUTO REFRESH
+</span>
+
+<span
+class="online-text">
+
+10 DETIK
+
+</span>
 
 </div>
 
 </div>
 
-<!-- POPUP -->
 
-<div id="overlay"
-     class="overlay">
-
-<div class="popup">
-
-<div id="popupIcon"
-     class="popup-icon">
-    📡
 </div>
 
-<div id="popupTitle"
-     class="popup-title">
-    STATUS JARINGAN
+
+<!-- =====================================================
+     DETAIL USER POPUP
+===================================================== -->
+
+<div
+id="detailOverlay"
+class="overlay">
+
+<div class="detail">
+
+<div class="detail-head">
+
+<div
+id="detailAvatar"
+class="detail-avatar">
+
+📱
+
 </div>
 
-<div id="popupMessage"
-     class="popup-message">
-    -
+<div
+id="detailName"
+class="detail-name">
+
+USER
+
 </div>
 
-<button class="close"
-        onclick="closePopup()">
-    TUTUP
+<div
+id="detailStatus"
+class="detail-status">
+
+ONLINE
+
+</div>
+
+</div>
+
+
+<div
+id="detailGrid"
+class="detail-grid">
+
+</div>
+
+
+<button
+class="close"
+onclick="closeDetail()">
+
+✕ TUTUP DETAIL
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ALERT POPUP
+===================================================== -->
+
+<div
+id="alertOverlay"
+class="overlay">
+
+<div class="detail alert-popup">
+
+<div
+id="alertIcon"
+class="alert-icon">
+
+🚨
+
+</div>
+
+<div
+id="alertTitle"
+class="alert-title">
+
+PERINGATAN
+
+</div>
+
+<div
+id="alertMessage"
+class="alert-message">
+
+-
+
+</div>
+
+<button
+onclick="closeAlert()">
+
+TUTUP
+
 </button>
 
 </div>
@@ -537,407 +1496,663 @@ Versi HTML — siap dikembangkan ke API MikroTik
 
 <script>
 
+
 /* =====================================================
-   KONFIGURASI USER
+   DATA USER
 ===================================================== */
 
-const users = [
+const users=[
 
 {
-    id:"ASEP",
-    name:"ASEP",
-    ip:"10.10.80.10",
-    status:"online",
-    uptime:0,
-    download:0,
-    upload:0,
-    speed:0,
-    gps:"Belum tersedia"
+
+id:"ASEP",
+
+name:"ASEP",
+
+ip:"10.10.80.10",
+
+mac:"AA:BB:CC:11:22:33",
+
+status:"online",
+
+uptime:0,
+
+download:0,
+
+upload:0,
+
+speed:0,
+
+gps:"Belum tersedia",
+
+lastSeen:"Sekarang"
+
 },
 
 {
-    id:"ISTRI",
-    name:"ISTRI",
-    ip:"10.10.80.11",
-    status:"online",
-    uptime:0,
-    download:0,
-    upload:0,
-    speed:0,
-    gps:"Belum tersedia"
+
+id:"ISTRI",
+
+name:"ISTRI",
+
+ip:"10.10.80.11",
+
+mac:"AA:BB:CC:44:55:66",
+
+status:"online",
+
+uptime:0,
+
+download:0,
+
+upload:0,
+
+speed:0,
+
+gps:"Belum tersedia",
+
+lastSeen:"Sekarang"
+
 },
 
 {
-    id:"USER03",
-    name:"USER 03",
-    ip:"10.10.80.12",
-    status:"offline",
-    uptime:0,
-    download:0,
-    upload:0,
-    speed:0,
-    gps:"Belum tersedia"
+
+id:"USER03",
+
+name:"USER 03",
+
+ip:"10.10.80.12",
+
+mac:"AA:BB:CC:77:88:99",
+
+status:"offline",
+
+uptime:0,
+
+download:0,
+
+upload:0,
+
+speed:0,
+
+gps:"Belum tersedia",
+
+lastSeen:"--"
+
 }
 
 ];
 
-let soundEnabled=false;
 
 let previousStatus={};
+
+let soundEnabled=false;
 
 let audioContext=null;
 
 
 /* =====================================================
-   FORMAT DATA
+   FORMAT BYTES
 ===================================================== */
 
 function formatBytes(bytes){
 
-    if(bytes===0)
-        return "0 B";
+if(!bytes)
+return "0 B";
 
-    const units=[
-        "B",
-        "KB",
-        "MB",
-        "GB",
-        "TB"
-    ];
+const units=[
+"B",
+"KB",
+"MB",
+"GB",
+"TB"
+];
 
-    const i=Math.floor(
-        Math.log(bytes)/
-        Math.log(1024)
-    );
+const i=Math.floor(
+Math.log(bytes)/
+Math.log(1024)
+);
 
-    return (
-        bytes/
-        Math.pow(1024,i)
-    ).toFixed(2)
-    +" "
-    +units[i];
+return (
+bytes/
+Math.pow(1024,i)
+).toFixed(2)
++" "
++units[i];
 
 }
 
 
 /* =====================================================
-   FORMAT UPTIME
+   UPTIME
 ===================================================== */
 
 function formatUptime(seconds){
 
-    const d=Math.floor(
-        seconds/86400
-    );
+const days=
+Math.floor(
+seconds/86400
+);
 
-    const h=Math.floor(
-        (seconds%86400)/3600
-    );
+const hours=
+Math.floor(
+(seconds%86400)/3600
+);
 
-    const m=Math.floor(
-        (seconds%3600)/60
-    );
+const minutes=
+Math.floor(
+(seconds%3600)/60
+);
 
-    const s=Math.floor(
-        seconds%60
-    );
-
-    return (
-        d+"h "
-        +h+"j "
-        +m+"m "
-        +s+"d"
-    );
+return (
+days+"h "
++hours+"j "
++minutes+"m"
+);
 
 }
 
 
 /* =====================================================
-   RENDER USER
+   RENDER USERS
 ===================================================== */
 
 function renderUsers(){
 
-    const box=
-        document.getElementById(
-            "userTopology"
-        );
+const box=
+document.getElementById(
+"users"
+);
 
-    box.innerHTML="";
+box.innerHTML="";
 
-    let active=0;
+let active=0;
 
-    users.forEach(user=>{
 
-        if(user.status==="online")
-            active++;
+users.forEach(
+(user,index)=>{
 
-        const div=
-            document.createElement(
-                "div"
-            );
+if(
+user.status==="online"
+)
+active++;
 
-        div.className=
-            "user "
-            +user.status;
 
-        div.innerHTML=`
+const card=
+document.createElement(
+"div"
+);
 
-        <div class="user-head">
+card.className=
+"user-card "
++user.status;
 
-            <div class="user-name">
-                📱 ${user.name}
-            </div>
 
-            <div class="badge ${user.status}">
-                ${
-                    user.status==="online"
-                    ? "🟢 ONLINE"
-                    : "🔴 OFFLINE"
-                }
-            </div>
+card.onclick=()=>{
 
-        </div>
+showUserDetail(user);
 
-        <div class="user-info">
+};
 
-            <div class="info">
-                <div class="label">
-                    IP ADDRESS
-                </div>
 
-                <div class="value">
-                    ${user.ip}
-                </div>
-            </div>
+card.innerHTML=`
 
-            <div class="info">
-                <div class="label">
-                    LAMA TERHUBUNG
-                </div>
+<div class="user-avatar">
+📱
+</div>
 
-                <div class="value">
-                    ${
-                        user.status==="online"
-                        ?formatUptime(user.uptime)
-                        :"--"
-                    }
-                </div>
-            </div>
+<div class="user-name">
+${user.name}
+</div>
 
-            <div class="info">
-                <div class="label">
-                    DOWNLOAD
-                </div>
+<div class="user-status">
 
-                <div class="value download">
-                    ${formatBytes(user.download)}
-                </div>
-            </div>
+${
+user.status==="online"
+?
+"🟢 ONLINE"
+:
+"🔴 OFFLINE"
+}
 
-            <div class="info">
-                <div class="label">
-                    UPLOAD
-                </div>
+</div>
 
-                <div class="value upload">
-                    ${formatBytes(user.upload)}
-                </div>
-            </div>
+`;
 
-            <div class="info">
-                <div class="label">
-                    TOTAL PEMAKAIAN
-                </div>
 
-                <div class="value">
-                    ${
-                        formatBytes(
-                            user.download+
-                            user.upload
-                        )
-                    }
-                </div>
-            </div>
+box.appendChild(card);
 
-            <div class="info">
-                <div class="label">
-                    SPEED
-                </div>
+}
+);
 
-                <div class="value speed">
-                    ${user.speed.toFixed(1)}
-                    Mbps
-                </div>
-            </div>
 
-            <div class="info">
-                <div class="label">
-                    📍 GPS
-                </div>
+document.getElementById(
+"activeUsers"
+).textContent=active;
 
-                <div class="value gps">
-                    ${user.gps}
-                </div>
-            </div>
 
-            <div class="info">
-                <div class="label">
-                    STATUS
-                </div>
+/* USER DOT */
 
-                <div class="value">
-                    ${
-                        user.status==="online"
-                        ?"AKTIF"
-                        :"TIDAK AKTIF"
-                    }
-                </div>
-            </div>
-
-        </div>
-
-        <div class="speed-box">
-
-            <div class="speed-title">
-                ⚡ KECEPATAN KONEKSI
-            </div>
-
-            <div class="speed-bar">
-
-                <div
-                    class="speed-fill"
-                    style="
-                    width:${Math.min(
-                        user.speed*2,
-                        100
-                    )}%;
-                    ">
-                </div>
-
-            </div>
-
-        </div>
-
-        `;
-
-        box.appendChild(div);
-
-    });
-
-    document.getElementById(
-        "activeUsers"
-    ).textContent=active;
+renderUserDots();
 
 }
 
 
 /* =====================================================
-   SIMULASI TRAFFIC
+   USER DOTS
 ===================================================== */
 
-function simulateTraffic(){
+function renderUserDots(){
 
-    users.forEach(user=>{
+const box=
+document.getElementById(
+"userLines"
+);
 
-        if(user.status==="online"){
+box.innerHTML="";
 
-            user.uptime+=10;
+const positions=[
+16.5,
+50,
+83.5
+];
 
-            user.download+=
-                Math.floor(
-                    Math.random()*90000
-                );
+users.forEach(
+(user,i)=>{
 
-            user.upload+=
-                Math.floor(
-                    Math.random()*30000
-                );
+const dot=
+document.createElement(
+"div"
+);
 
-            user.speed=
-                5+
-                Math.random()*25;
+dot.className=
+"user-dot";
 
-        }
+dot.style.left=
+positions[i]+"%";
 
-    });
+if(
+user.status==="offline"
+){
+
+dot.style.background=
+"#ef4444";
+
+dot.style.boxShadow=
+"0 0 15px #ef4444";
+
+}
+
+box.appendChild(dot);
+
+}
+);
 
 }
 
 
 /* =====================================================
-   STATUS RANDOM
-   NANTI DIGANTI DATA API MIKROTIK
+   USER DETAIL
 ===================================================== */
 
-function simulateStatus(){
+function showUserDetail(user){
 
-    users.forEach(user=>{
+document.getElementById(
+"detailAvatar"
+).textContent="📱";
 
-        const old=
-            previousStatus[user.id];
 
-        /*
-        Jangan sering berubah.
-        */
+document.getElementById(
+"detailName"
+).textContent=
+user.name;
 
-        if(
-            Math.random()<0.05
-        ){
 
-            user.status=
-                user.status==="online"
-                ?"offline"
-                :"online";
+const status=
+document.getElementById(
+"detailStatus"
+);
 
-        }
 
-        if(
-            old!==undefined &&
-            old!==user.status
-        ){
+status.textContent=
+user.status==="online"
+?
+"🟢 ONLINE"
+:
+"🔴 OFFLINE";
 
-            if(user.status==="online"){
 
-                addLog(
-                    "🟢 "
-                    +user.name
-                    +" ONLINE",
-                    true
-                );
+status.className=
+"detail-status "
++
+(
+user.status==="online"
+?
+"green"
+:
+"red"
+);
 
-                showPopup(
-                    "🟢",
-                    "USER ONLINE",
-                    user.name
-                    +" kembali terhubung ke jaringan."
-                );
 
-            }
-            else{
+const grid=
+document.getElementById(
+"detailGrid"
+);
 
-                addLog(
-                    "🔴 "
-                    +user.name
-                    +" OFFLINE",
-                    false
-                );
+grid.innerHTML=`
 
-                showPopup(
-                    "🔴",
-                    "USER OFFLINE",
-                    user.name
-                    +" terputus dari jaringan."
-                );
 
-            }
+<div class="detail-item">
 
-        }
+<div class="detail-label">
+STATUS
+</div>
 
-        previousStatus[user.id]=
-            user.status;
+<div class="detail-value">
+${
+user.status==="online"
+?"AKTIF"
+:"NONAKTIF"
+}
+</div>
 
-    });
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+IP ADDRESS
+</div>
+
+<div class="detail-value blue">
+${user.ip}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+MAC ADDRESS
+</div>
+
+<div class="detail-value">
+${user.mac}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+LAMA TERHUBUNG
+</div>
+
+<div class="detail-value">
+${
+user.status==="online"
+?
+formatUptime(
+user.uptime
+)
+:
+"--"
+}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+DOWNLOAD
+</div>
+
+<div class="detail-value blue">
+${formatBytes(
+user.download
+)}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+UPLOAD
+</div>
+
+<div class="detail-value purple">
+${formatBytes(
+user.upload
+)}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+TOTAL PEMAKAIAN
+</div>
+
+<div class="detail-value">
+${formatBytes(
+user.download+
+user.upload
+)}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+SPEED
+</div>
+
+<div class="detail-value blue">
+${user.speed.toFixed(1)}
+Mbps
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+📍 GPS
+</div>
+
+<div class="detail-value green">
+${user.gps}
+</div>
+
+</div>
+
+
+<div class="detail-item">
+
+<div class="detail-label">
+TERAKHIR TERDETEKSI
+</div>
+
+<div class="detail-value">
+${user.lastSeen}
+</div>
+
+</div>
+
+`;
+
+
+document.getElementById(
+"detailOverlay"
+).style.display="flex";
+
+}
+
+
+/* =====================================================
+   CLOSE DETAIL
+===================================================== */
+
+function closeDetail(){
+
+document.getElementById(
+"detailOverlay"
+).style.display="none";
+
+}
+
+
+/* =====================================================
+   TRAFFIC
+===================================================== */
+
+function updateTraffic(){
+
+users.forEach(
+user=>{
+
+if(
+user.status==="online"
+){
+
+user.uptime+=10;
+
+
+/*
+Simulasi traffic.
+Nanti diganti RX/TX
+MikroTik.
+*/
+
+user.download+=
+Math.floor(
+Math.random()*
+120000
+);
+
+user.upload+=
+Math.floor(
+Math.random()*
+40000
+);
+
+
+user.speed=
+5+
+Math.random()*
+30;
+
+
+user.lastSeen=
+new Date()
+.toLocaleTimeString(
+"id-ID"
+);
+
+}
+
+}
+);
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function updateStatus(){
+
+users.forEach(
+user=>{
+
+const old=
+previousStatus[
+user.id
+];
+
+
+if(
+Math.random()<0.04
+){
+
+user.status=
+user.status==="online"
+?
+"offline"
+:
+"online";
+
+}
+
+
+/* perubahan */
+
+if(
+old!==undefined &&
+old!==user.status
+){
+
+if(
+user.status==="online"
+){
+
+addLog(
+"🟢 "
++user.name
++" kembali ONLINE",
+true
+);
+
+showAlert(
+"🟢",
+"USER ONLINE",
+user.name
++" kembali terhubung."
+);
+
+}
+
+else{
+
+addLog(
+"🔴 "
++user.name
++" menjadi OFFLINE",
+false
+);
+
+showAlert(
+"🔴",
+"USER OFFLINE",
+user.name
++" terputus dari jaringan."
+);
+
+}
+
+}
+
+
+previousStatus[
+user.id
+]=
+user.status;
+
+}
+);
 
 }
 
@@ -948,15 +2163,11 @@ function simulateStatus(){
 
 function refreshNetwork(){
 
-    simulateStatus();
+updateStatus();
 
-    simulateTraffic();
+updateTraffic();
 
-    renderUsers();
-
-    addLog(
-        "🔄 Pemeriksaan jaringan dilakukan."
-    );
+renderUsers();
 
 }
 
@@ -965,31 +2176,39 @@ function refreshNetwork(){
    TEST SPEED
 ===================================================== */
 
-function testAllUsers(){
+function testAllSpeed(){
 
-    users.forEach(user=>{
+users.forEach(
+user=>{
 
-        if(user.status==="online"){
+if(
+user.status==="online"
+){
 
-            user.speed=
-                10+
-                Math.random()*40;
+user.speed=
+10+
+Math.random()*
+50;
 
-        }
+}
 
-    });
+}
+);
 
-    renderUsers();
 
-    showPopup(
-        "⚡",
-        "TEST SPEED",
-        "Pengujian speed user selesai."
-    );
+renderUsers();
 
-    addLog(
-        "⚡ Test speed semua user selesai."
-    );
+
+showAlert(
+"⚡",
+"TEST SPEED",
+"Pengujian speed user selesai."
+);
+
+
+addLog(
+"⚡ Test speed semua user selesai."
+);
 
 }
 
@@ -999,87 +2218,96 @@ function testAllUsers(){
 ===================================================== */
 
 function addLog(
-    message,
-    online=null
+message,
+type=null
 ){
 
-    const box=
-        document.getElementById(
-            "log"
-        );
+const box=
+document.getElementById(
+"log"
+);
 
-    const item=
-        document.createElement(
-            "div"
-        );
+const item=
+document.createElement(
+"div"
+);
 
-    item.className=
-        "log-item";
+item.className=
+"log-item";
 
-    if(online===true)
-        item.classList.add(
-            "log-online"
-        );
 
-    if(online===false)
-        item.classList.add(
-            "log-offline"
-        );
+if(type===true)
+item.classList.add(
+"log-online"
+);
 
-    item.textContent=
-        new Date()
-        .toLocaleTimeString(
-            "id-ID"
-        )
-        +" — "
-        +message;
 
-    box.prepend(item);
+if(type===false)
+item.classList.add(
+"log-offline"
+);
+
+
+item.textContent=
+new Date()
+.toLocaleTimeString(
+"id-ID"
+)
++" — "
++message;
+
+
+box.prepend(item);
 
 }
 
 
 /* =====================================================
-   POPUP
+   ALERT
 ===================================================== */
 
-function showPopup(
-    icon,
-    title,
-    message
+function showAlert(
+icon,
+title,
+message
 ){
 
-    document.getElementById(
-        "popupIcon"
-    ).textContent=icon;
+document.getElementById(
+"alertIcon"
+).textContent=
+icon;
 
-    document.getElementById(
-        "popupTitle"
-    ).textContent=title;
 
-    document.getElementById(
-        "popupMessage"
-    ).textContent=message;
+document.getElementById(
+"alertTitle"
+).textContent=
+title;
 
-    document.getElementById(
-        "overlay"
-    ).style.display="flex";
 
-    if(soundEnabled)
-        notificationSound();
+document.getElementById(
+"alertMessage"
+).textContent=
+message;
+
+
+document.getElementById(
+"alertOverlay"
+).style.display=
+"flex";
+
+
+if(soundEnabled)
+playSound();
 
 }
 
 
-/* =====================================================
-   CLOSE
-===================================================== */
+function closeAlert(){
 
-function closePopup(){
-
-    document.getElementById(
-        "overlay"
-    ).style.display="none";
+document.getElementById(
+"alertOverlay"
+).style.display=
+"none";
 
 }
 
@@ -1088,31 +2316,33 @@ function closePopup(){
    SOUND
 ===================================================== */
 
-function enableSound(){
+function toggleSound(){
 
-    soundEnabled=
-        !soundEnabled;
+soundEnabled=
+!soundEnabled;
 
-    if(soundEnabled){
 
-        notificationSound();
+if(soundEnabled){
 
-        showPopup(
-            "🔊",
-            "SUARA AKTIF",
-            "Notifikasi suara myROBOT sudah aktif."
-        );
+playSound();
 
-    }
-    else{
+showAlert(
+"🔊",
+"SUARA AKTIF",
+"Notifikasi suara telah diaktifkan."
+);
 
-        showPopup(
-            "🔇",
-            "SUARA NONAKTIF",
-            "Notifikasi suara dimatikan."
-        );
+}
 
-    }
+else{
+
+showAlert(
+"🔇",
+"SUARA NONAKTIF",
+"Notifikasi suara dimatikan."
+);
+
+}
 
 }
 
@@ -1121,74 +2351,106 @@ function enableSound(){
    AUDIO
 ===================================================== */
 
-function notificationSound(){
+function playSound(){
 
-    try{
+try{
 
-        audioContext=
-            audioContext ||
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+audioContext=
+audioContext ||
+new(
+window.AudioContext ||
+window.webkitAudioContext
+)();
 
-        const osc=
-            audioContext.createOscillator();
 
-        const gain=
-            audioContext.createGain();
+const oscillator=
+audioContext
+.createOscillator();
 
-        osc.frequency.value=800;
 
-        gain.gain.value=.15;
+const gain=
+audioContext
+.createGain();
 
-        osc.connect(gain);
 
-        gain.connect(
-            audioContext.destination
-        );
+oscillator.type=
+"sine";
 
-        osc.start();
 
-        osc.stop(
-            audioContext.currentTime+.25
-        );
+oscillator.frequency.value=
+850;
 
-    }
-    catch(e){
 
-        console.log(e);
+gain.gain.value=
+0.18;
 
-    }
+
+oscillator.connect(
+gain
+);
+
+
+gain.connect(
+audioContext
+.destination
+);
+
+
+oscillator.start();
+
+
+oscillator.stop(
+audioContext
+.currentTime+
+0.25
+);
+
+}
+catch(e){
+
+console.log(e);
+
+}
 
 }
 
 
 /* =====================================================
-   START
+   INITIAL
 ===================================================== */
 
-users.forEach(user=>{
+users.forEach(
+user=>{
 
-    previousStatus[user.id]=
-        user.status;
+previousStatus[
+user.id
+]=
+user.status;
 
-});
+}
+);
+
 
 renderUsers();
 
+
 addLog(
-    "🟢 myROBOT NETWORK dimulai."
+"🟢 myROBOT NETWORK dimulai."
+);
+
+
+addLog(
+"📡 Monitoring jaringan aktif."
 );
 
 
 /* =====================================================
-   AUTO REFRESH
+   AUTO REFRESH 10 DETIK
 ===================================================== */
 
 setInterval(
-    refreshNetwork,
-    10000
+refreshNetwork,
+10000
 );
 
 </script>
