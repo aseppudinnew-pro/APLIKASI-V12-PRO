@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no">
+
+<meta name="theme-color"
+      content="#087cff">
+
+<title>
+myROBOT NETWORK TOPOLOGY
+</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #102c49,
+            #06111f 55%,
+            #030912
+        );
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    width:100%;
+
+    max-width:760px;
+
+    margin:auto;
+
+    padding:12px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #087cff,
+            #00b8ff
+        );
+
+    border-radius:24px;
+
+    padding:20px;
+
+    margin-bottom:12px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.35);
+
+}
+
+.header h1{
+
+    font-size:24px;
+
+    margin-bottom:7px;
+
+}
+
+.header p{
+
+    font-size:12px;
+
+    opacity:.9;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    background:#101e30;
+
+    border:
+        1px solid
+        #1c344d;
+
+    border-radius:19px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.22);
+
+}
+
+.title{
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    margin-bottom:14px;
+
+}
+
+
+/* =====================================================
+   TOPOLOGY
+===================================================== */
+
+.topology{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:0;
+
+}
+
+
+/* =====================================================
+   NODE
+===================================================== */
+
+.node{
+
+    width:100%;
+
+    max-width:330px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #172d44,
+            #102235
+        );
+
+    border:
+        1px solid
+        #2b4964;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.3);
+
+}
+
+.node-icon{
+
+    font-size:43px;
+
+    margin-bottom:8px;
+
+}
+
+.node-name{
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+.node-type{
+
+    color:#8fa8be;
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+.node-status{
+
+    margin-top:10px;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   ACTIVE DOT
+===================================================== */
+
+.active-dot{
+
+    display:inline-block;
+
+    width:11px;
+
+    height:11px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+        0 0 14px
+        rgba(34,197,94,.9);
+
+    margin-right:5px;
+
+    animation:
+        blink 1.2s infinite;
+
+}
+
+.offline-dot{
+
+    background:#ef4444;
+
+    box-shadow:
+        0 0 12px
+        rgba(239,68,68,.8);
+
+}
+
+@keyframes blink{
+
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.35;
+    }
+
+}
+
+
+/* =====================================================
+   CONNECTION LINE
+===================================================== */
+
+.connection{
+
+    width:5px;
+
+    height:65px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #087cff,
+            #00d4ff,
+            #087cff
+        );
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 0 15px
+        rgba(0,180,255,.7);
+
+}
+
+.connection:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:25px;
+
+    top:-25px;
+
+    left:0;
+
+    background:white;
+
+    box-shadow:
+        0 0 15px white;
+
+    animation:
+        dataFlow 1s linear infinite;
+
+}
+
+@keyframes dataFlow{
+
+    from{
+        top:-25px;
+    }
+
+    to{
+        top:100%;
+    }
+
+}
+
+
+/* =====================================================
+   CONNECTION INFO
+===================================================== */
+
+.connection-info{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    background:#0b1929;
+
+    border:
+        1px solid
+        #254866;
+
+    padding:5px 9px;
+
+    border-radius:9px;
+
+    font-size:10px;
+
+    color:#62d4ff;
+
+    white-space:nowrap;
+
+}
+
+
+/* =====================================================
+   STATUS PANEL
+===================================================== */
+
+.status-main{
+
+    text-align:center;
+
+    padding:18px;
+
+    background:#16283d;
+
+    border-radius:16px;
+
+}
+
+.status-big{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+.status-online{
+
+    color:#4ade80;
+
+}
+
+.status-offline{
+
+    color:#ff5969;
+
+}
+
+.status-sub{
+
+    color:#8fa5bb;
+
+    font-size:12px;
+
+    margin-top:6px;
+
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:9px;
+
+}
+
+.item{
+
+    background:#16283d;
+
+    border-radius:14px;
+
+    padding:13px;
+
+}
+
+.item-icon{
+
+    font-size:24px;
+
+    margin-bottom:7px;
+
+}
+
+.item-label{
+
+    color:#8fa5bb;
+
+    font-size:10px;
+
+    margin-bottom:5px;
+
+}
+
+.item-value{
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    word-break:break-word;
+
+}
+
+
+/* =====================================================
+   SPEED
+===================================================== */
+
+.speed-box{
+
+    background:#16283d;
+
+    border-radius:17px;
+
+    padding:18px;
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+.speed-number{
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    color:#59d5ff;
+
+}
+
+.speed-unit{
+
+    color:#8fa5bb;
+
+    font-size:12px;
+
+}
+
+
+/* =====================================================
+   PING
+===================================================== */
+
+.ping-good{
+
+    color:#4ade80;
+
+}
+
+.ping-medium{
+
+    color:#facc15;
+
+}
+
+.ping-bad{
+
+    color:#ff5969;
+
+}
+
+
+/* =====================================================
+   LOG
+===================================================== */
+
+.log{
+
+    background:#071321;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    max-height:260px;
+
+    overflow-y:auto;
+
+    font-family:
+        monospace;
+
+    font-size:11px;
+
+}
+
+.log-row{
+
+    padding:7px 0;
+
+    border-bottom:
+        1px solid
+        #173047;
+
+    color:#a9bfd3;
+
+}
+
+.log-time{
+
+    color:#55cfff;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button{
+
+    width:100%;
+
+    border:0;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+    color:white;
+
+    background:#087cff;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+}
+
+button:active{
+
+    transform:
+        scale(.98);
+
+}
+
+.secondary{
+
+    background:#16283d;
+
+    border:
+        1px solid
+        #28435f;
+
+}
+
+.green{
+
+    background:#159447;
+
+}
+
+
+/* =====================================================
+   WARNING
+===================================================== */
+
+.warning{
+
+    display:none;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9d1f31,
+            #d44924
+        );
+
+    padding:13px;
+
+    border-radius:14px;
+
+    margin-bottom:12px;
+
+    font-size:12px;
+
+    animation:
+        warning 1.5s infinite;
+
+}
+
+@keyframes warning{
+
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.65;
+    }
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#60778e;
+
+    font-size:10px;
+
+    line-height:1.7;
+
+    padding:15px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:380px){
+
+    .grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .item-value{
+
+        font-size:15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+<h1>
+🤖 myROBOT NETWORK TOPOLOGY
+</h1>
+
+<p>
+📡 REALTIME NETWORK MONITOR • WIFI • 4G • 5G • INTERNET
+</p>
+
+</div>
+
+
+<!-- =====================================================
+     WARNING
+===================================================== -->
+
+<div id="warning"
+     class="warning">
+
+⚠️ Koneksi internet bermasalah.
+
+</div>
+
+
+<!-- =====================================================
+     MAIN STATUS
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+📡 STATUS JARINGAN
+
+</div>
+
+<div class="status-main">
+
+<div id="mainStatus"
+     class="status-big status-online">
+
+🟢 AKTIF
+
+</div>
+
+<div id="mainNetwork"
+     class="status-sub">
+
+Mendeteksi jaringan...
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TOPOLOGY
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+🌐 TOPOLOGI KONEKSI AKTIF
+
+</div>
+
+
+<div class="topology">
+
+
+<!-- DEVICE -->
+
+<div class="node">
+
+<div class="node-icon">
+📱
+</div>
+
+<div class="node-name">
+PERANGKAT
+</div>
+
+<div class="node-type"
+     id="deviceInfo">
+
+Android / Browser
+
+</div>
+
+<div class="node-status"
+     id="deviceStatus">
+
+<span class="active-dot"></span>
+AKTIF
+
+</div>
+
+</div>
+
+
+<!-- CONNECTION -->
+
+<div class="connection">
+
+<div id="connection1"
+     class="connection-info">
+
+Memeriksa...
+
+</div>
+
+</div>
+
+
+<!-- NETWORK -->
+
+<div class="node">
+
+<div class="node-icon"
+     id="networkIcon">
+
+📡
+</div>
+
+<div class="node-name">
+
+JARINGAN
+
+</div>
+
+<div class="node-type"
+     id="networkType">
+
+Mendeteksi...
+
+</div>
+
+<div class="node-status"
+     id="networkStatus">
+
+<span class="active-dot"></span>
+AKTIF
+
+</div>
+
+</div>
+
+
+<!-- CONNECTION -->
+
+<div class="connection">
+
+<div id="connection2"
+     class="connection-info">
+
+Internet
+
+</div>
+
+</div>
+
+
+<!-- INTERNET -->
+
+<div class="node">
+
+<div class="node-icon">
+🌐
+</div>
+
+<div class="node-name">
+
+INTERNET
+
+</div>
+
+<div class="node-type">
+
+Global Internet
+
+</div>
+
+<div class="node-status"
+     id="internetStatus">
+
+<span class="active-dot"></span>
+ONLINE
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     NETWORK INFORMATION
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+📊 INFORMASI JARINGAN
+
+</div>
+
+<div class="grid">
+
+
+<div class="item">
+
+<div class="item-icon">
+📶
+</div>
+
+<div class="item-label">
+TIPE
+</div>
+
+<div id="type"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+📡
+</div>
+
+<div class="item-label">
+KONEKSI
+</div>
+
+<div id="effective"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+⚡
+</div>
+
+<div class="item-label">
+DOWNLINK
+</div>
+
+<div id="downlink"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+📊
+</div>
+
+<div class="item-label">
+ESTIMASI RTT
+</div>
+
+<div id="rtt"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🌍
+</div>
+
+<div class="item-label">
+IP PUBLIK
+</div>
+
+<div id="publicIP"
+     class="item-value">
+
+Mencari...
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🏠
+</div>
+
+<div class="item-label">
+IP LOKAL
+</div>
+
+<div id="localIP"
+     class="item-value">
+
+Mencari...
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🚪
+</div>
+
+<div class="item-label">
+GATEWAY
+</div>
+
+<div id="gateway"
+     class="item-value">
+
+Tidak tersedia
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🔐
+</div>
+
+<div class="item-label">
+ONLINE
+</div>
+
+<div id="online"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SPEED TEST
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+🚀 KECEPATAN INTERNET
+
+</div>
+
+
+<div class="speed-box">
+
+<div class="item-label">
+
+DOWNLOAD
+
+</div>
+
+<div id="downloadSpeed"
+     class="speed-number">
+
+---
+
+</div>
+
+<div class="speed-unit">
+
+Mbps
+
+</div>
+
+</div>
+
+
+<div class="speed-box">
+
+<div class="item-label">
+
+UPLOAD
+
+</div>
+
+<div id="uploadSpeed"
+     class="speed-number">
+
+---
+
+</div>
+
+<div class="speed-unit">
+
+Mbps
+
+</div>
+
+</div>
+
+
+<button
+    onclick="runSpeedTest()">
+
+🚀 TEST KECEPATAN INTERNET
+
+</button>
+
+
+<div id="speedStatus"
+     class="status">
+
+Tekan tombol untuk memulai speed test.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PING
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+📡 PING / LATENCY
+
+</div>
+
+<div class="status-main">
+
+<div id="ping"
+     class="status-big">
+
+---
+
+</div>
+
+<div id="pingStatus"
+     class="status-sub">
+
+Menunggu pengujian...
+
+</div>
+
+</div>
+
+<br>
+
+<button
+    class="secondary"
+    onclick="testPing()">
+
+🧪 TEST PING
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     DEVICE
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+📱 INFORMASI PERANGKAT
+
+</div>
+
+<div class="grid">
+
+
+<div class="item">
+
+<div class="item-icon">
+📱
+</div>
+
+<div class="item-label">
+PLATFORM
+</div>
+
+<div id="platform"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🌐
+</div>
+
+<div class="item-label">
+BROWSER
+</div>
+
+<div id="browser"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🖥️
+</div>
+
+<div class="item-label">
+LAYAR
+</div>
+
+<div id="screen"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🔋
+</div>
+
+<div class="item-label">
+BATERAI
+</div>
+
+<div id="battery"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     NETWORK LOG
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+🧾 RIWAYAT JARINGAN
+
+</div>
+
+<div id="log"
+     class="log">
+
+<div class="log-row">
+
+<span class="log-time">
+[START]
+</span>
+
+ Sistem monitoring dimulai.
+
+</div>
+
+</div>
+
+<button
+    class="secondary"
+    onclick="clearLog()">
+
+🗑️ HAPUS RIWAYAT
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     ROUTE INFORMATION
+===================================================== -->
+
+<div class="card">
+
+<div class="title">
+
+🛣️ INFORMASI RUTE KONEKSI
+
+</div>
+
+<div class="grid">
+
+
+<div class="item">
+
+<div class="item-icon">
+📱
+</div>
+
+<div class="item-label">
+SOURCE
+</div>
+
+<div id="routeSource"
+     class="item-value">
+
+Perangkat
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+📶
+</div>
+
+<div class="item-label">
+ACCESS
+</div>
+
+<div id="routeAccess"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🏢
+</div>
+
+<div class="item-label">
+NETWORK
+</div>
+
+<div id="routeNetwork"
+     class="item-value">
+
+---
+
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🌐
+</div>
+
+<div class="item-label">
+DESTINATION
+</div>
+
+<div class="item-value">
+
+Internet
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     BUTTON
+===================================================== -->
+
+<button
+    class="green"
+    onclick="updateNetwork()">
+
+🔄 UPDATE JARINGAN
+
+</button>
+
+
+<button
+    class="secondary"
+    onclick="startMonitoring()">
+
+▶️ MONITORING OTOMATIS
+
+</button>
+
+
+<div id="lastUpdate"
+     class="status">
+
+Update terakhir: -
+
+</div>
+
+
+<div class="footer">
+
+<strong>
+myROBOT NETWORK TOPOLOGY
+</strong>
+
+<br>
+
+Realtime Network Monitoring
+
+<br>
+
+Wi-Fi • Mobile Data • Internet
+
+<br>
+
+Data jaringan yang tersedia
+bergantung pada izin browser/WebView.
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+let previousNetwork = "";
+
+let monitoring = true;
+
+let speedTesting = false;
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+function el(id){
+
+    return document.getElementById(id);
+
+}
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function timeNow(){
+
+    return new Date()
+        .toLocaleTimeString(
+            "id-ID",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
+
+}
+
+
+/* =====================================================
+   LOG
+===================================================== */
+
+function addLog(message){
+
+    const log =
+        el("log");
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+    row.className =
+        "log-row";
+
+    row.innerHTML =
+
+        `<span class="log-time">
+        [${timeNow()}]
+        </span> ${message}`;
+
+    log.prepend(row);
+
+
+    while(
+        log.children.length > 50
+    ){
+
+        log.removeChild(
+            log.lastChild
+        );
+
+    }
+
+}
+
+
+function clearLog(){
+
+    el("log").innerHTML =
+        "";
+
+    addLog(
+        "Riwayat dihapus."
+    );
+
+}
+
+
+/* =====================================================
+   CONNECTION API
+===================================================== */
+
+function getConnection(){
+
+    return (
+        navigator.connection
+        ||
+        navigator.mozConnection
+        ||
+        navigator.webkitConnection
+        ||
+        null
+    );
+
+}
+
+
+/* =====================================================
+   NETWORK TYPE
+===================================================== */
+
+function getNetworkInfo(){
+
+    const connection =
+        getConnection();
+
+
+    let type =
+        "Tidak diketahui";
+
+    let effective =
+        "Tidak diketahui";
+
+    let downlink =
+        "Tidak diketahui";
+
+    let rtt =
+        "Tidak diketahui";
+
+
+    if(connection){
+
+        type =
+            connection.type
+            ||
+            "Tidak diketahui";
+
+
+        effective =
+            connection.effectiveType
+            ||
+            "Tidak diketahui";
+
+
+        if(
+            connection.downlink
+            !== undefined
+        ){
+
+            downlink =
+                connection.downlink
+                +
+                " Mbps";
+
+        }
+
+
+        if(
+            connection.rtt
+            !== undefined
+        ){
+
+            rtt =
+                connection.rtt
+                +
+                " ms";
+
+        }
+
+    }
+
+
+    return {
+
+        type,
+        effective,
+        downlink,
+        rtt,
+        connection
+
+    };
+
+}
+
+
+/* =====================================================
+   UPDATE NETWORK
+===================================================== */
+
+function updateNetwork(){
+
+    const info =
+        getNetworkInfo();
+
+
+    let online =
+        navigator.onLine;
+
+
+    el("online")
+        .textContent =
+        online
+        ? "ONLINE"
+        : "OFFLINE";
+
+
+    el("type")
+        .textContent =
+        info.type;
+
+
+    el("effective")
+        .textContent =
+        info.effective;
+
+
+    el("downlink")
+        .textContent =
+        info.downlink;
+
+
+    el("rtt")
+        .textContent =
+        info.rtt;
+
+
+    /* =================================================
+       TENTUKAN JARINGAN
+    ================================================= */
+
+    let networkName =
+        "Internet";
+
+
+    let icon =
+        "🌐";
+
+
+    if(
+        info.type
+        ===
+        "wifi"
+    ){
+
+        networkName =
+            "Wi-Fi";
+
+        icon =
+            "📶";
+
+    }
+
+    else if(
+        info.type
+        ===
+        "cellular"
+    ){
+
+        networkName =
+            "Mobile Data";
+
+        icon =
+            "📡";
+
+    }
+
+    else if(
+        info.effective
+        ===
+        "4g"
+    ){
+
+        networkName =
+            "4G";
+
+        icon =
+            "📡";
+
+    }
+
+    else if(
+        info.effective
+        ===
+        "5g"
+    ){
+
+        networkName =
+            "5G";
+
+        icon =
+            "📡";
+
+    }
+
+
+    /*
+       Beberapa Android hanya
+       memberikan effectiveType.
+    */
+
+    if(
+        info.type
+        ===
+        "Tidak diketahui"
+    ){
+
+        if(
+            info.effective
+            ===
+            "4g"
+        ){
+
+            networkName =
+                "4G";
+
+            icon =
+                "📡";
+
+        }
+
+    }
+
+
+    el("networkType")
+        .textContent =
+        networkName;
+
+
+    el("networkIcon")
+        .textContent =
+        icon;
+
+
+    el("mainNetwork")
+        .textContent =
+        networkName
+        +
+        " • "
+        +
+        info.effective;
+
+
+    el("routeAccess")
+        .textContent =
+        networkName;
+
+
+    el("connection1")
+        .textContent =
+        info.downlink;
+
+
+    el("connection2")
+        .textContent =
+        online
+        ? "ONLINE"
+        : "OFFLINE";
+
+
+    /* =================================================
+       STATUS
+    ================================================= */
+
+    if(online){
+
+        el("mainStatus")
+            .textContent =
+            "🟢 AKTIF";
+
+        el("mainStatus")
+            .className =
+            "status-big status-online";
+
+
+        el("networkStatus")
+            .innerHTML =
+            `<span class="active-dot"></span>
+             AKTIF`;
+
+
+        el("internetStatus")
+            .innerHTML =
+            `<span class="active-dot"></span>
+             ONLINE`;
+
+
+        el("warning")
+            .style.display =
+            "none";
+
+    }
+
+    else{
+
+        el("mainStatus")
+            .textContent =
+            "🔴 OFFLINE";
+
+        el("mainStatus")
+            .className =
+            "status-big status-offline";
+
+
+        el("networkStatus")
+            .innerHTML =
+            `<span class="active-dot offline-dot"></span>
+             OFFLINE`;
+
+
+        el("internetStatus")
+            .innerHTML =
+            `<span class="active-dot offline-dot"></span>
+             OFFLINE`;
+
+
+        el("warning")
+            .style.display =
+            "block";
+
+    }
+
+
+    /* =================================================
+       PERUBAHAN NETWORK
+    ================================================= */
+
+    const currentNetwork =
+        networkName
+        +
+        "|"
+        +
+        info.effective;
+
+
+    if(
+        previousNetwork
+        !==
+        ""
+        &&
+        previousNetwork
+        !==
+        currentNetwork
+    ){
+
+        addLog(
+            "🔄 Jaringan berubah: "
+            +
+            previousNetwork
+            +
+            " → "
+            +
+            currentNetwork
+        );
+
+    }
+
+
+    previousNetwork =
+        currentNetwork;
+
+
+    el("lastUpdate")
+        .textContent =
+        "Update terakhir: "
+        +
+        timeNow();
+
+
+    addLog(
+        "📡 "
+        +
+        networkName
+        +
+        " • "
+        +
+        (
+            online
+            ? "ONLINE"
+            : "OFFLINE"
+        )
+    );
+
+}
+
+
+/* =====================================================
+   PUBLIC IP
+===================================================== */
+
+async function getPublicIP(){
+
+    try{
+
+        const response =
+            await fetch(
+                "https://api.ipify.org?format=json",
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error();
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        el("publicIP")
+            .textContent =
+            data.ip;
+
+
+        addLog(
+            "🌍 IP publik: "
+            +
+            data.ip
+        );
+
+    }
+
+    catch(error){
+
+        el("publicIP")
+            .textContent =
+            "Tidak tersedia";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOCAL IP
+===================================================== */
+
+function getLocalIP(){
+
+    /*
+       WebRTC hanya dapat memberikan
+       informasi tertentu tergantung
+       browser dan kebijakan privasi.
+    */
+
+    if(
+        !window.RTCPeerConnection
+    ){
+
+        el("localIP")
+            .textContent =
+            "Tidak tersedia";
+
+        return;
+
+    }
+
+
+    try{
+
+        const pc =
+            new RTCPeerConnection({
+                iceServers:[]
+            });
+
+
+        pc.createDataChannel("");
+
+
+        pc.createOffer()
+            .then(
+                offer =>
+                pc.setLocalDescription(
+                    offer
+                )
+            );
+
+
+        pc.onicecandidate =
+            function(event){
+
+                if(
+                    !event.candidate
+                ){
+
+                    return;
+
+                }
+
+
+                const candidate =
+                    event.candidate
+                    .candidate;
+
+
+                const match =
+                    candidate.match(
+                        /([0-9]{1,3}(?:\.[0-9]{1,3}){3})/
+                    );
+
+
+                if(match){
+
+                    const ip =
+                        match[1];
+
+
+                    if(
+                        ip.startsWith("192.168.")
+                        ||
+                        ip.startsWith("10.")
+                        ||
+                        ip.startsWith("172.")
+                    ){
+
+                        el("localIP")
+                            .textContent =
+                            ip;
+
+                    }
+
+                }
+
+            };
+
+    }
+
+    catch(error){
+
+        el("localIP")
+            .textContent =
+            "Tidak tersedia";
+
+    }
+
+}
+
+
+/* =====================================================
+   PING
+===================================================== */
+
+async function testPing(){
+
+    const target =
+        "https://www.google.com/generate_204";
+
+
+    el("ping")
+        .textContent =
+        "TEST...";
+
+
+    el("pingStatus")
+        .textContent =
+        "Mengukur latency...";
+
+
+    const start =
+        performance.now();
+
+
+    try{
+
+        await fetch(
+            target
+            +
+            "?t="
+            +
+            Date.now(),
+            {
+                method:"GET",
+                cache:"no-store",
+                mode:"no-cors"
+            }
+        );
+
+
+        const result =
+            Math.round(
+                performance.now()
+                -
+                start
+            );
+
+
+        el("ping")
+            .textContent =
+            result
+            +
+            " ms";
+
+
+        if(
+            result <= 80
+        ){
+
+            el("ping")
+                .className =
+                "status-big ping-good";
+
+            el("pingStatus")
+                .textContent =
+                "🟢 Sangat baik";
+
+        }
+
+        else if(
+            result <= 180
+        ){
+
+            el("ping")
+                .className =
+                "status-big ping-medium";
+
+            el("pingStatus")
+                .textContent =
+                "🟡 Normal";
+
+        }
+
+        else{
+
+            el("ping")
+                .className =
+                "status-big ping-bad";
+
+            el("pingStatus")
+                .textContent =
+                "🔴 Tinggi";
+
+        }
+
+
+        addLog(
+            "📡 Ping: "
+            +
+            result
+            +
+            " ms"
+        );
+
+    }
+
+    catch(error){
+
+        el("ping")
+            .textContent =
+            "GAGAL";
+
+        el("pingStatus")
+            .textContent =
+            "Tidak dapat menghubungi server.";
+
+    }
+
+}
+
+
+/* =====================================================
+   SPEED TEST
+===================================================== */
+
+async function runSpeedTest(){
+
+    if(
+        speedTesting
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        !navigator.onLine
+    ){
+
+        el("speedStatus")
+            .textContent =
+            "❌ Tidak ada koneksi internet.";
+
+        return;
+
+    }
+
+
+    speedTesting =
+        true;
+
+
+    el("speedStatus")
+        .textContent =
+        "⏳ Menguji download...";
+
+
+    el("downloadSpeed")
+        .textContent =
+        "...";
+
+
+    try{
+
+        /*
+           File kecil untuk pengujian.
+           Hasil merupakan estimasi.
+        */
+
+        const testURL =
+            "https://speed.cloudflare.com/__down?bytes=5000000";
+
+
+        const start =
+            performance.now();
+
+
+        const response =
+            await fetch(
+                testURL
+                +
+                "&cache="
+                +
+                Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        const buffer =
+            await response.arrayBuffer();
+
+
+        const end =
+            performance.now();
+
+
+        const bytes =
+            buffer.byteLength;
+
+
+        const seconds =
+            (
+                end -
+                start
+            )
+            /
+            1000;
+
+
+        const megabits =
+            (
+                bytes
+                *
+                8
+            )
+            /
+            1000000;
+
+
+        const download =
+            megabits
+            /
+            seconds;
+
+
+        el("downloadSpeed")
+            .textContent =
+            download.toFixed(2);
+
+
+        el("speedStatus")
+            .textContent =
+            "⏳ Menguji upload...";
+
+
+        /*
+           Upload test menggunakan
+           data random kecil.
+        */
+
+        const uploadBytes =
+            500000;
+
+
+        const uploadData =
+            new Uint8Array(
+                uploadBytes
+            );
+
+
+        crypto.getRandomValues(
+            uploadData.subarray(
+                0,
+                65536
+            )
+        );
+
+
+        const uploadStart =
+            performance.now();
+
+
+        await fetch(
+            "https://httpbin.org/post",
+            {
+                method:"POST",
+
+                body:
+                    uploadData,
+
+                cache:"no-store"
+
+            }
+        );
+
+
+        const uploadEnd =
+            performance.now();
+
+
+        const uploadSeconds =
+            (
+                uploadEnd -
+                uploadStart
+            )
+            /
+            1000;
+
+
+        const uploadMbps =
+            (
+                uploadBytes
+                *
+                8
+            )
+            /
+            1000000
+            /
+            uploadSeconds;
+
+
+        el("uploadSpeed")
+            .textContent =
+            uploadMbps.toFixed(2);
+
+
+        el("speedStatus")
+            .textContent =
+            "✅ Speed test selesai.";
+
+
+        addLog(
+            "🚀 Speed: "
+            +
+            download.toFixed(2)
+            +
+            " Mbps ↓ / "
+            +
+            uploadMbps.toFixed(2)
+            +
+            " Mbps ↑"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        el("speedStatus")
+            .textContent =
+            "⚠️ Speed test gagal atau server tidak merespons.";
+
+    }
+
+
+    speedTesting =
+        false;
+
+}
+
+
+/* =====================================================
+   DEVICE INFO
+===================================================== */
+
+function loadDeviceInfo(){
+
+    const ua =
+        navigator.userAgent;
+
+
+    el("platform")
+        .textContent =
+        navigator.platform
+        ||
+        "Android";
+
+
+    let browser =
+        "Browser";
+
+
+    if(
+        ua.includes("Chrome")
+    ){
+
+        browser =
+            "Chrome";
+
+    }
+
+    else if(
+        ua.includes("Firefox")
+    ){
+
+        browser =
+            "Firefox";
+
+    }
+
+    else if(
+        ua.includes("Safari")
+    ){
+
+        browser =
+            "Safari";
+
+    }
+
+
+    el("browser")
+        .textContent =
+        browser;
+
+
+    el("screen")
+        .textContent =
+        screen.width
+        +
+        " × "
+        +
+        screen.height;
+
+
+    if(
+        navigator.getBattery
+    ){
+
+        navigator
+            .getBattery()
+            .then(
+                battery => {
+
+                    function batteryUpdate(){
+
+                        el("battery")
+                            .textContent =
+                            Math.round(
+                                battery.level
+                                *
+                                100
+                            )
+                            +
+                            "%";
+
+                    }
+
+                    batteryUpdate();
+
+
+                    battery.addEventListener(
+                        "levelchange",
+                        batteryUpdate
+                    );
+
+                }
+            );
+
+    }
+
+    else{
+
+        el("battery")
+            .textContent =
+            "Tidak tersedia";
+
+    }
+
+
+    el("deviceInfo")
+        .textContent =
+        navigator.userAgent
+            .includes("Android")
+        ? "Android"
+        : "Perangkat";
+
+}
+
+
+/* =====================================================
+   ONLINE / OFFLINE
+===================================================== */
+
+window.addEventListener(
+    "online",
+    function(){
+
+        addLog(
+            "🟢 Internet kembali ONLINE."
+        );
+
+        updateNetwork();
+
+    }
+);
+
+
+window.addEventListener(
+    "offline",
+    function(){
+
+        addLog(
+            "🔴 Internet TERPUTUS."
+        );
+
+        updateNetwork();
+
+    }
+);
+
+
+/* =====================================================
+   NETWORK CHANGE
+===================================================== */
+
+const connection =
+    getConnection();
+
+
+if(connection){
+
+    connection.addEventListener(
+        "change",
+        function(){
+
+            addLog(
+                "🔄 Perubahan jaringan terdeteksi."
+            );
+
+            updateNetwork();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   AUTO MONITORING
+===================================================== */
+
+function startMonitoring(){
+
+    monitoring =
+        !monitoring;
+
+
+    if(monitoring){
+
+        addLog(
+            "▶️ Monitoring otomatis AKTIF."
+        );
+
+    }
+
+    else{
+
+        addLog(
+            "⏸️ Monitoring otomatis DIHENTIKAN."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   AUTO UPDATE 5 DETIK
+===================================================== */
+
+setInterval(
+    function(){
+
+        if(
+            monitoring
+        ){
+
+            updateNetwork();
+
+        }
+
+    },
+    5000
+);
+
+
+/* =====================================================
+   AUTO PING 30 DETIK
+===================================================== */
+
+setInterval(
+    function(){
+
+        if(
+            monitoring
+            &&
+            navigator.onLine
+        ){
+
+            testPing();
+
+        }
+
+    },
+    30000
+);
+
+
+/* =====================================================
+   INITIALIZATION
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        updateNetwork();
+
+        loadDeviceInfo();
+
+        getPublicIP();
+
+        getLocalIP();
+
+        testPing();
+
+        addLog(
+            "🤖 myROBOT Network Topology aktif."
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CLOCK TITLE
+===================================================== */
+
+setInterval(
+    function(){
+
+        document.title =
+            "myROBOT • "
+            +
+            timeNow();
+
+    },
+    1000
+);
+
+</script>
+
+</body>
+
+</html>
