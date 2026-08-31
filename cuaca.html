@@ -14,7 +14,7 @@ user-scalable=no">
 <meta name="theme-color"
 content="#087cff">
 
-<title>myROBOT Weather Alert</title>
+<title>myROBOT-V12 Weather Alert</title>
 
 <style>
 
@@ -690,7 +690,8 @@ HEADER
 <div class="header">
 
 <h1>
-🌦️ myROBOT WEATHER ALERT
+🌦️ myROBOT-V12 
+   <p>ALARM CUACA</p>
 </h1>
 
 <p>
@@ -3311,6 +3312,345 @@ function airStatus(pm){
     return "🟣 BERBAHAYA";
 }
 
+   
+/* =====================================================
+   REVERSE GPS - VERSI DIPERBAIKI
+===================================================== */
+
+async function reverseLocation(){
+
+    if(
+        LAT === null ||
+        LON === null
+    ){
+        return;
+    }
+
+    try{
+
+        showStatus(
+            "📍 GPS ditemukan. Mencari nama desa..."
+        );
+
+        const url =
+            "https://nominatim.openstreetmap.org/reverse?"
+            +
+            new URLSearchParams({
+
+                lat: LAT,
+
+                lon: LON,
+
+                format: "json",
+
+                zoom: 18,
+
+                addressdetails: 1,
+
+                "accept-language": "id"
+
+            });
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    headers: {
+                        "Accept":
+                        "application/json"
+                    }
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Reverse geocoding gagal"
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "HASIL GPS:",
+            data
+        );
+
+
+        if(
+            !data ||
+            !data.address
+        ){
+
+            throw new Error(
+                "Alamat tidak ditemukan"
+            );
+        }
+
+
+        const a =
+            data.address;
+
+
+        /* =================================================
+           DESA
+        ================================================= */
+
+        const village =
+            a.village
+            ||
+            a.hamlet
+            ||
+            a.suburb
+            ||
+            a.neighbourhood
+            ||
+            a.quarter
+            ||
+            a.town
+            ||
+            a.municipality
+            ||
+            "Desa tidak ditemukan";
+
+
+        /* =================================================
+           KECAMATAN
+        ================================================= */
+
+        const district =
+            a.city_district
+            ||
+            a.district
+            ||
+            a.municipality
+            ||
+            "Kecamatan tidak ditemukan";
+
+
+        /* =================================================
+           KABUPATEN / KOTA
+        ================================================= */
+
+        const regency =
+            a.county
+            ||
+            a.city
+            ||
+            a.town
+            ||
+            "Kabupaten/Kota tidak ditemukan";
+
+
+        /* =================================================
+           PROVINSI
+        ================================================= */
+
+        const province =
+            a.state
+            ||
+            a.region
+            ||
+            "Provinsi tidak ditemukan";
+
+
+        /* =================================================
+           NEGARA
+        ================================================= */
+
+        const country =
+            a.country
+            ||
+            "Indonesia";
+
+
+        /* =================================================
+           KODE POS
+        ================================================= */
+
+        const postcode =
+            a.postcode
+            ||
+            "-";
+
+
+        /* =================================================
+           TAMPILKAN DESA
+        ================================================= */
+
+        document.getElementById(
+            "village"
+        ).textContent =
+            village;
+
+
+        /* =================================================
+           TAMPILKAN KECAMATAN
+        ================================================= */
+
+        document.getElementById(
+            "district"
+        ).textContent =
+            district;
+
+
+        /* =================================================
+           TAMPILKAN KABUPATEN
+        ================================================= */
+
+        document.getElementById(
+            "regency"
+        ).textContent =
+            regency;
+
+
+        /* =================================================
+           TAMPILKAN PROVINSI
+        ================================================= */
+
+        document.getElementById(
+            "province"
+        ).textContent =
+            province;
+
+
+        /* =================================================
+           NAMA UTAMA
+        ================================================= */
+
+        document.getElementById(
+            "locationName"
+        ).textContent =
+            village;
+
+
+        /* =================================================
+           TIMEZONE
+        ================================================= */
+
+        document.getElementById(
+            "timezone"
+        ).textContent =
+            Intl.DateTimeFormat()
+            .resolvedOptions()
+            .timeZone;
+
+
+        /* =================================================
+           SIMPAN INFORMASI LOKASI
+        ================================================= */
+
+        window.currentLocation = {
+
+            village: village,
+
+            district: district,
+
+            regency: regency,
+
+            province: province,
+
+            country: country,
+
+            postcode: postcode,
+
+            latitude: LAT,
+
+            longitude: LON
+        };
+
+
+        showStatus(
+            "✅ Lokasi ditemukan: "
+            + village
+            + ", "
+            + district
+        );
+
+
+        console.log(
+            "DESA:",
+            village
+        );
+
+        console.log(
+            "KECAMATAN:",
+            district
+        );
+
+        console.log(
+            "KABUPATEN:",
+            regency
+        );
+
+        console.log(
+            "PROVINSI:",
+            province
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "GPS LOCATION ERROR:",
+            error
+        );
+
+
+        /*
+           Jangan biarkan tampilan
+           tetap "Mencari lokasi..."
+        */
+
+        document.getElementById(
+            "locationName"
+        ).textContent =
+            "Lokasi GPS ditemukan";
+
+
+        document.getElementById(
+            "village"
+        ).textContent =
+            "Tidak tersedia";
+
+
+        document.getElementById(
+            "district"
+        ).textContent =
+            "Tidak tersedia";
+
+
+        document.getElementById(
+            "regency"
+        ).textContent =
+            "Tidak tersedia";
+
+
+        document.getElementById(
+            "province"
+        ).textContent =
+            "Tidak tersedia";
+
+
+        document.getElementById(
+            "timezone"
+        ).textContent =
+            Intl.DateTimeFormat()
+            .resolvedOptions()
+            .timeZone;
+
+
+        showStatus(
+            "📍 GPS aktif, tetapi nama wilayah belum tersedia."
+        );
+    }
+}
 
 /* =====================================================
 REVERSE GPS
