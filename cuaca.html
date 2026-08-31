@@ -41,6 +41,233 @@ body{
     min-height:100vh;
 }
 
+/* =====================================================
+   GEMPA BMKG
+===================================================== */
+
+.earthquake-card{
+    background:#16283d;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:10px;
+    border-left:4px solid #ff4d4d;
+}
+
+.earthquake-title{
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.earthquake-info{
+    font-size:13px;
+    line-height:1.8;
+    color:#c4d4e4;
+}
+
+.eq-magnitude{
+    font-size:30px;
+    font-weight:bold;
+    color:#ff7070;
+}
+
+.eq-safe{
+    color:#4ade80;
+    font-weight:bold;
+}
+
+.eq-warning{
+    color:#ffcc66;
+    font-weight:bold;
+}
+
+.bmkg-update{
+    font-size:10px;
+    color:#8197ad;
+    margin-top:8px;
+}
+
+
+/* =====================================================
+   KIBLAT
+===================================================== */
+
+.qibla-box{
+    text-align:center;
+    background:#16283d;
+    border-radius:18px;
+    padding:20px;
+}
+
+.qibla-compass{
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    margin:10px auto 18px;
+    position:relative;
+    background:
+        radial-gradient(
+            circle,
+            #203a55 0%,
+            #14273b 60%,
+            #0c1b2b 100%
+        );
+    border:5px solid #284862;
+    box-shadow:
+        0 0 25px rgba(0,0,0,.4);
+}
+
+.qibla-arrow{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:8px;
+    height:78px;
+    background:#20c997;
+    transform-origin:50% 100%;
+    transform:
+        translate(-50%,-100%)
+        rotate(0deg);
+    border-radius:10px;
+    transition:transform .25s ease;
+}
+
+.qibla-arrow:before{
+    content:"";
+    position:absolute;
+    top:-13px;
+    left:-8px;
+    border-left:12px solid transparent;
+    border-right:12px solid transparent;
+    border-bottom:22px solid #20c997;
+}
+
+.qibla-center{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#fff;
+    border-radius:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:5;
+}
+
+.qibla-degree{
+    font-size:32px;
+    font-weight:bold;
+    color:#55d6ff;
+}
+
+.qibla-direction{
+    margin-top:5px;
+    font-size:14px;
+    color:#a7bdd1;
+}
+
+
+/* =====================================================
+   KOMPAS
+===================================================== */
+
+.compass-box{
+    text-align:center;
+    background:#16283d;
+    border-radius:18px;
+    padding:20px;
+}
+
+.compass-circle{
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    margin:10px auto 18px;
+    position:relative;
+    border:5px solid #284862;
+    background:#0c1b2b;
+    overflow:hidden;
+}
+
+.compass-needle{
+    position:absolute;
+    width:6px;
+    height:150px;
+    left:50%;
+    top:50%;
+    transform:
+        translate(-50%,-50%)
+        rotate(0deg);
+    transform-origin:center;
+    transition:transform .15s linear;
+}
+
+.compass-needle:before{
+    content:"";
+    position:absolute;
+    width:6px;
+    height:75px;
+    top:0;
+    background:#ff4d5d;
+    border-radius:5px;
+}
+
+.compass-needle:after{
+    content:"";
+    position:absolute;
+    width:6px;
+    height:75px;
+    bottom:0;
+    background:#d7e2ec;
+    border-radius:5px;
+}
+
+.compass-n{
+    position:absolute;
+    top:8px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:24px;
+    font-weight:bold;
+    color:#ff4d5d;
+}
+
+.compass-e{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    font-weight:bold;
+}
+
+.compass-s{
+    position:absolute;
+    bottom:8px;
+    left:50%;
+    transform:translateX(-50%);
+    font-weight:bold;
+}
+
+.compass-w{
+    position:absolute;
+    left:10px;
+    top:50%;
+    transform:translateY(-50%);
+    font-weight:bold;
+}
+
+.compass-degree{
+    font-size:30px;
+    font-weight:bold;
+    color:#55d6ff;
+}
+
+.sensor-status{
+    font-size:12px;
+    color:#8fa5bb;
+    margin-top:8px;
+}
+   
 .container{
     width:100%;
     max-width:720px;
@@ -1128,6 +1355,163 @@ AMAN
 
 </div>
 
+
+
+<!-- =====================================================
+     GEMPA BMKG INDONESIA
+===================================================== -->
+
+<div class="card">
+
+    <div class="title">
+        🌋 GEMPA BUMI TERKINI — BMKG
+    </div>
+
+    <div id="earthquakeList">
+
+        <div class="earthquake-card">
+
+            <div class="earthquake-title">
+                ⏳ Mengambil data gempa BMKG...
+            </div>
+
+            <div class="earthquake-info">
+                Mohon tunggu...
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="bmkg-update"
+         id="bmkgUpdate">
+
+        Sumber: BMKG
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ARAH KIBLAT
+===================================================== -->
+
+<div class="card">
+
+    <div class="title">
+        🕋 ARAH KIBLAT
+    </div>
+
+    <div class="qibla-box">
+
+        <div class="qibla-compass">
+
+            <div
+                id="qiblaArrow"
+                class="qibla-arrow">
+            </div>
+
+            <div class="qibla-center">
+            </div>
+
+        </div>
+
+        <div
+            id="qiblaDegree"
+            class="qibla-degree">
+
+            --°
+
+        </div>
+
+        <div
+            id="qiblaDirection"
+            class="qibla-direction">
+
+            Menunggu GPS...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     KOMPAS
+===================================================== -->
+
+<div class="card">
+
+    <div class="title">
+        🧭 KOMPAS DIGITAL
+    </div>
+
+    <div class="compass-box">
+
+        <div class="compass-circle">
+
+            <div class="compass-n">
+                N
+            </div>
+
+            <div class="compass-e">
+                E
+            </div>
+
+            <div class="compass-s">
+                S
+            </div>
+
+            <div class="compass-w">
+                W
+            </div>
+
+            <div
+                id="compassNeedle"
+                class="compass-needle">
+            </div>
+
+        </div>
+
+        <div
+            id="compassDegree"
+            class="compass-degree">
+
+            --°
+
+        </div>
+
+        <div
+            id="compassDirection"
+            class="qibla-direction">
+
+            Utara
+
+        </div>
+
+        <div
+            id="sensorStatus"
+            class="sensor-status">
+
+            Sensor kompas belum diaktifkan.
+
+        </div>
+
+        <button
+            class="secondary"
+            onclick="startCompass()">
+
+            🧭 AKTIFKAN KOMPAS
+
+        </button>
+
+    </div>
+
+</div>
+
+   
 <!-- =====================================================
 HOURLY
 ===================================================== -->
@@ -1213,6 +1597,12 @@ onclick="clearHistory()">
 </button>
 
 </div>
+
+
+
+
+
+   
 
 <!-- =====================================================
 MAP
@@ -1519,6 +1909,8 @@ function gpsSuccess(position){
     loadAirQuality();
 
     reverseLocation();
+
+   updateQibla();
 }
 
 
@@ -4169,6 +4561,717 @@ setInterval(
     10*60*1000
 );
 
+
+/* =====================================================
+   BMKG GEMPA
+===================================================== */
+
+const BMKG_EARTHQUAKE =
+    "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json";
+
+
+let lastEarthquakeId = null;
+
+
+/* =====================================================
+   LOAD GEMPA BMKG
+===================================================== */
+
+async function loadBMKGEarthquake(){
+
+    try{
+
+        const response =
+            await fetch(
+                BMKG_EARTHQUAKE +
+                "?t=" +
+                Date.now()
+            );
+
+        if(!response.ok){
+
+            throw new Error(
+                "BMKG gagal"
+            );
+
+        }
+
+        const data =
+            await response.json();
+
+        displayBMKGEarthquake(
+            data
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "BMKG earthquake:",
+            error
+        );
+
+        document.getElementById(
+            "earthquakeList"
+        ).innerHTML = `
+
+            <div class="earthquake-card">
+
+                <div class="earthquake-title">
+                    ⚠️ DATA BMKG
+                </div>
+
+                <div class="earthquake-info">
+                    Data gempa sementara tidak dapat
+                    diambil. Silakan coba lagi.
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   DISPLAY GEMPA
+===================================================== */
+
+function displayBMKGEarthquake(data){
+
+    const info =
+        data.Infogempa
+        &&
+        data.Infogempa.gempa;
+
+
+    if(!info){
+
+        return;
+
+    }
+
+
+    const magnitude =
+        Number(info.Magnitude);
+
+
+    const depth =
+        info.Kedalaman
+        || "-";
+
+
+    const region =
+        info.Wilayah
+        || "Indonesia";
+
+
+    const time =
+        info.Tanggal
+        + " "
+        + info.Jam;
+
+
+    const coordinates =
+        info.Coordinates
+        || "-";
+
+
+    const tsunami =
+        info.Potensi
+        || "Tidak diketahui";
+
+
+    const felt =
+        info.Dirasakan
+        || "Tidak ada informasi";
+
+
+    let tsunamiClass =
+        "eq-safe";
+
+
+    if(
+        tsunami
+        &&
+        tsunami
+        .toLowerCase()
+        .includes("berpotensi")
+    ){
+
+        tsunamiClass =
+            "eq-warning";
+
+    }
+
+
+    document.getElementById(
+        "earthquakeList"
+    ).innerHTML = `
+
+        <div class="earthquake-card">
+
+            <div class="earthquake-title">
+
+                🌋 GEMPA TERBARU
+
+            </div>
+
+            <div class="eq-magnitude">
+
+                M${magnitude.toFixed(1)}
+
+            </div>
+
+            <div class="earthquake-info">
+
+                🕐 ${time}
+
+                <br>
+
+                📍 ${region}
+
+                <br>
+
+                📐 Kedalaman:
+                ${depth}
+
+                <br>
+
+                🧭 Koordinat:
+                ${coordinates}
+
+                <br>
+
+                ⚠️ Potensi:
+                <span class="${tsunamiClass}">
+                    ${tsunami}
+                </span>
+
+                <br>
+
+                👥 Dirasakan:
+                ${felt}
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "bmkgUpdate"
+    ).textContent =
+        "Data resmi BMKG • diperbarui otomatis";
+
+
+    /*
+       DETEKSI GEMPA BARU
+    */
+
+    const earthquakeId =
+        time
+        + "_"
+        + magnitude
+        + "_"
+        + coordinates;
+
+
+    if(
+        lastEarthquakeId !== null
+        &&
+        lastEarthquakeId !== earthquakeId
+        &&
+        magnitude >= 4.5
+    ){
+
+        triggerAlert(
+
+            "NEW_EARTHQUAKE",
+
+            "🌋",
+
+            "GEMPA BARU TERDETEKSI",
+
+            "BMKG melaporkan gempa "
+            + "M"
+            + magnitude.toFixed(1)
+            + " di "
+            + region
+            + "."
+        );
+
+    }
+
+
+    lastEarthquakeId =
+        earthquakeId;
+
+}
+
+
+/* =====================================================
+   ARAH KIBLAT
+===================================================== */
+
+/*
+   Koordinat Ka'bah
+*/
+
+const KAABA_LAT =
+    21.422487;
+
+const KAABA_LON =
+    39.826206;
+
+
+/* =====================================================
+   HITUNG BEARING KIBLAT
+===================================================== */
+
+function calculateQibla(
+    lat,
+    lon
+){
+
+    const φ1 =
+        lat *
+        Math.PI /
+        180;
+
+    const φ2 =
+        KAABA_LAT *
+        Math.PI /
+        180;
+
+    const Δλ =
+        (
+            KAABA_LON -
+            lon
+        )
+        *
+        Math.PI /
+        180;
+
+
+    const y =
+        Math.sin(
+            Δλ
+        );
+
+
+    const x =
+        Math.cos(
+            φ1
+        )
+        *
+        Math.tan(
+            φ2
+        )
+        -
+        Math.sin(
+            φ1
+        )
+        *
+        Math.cos(
+            Δλ
+        );
+
+
+    let bearing =
+        Math.atan2(
+            y,
+            x
+        )
+        *
+        180 /
+        Math.PI;
+
+
+    bearing =
+        (
+            bearing +
+            360
+        )
+        % 360;
+
+
+    return bearing;
+
+}
+
+
+/* =====================================================
+   UPDATE KIBLAT
+===================================================== */
+
+function updateQibla(){
+
+    if(
+        LAT === null ||
+        LON === null
+    ){
+
+        return;
+
+    }
+
+
+    const qibla =
+        calculateQibla(
+            LAT,
+            LON
+        );
+
+
+    document.getElementById(
+        "qiblaDegree"
+    ).textContent =
+        qibla.toFixed(1)
+        + "°";
+
+
+    document.getElementById(
+        "qiblaDirection"
+    ).textContent =
+        directionText(
+            qibla
+        )
+        +
+        " menuju Ka'bah";
+
+
+    /*
+       Arah relatif terhadap
+       posisi HP akan diperbarui
+       oleh kompas.
+    */
+
+    updateQiblaArrow(
+        qibla
+    );
+
+}
+
+
+/* =====================================================
+   PANAH KIBLAT
+===================================================== */
+
+let currentHeading =
+    0;
+
+let currentQibla =
+    0;
+
+
+function updateQiblaArrow(
+    qibla
+){
+
+    currentQibla =
+        qibla;
+
+
+    const relative =
+        qibla -
+        currentHeading;
+
+
+    document.getElementById(
+        "qiblaArrow"
+    ).style.transform =
+        "translate(-50%,-100%) rotate("
+        + relative
+        + "deg)";
+
+}
+
+
+/* =====================================================
+   ARAH KOMPAS
+===================================================== */
+
+function directionText(
+    degree
+){
+
+    const directions = [
+
+        "Utara",
+
+        "Timur Laut",
+
+        "Timur",
+
+        "Tenggara",
+
+        "Selatan",
+
+        "Barat Daya",
+
+        "Barat",
+
+        "Barat Laut"
+
+    ];
+
+
+    const index =
+        Math.round(
+            degree / 45
+        ) % 8;
+
+
+    return directions[
+        index
+    ];
+
+}
+
+
+/* =====================================================
+   KOMPAS
+===================================================== */
+
+function updateCompass(
+    heading
+){
+
+    currentHeading =
+        heading;
+
+
+    document.getElementById(
+        "compassDegree"
+    ).textContent =
+        heading.toFixed(1)
+        + "°";
+
+
+    document.getElementById(
+        "compassDirection"
+    ).textContent =
+        directionText(
+            heading
+        );
+
+
+    document.getElementById(
+        "compassNeedle"
+    ).style.transform =
+        "translate(-50%,-50%) rotate("
+        + heading
+        + "deg)";
+
+
+    /*
+       Update panah kiblat
+    */
+
+    updateQiblaArrow(
+        currentQibla
+    );
+
+}
+
+
+/* =====================================================
+   START COMPASS
+===================================================== */
+
+async function startCompass(){
+
+    try{
+
+        /*
+           iPhone/iPad membutuhkan
+           permission khusus.
+        */
+
+        if(
+            typeof DeviceOrientationEvent
+            !== "undefined"
+            &&
+            typeof DeviceOrientationEvent
+            .requestPermission
+            === "function"
+        ){
+
+            const permission =
+                await DeviceOrientationEvent
+                .requestPermission();
+
+
+            if(
+                permission !==
+                "granted"
+            ){
+
+                document.getElementById(
+                    "sensorStatus"
+                ).textContent =
+                    "❌ Izin sensor kompas ditolak.";
+
+                return;
+
+            }
+
+        }
+
+
+        window.addEventListener(
+            "deviceorientationabsolute",
+            handleCompass,
+            true
+        );
+
+
+        window.addEventListener(
+            "deviceorientation",
+            handleCompass,
+            true
+        );
+
+
+        document.getElementById(
+            "sensorStatus"
+        ).textContent =
+            "🟢 Sensor kompas aktif.";
+
+    }
+
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        document.getElementById(
+            "sensorStatus"
+        ).textContent =
+            "❌ Sensor kompas tidak tersedia.";
+
+    }
+
+}
+
+
+/* =====================================================
+   SENSOR COMPASS
+===================================================== */
+
+function handleCompass(
+    event
+){
+
+    let heading =
+        null;
+
+
+    /*
+       Android Chrome
+    */
+
+    if(
+        event.absolute === true
+        &&
+        event.alpha !== null
+    ){
+
+        heading =
+            360 -
+            event.alpha;
+
+    }
+
+
+    /*
+       iOS Safari
+    */
+
+    if(
+        event.webkitCompassHeading
+        !== undefined
+        &&
+        event.webkitCompassHeading
+        !== null
+    ){
+
+        heading =
+            event.webkitCompassHeading;
+
+    }
+
+
+    if(
+        heading === null
+    ){
+
+        return;
+
+    }
+
+
+    heading =
+        (
+            heading +
+            360
+        )
+        % 360;
+
+
+    updateCompass(
+        heading
+    );
+
+}
+
+
+/* =====================================================
+   GPS SUCCESS
+===================================================== */
+
+/*
+   Tambahkan baris ini
+   di fungsi gpsSuccess()
+*/
+
+function updateGPSExtra(){
+
+    updateQibla();
+
+}
+
+
+/* =====================================================
+   AUTO BMKG
+===================================================== */
+
+loadBMKGEarthquake();
+
+
+/*
+   Cek gempa setiap 5 menit
+*/
+
+setInterval(
+
+    function(){
+
+        loadBMKGEarthquake();
+
+    },
+
+    5 * 60 * 1000
+
+);
+   
 
 /* =====================================================
 CLOCK / TITLE
