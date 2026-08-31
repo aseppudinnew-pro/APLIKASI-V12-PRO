@@ -41,18 +41,12 @@ body{
     min-height:100vh;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
 .container{
     width:100%;
     max-width:720px;
     margin:auto;
     padding:12px;
 }
-
 
 /* =====================================================
    HEADER
@@ -85,7 +79,6 @@ body{
     opacity:.9;
 }
 
-
 /* =====================================================
    CARD
 ===================================================== */
@@ -114,7 +107,6 @@ body{
     margin-bottom:14px;
 }
 
-
 /* =====================================================
    LOCATION
 ===================================================== */
@@ -135,7 +127,6 @@ body{
     color:#51c8ff;
     font-family:monospace;
 }
-
 
 /* =====================================================
    CURRENT WEATHER
@@ -168,7 +159,6 @@ body{
     margin-top:8px;
 }
 
-
 /* =====================================================
    GRID
 ===================================================== */
@@ -177,6 +167,7 @@ body{
     display:grid;
     grid-template-columns:
     repeat(2,1fr);
+
     gap:9px;
 }
 
@@ -201,7 +192,6 @@ body{
     font-size:18px;
     font-weight:bold;
 }
-
 
 /* =====================================================
    AIR QUALITY
@@ -233,7 +223,6 @@ body{
     margin-top:7px;
 }
 
-
 /* =====================================================
    FORECAST
 ===================================================== */
@@ -247,9 +236,13 @@ body{
 
 .forecast-card{
     min-width:135px;
+
     background:#16283d;
+
     border-radius:16px;
+
     padding:13px;
+
     text-align:center;
 }
 
@@ -279,7 +272,6 @@ body{
     margin-top:5px;
 }
 
-
 /* =====================================================
    ALERT STATUS
 ===================================================== */
@@ -300,6 +292,8 @@ body{
     width:14px;
     height:14px;
 
+    flex-shrink:0;
+
     border-radius:50%;
 
     background:#22c55e;
@@ -312,7 +306,6 @@ body{
 .alert-text{
     font-size:13px;
 }
-
 
 /* =====================================================
    BUTTON
@@ -338,6 +331,7 @@ button{
 
     margin-bottom:10px;
 
+    cursor:pointer;
 }
 
 button:active{
@@ -357,25 +351,25 @@ button:active{
     border:1px solid #28435f;
 }
 
-
 /* =====================================================
    STATUS
 ===================================================== */
 
 .status{
     text-align:center;
+
     font-size:12px;
+
     color:#8da3ba;
+
     padding:5px;
 }
-
 
 /* =====================================================
    ERROR
 ===================================================== */
 
 .error{
-
     display:none;
 
     background:#411c27;
@@ -397,13 +391,11 @@ button:active{
     line-height:1.5;
 }
 
-
 /* =====================================================
    MAP
 ===================================================== */
 
 .map-box{
-
     background:#16283d;
 
     border-radius:15px;
@@ -432,125 +424,8 @@ button:active{
     font-weight:bold;
 }
 
-
 /* =====================================================
-   POPUP BACKGROUND
-===================================================== */
-
-.alert-overlay{
-
-    display:none;
-
-    position:fixed;
-
-    z-index:9999;
-
-    left:0;
-    top:0;
-    right:0;
-    bottom:0;
-
-    background:
-    rgba(0,0,0,.75);
-
-    backdrop-filter:
-    blur(5px);
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-}
-
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-.alert-popup{
-
-    width:100%;
-    max-width:430px;
-
-    background:
-    linear-gradient(
-        160deg,
-        #29131a,
-        #441923
-    );
-
-    border:
-    2px solid
-    #ff465c;
-
-    border-radius:25px;
-
-    padding:24px;
-
-    text-align:center;
-
-    box-shadow:
-    0 20px 60px
-    rgba(0,0,0,.7);
-
-    animation:
-    popupIn .25s ease;
-}
-
-@keyframes popupIn{
-
-    from{
-        transform:
-        scale(.75);
-        opacity:0;
-    }
-
-    to{
-        transform:
-        scale(1);
-        opacity:1;
-    }
-
-}
-
-.popup-icon{
-    font-size:65px;
-    margin-bottom:10px;
-}
-
-.popup-title{
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    color:#ff6878;
-
-    margin-bottom:10px;
-}
-
-.popup-message{
-
-    color:#ffe4e7;
-
-    font-size:15px;
-
-    line-height:1.7;
-
-    margin-bottom:18px;
-}
-
-.popup-close{
-
-    background:#e02e43;
-
-    margin-bottom:0;
-}
-
-
-/* =====================================================
-   WARNING BANNER
+   WARNING
 ===================================================== */
 
 .warning-banner{
@@ -583,7 +458,6 @@ button:active{
     50%{
         opacity:.65;
     }
-
 }
 
 .warning-title{
@@ -596,6 +470,178 @@ button:active{
     margin-top:5px;
 }
 
+/* =====================================================
+   POPUP
+===================================================== */
+
+.alert-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    z-index:9999;
+
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+
+    background:
+    rgba(0,0,0,.75);
+
+    backdrop-filter:
+    blur(5px);
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+}
+
+.alert-popup{
+
+    width:100%;
+
+    max-width:430px;
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:
+    linear-gradient(
+        160deg,
+        #29131a,
+        #441923
+    );
+
+    border:
+    2px solid
+    #ff465c;
+
+    border-radius:25px;
+
+    padding:24px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.7);
+
+    animation:
+    popupIn .25s ease;
+}
+
+@keyframes popupIn{
+
+    from{
+        transform:scale(.75);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.popup-icon{
+    font-size:65px;
+    margin-bottom:10px;
+}
+
+.popup-title{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    color:#ff6878;
+
+    margin-bottom:10px;
+}
+
+.popup-message{
+
+    color:#ffe4e7;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin-bottom:18px;
+}
+
+.popup-close{
+    background:#e02e43;
+    margin-bottom:0;
+}
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+.history{
+    max-height:350px;
+
+    overflow-y:auto;
+}
+
+.history-item{
+
+    background:#16283d;
+
+    border-left:
+    4px solid
+    #087cff;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    margin-bottom:8px;
+}
+
+.history-time{
+
+    color:#7fbfff;
+
+    font-size:11px;
+
+    margin-bottom:5px;
+}
+
+.history-title{
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:4px;
+}
+
+.history-message{
+
+    color:#aebfd0;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+.history-empty{
+
+    text-align:center;
+
+    color:#71879d;
+
+    padding:20px;
+
+    font-size:13px;
+}
 
 /* =====================================================
    FOOTER
@@ -614,7 +660,6 @@ button:active{
     padding:15px;
 }
 
-
 /* =====================================================
    RESPONSIVE
 ===================================================== */
@@ -628,23 +673,19 @@ button:active{
     .item{
         padding:10px;
     }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <div class="container">
 
-
-<!-- =================================================
-     HEADER
-================================================= -->
+<!-- =====================================================
+HEADER
+===================================================== -->
 
 <div class="header">
 
@@ -653,45 +694,40 @@ button:active{
 </h1>
 
 <p>
-GPS • Cuaca • Kualitas Udara • Peringatan Ekstrem
+GPS • Cuaca • Kualitas Udara • Deteksi Perubahan • Alarm
 </p>
 
 </div>
 
-
-<!-- =================================================
-     WARNING BANNER
-================================================= -->
+<!-- =====================================================
+WARNING
+===================================================== -->
 
 <div id="warningBanner"
-     class="warning-banner">
+class="warning-banner">
 
 <div class="warning-title">
 🚨 PERINGATAN AKTIF
 </div>
 
 <div id="warningMessage"
-     class="warning-message">
-
+class="warning-message">
 -
-
 </div>
 
 </div>
 
-
-<!-- =================================================
-     ERROR
-================================================= -->
+<!-- =====================================================
+ERROR
+===================================================== -->
 
 <div id="errorBox"
-     class="error">
+class="error">
 </div>
 
-
-<!-- =================================================
-     SOUND CONTROL
-================================================= -->
+<!-- =====================================================
+SOUND
+===================================================== -->
 
 <div class="card">
 
@@ -699,15 +735,16 @@ GPS • Cuaca • Kualitas Udara • Peringatan Ekstrem
 🔊 SISTEM PERINGATAN SUARA
 </div>
 
-<button id="soundButton"
-        onclick="enableSound()">
+<button
+id="soundButton"
+onclick="enableSound()">
 
 🔊 AKTIFKAN SUARA ALARM
 
 </button>
 
 <div id="soundStatus"
-     class="status">
+class="status">
 
 Suara belum diaktifkan.
 
@@ -715,10 +752,9 @@ Suara belum diaktifkan.
 
 </div>
 
-
-<!-- =================================================
-     LOCATION
-================================================= -->
+<!-- =====================================================
+LOCATION
+===================================================== -->
 
 <div class="card">
 
@@ -727,13 +763,41 @@ Suara belum diaktifkan.
 </div>
 
 <div id="locationName"
-     class="location-name">
+class="location-name">
 
 Mencari lokasi...
 
 </div>
 
 <div class="location-sub">
+
+📍 Desa/Kelurahan:
+<span id="village">
+---
+</span>
+
+<br>
+
+🏘️ Kecamatan:
+<span id="district">
+---
+</span>
+
+<br>
+
+🏛️ Kabupaten/Kota:
+<span id="regency">
+---
+</span>
+
+<br>
+
+🌏 Provinsi:
+<span id="province">
+---
+</span>
+
+<br>
 
 Latitude:
 <span id="lat"
@@ -767,10 +831,9 @@ Zona waktu:
 
 </div>
 
-
-<!-- =================================================
-     CURRENT WEATHER
-================================================= -->
+<!-- =====================================================
+CURRENT WEATHER
+===================================================== -->
 
 <div class="card">
 
@@ -782,40 +845,31 @@ Zona waktu:
 
 <div id="weatherIcon"
 class="weather-icon">
-
 ⏳
-
 </div>
 
 <div id="temperature"
 class="temp">
-
 --°C
-
 </div>
 
 <div id="weatherDesc"
 class="weather-desc">
-
 Menunggu data...
-
 </div>
 
 <div id="weatherUpdate"
 class="update-time">
-
 ---
-
 </div>
 
 </div>
 
 </div>
 
-
-<!-- =================================================
-     DETAIL CUACA
-================================================= -->
+<!-- =====================================================
+DETAIL
+===================================================== -->
 
 <div class="card">
 
@@ -824,7 +878,6 @@ class="update-time">
 </div>
 
 <div class="grid">
-
 
 <div class="item">
 
@@ -843,7 +896,6 @@ class="item-value">
 
 </div>
 
-
 <div class="item">
 
 <div class="item-icon">
@@ -860,7 +912,6 @@ class="item-value">
 </div>
 
 </div>
-
 
 <div class="item">
 
@@ -879,7 +930,6 @@ class="item-value">
 
 </div>
 
-
 <div class="item">
 
 <div class="item-icon">
@@ -896,7 +946,6 @@ class="item-value">
 </div>
 
 </div>
-
 
 <div class="item">
 
@@ -915,7 +964,6 @@ class="item-value">
 
 </div>
 
-
 <div class="item">
 
 <div class="item-icon">
@@ -932,7 +980,6 @@ class="item-value">
 </div>
 
 </div>
-
 
 <div class="item">
 
@@ -951,7 +998,6 @@ class="item-value">
 
 </div>
 
-
 <div class="item">
 
 <div class="item-icon">
@@ -969,15 +1015,13 @@ class="item-value">
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- =================================================
-     AIR QUALITY
-================================================= -->
+<!-- =====================================================
+AIR
+===================================================== -->
 
 <div class="card">
 
@@ -1009,9 +1053,7 @@ Menunggu...
 
 <br>
 
-
 <div class="grid">
-
 
 <div class="item">
 
@@ -1030,7 +1072,6 @@ class="item-value">
 
 </div>
 
-
 <div class="item">
 
 <div class="item-icon">
@@ -1047,7 +1088,6 @@ class="item-value">
 </div>
 
 </div>
-
 
 <div class="item">
 
@@ -1066,7 +1106,6 @@ class="item-value">
 
 </div>
 
-
 <div class="item">
 
 <div class="item-icon">
@@ -1084,15 +1123,13 @@ AMAN
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- =================================================
-     HOURLY
-================================================= -->
+<!-- =====================================================
+HOURLY
+===================================================== -->
 
 <div class="card">
 
@@ -1102,15 +1139,13 @@ AMAN
 
 <div id="hourly"
 class="forecast">
-
 </div>
 
 </div>
 
-
-<!-- =================================================
-     FORECAST
-================================================= -->
+<!-- =====================================================
+FORECAST
+===================================================== -->
 
 <div class="card">
 
@@ -1120,15 +1155,13 @@ class="forecast">
 
 <div id="forecast"
 class="forecast">
-
 </div>
 
 </div>
 
-
-<!-- =================================================
-     ALERT STATUS
-================================================= -->
+<!-- =====================================================
+MONITORING
+===================================================== -->
 
 <div class="card">
 
@@ -1144,19 +1177,45 @@ class="alert-dot">
 
 <div id="alertText"
 class="alert-text">
-
 Tidak ada peringatan aktif.
-
 </div>
 
 </div>
 
 </div>
 
+<!-- =====================================================
+RIWAYAT
+===================================================== -->
 
-<!-- =================================================
-     MAP
-================================================= -->
+<div class="card">
+
+<div class="title">
+📜 RIWAYAT PERUBAHAN CUACA
+</div>
+
+<div id="history"
+class="history">
+
+<div class="history-empty">
+Belum ada perubahan yang terdeteksi.
+</div>
+
+</div>
+
+<button
+class="secondary"
+onclick="clearHistory()">
+
+🗑️ HAPUS RIWAYAT
+
+</button>
+
+</div>
+
+<!-- =====================================================
+MAP
+===================================================== -->
 
 <div class="card">
 
@@ -1168,7 +1227,8 @@ Tidak ada peringatan aktif.
 
 Koordinat perangkat
 
-<a id="mapsButton"
+<a
+id="mapsButton"
 class="map-link"
 href="#"
 target="_blank">
@@ -1181,10 +1241,9 @@ target="_blank">
 
 </div>
 
-
-<!-- =================================================
-     BUTTON
-================================================= -->
+<!-- =====================================================
+BUTTON
+===================================================== -->
 
 <button onclick="startGPS()">
 
@@ -1192,14 +1251,13 @@ target="_blank">
 
 </button>
 
-
-<button class="secondary"
+<button
+class="secondary"
 onclick="testAlarm()">
 
 🔔 TEST ALARM
 
 </button>
-
 
 <div id="status"
 class="status">
@@ -1207,7 +1265,6 @@ class="status">
 Menunggu GPS...
 
 </div>
-
 
 <div class="footer">
 
@@ -1217,22 +1274,23 @@ SUMBER DATA
 
 <br>
 
-BMKG • Badan Meteorologi,
-Klimatologi, dan Geofisika
+Open-Meteo • OpenStreetMap
 
 <br>
 
-Open-Meteo • OpenStreetMap
+Sistem ini bukan pengganti peringatan resmi BMKG.
+
+<br>
+
+myROBOT Weather Alert
 
 </div>
 
-
 </div>
 
-
-<!-- =================================================
-     ALERT POPUP
-================================================= -->
+<!-- =====================================================
+POPUP
+===================================================== -->
 
 <div id="alertOverlay"
 class="alert-overlay">
@@ -1241,26 +1299,21 @@ class="alert-overlay">
 
 <div id="popupIcon"
 class="popup-icon">
-
 🚨
-
 </div>
 
 <div id="popupTitle"
 class="popup-title">
-
 PERINGATAN
-
 </div>
 
 <div id="popupMessage"
 class="popup-message">
-
 -
-
 </div>
 
-<button class="popup-close"
+<button
+class="popup-close"
 onclick="closeAlert()">
 
 TUTUP PERINGATAN
@@ -1271,11 +1324,10 @@ TUTUP PERINGATAN
 
 </div>
 
-
 <script>
 
 /* =====================================================
-   CONFIGURATION
+API
 ===================================================== */
 
 const WEATHER_API =
@@ -1284,51 +1336,89 @@ const WEATHER_API =
 const AIR_API =
 "https://air-quality-api.open-meteo.com/v1/air-quality";
 
+const NOMINATIM_API =
+"https://nominatim.openstreetmap.org/reverse";
+
+
+/* =====================================================
+GPS
+===================================================== */
 
 let LAT = null;
 
 let LON = null;
 
+
+/* =====================================================
+SOUND
+===================================================== */
+
 let soundEnabled = false;
 
-let lastAlerts = {};
+
+/* =====================================================
+DATA SEBELUMNYA
+===================================================== */
+
+let previousWeather = null;
+
+let previousAir = null;
+
+
+/* =====================================================
+ALERT COOLDOWN
+===================================================== */
 
 let alertCooldown = {};
 
 
-/*
-   BATAS PERINGATAN
-
-   Bisa kamu ubah sendiri.
-*/
+/* =====================================================
+LIMIT
+===================================================== */
 
 const LIMITS = {
 
-    HIGH_TEMP: 35,
+    HIGH_TEMP:35,
 
-    EXTREME_TEMP: 38,
+    EXTREME_TEMP:38,
 
-    HEAVY_RAIN: 10,
+    TEMP_CHANGE:2,
 
-    EXTREME_RAIN: 30,
+    TEMP_DROP:3,
 
-    STRONG_WIND: 40,
+    HEAVY_RAIN:10,
 
-    EXTREME_WIND: 60,
+    EXTREME_RAIN:30,
 
-    PM25_BAD: 55.4,
+    STRONG_WIND:40,
 
-    PM25_VERY_BAD: 150.4,
+    EXTREME_WIND:60,
 
-    UV_HIGH: 6,
+    WIND_CHANGE:15,
 
-    UV_EXTREME: 11
+    PM25_BAD:55.4,
+
+    PM25_VERY_BAD:150.4,
+
+    PM25_CHANGE:25,
+
+    UV_HIGH:6,
+
+    UV_EXTREME:11
 
 };
 
 
 /* =====================================================
-   START GPS
+LOCAL STORAGE
+===================================================== */
+
+const HISTORY_KEY =
+"myrobot_weather_history";
+
+
+/* =====================================================
+START GPS
 ===================================================== */
 
 function startGPS(){
@@ -1339,19 +1429,14 @@ function startGPS(){
         "📡 Mengambil lokasi GPS..."
     );
 
-
-    if(
-        !navigator.geolocation
-    ){
+    if(!navigator.geolocation){
 
         showError(
             "Browser tidak mendukung GPS."
         );
 
         return;
-
     }
-
 
     navigator.geolocation.getCurrentPosition(
 
@@ -1360,61 +1445,57 @@ function startGPS(){
         gpsError,
 
         {
-
             enableHighAccuracy:true,
 
             timeout:20000,
 
             maximumAge:0
-
         }
-
     );
-
 }
 
 
 /* =====================================================
-   GPS SUCCESS
+GPS SUCCESS
 ===================================================== */
 
 function gpsSuccess(position){
 
     LAT =
-        position.coords.latitude;
+    position.coords.latitude;
 
     LON =
-        position.coords.longitude;
+    position.coords.longitude;
 
 
     document.getElementById(
         "lat"
     ).textContent =
-        LAT.toFixed(6);
+    LAT.toFixed(6);
 
 
     document.getElementById(
         "lon"
     ).textContent =
-        LON.toFixed(6);
+    LON.toFixed(6);
 
 
     document.getElementById(
         "accuracy"
     ).textContent =
-        Math.round(
-            position.coords.accuracy
-        )
-        + " meter";
+    Math.round(
+        position.coords.accuracy
+    )
+    +" meter";
 
 
     document.getElementById(
         "mapsButton"
     ).href =
-        "https://www.google.com/maps/search/?api=1&query="
-        + LAT
-        + ","
-        + LON;
+    "https://www.google.com/maps/search/?api=1&query="
+    +LAT
+    +","
+    +LON;
 
 
     showStatus(
@@ -1422,56 +1503,57 @@ function gpsSuccess(position){
     );
 
 
+    /*
+       Reset data perbandingan
+       jika lokasi berubah.
+    */
+
+    previousWeather = null;
+
+    previousAir = null;
+
+
     loadWeather();
 
     loadAirQuality();
 
     reverseLocation();
-
 }
 
 
 /* =====================================================
-   GPS ERROR
+GPS ERROR
 ===================================================== */
 
 function gpsError(error){
 
     let message =
-        "GPS gagal ditemukan.";
-
+    "GPS gagal ditemukan.";
 
     if(error.code===1){
 
         message =
         "Izin lokasi ditolak. Aktifkan izin lokasi.";
-
     }
-
 
     if(error.code===2){
 
         message =
         "Lokasi tidak tersedia.";
-
     }
-
 
     if(error.code===3){
 
         message =
         "GPS timeout. Coba lagi.";
-
     }
 
-
     showError(message);
-
 }
 
 
 /* =====================================================
-   WEATHER
+WEATHER
 ===================================================== */
 
 async function loadWeather(){
@@ -1479,9 +1561,10 @@ async function loadWeather(){
     if(
         LAT===null ||
         LON===null
-    )
-        return;
+    ){
 
+        return;
+    }
 
     try{
 
@@ -1528,29 +1611,34 @@ async function loadWeather(){
             forecast_days:7,
 
             timezone:"auto"
-
         });
 
 
         const response =
-            await fetch(
-                WEATHER_API
-                +"?"
-                +params
-            );
+        await fetch(
+            WEATHER_API
+            +"?"
+            +params
+        );
 
 
-        if(!response.ok)
+        if(!response.ok){
+
             throw new Error();
+        }
 
 
         const data =
-            await response.json();
+        await response.json();
 
 
         displayWeather(data);
 
+
         checkWeatherAlerts(data);
+
+
+        detectWeatherChanges(data);
 
 
     }
@@ -1560,122 +1648,123 @@ async function loadWeather(){
         showError(
             "Gagal mengambil data cuaca."
         );
-
     }
-
 }
 
 
 /* =====================================================
-   DISPLAY WEATHER
+DISPLAY WEATHER
 ===================================================== */
 
 function displayWeather(data){
 
     const c =
-        data.current;
+    data.current;
 
 
     document.getElementById(
         "weatherIcon"
     ).textContent =
-        weatherIcon(
-            c.weather_code
-        );
+    weatherIcon(
+        c.weather_code
+    );
 
 
     document.getElementById(
         "temperature"
     ).textContent =
-        Math.round(
-            c.temperature_2m
-        )
-        +"°C";
+    Math.round(
+        c.temperature_2m
+    )
+    +"°C";
 
 
     document.getElementById(
         "weatherDesc"
     ).textContent =
-        weatherText(
-            c.weather_code
-        );
+    weatherText(
+        c.weather_code
+    );
 
 
     document.getElementById(
         "tempDetail"
     ).textContent =
-        Number(
-            c.temperature_2m
-        ).toFixed(1)
-        +" °C";
+    Number(
+        c.temperature_2m
+    ).toFixed(1)
+    +" °C";
 
 
     document.getElementById(
         "feels"
     ).textContent =
-        Number(
-            c.apparent_temperature
-        ).toFixed(1)
-        +" °C";
+    Number(
+        c.apparent_temperature
+    ).toFixed(1)
+    +" °C";
 
 
     document.getElementById(
         "humidity"
     ).textContent =
-        c.relative_humidity_2m
-        +" %";
+    c.relative_humidity_2m
+    +" %";
 
 
     document.getElementById(
         "wind"
     ).textContent =
-        Number(
-            c.wind_speed_10m
-        ).toFixed(1)
-        +" km/j";
+    Number(
+        c.wind_speed_10m
+    ).toFixed(1)
+    +" km/j";
 
 
     document.getElementById(
         "windDirection"
     ).textContent =
-        windDirection(
-            c.wind_direction_10m
-        );
+    windDirection(
+        c.wind_direction_10m
+    );
 
 
     document.getElementById(
         "cloud"
     ).textContent =
-        c.cloud_cover
-        +" %";
+    c.cloud_cover
+    +" %";
 
 
     document.getElementById(
         "rain"
     ).textContent =
-        Number(
-            c.precipitation
-        ).toFixed(1)
-        +" mm";
+    Number(
+        c.precipitation
+    ).toFixed(1)
+    +" mm";
 
 
     document.getElementById(
         "visibility"
     ).textContent =
-        (
-            Number(
-                c.visibility
-            ) / 1000
-        ).toFixed(1)
-        +" km";
+    (
+        Number(
+            c.visibility
+        ) / 1000
+    ).toFixed(1)
+    +" km";
 
 
     document.getElementById(
         "weatherUpdate"
     ).textContent =
-        "Update: "
-        +new Date()
-        .toLocaleString("id-ID");
+    "Update: "
+    +
+    new Date()
+    .toLocaleString(
+        "id-ID"
+    );
 
 
     displayHourly(
@@ -1686,27 +1775,327 @@ function displayWeather(data){
     displayForecast(
         data.daily
     );
-
 }
 
 
 /* =====================================================
-   CHECK WEATHER ALERTS
+DETEKSI PERUBAHAN CUACA
+===================================================== */
+
+function detectWeatherChanges(data){
+
+    const c =
+    data.current;
+
+
+    /*
+       Jika belum ada data lama,
+       simpan saja.
+    */
+
+    if(!previousWeather){
+
+        previousWeather = {
+
+            temperature:
+            Number(
+                c.temperature_2m
+            ),
+
+            weatherCode:
+            c.weather_code,
+
+            precipitation:
+            Number(
+                c.precipitation
+            ),
+
+            wind:
+            Number(
+                c.wind_speed_10m
+            ),
+
+            humidity:
+            Number(
+                c.relative_humidity_2m
+            )
+        };
+
+        return;
+    }
+
+
+    const oldTemp =
+    previousWeather.temperature;
+
+
+    const newTemp =
+    Number(
+        c.temperature_2m
+    );
+
+
+    const tempChange =
+    newTemp-oldTemp;
+
+
+    /*
+       SUHU NAIK
+    */
+
+    if(
+        tempChange >=
+        LIMITS.TEMP_CHANGE
+    ){
+
+        const msg =
+        "Suhu berubah naik dari "
+        +oldTemp.toFixed(1)
+        +"°C menjadi "
+        +newTemp.toFixed(1)
+        +"°C. Kenaikan "
+        +tempChange.toFixed(1)
+        +"°C.";
+
+        triggerAlert(
+
+            "TEMP_RISE",
+
+            "🌡️",
+
+            "SUHU MENINGKAT",
+
+            msg,
+
+            true
+        );
+
+
+        addHistory(
+            "🌡️ SUHU MENINGKAT",
+            msg
+        );
+    }
+
+
+    /*
+       SUHU TURUN
+    */
+
+    if(
+        tempChange <=
+        -LIMITS.TEMP_DROP
+    ){
+
+        const msg =
+        "Suhu berubah turun dari "
+        +oldTemp.toFixed(1)
+        +"°C menjadi "
+        +newTemp.toFixed(1)
+        +"°C. Penurunan "
+        +Math.abs(
+            tempChange
+        ).toFixed(1)
+        +"°C.";
+
+        triggerAlert(
+
+            "TEMP_DROP",
+
+            "🥶",
+
+            "SUHU MENURUN",
+
+            msg,
+
+            true
+        );
+
+
+        addHistory(
+            "🥶 SUHU MENURUN",
+            msg
+        );
+    }
+
+
+    /*
+       PERUBAHAN CUACA
+    */
+
+    if(
+        c.weather_code !==
+        previousWeather.weatherCode
+    ){
+
+        const oldWeather =
+        weatherText(
+            previousWeather.weatherCode
+        );
+
+        const newWeather =
+        weatherText(
+            c.weather_code
+        );
+
+
+        const msg =
+        "Kondisi cuaca berubah dari "
+        +oldWeather
+        +" menjadi "
+        +newWeather
+        +".";
+
+
+        triggerAlert(
+
+            "WEATHER_CHANGE",
+
+            weatherIcon(
+                c.weather_code
+            ),
+
+            "CUACA BERUBAH",
+
+            msg,
+
+            true
+        );
+
+
+        addHistory(
+            "🌦️ CUACA BERUBAH",
+            msg
+        );
+    }
+
+
+    /*
+       HUJAN BERUBAH
+    */
+
+    const oldRain =
+    previousWeather.precipitation;
+
+    const newRain =
+    Number(
+        c.precipitation
+    );
+
+
+    if(
+        oldRain < 1 &&
+        newRain >= 1
+    ){
+
+        const msg =
+        "Hujan mulai terdeteksi. "
+        +"Curah hujan saat ini "
+        +newRain.toFixed(1)
+        +" mm.";
+
+        triggerAlert(
+
+            "RAIN_START",
+
+            "🌧️",
+
+            "HUJAN MULAI TURUN",
+
+            msg,
+
+            true
+        );
+
+
+        addHistory(
+            "🌧️ HUJAN MULAI",
+            msg
+        );
+    }
+
+
+    /*
+       ANGIN BERUBAH CEPAT
+    */
+
+    const oldWind =
+    previousWeather.wind;
+
+    const newWind =
+    Number(
+        c.wind_speed_10m
+    );
+
+
+    if(
+        newWind-oldWind >=
+        LIMITS.WIND_CHANGE
+    ){
+
+        const msg =
+        "Kecepatan angin meningkat dari "
+        +oldWind.toFixed(1)
+        +" km/j menjadi "
+        +newWind.toFixed(1)
+        +" km/j.";
+
+        triggerAlert(
+
+            "WIND_CHANGE",
+
+            "💨",
+
+            "ANGIN MENINGKAT",
+
+            msg,
+
+            true
+        );
+
+
+        addHistory(
+            "💨 ANGIN MENINGKAT",
+            msg
+        );
+    }
+
+
+    /*
+       UPDATE DATA LAMA
+    */
+
+    previousWeather = {
+
+        temperature:newTemp,
+
+        weatherCode:c.weather_code,
+
+        precipitation:newRain,
+
+        wind:newWind,
+
+        humidity:
+        Number(
+            c.relative_humidity_2m
+        )
+    };
+}
+
+
+/* =====================================================
+BATAS CUACA
 ===================================================== */
 
 function checkWeatherAlerts(data){
 
     const c =
-        data.current;
+    data.current;
 
-
-    /*
-       SUHU TINGGI
-    */
 
     if(
-        c.temperature_2m
-        >= LIMITS.EXTREME_TEMP
+        c.temperature_2m >=
+        LIMITS.EXTREME_TEMP
     ){
 
         triggerAlert(
@@ -1722,14 +2111,12 @@ function checkWeatherAlerts(data){
                 c.temperature_2m
             )
             +"°C. Kondisi panas ekstrem perlu diwaspadai."
-
         );
-
     }
 
     else if(
-        c.temperature_2m
-        >= LIMITS.HIGH_TEMP
+        c.temperature_2m >=
+        LIMITS.HIGH_TEMP
     ){
 
         triggerAlert(
@@ -1745,19 +2132,13 @@ function checkWeatherAlerts(data){
                 c.temperature_2m
             )
             +"°C. Suhu cukup tinggi."
-
         );
-
     }
 
 
-    /*
-       HUJAN
-    */
-
     if(
-        c.precipitation
-        >= LIMITS.EXTREME_RAIN
+        c.precipitation >=
+        LIMITS.EXTREME_RAIN
     ){
 
         triggerAlert(
@@ -1773,14 +2154,12 @@ function checkWeatherAlerts(data){
                 c.precipitation
             ).toFixed(1)
             +" milimeter."
-
         );
-
     }
 
     else if(
-        c.precipitation
-        >= LIMITS.HEAVY_RAIN
+        c.precipitation >=
+        LIMITS.HEAVY_RAIN
     ){
 
         triggerAlert(
@@ -1796,19 +2175,13 @@ function checkWeatherAlerts(data){
                 c.precipitation
             ).toFixed(1)
             +" milimeter."
-
         );
-
     }
 
 
-    /*
-       ANGIN
-    */
-
     if(
-        c.wind_speed_10m
-        >= LIMITS.EXTREME_WIND
+        c.wind_speed_10m >=
+        LIMITS.EXTREME_WIND
     ){
 
         triggerAlert(
@@ -1824,14 +2197,12 @@ function checkWeatherAlerts(data){
                 c.wind_speed_10m
             )
             +" km/jam."
-
         );
-
     }
 
     else if(
-        c.wind_speed_10m
-        >= LIMITS.STRONG_WIND
+        c.wind_speed_10m >=
+        LIMITS.STRONG_WIND
     ){
 
         triggerAlert(
@@ -1847,15 +2218,9 @@ function checkWeatherAlerts(data){
                 c.wind_speed_10m
             )
             +" km/jam."
-
         );
-
     }
 
-
-    /*
-       BADAI PETIR
-    */
 
     if(
         c.weather_code >= 95
@@ -1870,32 +2235,33 @@ function checkWeatherAlerts(data){
             "BADAI PETIR",
 
             "Terdeteksi kondisi badai petir."
-
         );
-
     }
 
-
-    /*
-       UPDATE STATUS NORMAL
-    */
 
     if(
         !hasRecentAlert()
     ){
 
         setNormalStatus();
-
     }
-
 }
 
 
 /* =====================================================
-   AIR QUALITY
+AIR QUALITY
 ===================================================== */
 
 async function loadAirQuality(){
+
+    if(
+        LAT===null ||
+        LON===null
+    ){
+
+        return;
+    }
+
 
     try{
 
@@ -1913,76 +2279,93 @@ async function loadAirQuality(){
             +"uv_index",
 
             timezone:"auto"
-
         });
 
 
         const response =
-            await fetch(
-                AIR_API
-                +"?"
-                +params
-            );
+        await fetch(
+            AIR_API
+            +"?"
+            +params
+        );
+
+
+        if(!response.ok){
+
+            throw new Error();
+        }
 
 
         const data =
-            await response.json();
+        await response.json();
 
 
         const c =
-            data.current;
+        data.current;
 
 
         const pm25 =
-            Number(
-                c.pm2_5
-            );
+        Number(
+            c.pm2_5
+        );
 
 
         document.getElementById(
             "pm25"
         ).textContent =
-            pm25.toFixed(1);
+        pm25.toFixed(1);
 
 
         document.getElementById(
             "pm10"
         ).textContent =
-            Number(
-                c.pm10
-            ).toFixed(1)
-            +" µg/m³";
+        Number(
+            c.pm10
+        ).toFixed(1)
+        +" µg/m³";
 
 
         document.getElementById(
             "ozone"
         ).textContent =
-            Number(
-                c.ozone
-            ).toFixed(1)
-            +" µg/m³";
+        Number(
+            c.ozone
+        ).toFixed(1)
+        +" µg/m³";
 
 
         document.getElementById(
             "uv"
         ).textContent =
-            Number(
-                c.uv_index
-            ).toFixed(1);
+        Number(
+            c.uv_index
+        ).toFixed(1);
+
+
+        document.getElementById(
+            "aqiStatus"
+        ).textContent =
+        airStatus(
+            pm25
+        );
 
 
         document.getElementById(
             "airAlert"
         ).textContent =
-            airStatus(
-                pm25
-            );
+        airStatus(
+            pm25
+        );
 
 
         checkAirAlert(
             pm25
         );
 
+
+        detectAirChanges(
+            pm25
+        );
 
     }
 
@@ -1992,20 +2375,75 @@ async function loadAirQuality(){
             "Air quality error",
             error
         );
-
     }
-
 }
 
 
 /* =====================================================
-   AIR ALERT
+DETEKSI PERUBAHAN UDARA
+===================================================== */
+
+function detectAirChanges(pm){
+
+    if(previousAir===null){
+
+        previousAir = pm;
+
+        return;
+    }
+
+
+    const change =
+    pm-previousAir;
+
+
+    if(
+        change >=
+        LIMITS.PM25_CHANGE
+    ){
+
+        const msg =
+        "PM2.5 meningkat dari "
+        +previousAir.toFixed(1)
+        +" menjadi "
+        +pm.toFixed(1)
+        +" µg/m³.";
+
+        triggerAlert(
+
+            "PM25_CHANGE",
+
+            "🌫️",
+
+            "KUALITAS UDARA MENURUN",
+
+            msg,
+
+            true
+        );
+
+
+        addHistory(
+            "🌫️ UDARA MENURUN",
+            msg
+        );
+    }
+
+
+    previousAir =
+    pm;
+}
+
+
+/* =====================================================
+AIR ALERT
 ===================================================== */
 
 function checkAirAlert(pm){
 
     if(
-        pm >= LIMITS.PM25_VERY_BAD
+        pm >=
+        LIMITS.PM25_VERY_BAD
     ){
 
         triggerAlert(
@@ -2019,13 +2457,12 @@ function checkAirAlert(pm){
             "PM2.5 mencapai "
             +pm.toFixed(1)
             +" µg/m³. Kualitas udara sangat tidak sehat."
-
         );
-
     }
 
     else if(
-        pm >= LIMITS.PM25_BAD
+        pm >=
+        LIMITS.PM25_BAD
     ){
 
         triggerAlert(
@@ -2039,38 +2476,39 @@ function checkAirAlert(pm){
             "PM2.5 mencapai "
             +pm.toFixed(1)
             +" µg/m³. Kualitas udara perlu diwaspadai."
-
         );
-
     }
-
 }
 
 
 /* =====================================================
-   ALERT ENGINE
+ALERT ENGINE
 ===================================================== */
 
 function triggerAlert(
     id,
     icon,
     title,
-    message
+    message,
+    forceChange=false
 ){
 
     const now =
-        Date.now();
+    Date.now();
 
 
     /*
-       Cooldown 15 menit
-       agar tidak terus berbunyi.
+       Perubahan cuaca tetap
+       menggunakan cooldown.
+
+       15 menit.
     */
 
     if(
         alertCooldown[id] &&
         now-alertCooldown[id]
-        < 15*60*1000
+        <
+        15*60*1000
     ){
 
         updateWarningBanner(
@@ -2079,12 +2517,11 @@ function triggerAlert(
         );
 
         return;
-
     }
 
 
     alertCooldown[id] =
-        now;
+    now;
 
 
     showAlertPopup(
@@ -2110,14 +2547,12 @@ function triggerAlert(
             +". "
             +message
         );
-
     }
-
 }
 
 
 /* =====================================================
-   POPUP
+POPUP
 ===================================================== */
 
 function showAlertPopup(
@@ -2129,26 +2564,25 @@ function showAlertPopup(
     document.getElementById(
         "popupIcon"
     ).textContent =
-        icon;
+    icon;
 
 
     document.getElementById(
         "popupTitle"
     ).textContent =
-        title;
+    title;
 
 
     document.getElementById(
         "popupMessage"
     ).textContent =
-        message;
+    message;
 
 
     document.getElementById(
         "alertOverlay"
     ).style.display =
-        "flex";
-
+    "flex";
 }
 
 
@@ -2157,13 +2591,12 @@ function closeAlert(){
     document.getElementById(
         "alertOverlay"
     ).style.display =
-        "none";
-
+    "none";
 }
 
 
 /* =====================================================
-   WARNING BANNER
+WARNING
 ===================================================== */
 
 function updateWarningBanner(
@@ -2172,35 +2605,34 @@ function updateWarningBanner(
 ){
 
     const banner =
-        document.getElementById(
-            "warningBanner"
-        );
+    document.getElementById(
+        "warningBanner"
+    );
 
 
     document.getElementById(
         "warningMessage"
     ).textContent =
-        title
-        +" — "
-        +message;
+    title
+    +" — "
+    +message;
 
 
     banner.style.display =
-        "block";
+    "block";
 
 
     document.getElementById(
         "alertDot"
     ).style.background =
-        "#ef4444";
+    "#ef4444";
 
 
     document.getElementById(
         "alertText"
     ).textContent =
-        title
-        +" aktif.";
-
+    title
+    +" aktif.";
 }
 
 
@@ -2209,25 +2641,24 @@ function setNormalStatus(){
     document.getElementById(
         "alertDot"
     ).style.background =
-        "#22c55e";
+    "#22c55e";
 
 
     document.getElementById(
         "alertText"
     ).textContent =
-        "Tidak ada peringatan aktif.";
-
+    "Tidak ada peringatan aktif.";
 }
 
 
 /* =====================================================
-   CHECK RECENT ALERT
+RECENT ALERT
 ===================================================== */
 
 function hasRecentAlert(){
 
     const now =
-        Date.now();
+    Date.now();
 
 
     for(
@@ -2236,83 +2667,76 @@ function hasRecentAlert(){
 
         if(
             now-alertCooldown[key]
-            < 15*60*1000
+            <
+            15*60*1000
         ){
 
             return true;
-
         }
-
     }
 
-    return false;
 
+    return false;
 }
 
 
 /* =====================================================
-   SOUND ENABLE
+SOUND
 ===================================================== */
 
 function enableSound(){
 
     soundEnabled =
-        !soundEnabled;
+    !soundEnabled;
 
 
     const button =
-        document.getElementById(
-            "soundButton"
-        );
+    document.getElementById(
+        "soundButton"
+    );
 
 
     if(soundEnabled){
 
         button.textContent =
-            "🔊 SUARA AKTIF";
+        "🔊 SUARA AKTIF";
+
 
         button.className =
-            "sound-on";
+        "sound-on";
 
 
         document.getElementById(
             "soundStatus"
         ).textContent =
-            "Suara alarm & pembacaan peringatan aktif.";
+        "Suara alarm & pembacaan peringatan aktif.";
 
-
-        /*
-           Unlock speech engine
-           setelah user interaction.
-        */
 
         speak(
             "Sistem peringatan suara aktif."
         );
-
     }
 
     else{
 
         button.textContent =
-            "🔇 AKTIFKAN SUARA ALARM";
+        "🔇 AKTIFKAN SUARA ALARM";
+
 
         button.className =
-            "sound-off";
+        "sound-off";
 
 
         document.getElementById(
             "soundStatus"
         ).textContent =
-            "Suara dimatikan.";
-
+        "Suara dimatikan.";
     }
-
 }
 
 
 /* =====================================================
-   SPEECH
+SPEECH
 ===================================================== */
 
 function speak(text){
@@ -2320,45 +2744,46 @@ function speak(text){
     if(
         !soundEnabled ||
         !("speechSynthesis" in window)
-    )
+    ){
+
         return;
+    }
 
 
     window.speechSynthesis.cancel();
 
 
     const speech =
-        new SpeechSynthesisUtterance(
-            text
-        );
+    new SpeechSynthesisUtterance(
+        text
+    );
 
 
     speech.lang =
-        "id-ID";
+    "id-ID";
 
 
     speech.rate =
-        .9;
+    .9;
 
 
     speech.pitch =
-        1;
+    1;
 
 
     speech.volume =
-        1;
+    1;
 
 
     window.speechSynthesis
-        .speak(
-            speech
-        );
-
+    .speak(
+        speech
+    );
 }
 
 
 /* =====================================================
-   ALARM SOUND
+ALARM
 ===================================================== */
 
 function alarmSound(){
@@ -2366,59 +2791,58 @@ function alarmSound(){
     try{
 
         const AudioContext =
-            window.AudioContext
-            ||
-            window.webkitAudioContext;
+        window.AudioContext ||
+        window.webkitAudioContext;
 
 
         const ctx =
-            new AudioContext();
+        new AudioContext();
 
 
         const oscillator =
-            ctx.createOscillator();
+        ctx.createOscillator();
 
 
         const gain =
-            ctx.createGain();
+        ctx.createGain();
 
 
         oscillator.type =
-            "square";
+        "square";
 
 
         oscillator.frequency
-            .setValueAtTime(
-                900,
-                ctx.currentTime
-            );
+        .setValueAtTime(
+            900,
+            ctx.currentTime
+        );
 
 
         oscillator.frequency
-            .linearRampToValueAtTime(
-                500,
-                ctx.currentTime
-                +.25
-            );
+        .linearRampToValueAtTime(
+            500,
+            ctx.currentTime+.25
+        );
 
 
-        gain.gain.setValueAtTime(
+        gain.gain
+        .setValueAtTime(
             .0001,
             ctx.currentTime
         );
 
 
-        gain.gain.exponentialRampToValueAtTime(
+        gain.gain
+        .exponentialRampToValueAtTime(
             .25,
-            ctx.currentTime
-            +.02
+            ctx.currentTime+.02
         );
 
 
-        gain.gain.exponentialRampToValueAtTime(
+        gain.gain
+        .exponentialRampToValueAtTime(
             .0001,
-            ctx.currentTime
-            +.5
+            ctx.currentTime+.5
         );
 
 
@@ -2436,10 +2860,8 @@ function alarmSound(){
 
 
         oscillator.stop(
-            ctx.currentTime
-            +.5
+            ctx.currentTime+.5
         );
-
 
     }
 
@@ -2449,14 +2871,12 @@ function alarmSound(){
             "Audio error",
             error
         );
-
     }
-
 }
 
 
 /* =====================================================
-   TEST ALARM
+TEST ALARM
 ===================================================== */
 
 function testAlarm(){
@@ -2468,7 +2888,6 @@ function testAlarm(){
         );
 
         return;
-
     }
 
 
@@ -2487,29 +2906,27 @@ function testAlarm(){
         "TEST ALARM",
 
         "Sistem suara dan peringatan berhasil dijalankan."
-
     );
-
 }
 
 
 /* =====================================================
-   HOURLY
+HOURLY
 ===================================================== */
 
 function displayHourly(hourly){
 
     const box =
-        document.getElementById(
-            "hourly"
-        );
+    document.getElementById(
+        "hourly"
+    );
 
 
     box.innerHTML="";
 
 
     const now =
-        new Date();
+    new Date();
 
 
     let start=0;
@@ -2524,15 +2941,13 @@ function displayHourly(hourly){
         if(
             new Date(
                 hourly.time[i]
-            )>=now
+            ) >= now
         ){
 
             start=i;
 
             break;
-
         }
-
     }
 
 
@@ -2546,19 +2961,19 @@ function displayHourly(hourly){
     ){
 
         const d =
-            new Date(
-                hourly.time[i]
-            );
+        new Date(
+            hourly.time[i]
+        );
 
 
         const div =
-            document.createElement(
-                "div"
-            );
+        document.createElement(
+            "div"
+        );
 
 
         div.className =
-            "forecast-card";
+        "forecast-card";
 
 
         div.innerHTML = `
@@ -2612,22 +3027,20 @@ function displayHourly(hourly){
 
 
         box.appendChild(div);
-
     }
-
 }
 
 
 /* =====================================================
-   FORECAST
+FORECAST
 ===================================================== */
 
 function displayForecast(daily){
 
     const box =
-        document.getElementById(
-            "forecast"
-        );
+    document.getElementById(
+        "forecast"
+    );
 
 
     box.innerHTML="";
@@ -2640,19 +3053,19 @@ function displayForecast(daily){
     ){
 
         const date =
-            new Date(
-                daily.time[i]
-            );
+        new Date(
+            daily.time[i]
+        );
 
 
         const div =
-            document.createElement(
-                "div"
-            );
+        document.createElement(
+            "div"
+        );
 
 
         div.className =
-            "forecast-card";
+        "forecast-card";
 
 
         div.innerHTML = `
@@ -2670,7 +3083,6 @@ function displayForecast(daily){
 
         </div>
 
-
         <div class="forecast-icon">
 
         ${weatherIcon(
@@ -2679,7 +3091,6 @@ function displayForecast(daily){
 
         </div>
 
-
         <div class="forecast-desc">
 
         ${weatherText(
@@ -2687,7 +3098,6 @@ function displayForecast(daily){
         )}
 
         </div>
-
 
         <div class="forecast-temp">
 
@@ -2702,7 +3112,6 @@ function displayForecast(daily){
 
         </div>
 
-
         <div class="forecast-rain">
 
         🌧️
@@ -2715,14 +3124,12 @@ function displayForecast(daily){
 
 
         box.appendChild(div);
-
     }
-
 }
 
 
 /* =====================================================
-   WEATHER TEXT
+WEATHER TEXT
 ===================================================== */
 
 function weatherText(code){
@@ -2780,18 +3187,17 @@ function weatherText(code){
         96:"Badai petir + hujan es",
 
         99:"Badai petir + hujan es"
-
     };
 
 
     return map[code]
-        ||"Tidak diketahui";
-
+    ||
+    "Tidak diketahui";
 }
 
 
 /* =====================================================
-   WEATHER ICON
+ICON
 ===================================================== */
 
 function weatherIcon(code){
@@ -2808,31 +3214,45 @@ function weatherIcon(code){
     if(code===3)
         return "☁️";
 
-    if(code===45 || code===48)
+    if(
+        code===45 ||
+        code===48
+    )
         return "🌫️";
 
-    if(code>=51 && code<=57)
+    if(
+        code>=51 &&
+        code<=57
+    )
         return "🌦️";
 
-    if(code>=61 && code<=67)
+    if(
+        code>=61 &&
+        code<=67
+    )
         return "🌧️";
 
-    if(code>=71 && code<=77)
+    if(
+        code>=71 &&
+        code<=77
+    )
         return "❄️";
 
-    if(code>=80 && code<=82)
+    if(
+        code>=80 &&
+        code<=82
+    )
         return "🌧️";
 
     if(code>=95)
         return "⛈️";
 
     return "🌤️";
-
 }
 
 
 /* =====================================================
-   WIND DIRECTION
+WIND
 ===================================================== */
 
 function windDirection(degree){
@@ -2840,33 +3260,38 @@ function windDirection(degree){
     const directions=[
 
         "Utara",
-        "Timur Laut",
-        "Timur",
-        "Tenggara",
-        "Selatan",
-        "Barat Daya",
-        "Barat",
-        "Barat Laut"
 
+        "Timur Laut",
+
+        "Timur",
+
+        "Tenggara",
+
+        "Selatan",
+
+        "Barat Daya",
+
+        "Barat",
+
+        "Barat Laut"
     ];
 
 
     const index =
-        Math.round(
-            degree/45
-        )%8;
+    Math.round(
+        degree/45
+    )%8;
 
 
     return directions[index]
-        +" "
-        +Math.round(degree)
-        +"°";
-
+    +" "
+    +Math.round(degree)
+    +"°";
 }
 
 
 /* =====================================================
-   AIR STATUS
+AIR STATUS
 ===================================================== */
 
 function airStatus(pm){
@@ -2884,21 +3309,27 @@ function airStatus(pm){
         return "🔴 SANGAT TIDAK SEHAT";
 
     return "🟣 BERBAHAYA";
-
 }
 
 
 /* =====================================================
-   REVERSE GEOCODING
+REVERSE GPS
 ===================================================== */
 
 async function reverseLocation(){
 
     try{
 
+        showStatus(
+            "📍 GPS ditemukan. Mencari nama desa..."
+        );
+
+
         const url =
-        "https://nominatim.openstreetmap.org/reverse?"
-        +new URLSearchParams({
+        NOMINATIM_API
+        +"?"
+        +
+        new URLSearchParams({
 
             lat:LAT,
 
@@ -2908,25 +3339,36 @@ async function reverseLocation(){
 
             zoom:18,
 
-            addressdetails:1
+            addressdetails:1,
 
+            "accept-language":"id"
         });
 
 
         const response =
-            await fetch(
-                url,
-                {
-                    headers:{
-                        "Accept":
-                        "application/json"
-                    }
+        await fetch(
+
+            url,
+
+            {
+
+                headers:{
+
+                    "Accept":
+                    "application/json"
                 }
-            );
+            }
+        );
+
+
+        if(!response.ok){
+
+            throw new Error();
+        }
 
 
         const data =
-            await response.json();
+        await response.json();
 
 
         if(
@@ -2935,36 +3377,104 @@ async function reverseLocation(){
         ){
 
             const a =
-                data.address;
+            data.address;
 
 
-            const name =
-                a.village
-                ||
-                a.town
-                ||
-                a.suburb
-                ||
-                a.city_district
-                ||
-                a.city
-                ||
-                "Lokasi GPS";
+            /*
+               Nama desa.
+               Urutan dibuat supaya
+               wilayah Indonesia
+               lebih mudah terbaca.
+            */
 
+            const village =
+            a.village
+            ||
+            a.hamlet
+            ||
+            a.suburb
+            ||
+            a.neighbourhood
+            ||
+            a.quarter
+            ||
+            a.town
+            ||
+            "Tidak ditemukan";
+
+
+            const district =
+            a.city_district
+            ||
+            a.district
+            ||
+            a.municipality
+            ||
+            "Tidak ditemukan";
+
+
+            const regency =
+            a.county
+            ||
+            a.city
+            ||
+            "Tidak ditemukan";
+
+
+            const province =
+            a.state
+            ||
+            a.region
+            ||
+            "Tidak ditemukan";
+
+
+            document.getElementById(
+                "village"
+            ).textContent =
+            village;
+
+
+            document.getElementById(
+                "district"
+            ).textContent =
+            district;
+
+
+            document.getElementById(
+                "regency"
+            ).textContent =
+            regency;
+
+
+            document.getElementById(
+                "province"
+            ).textContent =
+            province;
+
+
+            /*
+               Nama utama dibuat:
+               Desa • Kecamatan
+            */
 
             document.getElementById(
                 "locationName"
             ).textContent =
-                name;
+            village;
 
 
             document.getElementById(
                 "timezone"
             ).textContent =
-                Intl.DateTimeFormat()
-                .resolvedOptions()
-                .timeZone;
+            Intl.DateTimeFormat()
+            .resolvedOptions()
+            .timeZone;
 
+
+            showStatus(
+                "✅ Lokasi & data cuaca berhasil diperbarui."
+            );
         }
 
     }
@@ -2972,33 +3482,273 @@ async function reverseLocation(){
     catch(error){
 
         console.log(
+            "Reverse geocoding error",
             error
         );
 
-    }
+        document.getElementById(
+            "locationName"
+        ).textContent =
+        "Lokasi GPS ditemukan";
 
+        showStatus(
+            "📍 GPS ditemukan, tetapi nama desa tidak tersedia."
+        );
+    }
 }
 
 
 /* =====================================================
-   ERROR
+HISTORY
+===================================================== */
+
+function getHistory(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                HISTORY_KEY
+            )
+        ) || [];
+
+    }
+
+    catch(error){
+
+        return [];
+    }
+}
+
+
+/* =====================================================
+ADD HISTORY
+===================================================== */
+
+function addHistory(
+    title,
+    message
+){
+
+    const history =
+    getHistory();
+
+
+    history.unshift({
+
+        time:
+        new Date()
+        .toLocaleString(
+            "id-ID"
+        ),
+
+        title:title,
+
+        message:message,
+
+        village:
+        document.getElementById(
+            "village"
+        ).textContent,
+
+        temperature:
+        document.getElementById(
+            "temperature"
+        ).textContent
+    });
+
+
+    /*
+       Maksimal 50 riwayat.
+    */
+
+    if(history.length>50){
+
+        history.splice(
+            50
+        );
+    }
+
+
+    localStorage.setItem(
+
+        HISTORY_KEY,
+
+        JSON.stringify(
+            history
+        )
+    );
+
+
+    displayHistory();
+}
+
+
+/* =====================================================
+DISPLAY HISTORY
+===================================================== */
+
+function displayHistory(){
+
+    const box =
+    document.getElementById(
+        "history"
+    );
+
+
+    const history =
+    getHistory();
+
+
+    if(history.length===0){
+
+        box.innerHTML = `
+
+        <div class="history-empty">
+
+        Belum ada perubahan yang terdeteksi.
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    box.innerHTML="";
+
+
+    history.forEach(
+        item=>{
+
+            const div =
+            document.createElement(
+                "div"
+            );
+
+
+            div.className =
+            "history-item";
+
+
+            div.innerHTML = `
+
+            <div class="history-time">
+
+            🕐 ${item.time}
+
+            </div>
+
+            <div class="history-title">
+
+            ${escapeHTML(
+                item.title
+            )}
+
+            </div>
+
+            <div class="history-message">
+
+            ${escapeHTML(
+                item.message
+            )}
+
+            <br><br>
+
+            📍
+            ${escapeHTML(
+                item.village || "-"
+            )}
+
+            <br>
+
+            🌡️
+            ${escapeHTML(
+                item.temperature || "-"
+            )}
+
+            </div>
+
+            `;
+
+
+            box.appendChild(div);
+        }
+    );
+}
+
+
+/* =====================================================
+ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+}
+
+
+/* =====================================================
+CLEAR HISTORY
+===================================================== */
+
+function clearHistory(){
+
+    if(
+        confirm(
+            "Hapus semua riwayat perubahan cuaca?"
+        )
+    ){
+
+        localStorage.removeItem(
+            HISTORY_KEY
+        );
+
+
+        displayHistory();
+    }
+}
+
+
+/* =====================================================
+ERROR
 ===================================================== */
 
 function showError(message){
 
     const box =
-        document.getElementById(
-            "errorBox"
-        );
+    document.getElementById(
+        "errorBox"
+    );
 
 
     box.textContent =
-        message;
+    message;
 
 
     box.style.display =
-        "block";
-
+    "block";
 }
 
 
@@ -3007,13 +3757,12 @@ function hideError(){
     document.getElementById(
         "errorBox"
     ).style.display =
-        "none";
-
+    "none";
 }
 
 
 /* =====================================================
-   STATUS
+STATUS
 ===================================================== */
 
 function showStatus(message){
@@ -3021,30 +3770,31 @@ function showStatus(message){
     document.getElementById(
         "status"
     ).textContent =
-        message;
-
+    message;
 }
 
 
 /* =====================================================
-   AUTO GPS
+LOAD
 ===================================================== */
 
 window.addEventListener(
     "load",
     function(){
 
-        startGPS();
+        displayHistory();
 
+        startGPS();
     }
 );
 
 
 /* =====================================================
-   AUTO UPDATE
+AUTO UPDATE 10 MENIT
 ===================================================== */
 
 setInterval(
+
     function(){
 
         if(
@@ -3052,39 +3802,49 @@ setInterval(
             LON!==null
         ){
 
+            showStatus(
+                "🔄 Memperbarui data cuaca otomatis..."
+            );
+
+
             loadWeather();
 
             loadAirQuality();
 
+            reverseLocation();
         }
 
     },
+
     10*60*1000
 );
 
 
 /* =====================================================
-   CLOCK / PAGE TITLE
+CLOCK / TITLE
 ===================================================== */
 
 setInterval(
+
     function(){
 
         const now =
-            new Date();
+        new Date();
+
 
         document.title =
-            "myROBOT • "
-            +
-            now.toLocaleTimeString(
-                "id-ID",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            );
+        "myROBOT • "
+        +
+        now.toLocaleTimeString(
+            "id-ID",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
 
     },
+
     1000
 );
 
