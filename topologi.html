@@ -2795,5 +2795,260 @@ document.getElementById(
 
 </script>
 
+
+   <script>
+
+/* =====================================================
+   SPEED TEST
+   Mengukur koneksi perangkat yang menjalankan HTML
+===================================================== */
+
+async function testSpeed(){
+
+    const status =
+        document.getElementById("status");
+
+    status.textContent =
+        "⚡ Menguji kecepatan internet...";
+
+    try{
+
+        const start =
+            performance.now();
+
+        const testUrl =
+            "https://speed.cloudflare.com/__down?bytes=5000000";
+
+        const response =
+            await fetch(
+                testUrl +
+                "&cache=" +
+                Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
+
+        if(!response.ok)
+            throw new Error(
+                "Gagal mengambil data"
+            );
+
+        const reader =
+            response.body.getReader();
+
+        let received = 0;
+
+        while(true){
+
+            const {done,value} =
+                await reader.read();
+
+            if(done)
+                break;
+
+            received +=
+                value.length;
+        }
+
+        const end =
+            performance.now();
+
+        const seconds =
+            (end-start)/1000;
+
+        const megabits =
+            (received*8)/
+            seconds/
+            1000000;
+
+        const speed =
+            megabits.toFixed(2);
+
+        status.textContent =
+            "⚡ Download: "
+            + speed
+            + " Mbps";
+
+        return speed;
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        status.textContent =
+            "❌ Speed test gagal";
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   TEST SPEED SEMUA USER
+===================================================== */
+
+async function testAllSpeed(){
+
+    if(
+        !navigator.onLine
+    ){
+
+        showAlert(
+            "🔴",
+            "INTERNET OFFLINE",
+            "Tidak dapat melakukan speed test karena perangkat sedang offline."
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.querySelector(
+            ".speed-button"
+        );
+
+    const oldText =
+        button.textContent;
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ TESTING...";
+
+
+    const speed =
+        await testSpeed();
+
+
+    if(speed !== null){
+
+        /*
+         * Karena tanpa API MikroTik,
+         * speed hanya berlaku untuk
+         * perangkat yang menjalankan HTML.
+         */
+
+        const me =
+            users.find(
+                user =>
+                user.id==="ASEP"
+            );
+
+        if(me){
+
+            me.speed =
+                Number(speed);
+
+        }
+
+        addLog(
+            "⚡ Speed test: "
+            +speed
+            +" Mbps"
+        );
+
+        showAlert(
+            "⚡",
+            "SPEED TEST SELESAI",
+            "Kecepatan download perangkat ini sekitar "
+            +speed
+            +" Mbps."
+        );
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        oldText;
+
+}
+
+
+/* =====================================================
+   POPUP ALERT
+===================================================== */
+
+function showAlert(
+    icon,
+    title,
+    message
+){
+
+    document.getElementById(
+        "alertIcon"
+    ).textContent =
+        icon;
+
+    document.getElementById(
+        "alertTitle"
+    ).textContent =
+        title;
+
+    document.getElementById(
+        "alertMessage"
+    ).textContent =
+        message;
+
+    document.getElementById(
+        "alertOverlay"
+    ).style.display =
+        "flex";
+
+
+    if(soundEnabled){
+
+        alarmSound();
+
+        speak(
+            title +
+            ". " +
+            message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOG
+===================================================== */
+
+function addLog(message){
+
+    const log =
+        document.getElementById(
+            "log"
+        );
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+    item.className =
+        "log-item";
+
+    item.textContent =
+        new Date()
+        .toLocaleTimeString(
+            "id-ID"
+        )
+        +" — "
+        +message;
+
+    log.prepend(item);
+
+}
+
+</script>
+
 </body>
 </html>
