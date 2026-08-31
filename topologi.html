@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -31,7 +32,6 @@ content="#061525">
 body{
     min-height:100vh;
     color:white;
-
     background:
     radial-gradient(
         circle at top,
@@ -47,7 +47,6 @@ body{
     margin:auto;
     padding:12px;
 }
-
 
 /* =====================================================
    HEADER
@@ -81,6 +80,23 @@ body{
     opacity:.9;
 }
 
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+    background:#0d1d2d;
+    border:1px solid #1b405e;
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:12px;
+}
+
+.title{
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:13px;
+}
 
 /* =====================================================
    STATUS
@@ -88,10 +104,8 @@ body{
 
 .status-card{
     background:rgba(13,31,49,.95);
-
     border:1px solid #1b405e;
     border-radius:18px;
-
     padding:15px;
     margin-bottom:12px;
 }
@@ -100,7 +114,6 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:10px;
 }
 
 .online-text{
@@ -112,7 +125,6 @@ body{
     color:#fb7185;
     font-weight:bold;
 }
-
 
 /* =====================================================
    TOPOLOGY
@@ -128,10 +140,8 @@ body{
 
     border:1px solid #17405e;
     border-radius:25px;
-
     padding:15px;
     margin-bottom:12px;
-
     overflow:hidden;
 }
 
@@ -147,7 +157,6 @@ body{
     min-height:650px;
 }
 
-
 /* =====================================================
    INTERNET
 ===================================================== */
@@ -158,8 +167,8 @@ body{
 
     width:180px;
     margin:auto;
-
     padding:15px;
+
     text-align:center;
 
     border-radius:20px;
@@ -193,83 +202,22 @@ body{
     opacity:.8;
 }
 
-
-/* =====================================================
-   MAIN LINE
-===================================================== */
-
-.main-line{
-    position:absolute;
-
-    top:65px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:4px;
-    height:330px;
-
-    background:#16445f;
-
-    overflow:hidden;
-}
-
-.data-flow{
-    position:absolute;
-
-    width:4px;
-    height:70px;
-
-    background:
-    linear-gradient(
-        180deg,
-        transparent,
-        #29d7ff,
-        transparent
-    );
-
-    animation:
-    flowDown 1.4s
-    linear infinite;
-}
-
-@keyframes flowDown{
-
-    from{
-        top:-80px;
-    }
-
-    to{
-        top:330px;
-    }
-
-}
-
-
 /* =====================================================
    TOWER
 ===================================================== */
 
 .tower{
     position:absolute;
-
     top:105px;
     left:50%;
-
     transform:translateX(-50%);
-
     width:130px;
     height:270px;
 }
 
-
-/* tower legs */
-
 .tower-leg{
     position:absolute;
-
     bottom:0;
-
     width:5px;
     height:240px;
 
@@ -291,49 +239,34 @@ body{
     transform:rotate(-8deg);
 }
 
-
-/* cross */
-
 .cross{
     position:absolute;
-
     left:18px;
     right:18px;
-
     height:4px;
-
     background:#39728f;
 }
 
-.cross1{top:40px;}
-.cross2{top:85px;}
-.cross3{top:130px;}
-.cross4{top:175px;}
-.cross5{top:220px;}
-
-
-/* antenna */
+.cross1{top:40px}
+.cross2{top:85px}
+.cross3{top:130px}
+.cross4{top:175px}
+.cross5{top:220px}
 
 .antenna{
     position:absolute;
-
     top:-18px;
     left:50%;
-
     transform:translateX(-50%);
-
     width:5px;
     height:55px;
-
     background:#79dfff;
 }
 
 .antenna-light{
     position:absolute;
-
     top:-27px;
     left:50%;
-
     transform:translateX(-50%);
 
     width:12px;
@@ -344,34 +277,25 @@ body{
     background:#ff394f;
 
     box-shadow:
-    0 0 15px #ff394f;
+    0 0 15px
+    #ff394f;
 
     animation:blink 1s infinite;
 }
 
 @keyframes blink{
-
-    0%,100%{
-        opacity:1;
-    }
-
-    50%{
-        opacity:.25;
-    }
-
+    0%,100%{opacity:1}
+    50%{opacity:.25}
 }
 
-
 /* =====================================================
-   RADIO WAVES
+   RADIO
 ===================================================== */
 
 .wave{
     position:absolute;
-
     top:-45px;
     left:50%;
-
     transform:translateX(-50%);
 
     border:2px solid #22cfff;
@@ -379,8 +303,7 @@ body{
 
     opacity:0;
 
-    animation:
-    wave 2.5s infinite;
+    animation:wave 2.5s infinite;
 }
 
 .wave1{
@@ -406,7 +329,6 @@ body{
         transform:
         translateX(-50%)
         scale(.5);
-
         opacity:.8;
     }
 
@@ -414,12 +336,53 @@ body{
         transform:
         translateX(-50%)
         scale(1.3);
-
         opacity:0;
     }
 
 }
 
+/* =====================================================
+   MAIN LINE
+===================================================== */
+
+.main-line{
+    position:absolute;
+    top:65px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:4px;
+    height:330px;
+
+    background:#16445f;
+
+    overflow:hidden;
+}
+
+.data-flow{
+    position:absolute;
+    width:4px;
+    height:70px;
+
+    background:
+    linear-gradient(
+        180deg,
+        transparent,
+        #29d7ff,
+        transparent
+    );
+
+    animation:
+    flowDown 1.4s
+    linear infinite;
+}
+
+@keyframes flowDown{
+
+    from{top:-80px}
+    to{top:330px}
+
+}
 
 /* =====================================================
    ROUTER
@@ -427,16 +390,13 @@ body{
 
 .router-node{
     position:absolute;
-
     top:390px;
     left:50%;
-
     transform:translateX(-50%);
 
     z-index:5;
 
     width:210px;
-
     padding:15px;
 
     text-align:center;
@@ -472,20 +432,12 @@ body{
     margin-top:4px;
 }
 
-.router-ping{
-    font-size:10px;
-    color:#9ab5c9;
-    margin-top:5px;
-}
-
-
 /* =====================================================
    USERS
 ===================================================== */
 
 .users{
     display:grid;
-
     grid-template-columns:
     repeat(3,1fr);
 
@@ -499,8 +451,6 @@ body{
 }
 
 .user-card{
-    position:relative;
-
     background:#102337;
 
     border:1px solid #23506c;
@@ -552,60 +502,66 @@ body{
     color:#fb7185;
 }
 
-.user-mini{
-    font-size:8px;
-    color:#7691a7;
-    margin-top:4px;
-}
-
-
 /* =====================================================
-   USER LINES
+   SPEED TEST
 ===================================================== */
 
-.user-lines{
-    position:absolute;
+.speed-box{
+    text-align:center;
 
-    top:505px;
-    left:0;
-    right:0;
+    background:
+    linear-gradient(
+        145deg,
+        #0b2135,
+        #102d45
+    );
 
-    height:80px;
+    border:
+    1px solid
+    #1c5272;
+
+    border-radius:20px;
+
+    padding:20px;
 }
 
-.user-lines::before{
-    content:"";
-
-    position:absolute;
-
-    top:15px;
-
-    left:10%;
-    right:10%;
-
-    height:3px;
-
-    background:#17445f;
+.speed-main{
+    font-size:48px;
+    font-weight:bold;
+    color:#45c9ff;
 }
 
-.user-dot{
-    position:absolute;
-
-    top:9px;
-
-    width:14px;
-    height:14px;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    box-shadow:
-    0 0 15px #22c55e;
-
-    transition:.3s;
+.speed-unit{
+    font-size:13px;
+    color:#91aabd;
 }
 
+.speed-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:8px;
+
+    margin-top:15px;
+}
+
+.speed-item{
+    background:#162d43;
+    border-radius:13px;
+    padding:12px 5px;
+}
+
+.speed-label{
+    font-size:9px;
+    color:#7894ab;
+}
+
+.speed-value{
+    font-size:16px;
+    font-weight:bold;
+    margin-top:5px;
+}
 
 /* =====================================================
    BUTTON
@@ -615,14 +571,17 @@ button{
     width:100%;
 
     border:0;
+
     border-radius:15px;
 
     padding:15px;
+
     margin-bottom:10px;
 
     color:white;
 
     font-size:15px;
+
     font-weight:bold;
 
     background:#087cff;
@@ -630,6 +589,10 @@ button{
 
 button:active{
     transform:scale(.98);
+}
+
+button:disabled{
+    opacity:.55;
 }
 
 .speed-button{
@@ -640,18 +603,12 @@ button:active{
     background:#7135b8;
 }
 
-.gps-button{
-    background:#075f8d;
-}
-
-
 /* =====================================================
    LOG
 ===================================================== */
 
 .log{
-    max-height:240px;
-
+    max-height:200px;
     overflow:auto;
 
     background:#06111d;
@@ -667,25 +624,13 @@ button:active{
     padding:7px 0;
 
     border-bottom:
-    1px solid #14293b;
+    1px solid
+    #14293b;
 
     font-size:10px;
 
     color:#91a8bb;
 }
-
-.log-online{
-    color:#4ade80;
-}
-
-.log-offline{
-    color:#fb7185;
-}
-
-.log-info{
-    color:#53caff;
-}
-
 
 /* =====================================================
    DETAIL POPUP
@@ -702,8 +647,7 @@ button:active{
     background:
     rgba(0,0,0,.78);
 
-    backdrop-filter:
-    blur(7px);
+    backdrop-filter:blur(7px);
 
     align-items:center;
     justify-content:center;
@@ -732,8 +676,7 @@ button:active{
 
     padding:20px;
 
-    animation:
-    popup .25s ease;
+    animation:popup .25s ease;
 }
 
 @keyframes popup{
@@ -771,7 +714,6 @@ button:active{
 
 .detail-grid{
     display:grid;
-
     grid-template-columns:
     repeat(2,1fr);
 
@@ -780,9 +722,7 @@ button:active{
 
 .detail-item{
     background:#162d43;
-
     border-radius:13px;
-
     padding:12px;
 }
 
@@ -813,19 +753,14 @@ button:active{
     color:#fb7185;
 }
 
-.yellow{
-    color:#facc15;
-}
-
 .close{
     margin-top:15px;
     margin-bottom:0;
     background:#d83249;
 }
 
-
 /* =====================================================
-   ALERT POPUP
+   ALERT
 ===================================================== */
 
 .alert-popup{
@@ -847,31 +782,6 @@ button:active{
     line-height:1.6;
     color:#b8c9d8;
 }
-
-
-/* =====================================================
-   GPS BOX
-===================================================== */
-
-.gps-box{
-    background:#102337;
-
-    border:1px solid #23506c;
-
-    border-radius:15px;
-
-    padding:13px;
-
-    font-size:11px;
-
-    line-height:1.8;
-}
-
-.gps-value{
-    color:#53caff;
-    font-family:monospace;
-}
-
 
 /* =====================================================
    RESPONSIVE
@@ -901,6 +811,10 @@ button:active{
         min-height:850px;
     }
 
+    .speed-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
@@ -909,13 +823,9 @@ button:active{
 
 <body>
 
-
 <div class="container">
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- HEADER -->
 
 <div class="header">
 
@@ -924,22 +834,20 @@ button:active{
 </h1>
 
 <p>
-Jaringan ISP • MikroTik • Monitoring Per User
+ISP • MikroTik • Monitoring Per User
 </p>
 
 </div>
 
 
-<!-- =====================================================
-     STATUS
-===================================================== -->
+<!-- STATUS -->
 
 <div class="status-card">
 
 <div class="status-row">
 
 <span>
-📡 STATUS JARINGAN
+📡 STATUS INTERNET 
 </span>
 
 <span
@@ -966,26 +874,10 @@ class="online-text">
 
 </div>
 
-<br>
-
-<div class="status-row">
-
-<span>
-🔄 UPDATE TERAKHIR
-</span>
-
-<span id="lastUpdate">
---
-</span>
-
-</div>
-
 </div>
 
 
-<!-- =====================================================
-     TOPOLOGY
-===================================================== -->
+<!-- TOPOLOGY -->
 
 <div class="topology">
 
@@ -995,11 +887,7 @@ class="online-text">
 
 </div>
 
-
 <div class="tower-area">
-
-
-<!-- INTERNET -->
 
 <div class="internet-node">
 
@@ -1018,16 +906,12 @@ INTERNET
 </div>
 
 
-<!-- MAIN LINE -->
-
 <div class="main-line">
 
 <div class="data-flow"></div>
 
 </div>
 
-
-<!-- TOWER -->
 
 <div class="tower">
 
@@ -1051,8 +935,6 @@ INTERNET
 </div>
 
 
-<!-- MIKROTIK -->
-
 <div class="router-node">
 
 <div class="router-icon">
@@ -1060,103 +942,115 @@ INTERNET
 </div>
 
 <div class="router-name">
-ROUTER/MIKROTIK
+MIKROTIK/ROUTER 
 </div>
 
 <div class="router-ip">
 10.10.80.XXX
 </div>
 
-<div class="router-ping"
-id="routerPing">
-
-PING: -- ms
-
 </div>
 
-</div>
-
-
-<!-- USER DOT -->
-
-<div
-id="userLines"
-class="user-lines">
-</div>
-
-
-<!-- USERS -->
 
 <div
 id="users"
 class="users">
 </div>
 
-
 </div>
 
 </div>
 
 
-<!-- =====================================================
-     GPS
-===================================================== -->
+<!-- REAL SPEED TEST -->
 
-<div class="status-card">
+<div class="card">
 
-<div class="detail-label">
-📍 GPS PERANGKAT MONITOR
+<div class="title">
+⚡ REAL INTERNET SPEED TEST
 </div>
 
-<br>
+<div class="speed-box">
 
-<div class="gps-box">
-
-Latitude:
-<span id="myLat" class="gps-value">
+<div
+id="speedMain"
+class="speed-main">
 --
-</span>
+</div>
 
-<br>
+<div class="speed-unit">
+Mbps DOWNLOAD
+</div>
 
-Longitude:
-<span id="myLon" class="gps-value">
---
-</span>
+<div class="speed-grid">
 
-<br>
+<div class="speed-item">
 
-Akurasi:
-<span id="myAccuracy" class="gps-value">
---
-</span>
+<div class="speed-label">
+PING
+</div>
 
-<br>
-
-Baterai:
-<span id="myBattery" class="gps-value">
---
-</span>
-
+<div
+id="pingResult"
+class="speed-value">
+-- ms
 </div>
 
 </div>
 
 
-<!-- =====================================================
-     CONTROL
-===================================================== -->
+<div class="speed-item">
 
-<button onclick="refreshNetwork()">
+<div class="speed-label">
+DOWNLOAD
+</div>
+
+<div
+id="downloadResult"
+class="speed-value">
+-- Mbps
+</div>
+
+</div>
+
+
+<div class="speed-item">
+
+<div class="speed-label">
+UPLOAD
+</div>
+
+<div
+id="uploadResult"
+class="speed-value">
+-- Mbps
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BUTTON -->
+
+<button
+onclick="refreshNetwork()">
+
 🔄 REFRESH JARINGAN
+
 </button>
 
 
 <button
+id="speedButton"
 class="speed-button"
-onclick="testAllSpeed()">
+onclick="realSpeedTest()">
 
-⚡ TEST SPEED USER
+⚡ TEST SPEED ASLI
 
 </button>
 
@@ -1165,23 +1059,12 @@ onclick="testAllSpeed()">
 class="sound-button"
 onclick="toggleSound()">
 
-🔊 AKTIFKAN SUARA
+🔊 AKTIFKAN NOTIFIKASI 
 
 </button>
 
 
-<button
-class="gps-button"
-onclick="getGPS()">
-
-📍 UPDATE GPS
-
-</button>
-
-
-<!-- =====================================================
-     LOG
-===================================================== -->
+<!-- LOG -->
 
 <div class="status-card">
 
@@ -1201,10 +1084,6 @@ class="log">
 </div>
 
 
-<!-- =====================================================
-     AUTO REFRESH
-===================================================== -->
-
 <div class="status-card">
 
 <div class="status-row">
@@ -1221,13 +1100,10 @@ class="log">
 
 </div>
 
-
 </div>
 
 
-<!-- =====================================================
-     DETAIL USER POPUP
-===================================================== -->
+<!-- USER DETAIL -->
 
 <div
 id="detailOverlay"
@@ -1257,12 +1133,10 @@ ONLINE
 
 </div>
 
-
 <div
 id="detailGrid"
 class="detail-grid">
 </div>
-
 
 <button
 class="close"
@@ -1277,9 +1151,7 @@ onclick="closeDetail()">
 </div>
 
 
-<!-- =====================================================
-     ALERT POPUP
-===================================================== -->
+<!-- ALERT -->
 
 <div
 id="alertOverlay"
@@ -1320,97 +1192,58 @@ TUTUP
 <script>
 
 /* =====================================================
-   DATA USER
+   USER DATA
 ===================================================== */
 
 const users=[
 
 {
-    id:"ASEP",
-    name:"ASEP",
-    ip:"10.10.80.10",
-    mac:"AA:BB:CC:11:22:33",
-
-    status:"online",
-
-    uptime:0,
-
-    download:125000000,
-    upload:25000000,
-
-    speed:0,
-
-    gps:"Belum tersedia",
-
-    battery:"--",
-
-    signal:"--",
-
-    lastSeen:"Sekarang"
+id:"ASEP",
+name:"ASEP",
+ip:"10.10.80.10",
+mac:"AA:BB:CC:11:22:33",
+status:"online",
+uptime:0,
+download:0,
+upload:0,
+speed:0,
+gps:"Belum tersedia",
+lastSeen:"Sekarang"
 },
 
 {
-    id:"ISTRI",
-    name:"ISTRI",
-    ip:"10.10.80.11",
-    mac:"AA:BB:CC:44:55:66",
-
-    status:"online",
-
-    uptime:0,
-
-    download:85000000,
-    upload:18000000,
-
-    speed:0,
-
-    gps:"Belum tersedia",
-
-    battery:"--",
-
-    signal:"--",
-
-    lastSeen:"Sekarang"
+id:"ISTRI",
+name:"ISTRI",
+ip:"10.10.80.11",
+mac:"AA:BB:CC:44:55:66",
+status:"online",
+uptime:0,
+download:0,
+upload:0,
+speed:0,
+gps:"Belum tersedia",
+lastSeen:"Sekarang"
 },
 
 {
-    id:"USER03",
-    name:"USER 03",
-    ip:"10.10.80.12",
-    mac:"AA:BB:CC:77:88:99",
-
-    status:"offline",
-
-    uptime:0,
-
-    download:0,
-    upload:0,
-
-    speed:0,
-
-    gps:"Belum tersedia",
-
-    battery:"--",
-
-    signal:"--",
-
-    lastSeen:"--"
+id:"USER03",
+name:"USER 03",
+ip:"10.10.80.12",
+mac:"AA:BB:CC:77:88:99",
+status:"offline",
+uptime:0,
+download:0,
+upload:0,
+speed:0,
+gps:"Belum tersedia",
+lastSeen:"--"
 }
 
 ];
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let previousStatus={};
-
 let soundEnabled=false;
-
 let audioContext=null;
-
-let selectedUser=null;
 
 
 /* =====================================================
@@ -1419,307 +1252,55 @@ let selectedUser=null;
 
 function formatBytes(bytes){
 
-    if(!bytes || bytes<=0)
-        return "0 B";
+if(!bytes || bytes<=0)
+return "0 B";
 
-    const units=[
-        "B",
-        "KB",
-        "MB",
-        "GB",
-        "TB"
-    ];
+const units=[
+"B",
+"KB",
+"MB",
+"GB",
+"TB"
+];
 
-    const i=Math.floor(
-        Math.log(bytes)/
-        Math.log(1024)
-    );
+const i=Math.floor(
+Math.log(bytes)/
+Math.log(1024)
+);
 
-    return (
-        bytes/
-        Math.pow(1024,i)
-    ).toFixed(2)
-    +" "
-    +units[i];
+return(
+bytes/
+Math.pow(1024,i)
+).toFixed(2)
++" "
++units[i];
+
 }
 
 
 /* =====================================================
-   FORMAT UPTIME
+   UPTIME
 ===================================================== */
 
 function formatUptime(seconds){
 
-    if(!seconds)
-        return "0m";
-
-    const days=
-        Math.floor(
-            seconds/86400
-        );
-
-    const hours=
-        Math.floor(
-            (seconds%86400)/3600
-        );
-
-    const minutes=
-        Math.floor(
-            (seconds%3600)/60
-        );
-
-    return (
-        days+"h "
-        +hours+"j "
-        +minutes+"m"
-    );
-}
-
-
-/* =====================================================
-   TIME
-===================================================== */
-
-function timeNow(){
-
-    return new Date()
-    .toLocaleTimeString(
-        "id-ID",
-        {
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit"
-        }
-    );
-}
-
-
-/* =====================================================
-   LOG
-===================================================== */
-
-function addLog(message,type="info"){
-
-    const box=
-        document.getElementById("log");
-
-    const div=
-        document.createElement("div");
-
-    div.className=
-        "log-item log-"+type;
-
-    div.textContent=
-        "["+timeNow()+"] "
-        +message;
-
-    box.prepend(div);
-
-    while(box.children.length>50){
-        box.removeChild(
-            box.lastChild
-        );
-    }
-}
-
-
-/* =====================================================
-   SOUND
-===================================================== */
-
-function toggleSound(){
-
-    soundEnabled=
-        !soundEnabled;
-
-    const button=
-        document.querySelector(
-            ".sound-button"
-        );
-
-    if(soundEnabled){
-
-        button.textContent=
-            "🔊 SUARA AKTIF";
-
-        button.style.background=
-            "#159447";
-
-        speak(
-            "Sistem suara aktif."
-        );
-
-        addLog(
-            "Sistem suara diaktifkan."
-        );
-
-    }else{
-
-        button.textContent=
-            "🔇 AKTIFKAN SUARA";
-
-        button.style.background=
-            "#7135b8";
-
-        addLog(
-            "Sistem suara dimatikan."
-        );
-    }
-}
-
-
-/* =====================================================
-   SPEECH
-===================================================== */
-
-function speak(text){
-
-    if(
-        !soundEnabled ||
-        !("speechSynthesis" in window)
-    )
-        return;
-
-    window.speechSynthesis.cancel();
-
-    const speech=
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-    speech.lang="id-ID";
-    speech.rate=.9;
-    speech.pitch=1;
-    speech.volume=1;
-
-    window.speechSynthesis
-        .speak(speech);
-}
-
-
-/* =====================================================
-   ALARM
-===================================================== */
-
-function alarmSound(){
-
-    try{
-
-        const AudioContext=
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        if(!audioContext){
-
-            audioContext=
-                new AudioContext();
-
-        }
-
-        const ctx=
-            audioContext;
-
-        const oscillator=
-            ctx.createOscillator();
-
-        const gain=
-            ctx.createGain();
-
-        oscillator.type=
-            "square";
-
-        oscillator.frequency
-            .setValueAtTime(
-                850,
-                ctx.currentTime
-            );
-
-        oscillator.frequency
-            .linearRampToValueAtTime(
-                450,
-                ctx.currentTime+.3
-            );
-
-        gain.gain
-            .setValueAtTime(
-                .0001,
-                ctx.currentTime
-            );
-
-        gain.gain
-            .exponentialRampToValueAtTime(
-                .3,
-                ctx.currentTime+.02
-            );
-
-        gain.gain
-            .exponentialRampToValueAtTime(
-                .0001,
-                ctx.currentTime+.6
-            );
-
-        oscillator.connect(gain);
-
-        gain.connect(
-            ctx.destination
-        );
-
-        oscillator.start();
-
-        oscillator.stop(
-            ctx.currentTime+.6
-        );
-
-    }catch(e){
-
-        console.log(e);
-
-    }
-}
-
-
-/* =====================================================
-   ALERT
-===================================================== */
-
-function showAlert(
-    icon,
-    title,
-    message
-){
-
-    document.getElementById(
-        "alertIcon"
-    ).textContent=icon;
-
-    document.getElementById(
-        "alertTitle"
-    ).textContent=title;
-
-    document.getElementById(
-        "alertMessage"
-    ).textContent=message;
-
-    document.getElementById(
-        "alertOverlay"
-    ).style.display="flex";
-
-    if(soundEnabled){
-
-        alarmSound();
-
-        speak(
-            title+". "+message
-        );
-    }
-}
-
-
-function closeAlert(){
-
-    document.getElementById(
-        "alertOverlay"
-    ).style.display="none";
+const days=Math.floor(
+seconds/86400
+);
+
+const hours=Math.floor(
+(seconds%86400)/3600
+);
+
+const minutes=Math.floor(
+(seconds%3600)/60
+);
+
+return(
+days+"h "
++hours+"j "
++minutes+"m"
+);
 
 }
 
@@ -1730,385 +1311,247 @@ function closeAlert(){
 
 function renderUsers(){
 
-    const box=
-        document.getElementById(
-            "users"
-        );
+const box=
+document.getElementById("users");
 
-    box.innerHTML="";
+box.innerHTML="";
 
-    let active=0;
+let active=0;
 
-    users.forEach(
-        (user,index)=>{
+users.forEach(user=>{
 
-            if(
-                user.status===
-                "online"
-            ){
-                active++;
-            }
+if(user.status==="online")
+active++;
 
-            const card=
-                document.createElement(
-                    "div"
-                );
+const card=
+document.createElement("div");
 
-            card.className=
-                "user-card "
-                +user.status;
+card.className=
+"user-card "
++user.status;
 
-            card.onclick=()=>{
-                showUserDetail(user);
-            };
+card.onclick=()=>{
+showUserDetail(user);
+};
 
-            card.innerHTML=`
+card.innerHTML=`
 
-                <div class="user-avatar">
-                    📱
-                </div>
+<div class="user-avatar">
+📱
+</div>
 
-                <div class="user-name">
-                    ${user.name}
-                </div>
+<div class="user-name">
+${user.name}
+</div>
 
-                <div class="user-status">
-                    ${
-                        user.status===
-                        "online"
-                        ?
-                        "🟢 ONLINE"
-                        :
-                        "🔴 OFFLINE"
-                    }
-                </div>
+<div class="user-status">
 
-                <div class="user-mini">
-                    ${
-                        user.status===
-                        "online"
-                        ?
-                        formatBytes(
-                            user.download+
-                            user.upload
-                        )
-                        :
-                        "Tidak aktif"
-                    }
-                </div>
+${
+user.status==="online"
+?
+"🟢 ONLINE"
+:
+"🔴 OFFLINE"
+}
 
-            `;
+</div>
 
-            box.appendChild(card);
+`;
 
-        }
-    );
+box.appendChild(card);
 
+});
 
-    document.getElementById(
-        "activeUsers"
-    ).textContent=active;
-
-
-    renderUserDots();
+document.getElementById(
+"activeUsers"
+).textContent=active;
 
 }
 
 
 /* =====================================================
-   USER DOTS
-===================================================== */
-
-function renderUserDots(){
-
-    const box=
-        document.getElementById(
-            "userLines"
-        );
-
-    box.innerHTML="";
-
-    const positions=[
-        16.5,
-        50,
-        83.5
-    ];
-
-    users.forEach(
-        (user,i)=>{
-
-            const dot=
-                document.createElement(
-                    "div"
-                );
-
-            dot.className=
-                "user-dot";
-
-            dot.style.left=
-                positions[i]+"%";
-
-            if(
-                user.status===
-                "offline"
-            ){
-
-                dot.style.background=
-                    "#ef4444";
-
-                dot.style.boxShadow=
-                    "0 0 15px #ef4444";
-
-            }
-
-            box.appendChild(dot);
-
-        }
-    );
-}
-
-
-/* =====================================================
-   DETAIL USER
+   USER DETAIL
 ===================================================== */
 
 function showUserDetail(user){
 
-    selectedUser=user;
+document.getElementById(
+"detailName"
+).textContent=user.name;
 
-    document.getElementById(
-        "detailAvatar"
-    ).textContent="📱";
+document.getElementById(
+"detailStatus"
+).textContent=
+user.status==="online"
+?
+"🟢 ONLINE"
+:
+"🔴 OFFLINE";
 
-    document.getElementById(
-        "detailName"
-    ).textContent=user.name;
+document.getElementById(
+"detailStatus"
+).className=
+"detail-status "
++
+(
+user.status==="online"
+?
+"green"
+:
+"red"
+);
 
-    const status=
-        document.getElementById(
-            "detailStatus"
-        );
+document.getElementById(
+"detailGrid"
+).innerHTML=`
 
-    status.textContent=
-        user.status===
-        "online"
-        ?
-        "🟢 ONLINE"
-        :
-        "🔴 OFFLINE";
+<div class="detail-item">
 
-    status.className=
-        "detail-status "
-        +
-        (
-            user.status===
-            "online"
-            ?
-            "green"
-            :
-            "red"
-        );
+<div class="detail-label">
+STATUS
+</div>
 
+<div class="detail-value">
+${
+user.status==="online"
+?"AKTIF"
+:"NONAKTIF"
+}
+</div>
 
-    const grid=
-        document.getElementById(
-            "detailGrid"
-        );
+</div>
 
 
-    grid.innerHTML=`
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+IP ADDRESS
+</div>
 
-            <div class="detail-label">
-                STATUS
-            </div>
+<div class="detail-value blue">
+${user.ip}
+</div>
 
-            <div class="detail-value">
-                ${
-                    user.status===
-                    "online"
-                    ?
-                    "AKTIF"
-                    :
-                    "NONAKTIF"
-                }
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+MAC ADDRESS
+</div>
 
-            <div class="detail-label">
-                IP ADDRESS
-            </div>
+<div class="detail-value">
+${user.mac}
+</div>
 
-            <div class="detail-value blue">
-                ${user.ip}
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+LAMA TERHUBUNG
+</div>
 
-            <div class="detail-label">
-                MAC ADDRESS
-            </div>
+<div class="detail-value">
+${
+user.status==="online"
+?
+formatUptime(user.uptime)
+:
+"--"
+}
+</div>
 
-            <div class="detail-value">
-                ${user.mac}
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+DOWNLOAD
+</div>
 
-            <div class="detail-label">
-                LAMA TERHUBUNG
-            </div>
+<div class="detail-value blue">
+${formatBytes(user.download)}
+</div>
 
-            <div class="detail-value">
-                ${
-                    user.status===
-                    "online"
-                    ?
-                    formatUptime(
-                        user.uptime
-                    )
-                    :
-                    "--"
-                }
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+UPLOAD
+</div>
 
-            <div class="detail-label">
-                DOWNLOAD
-            </div>
+<div class="detail-value purple">
+${formatBytes(user.upload)}
+</div>
 
-            <div class="detail-value blue">
-                ${formatBytes(
-                    user.download
-                )}
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+TOTAL PEMAKAIAN
+</div>
 
-            <div class="detail-label">
-                UPLOAD
-            </div>
+<div class="detail-value">
+${formatBytes(
+user.download+
+user.upload
+)}
+</div>
 
-            <div class="detail-value purple">
-                ${formatBytes(
-                    user.upload
-                )}
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+SPEED TEST
+</div>
 
-            <div class="detail-label">
-                TOTAL PEMAKAIAN
-            </div>
+<div class="detail-value blue">
+${user.speed || "--"} Mbps
+</div>
 
-            <div class="detail-value">
-                ${formatBytes(
-                    user.download+
-                    user.upload
-                )}
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+GPS
+</div>
 
-            <div class="detail-label">
-                SPEED
-            </div>
+<div class="detail-value">
+${user.gps}
+</div>
 
-            <div class="detail-value green">
-                ${
-                    user.speed>0
-                    ?
-                    user.speed+
-                    " Mbps"
-                    :
-                    "--"
-                }
-            </div>
+</div>
 
-        </div>
 
+<div class="detail-item">
 
-        <div class="detail-item">
+<div class="detail-label">
+TERAKHIR TERLIHAT
+</div>
 
-            <div class="detail-label">
-                BATERAI
-            </div>
+<div class="detail-value">
+${user.lastSeen}
+</div>
 
-            <div class="detail-value yellow">
-                ${user.battery}
-            </div>
+</div>
 
-        </div>
+`;
 
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                SIGNAL
-            </div>
-
-            <div class="detail-value green">
-                ${user.signal}
-            </div>
-
-        </div>
-
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                GPS
-            </div>
-
-            <div class="detail-value blue">
-                ${user.gps}
-            </div>
-
-        </div>
-
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                TERAKHIR TERLIHAT
-            </div>
-
-            <div class="detail-value">
-                ${user.lastSeen}
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.getElementById(
-        "detailOverlay"
-    ).style.display="flex";
+document.getElementById(
+"detailOverlay"
+).style.display="flex";
 
 }
 
@@ -2119,143 +1562,351 @@ function showUserDetail(user){
 
 function closeDetail(){
 
-    document.getElementById(
-        "detailOverlay"
-    ).style.display="none";
+document.getElementById(
+"detailOverlay"
+).style.display="none";
 
 }
 
 
 /* =====================================================
-   SIMULASI STATUS USER
+   REAL SPEED TEST
 ===================================================== */
 
-function simulateNetwork(){
+async function realSpeedTest(){
 
-    users.forEach(
-        user=>{
+if(!navigator.onLine){
 
-            const oldStatus=
-                user.status;
+showAlert(
+"🔴",
+"INTERNET OFFLINE",
+"Perangkat sedang tidak terhubung ke internet."
+);
 
-            /*
-             * Simulasi kecil.
-             * Hanya untuk demo HTML.
-             */
+return;
 
-            if(Math.random()<.08){
+}
 
-                user.status=
-                    user.status===
-                    "online"
-                    ?
-                    "offline"
-                    :
-                    "online";
-            }
+const button=
+document.getElementById(
+"speedButton"
+);
 
+button.disabled=true;
 
-            if(
-                user.status===
-                "online"
-            ){
+button.textContent=
+"⏳ TESTING SPEED...";
 
-                user.uptime+=10;
+document.getElementById(
+"speedMain"
+).textContent="--";
 
-                user.download+=
-                    Math.floor(
-                        Math.random()*
-                        500000
-                    );
+document.getElementById(
+"pingResult"
+).textContent="Testing...";
 
-                user.upload+=
-                    Math.floor(
-                        Math.random()*
-                        100000
-                    );
+document.getElementById(
+"downloadResult"
+).textContent="Testing...";
 
-                user.speed=
-                    Number(
-                        (
-                            5+
-                            Math.random()*35
-                        ).toFixed(1)
-                    );
-
-                user.battery=
-                    Math.floor(
-                        40+
-                        Math.random()*60
-                    )
-                    +"%";
-
-                user.signal=
-                    Math.floor(
-                        -70+
-                        Math.random()*25
-                    )
-                    +" dBm";
-
-                user.lastSeen=
-                    "Sekarang";
-
-            }else{
-
-                user.lastSeen=
-                    timeNow();
-            }
+document.getElementById(
+"uploadResult"
+).textContent="Testing...";
 
 
-            if(
-                oldStatus!==user.status
-            ){
+try{
 
-                if(
-                    user.status===
-                    "online"
-                ){
+/* =================================================
+   PING
+================================================= */
 
-                    addLog(
-                        "🟢 "
-                        +user.name+
-                        " ONLINE",
-                        "online"
-                    );
+let pingTotal=0;
 
-                    showAlert(
-                        "🟢",
-                        user.name+
-                        " ONLINE",
-                        user.name+
-                        " kembali terhubung ke jaringan."
-                    );
+const pingCount=3;
 
-                }else{
+for(
+let i=0;
+i<pingCount;
+i++
+){
 
-                    addLog(
-                        "🔴 "
-                        +user.name+
-                        " OFFLINE",
-                        "offline"
-                    );
+const start=
+performance.now();
 
-                    showAlert(
-                        "🔴",
-                        user.name+
-                        " OFFLINE",
-                        user.name+
-                        " terputus dari jaringan."
-                    );
+await fetch(
+"https://speed.cloudflare.com/__down?bytes=1000&x="
++Date.now()
++Math.random(),
+{
+cache:"no-store"
+}
+);
 
-                }
+pingTotal +=
+performance.now()-start;
 
-            }
+}
 
-        }
-    );
+const ping=
+Math.round(
+pingTotal/pingCount
+);
+
+document.getElementById(
+"pingResult"
+).textContent=
+ping+" ms";
 
 
-    renderUsers();
+/* =================================================
+   DOWNLOAD
+================================================= */
+
+const downloadBytes=
+10000000;
+
+const downloadUrl=
+"https://speed.cloudflare.com/__down?bytes="
++downloadBytes
++"&x="
++Date.now();
+
+
+const downloadStart=
+performance.now();
+
+const response=
+await fetch(
+downloadUrl,
+{
+cache:"no-store"
+}
+);
+
+if(!response.ok)
+throw new Error(
+"Download gagal"
+);
+
+const reader=
+response.body.getReader();
+
+let received=0;
+
+while(true){
+
+const result=
+await reader.read();
+
+if(result.done)
+break;
+
+received+=
+result.value.length;
+
+}
+
+const downloadTime=
+(
+performance.now()
+-
+downloadStart
+)/1000;
+
+
+const downloadMbps=
+(
+received*8
+/
+downloadTime
+/
+1000000
+).toFixed(2);
+
+
+document.getElementById(
+"downloadResult"
+).textContent=
+downloadMbps
++" Mbps";
+
+document.getElementById(
+"speedMain"
+).textContent=
+downloadMbps;
+
+
+/* =================================================
+   UPLOAD
+================================================= */
+
+/*
+   Upload browser tidak bisa dites secara
+   universal tanpa endpoint upload.
+
+   Kita coba endpoint Cloudflare.
+*/
+
+const uploadSize=
+1000000;
+
+const uploadData=
+new Uint8Array(
+uploadSize
+);
+
+crypto.getRandomValues(
+uploadData.subarray(
+0,
+Math.min(
+65536,
+uploadSize
+)
+)
+);
+
+const uploadStart=
+performance.now();
+
+let uploadMbps=null;
+
+try{
+
+const uploadResponse=
+await fetch(
+"https://speed.cloudflare.com/__up",
+{
+method:"POST",
+body:uploadData,
+cache:"no-store"
+}
+);
+
+if(uploadResponse.ok){
+
+const uploadTime=
+(
+performance.now()
+-
+uploadStart
+)/1000;
+
+uploadMbps=
+(
+uploadSize*8
+/
+uploadTime
+/
+1000000
+).toFixed(2);
+
+}
+
+}
+catch(e){
+
+console.log(
+"Upload test tidak tersedia",
+e
+);
+
+}
+
+
+if(uploadMbps){
+
+document.getElementById(
+"uploadResult"
+).textContent=
+uploadMbps
++" Mbps";
+
+}
+else{
+
+document.getElementById(
+"uploadResult"
+).textContent=
+"Server tidak mendukung";
+
+}
+
+
+/* =================================================
+   SIMPAN KE USER ASEP
+================================================= */
+
+const asep=
+users.find(
+u=>u.id==="ASEP"
+);
+
+if(asep){
+
+asep.speed=
+Number(downloadMbps);
+
+}
+
+
+/* =================================================
+   LOG
+================================================= */
+
+addLog(
+"⚡ Speed test asli: "
++downloadMbps
++" Mbps download | Ping "
++ping
++" ms"
+);
+
+
+/* =================================================
+   POPUP
+================================================= */
+
+showAlert(
+"⚡",
+"SPEED TEST SELESAI",
+"Download "
++downloadMbps
++" Mbps dengan ping "
++ping
++" ms."
+);
+
+
+}
+catch(error){
+
+console.error(error);
+
+document.getElementById(
+"pingResult"
+).textContent="Gagal";
+
+document.getElementById(
+"downloadResult"
+).textContent="Gagal";
+
+document.getElementById(
+"uploadResult"
+).textContent="Gagal";
+
+showAlert(
+"❌",
+"SPEED TEST GAGAL",
+"Server speed test tidak dapat diakses."
+);
+
+}
+
+
+button.disabled=false;
+
+button.textContent=
+"⚡ TEST SPEED ASLI";
 
 }
 
@@ -2266,343 +1917,329 @@ function simulateNetwork(){
 
 function refreshNetwork(){
 
-    const routerStatus=
-        document.getElementById(
-            "routerStatus"
-        );
+if(!navigator.onLine){
 
-    routerStatus.textContent=
-        "🟢 ONLINE";
+document.getElementById(
+"routerStatus"
+).textContent=
+"🔴 OFFLINE";
 
-    routerStatus.className=
-        "online-text";
+document.getElementById(
+"routerStatus"
+).className=
+"offline-text";
+
+users.forEach(
+user=>{
+user.status="offline";
+}
+);
+
+renderUsers();
+
+addLog(
+"🔴 Jaringan perangkat OFFLINE"
+);
+
+showAlert(
+"🔴",
+"JARINGAN OFFLINE",
+"Perangkat tidak terhubung ke internet."
+);
+
+return;
+
+}
 
 
-    document.getElementById(
-        "routerPing"
-    ).textContent=
-        "PING: "
-        +
-        Math.floor(
-            10+
-            Math.random()*30
-        )
-        +" ms";
+document.getElementById(
+"routerStatus"
+).textContent=
+"🟢 ONLINE";
+
+document.getElementById(
+"routerStatus"
+).className=
+"online-text";
 
 
-    simulateNetwork();
+addLog(
+"🟢 Jaringan ONLINE"
+);
 
-
-    document.getElementById(
-        "lastUpdate"
-    ).textContent=
-        timeNow();
-
-
-    addLog(
-        "🔄 Monitoring jaringan diperbarui.",
-        "info"
-    );
+renderUsers();
 
 }
 
 
 /* =====================================================
-   SPEED TEST
+   ONLINE / OFFLINE OTOMATIS
 ===================================================== */
 
-async function testAllSpeed(){
+window.addEventListener(
+"online",
+function(){
 
-    addLog(
-        "⚡ Memulai test speed...",
-        "info"
-    );
+document.getElementById(
+"routerStatus"
+).textContent=
+"🟢 ONLINE";
 
-    for(
-        const user of users
-    ){
+document.getElementById(
+"routerStatus"
+).className=
+"online-text";
 
-        if(
-            user.status!=="online"
-        )
-            continue;
+addLog(
+"🟢 INTERNET KEMBALI ONLINE"
+);
 
-        /*
-         * Demo speed.
-         * Belum merupakan speed test
-         * MikroTik sebenarnya.
-         */
+showAlert(
+"🟢",
+"JARINGAN ONLINE",
+"Koneksi internet kembali aktif."
+);
 
-        user.speed=
-            Number(
-                (
-                    5+
-                    Math.random()*45
-                ).toFixed(1)
-            );
+renderUsers();
 
-        addLog(
-            "⚡ "
-            +user.name+
-            " speed "
-            +user.speed+
-            " Mbps",
-            "info"
-        );
+}
+);
 
-    }
 
-    renderUsers();
+window.addEventListener(
+"offline",
+function(){
 
-    if(
-        selectedUser
-    ){
-        showUserDetail(
-            selectedUser
-        );
-    }
+document.getElementById(
+"routerStatus"
+).textContent=
+"🔴 OFFLINE";
+
+document.getElementById(
+"routerStatus"
+).className=
+"offline-text";
+
+users.forEach(
+user=>{
+user.status="offline";
+}
+);
+
+renderUsers();
+
+addLog(
+"🔴 INTERNET OFFLINE"
+);
+
+showAlert(
+"🔴",
+"JARINGAN OFFLINE",
+"Koneksi internet terputus."
+);
+
+}
+);
+
+
+/* =====================================================
+   LOG
+===================================================== */
+
+function addLog(message){
+
+const log=
+document.getElementById(
+"log"
+);
+
+const item=
+document.createElement(
+"div"
+);
+
+item.className=
+"log-item";
+
+item.textContent=
+new Date()
+.toLocaleTimeString(
+"id-ID"
+)
++" — "
++message;
+
+log.prepend(item);
 
 }
 
 
 /* =====================================================
-   GPS
+   ALERT
 ===================================================== */
 
-function getGPS(){
+function showAlert(
+icon,
+title,
+message
+){
 
-    if(
-        !navigator.geolocation
-    ){
+document.getElementById(
+"alertIcon"
+).textContent=
+icon;
 
-        addLog(
-            "❌ Browser tidak mendukung GPS.",
-            "offline"
-        );
+document.getElementById(
+"alertTitle"
+).textContent=
+title;
 
-        return;
-    }
+document.getElementById(
+"alertMessage"
+).textContent=
+message;
 
+document.getElementById(
+"alertOverlay"
+).style.display=
+"flex";
 
-    addLog(
-        "📍 Mengambil lokasi GPS...",
-        "info"
-    );
+if(soundEnabled){
 
+alarmSound();
 
-    navigator.geolocation
-        .getCurrentPosition(
+speak(
+title+
+". "+
+message
+);
 
-        position=>{
+}
 
-            const lat=
-                position.coords.latitude;
-
-            const lon=
-                position.coords.longitude;
-
-            const accuracy=
-                position.coords.accuracy;
-
-
-            document.getElementById(
-                "myLat"
-            ).textContent=
-                lat.toFixed(6);
-
-            document.getElementById(
-                "myLon"
-            ).textContent=
-                lon.toFixed(6);
-
-            document.getElementById(
-                "myAccuracy"
-            ).textContent=
-                Math.round(
-                    accuracy
-                )
-                +" meter";
+}
 
 
-            /*
-             * GPS monitor utama
-             */
+function closeAlert(){
 
-            users[0].gps=
-                lat.toFixed(6)
-                +" , "
-                +lon.toFixed(6);
-
-
-            addLog(
-                "📍 GPS ditemukan: "
-                +
-                lat.toFixed(6)
-                +" , "
-                +
-                lon.toFixed(6),
-                "info"
-            );
-
-
-            renderUsers();
-
-        },
-
-        error=>{
-
-            let msg=
-                "GPS gagal.";
-
-            if(error.code===1)
-                msg=
-                "Izin GPS ditolak.";
-
-            if(error.code===2)
-                msg=
-                "Lokasi tidak tersedia.";
-
-            if(error.code===3)
-                msg=
-                "GPS timeout.";
-
-
-            addLog(
-                "❌ "+msg,
-                "offline"
-            );
-
-        },
-
-        {
-            enableHighAccuracy:true,
-            timeout:20000,
-            maximumAge:0
-        }
-
-    );
+document.getElementById(
+"alertOverlay"
+).style.display=
+"none";
 
 }
 
 
 /* =====================================================
-   BATTERY
+   SOUND
 ===================================================== */
 
-async function getBattery(){
+function toggleSound(){
 
-    try{
+soundEnabled=
+!soundEnabled;
 
-        if(
-            !navigator.getBattery
-        ){
+if(soundEnabled){
 
-            document.getElementById(
-                "myBattery"
-            ).textContent=
-                "Tidak didukung";
+document.querySelector(
+".sound-button"
+).textContent=
+"🔊 SUARA AKTIF";
 
-            return;
-        }
+speak(
+"Sistem suara aktif."
+);
 
+}
+else{
 
-        const battery=
-            await navigator.getBattery();
+document.querySelector(
+".sound-button"
+).textContent=
+"🔇 AKTIFKAN SUARA";
 
+}
 
-        function update(){
-
-            const value=
-                Math.round(
-                    battery.level*100
-                );
-
-
-            document.getElementById(
-                "myBattery"
-            ).textContent=
-                value
-                +"% "
-                +
-                (
-                    battery.charging
-                    ?
-                    "⚡ Charging"
-                    :
-                    ""
-                );
+}
 
 
-            users[0].battery=
-                value+"%";
+function speak(text){
 
-        }
+if(
+!soundEnabled ||
+!("speechSynthesis" in window)
+)
+return;
 
+speechSynthesis.cancel();
 
-        update();
+const speech=
+new SpeechSynthesisUtterance(
+text
+);
 
-        battery.addEventListener(
-            "levelchange",
-            update
-        );
+speech.lang="id-ID";
+speech.rate=.9;
+speech.volume=1;
 
-        battery.addEventListener(
-            "chargingchange",
-            update
-        );
-
-
-    }catch(e){
-
-        console.log(e);
-
-    }
+speechSynthesis.speak(
+speech
+);
 
 }
 
 
 /* =====================================================
-   ONLINE / OFFLINE BROWSER
+   ALARM
 ===================================================== */
 
-function browserNetworkStatus(){
+function alarmSound(){
 
-    const routerStatus=
-        document.getElementById(
-            "routerStatus"
-        );
+try{
 
+if(!audioContext){
 
-    if(navigator.onLine){
+audioContext=
+new(
+window.AudioContext ||
+window.webkitAudioContext
+)();
 
-        routerStatus.textContent=
-            "🟢 ONLINE";
+}
 
-        routerStatus.className=
-            "online-text";
+const oscillator=
+audioContext.createOscillator();
 
-    }else{
+const gain=
+audioContext.createGain();
 
-        routerStatus.textContent=
-            "🔴 OFFLINE";
+oscillator.type="square";
 
-        routerStatus.className=
-            "offline-text";
+oscillator.frequency.value=
+850;
 
+gain.gain.value=.15;
 
-        addLog(
-            "🔴 Internet perangkat monitor OFFLINE.",
-            "offline"
-        );
+oscillator.connect(gain);
 
+gain.connect(
+audioContext.destination
+);
 
-        showAlert(
-            "🔴",
-            "INTERNET OFFLINE",
-            "Perangkat monitoring kehilangan koneksi internet."
-        );
+oscillator.start();
 
-    }
+setTimeout(
+()=>{
+oscillator.stop();
+},
+350
+);
+
+}
+catch(e){
+
+console.log(e);
+
+}
 
 }
 
@@ -2611,80 +2248,9 @@ function browserNetworkStatus(){
    INITIAL
 ===================================================== */
 
-window.addEventListener(
-    "load",
-    ()=>{
+renderUsers();
 
-        addLog(
-            "🤖 myROBOT Network Topology dimulai.",
-            "info"
-        );
-
-        addLog(
-            "📡 Mode DEMO — belum terhubung API MikroTik.",
-            "info"
-        );
-
-        renderUsers();
-
-        getGPS();
-
-        getBattery();
-
-        browserNetworkStatus();
-
-    }
-);
-
-
-/* =====================================================
-   BROWSER ONLINE
-===================================================== */
-
-window.addEventListener(
-    "online",
-    ()=>{
-
-        addLog(
-            "🟢 Internet perangkat kembali ONLINE.",
-            "online"
-        );
-
-        showAlert(
-            "🟢",
-            "INTERNET ONLINE",
-            "Koneksi internet perangkat monitoring kembali aktif."
-        );
-
-        browserNetworkStatus();
-
-    }
-);
-
-
-/* =====================================================
-   BROWSER OFFLINE
-===================================================== */
-
-window.addEventListener(
-    "offline",
-    ()=>{
-
-        addLog(
-            "🔴 Internet perangkat OFFLINE.",
-            "offline"
-        );
-
-        showAlert(
-            "🔴",
-            "INTERNET OFFLINE",
-            "Koneksi internet perangkat monitoring terputus."
-        );
-
-        browserNetworkStatus();
-
-    }
-);
+refreshNetwork();
 
 
 /* =====================================================
@@ -2692,617 +2258,30 @@ window.addEventListener(
 ===================================================== */
 
 setInterval(
-    ()=>{
+function(){
 
-        refreshNetwork();
+refreshNetwork();
 
-    },
-    10000
-);
+users.forEach(
+user=>{
 
-
-/* =====================================================
-   UPTIME TICK
-===================================================== */
-
-setInterval(
-    ()=>{
-
-        users.forEach(
-            user=>{
-
-                if(
-                    user.status===
-                    "online"
-                ){
-
-                    user.uptime++;
-
-                }
-
-            }
-        );
-
-    },
-    1000
-);
-
-
-/* =====================================================
-   CLOCK TITLE
-===================================================== */
-
-setInterval(
-    ()=>{
-
-        document.title=
-            "myROBOT • "
-            +
-            new Date()
-            .toLocaleTimeString(
-                "id-ID",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            );
-
-    },
-    1000
-);
-
-
-/* =====================================================
-   CLOSE POPUP CLICK OUTSIDE
-===================================================== */
-
-document.getElementById(
-    "detailOverlay"
-).addEventListener(
-    "click",
-    function(e){
-
-        if(
-            e.target===
-            this
-        ){
-
-            closeDetail();
-
-        }
-
-    }
-);
-
-
-document.getElementById(
-    "alertOverlay"
-).addEventListener(
-    "click",
-    function(e){
-
-        if(
-            e.target===
-            this
-        ){
-
-            closeAlert();
-
-        }
-
-    }
-);
-
-</script>
-
-
-   <script>
-
-/* =====================================================
-   SPEED TEST
-   Mengukur koneksi perangkat yang menjalankan HTML
-===================================================== */
-
-async function testSpeed(){
-
-    const status =
-        document.getElementById("status");
-
-    status.textContent =
-        "⚡ Menguji kecepatan internet...";
-
-    try{
-
-        const start =
-            performance.now();
-
-        const testUrl =
-            "https://speed.cloudflare.com/__down?bytes=5000000";
-
-        const response =
-            await fetch(
-                testUrl +
-                "&cache=" +
-                Date.now(),
-                {
-                    cache:"no-store"
-                }
-            );
-
-        if(!response.ok)
-            throw new Error(
-                "Gagal mengambil data"
-            );
-
-        const reader =
-            response.body.getReader();
-
-        let received = 0;
-
-        while(true){
-
-            const {done,value} =
-                await reader.read();
-
-            if(done)
-                break;
-
-            received +=
-                value.length;
-        }
-
-        const end =
-            performance.now();
-
-        const seconds =
-            (end-start)/1000;
-
-        const megabits =
-            (received*8)/
-            seconds/
-            1000000;
-
-        const speed =
-            megabits.toFixed(2);
-
-        status.textContent =
-            "⚡ Download: "
-            + speed
-            + " Mbps";
-
-        return speed;
-
-    }
-    catch(error){
-
-        console.error(error);
-
-        status.textContent =
-            "❌ Speed test gagal";
-
-        return null;
-
-    }
-
-}
-
-
-/* =====================================================
-   TEST SPEED SEMUA USER
-===================================================== */
-
-async function testAllSpeed(){
-
-    if(
-        !navigator.onLine
-    ){
-
-        showAlert(
-            "🔴",
-            "INTERNET OFFLINE",
-            "Tidak dapat melakukan speed test karena perangkat sedang offline."
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.querySelector(
-            ".speed-button"
-        );
-
-    const oldText =
-        button.textContent;
-
-    button.disabled = true;
-
-    button.textContent =
-        "⏳ TESTING...";
-
-
-    const speed =
-        await testSpeed();
-
-
-    if(speed !== null){
-
-        /*
-         * Karena tanpa API MikroTik,
-         * speed hanya berlaku untuk
-         * perangkat yang menjalankan HTML.
-         */
-
-        const me =
-            users.find(
-                user =>
-                user.id==="ASEP"
-            );
-
-        if(me){
-
-            me.speed =
-                Number(speed);
-
-        }
-
-        addLog(
-            "⚡ Speed test: "
-            +speed
-            +" Mbps"
-        );
-
-        showAlert(
-            "⚡",
-            "SPEED TEST SELESAI",
-            "Kecepatan download perangkat ini sekitar "
-            +speed
-            +" Mbps."
-        );
-
-    }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        oldText;
-
-}
-
-
-/* =====================================================
-   POPUP ALERT
-===================================================== */
-
-function showAlert(
-    icon,
-    title,
-    message
+if(
+user.status==="online"
 ){
 
-    document.getElementById(
-        "alertIcon"
-    ).textContent =
-        icon;
-
-    document.getElementById(
-        "alertTitle"
-    ).textContent =
-        title;
-
-    document.getElementById(
-        "alertMessage"
-    ).textContent =
-        message;
-
-    document.getElementById(
-        "alertOverlay"
-    ).style.display =
-        "flex";
-
-
-    if(soundEnabled){
-
-        alarmSound();
-
-        speak(
-            title +
-            ". " +
-            message
-        );
-
-    }
+user.uptime+=10;
 
 }
 
-
-/* =====================================================
-   LOG
-===================================================== */
-
-function addLog(message){
-
-    const log =
-        document.getElementById(
-            "log"
-        );
-
-    const item =
-        document.createElement(
-            "div"
-        );
-
-    item.className =
-        "log-item";
-
-    item.textContent =
-        new Date()
-        .toLocaleTimeString(
-            "id-ID"
-        )
-        +" — "
-        +message;
-
-    log.prepend(item);
-
 }
+);
+
+},
+10000
+);
 
 </script>
 
-<script>
-
-/* =====================================================
-   SPEED TEST
-   Mengukur koneksi perangkat yang menjalankan HTML
-===================================================== */
-
-async function testSpeed(){
-
-    const status =
-        document.getElementById("status");
-
-    status.textContent =
-        "⚡ Menguji kecepatan internet...";
-
-    try{
-
-        const start =
-            performance.now();
-
-        const testUrl =
-            "https://speed.cloudflare.com/__down?bytes=5000000";
-
-        const response =
-            await fetch(
-                testUrl +
-                "&cache=" +
-                Date.now(),
-                {
-                    cache:"no-store"
-                }
-            );
-
-        if(!response.ok)
-            throw new Error(
-                "Gagal mengambil data"
-            );
-
-        const reader =
-            response.body.getReader();
-
-        let received = 0;
-
-        while(true){
-
-            const {done,value} =
-                await reader.read();
-
-            if(done)
-                break;
-
-            received +=
-                value.length;
-        }
-
-        const end =
-            performance.now();
-
-        const seconds =
-            (end-start)/1000;
-
-        const megabits =
-            (received*8)/
-            seconds/
-            1000000;
-
-        const speed =
-            megabits.toFixed(2);
-
-        status.textContent =
-            "⚡ Download: "
-            + speed
-            + " Mbps";
-
-        return speed;
-
-    }
-    catch(error){
-
-        console.error(error);
-
-        status.textContent =
-            "❌ Speed test gagal";
-
-        return null;
-
-    }
-
-}
-
-
-/* =====================================================
-   TEST SPEED SEMUA USER
-===================================================== */
-
-async function testAllSpeed(){
-
-    if(
-        !navigator.onLine
-    ){
-
-        showAlert(
-            "🔴",
-            "INTERNET OFFLINE",
-            "Tidak dapat melakukan speed test karena perangkat sedang offline."
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.querySelector(
-            ".speed-button"
-        );
-
-    const oldText =
-        button.textContent;
-
-    button.disabled = true;
-
-    button.textContent =
-        "⏳ TESTING...";
-
-
-    const speed =
-        await testSpeed();
-
-
-    if(speed !== null){
-
-        /*
-         * Karena tanpa API MikroTik,
-         * speed hanya berlaku untuk
-         * perangkat yang menjalankan HTML.
-         */
-
-        const me =
-            users.find(
-                user =>
-                user.id==="ASEP"
-            );
-
-        if(me){
-
-            me.speed =
-                Number(speed);
-
-        }
-
-        addLog(
-            "⚡ Speed test: "
-            +speed
-            +" Mbps"
-        );
-
-        showAlert(
-            "⚡",
-            "SPEED TEST SELESAI",
-            "Kecepatan download perangkat ini sekitar "
-            +speed
-            +" Mbps."
-        );
-
-    }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        oldText;
-
-}
-
-
-/* =====================================================
-   POPUP ALERT
-===================================================== */
-
-function showAlert(
-    icon,
-    title,
-    message
-){
-
-    document.getElementById(
-        "alertIcon"
-    ).textContent =
-        icon;
-
-    document.getElementById(
-        "alertTitle"
-    ).textContent =
-        title;
-
-    document.getElementById(
-        "alertMessage"
-    ).textContent =
-        message;
-
-    document.getElementById(
-        "alertOverlay"
-    ).style.display =
-        "flex";
-
-
-    if(soundEnabled){
-
-        alarmSound();
-
-        speak(
-            title +
-            ". " +
-            message
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   LOG
-===================================================== */
-
-function addLog(message){
-
-    const log =
-        document.getElementById(
-            "log"
-        );
-
-    const item =
-        document.createElement(
-            "div"
-        );
-
-    item.className =
-        "log-item";
-
-    item.textContent =
-        new Date()
-        .toLocaleTimeString(
-            "id-ID"
-        )
-        +" — "
-        +message;
-
-    log.prepend(item);
-
-}
-
-</script>
-   
 </body>
+
 </html>
