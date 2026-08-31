@@ -2,23 +2,14 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1,
-               maximum-scale=1,
-               user-scalable=no">
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<meta name="theme-color" content="#087cff">
+<meta name="theme-color" content="#07111f">
 
 <title>myROBOT NETWORK TOPOLOGY</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -27,406 +18,301 @@
 }
 
 body{
-    background:
-    linear-gradient(
-        180deg,
-        #06111f,
-        #0a1727
-    );
-
-    color:white;
     min-height:100vh;
+    color:#fff;
+    background:
+        radial-gradient(circle at top,#12365b,#07111f 45%,#030811);
+    overflow-x:hidden;
 }
 
 .container{
     width:100%;
-    max-width:760px;
+    max-width:900px;
     margin:auto;
     padding:12px;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 .header{
-    background:
-    linear-gradient(
-        135deg,
-        #087cff,
-        #00b8ff
-    );
-
-    border-radius:22px;
-
     padding:20px;
-
-    margin-bottom:12px;
-
+    border-radius:24px;
+    background:
+        linear-gradient(135deg,#087cff,#00c6ff);
     box-shadow:
-    0 12px 30px
-    rgba(0,0,0,.35);
+        0 15px 40px rgba(0,0,0,.45);
+    margin-bottom:12px;
 }
 
 .header h1{
     font-size:23px;
-    margin-bottom:7px;
 }
 
 .header p{
+    margin-top:7px;
     font-size:12px;
-    opacity:.9;
+    opacity:.85;
 }
 
-/* =====================================================
-   CARD
-===================================================== */
+/* STATUS */
+
+.statusbar{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.statusbox{
+    background:#101e30;
+    border:1px solid #1d3854;
+    border-radius:16px;
+    padding:12px;
+    text-align:center;
+}
+
+.statusbox small{
+    display:block;
+    color:#8fa8c0;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.statusbox strong{
+    font-size:17px;
+}
+
+/* CARD */
 
 .card{
-    background:#101e30;
-
-    border:
-    1px solid
-    #1c344d;
-
-    border-radius:18px;
-
+    background:
+        rgba(14,29,46,.94);
+    border:1px solid #1d3854;
+    border-radius:20px;
     padding:16px;
-
     margin-bottom:12px;
-
-    box-shadow:
-    0 8px 25px
-    rgba(0,0,0,.22);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
 .title{
-    font-size:16px;
     font-weight:bold;
+    font-size:16px;
     margin-bottom:14px;
 }
 
-/* =====================================================
-   STATUS
-===================================================== */
-
-.status-main{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:15px;
-
-    background:#16283d;
-
-    border-radius:15px;
-}
-
-.status-dot{
-    width:16px;
-    height:16px;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    box-shadow:
-    0 0 15px
-    rgba(34,197,94,.8);
-}
-
-.status-online{
-    color:#4ade80;
-    font-weight:bold;
-}
-
-.status-offline{
-    color:#ff596b;
-    font-weight:bold;
-}
-
-/* =====================================================
-   MIKROTIK
-===================================================== */
-
-.router{
-    text-align:center;
-}
-
-.router-icon{
-    font-size:70px;
-}
-
-.router-name{
-    font-size:22px;
-    font-weight:bold;
-    margin-top:5px;
-}
-
-.router-ip{
-    color:#75d1ff;
-    margin-top:6px;
-    font-family:monospace;
-}
-
-/* =====================================================
-   TOPOLOGY
-===================================================== */
+/* TOPOLOGY */
 
 .topology{
     position:relative;
+    padding:10px 0 25px;
 }
 
-.connection{
-    width:4px;
-    height:35px;
-
-    background:#087cff;
-
-    margin:auto;
-
-    box-shadow:
-    0 0 12px
-    #087cff;
-}
-
-.user-list{
+.tower{
+    position:relative;
+    width:100%;
+    min-height:550px;
     display:flex;
     flex-direction:column;
-    gap:12px;
-}
-
-/* =====================================================
-   USER CARD
-===================================================== */
-
-.user-card{
-    background:#16283d;
-
-    border:
-    1px solid
-    #28435f;
-
-    border-radius:17px;
-
-    padding:15px;
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.user-card.online{
-    border-color:#159447;
-}
-
-.user-card.offline{
-    border-color:#71313f;
-}
-
-.user-header{
-    display:flex;
-
-    justify-content:
-    space-between;
-
     align-items:center;
-
-    margin-bottom:13px;
 }
 
-.user-name{
-    font-size:18px;
-    font-weight:bold;
-}
-
-.user-status{
-    padding:5px 9px;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    font-weight:bold;
-}
-
-.user-status.online{
-    background:#123c28;
-    color:#4ade80;
-}
-
-.user-status.offline{
-    background:#401b25;
-    color:#ff697a;
-}
-
-/* =====================================================
-   USER GRID
-===================================================== */
-
-.user-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:8px;
-}
-
-.user-item{
-    background:#101e30;
-
-    border-radius:11px;
-
-    padding:10px;
-}
-
-.user-label{
-    color:#8097ad;
-
-    font-size:10px;
-
-    margin-bottom:4px;
-}
-
-.user-value{
-    font-size:13px;
-
-    font-weight:bold;
-
-    word-break:break-word;
-}
-
-.gps-value{
-    color:#51c8ff;
-}
-
-/* =====================================================
-   SPEED
-===================================================== */
-
-.speed-box{
-    margin-top:10px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:8px;
-}
-
-.speed{
-    background:#0c1b2b;
-
-    padding:10px;
-
-    border-radius:12px;
-
+.tower-node{
+    position:relative;
+    z-index:3;
+    width:170px;
+    padding:17px;
+    border-radius:22px;
     text-align:center;
+    background:
+        linear-gradient(145deg,#102f4c,#091a2c);
+    border:2px solid #168cff;
+    box-shadow:
+        0 0 25px rgba(0,140,255,.35);
 }
 
-.speed-title{
-    color:#849bb2;
-
-    font-size:10px;
-}
-
-.speed-value{
-    font-size:18px;
-
-    font-weight:bold;
-
-    margin-top:4px;
-}
-
-.download{
-    color:#4ade80;
-}
-
-.upload{
-    color:#60a5fa;
-}
-
-/* =====================================================
-   GPS
-===================================================== */
-
-.gps-box{
-    text-align:center;
-
-    background:#16283d;
-
-    border-radius:15px;
-
-    padding:15px;
-}
-
-.gps-icon{
+.tower-icon{
     font-size:45px;
 }
 
-.gps-location{
-    font-size:19px;
-
+.tower-title{
+    margin-top:6px;
+    font-size:17px;
     font-weight:bold;
-
-    margin:7px 0;
 }
 
-.gps-data{
-    color:#9db3ca;
-
+.tower-status{
+    margin-top:6px;
     font-size:12px;
-
-    line-height:1.8;
+    color:#55e68a;
 }
 
-.coords{
-    color:#51c8ff;
+/* SIGNAL LINES */
 
-    font-family:monospace;
+.connection{
+    position:relative;
+    width:4px;
+    height:65px;
+    background:#1f405f;
+    overflow:hidden;
 }
 
-.maps-button{
-    display:block;
+.connection:after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:-70px;
+    width:4px;
+    height:70px;
+    background:#00d9ff;
+    box-shadow:0 0 12px #00d9ff;
+    animation:signal 1.2s linear infinite;
+}
 
-    margin-top:10px;
+@keyframes signal{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(140px);
+    }
+}
 
-    background:#159447;
+/* USERS */
 
-    color:white;
+.users{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
 
-    text-decoration:none;
+.user-node{
+    position:relative;
+    padding:15px;
+    border-radius:20px;
+    background:#13253a;
+    border:1px solid #294b69;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+    overflow:hidden;
+}
 
-    padding:13px;
+.user-node.online{
+    border-color:#19c968;
+    box-shadow:
+        0 0 20px rgba(25,201,104,.18);
+}
 
-    border-radius:12px;
+.user-node.offline{
+    border-color:#df384e;
+}
 
+.user-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#0b1c2d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    border:1px solid #315675;
+}
+
+.user-name{
+    font-size:15px;
     font-weight:bold;
 }
 
-/* =====================================================
-   BUTTON
-===================================================== */
+.user-state{
+    font-size:11px;
+    margin-top:4px;
+}
+
+.online .user-state{
+    color:#40e781;
+}
+
+.offline .user-state{
+    color:#ff586c;
+}
+
+.info{
+    margin-top:13px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+}
+
+.info div{
+    background:#0d1d2e;
+    border-radius:10px;
+    padding:8px;
+}
+
+.info small{
+    display:block;
+    color:#829ab1;
+    font-size:9px;
+}
+
+.info strong{
+    display:block;
+    margin-top:3px;
+    font-size:11px;
+    word-break:break-word;
+}
+
+.gps{
+    margin-top:10px;
+    padding:9px;
+    border-radius:11px;
+    background:#0c2435;
+    font-size:10px;
+    color:#8fdcff;
+}
+
+.mapbtn{
+    display:block;
+    margin-top:8px;
+    padding:9px;
+    border-radius:10px;
+    background:#137bdb;
+    color:#fff;
+    text-align:center;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:bold;
+}
+
+/* TOWER BASE */
+
+.tower-base{
+    width:210px;
+    height:12px;
+    border-radius:50%;
+    background:#087cff;
+    box-shadow:
+        0 0 30px rgba(0,140,255,.8);
+    margin-top:20px;
+}
+
+/* BUTTON */
 
 button{
     width:100%;
-
     border:0;
-
-    border-radius:15px;
-
     padding:15px;
-
-    margin-bottom:10px;
-
+    border-radius:15px;
+    margin-bottom:9px;
     background:#087cff;
-
     color:white;
-
     font-size:15px;
-
     font-weight:bold;
 }
 
@@ -434,282 +320,178 @@ button:active{
     transform:scale(.98);
 }
 
-.secondary{
-    background:#16283d;
-
-    border:
-    1px solid
-    #28435f;
-}
-
-.sound-on{
+.green{
     background:#159447;
 }
 
-.sound-off{
-    background:#9b2837;
+.orange{
+    background:#d97706;
 }
 
-/* =====================================================
-   WARNING
-===================================================== */
+/* SPEED */
 
-.warning{
-    display:none;
+.speed-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
 
-    background:
-    linear-gradient(
-        90deg,
-        #c0262d,
-        #e85b20
-    );
-
+.speedbox{
+    background:#13283d;
     border-radius:15px;
-
-    padding:14px;
-
-    margin-bottom:12px;
-
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-
-    0%,100%{
-        opacity:1;
-    }
-
-    50%{
-        opacity:.65;
-    }
-}
-
-.warning-title{
-    font-weight:bold;
-
-    font-size:15px;
-}
-
-.warning-message{
-    font-size:12px;
-
-    margin-top:5px;
-}
-
-/* =====================================================
-   SPEED TEST
-===================================================== */
-
-.speed-test{
-    text-align:center;
-
-    background:#16283d;
-
-    border-radius:15px;
-
     padding:15px;
+    text-align:center;
 }
 
 .speed-number{
-    font-size:38px;
-
+    font-size:27px;
     font-weight:bold;
-
-    color:#51c8ff;
 }
 
-.speed-unit{
-    color:#91a6ba;
-
-    font-size:12px;
+.speed-label{
+    color:#8da5bb;
+    font-size:11px;
+    margin-top:4px;
 }
 
-/* =====================================================
-   LOG
-===================================================== */
+/* USAGE */
+
+.usage{
+    margin-top:10px;
+    background:#13283d;
+    padding:15px;
+    border-radius:15px;
+}
+
+.progress{
+    height:10px;
+    background:#071522;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:9px;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:#08a8ff;
+    transition:.4s;
+}
+
+/* LOG */
 
 .log{
     max-height:250px;
+    overflow:auto;
+}
 
-    overflow-y:auto;
-
-    background:#081522;
-
-    border-radius:12px;
-
-    padding:10px;
-
-    font-family:monospace;
-
+.log-item{
+    padding:9px;
+    margin-bottom:6px;
+    border-radius:10px;
+    background:#0d1d2e;
     font-size:11px;
-
-    line-height:1.8;
+    color:#a9bdd0;
 }
 
-.log-online{
-    color:#4ade80;
-}
-
-.log-offline{
-    color:#ff6577;
-}
-
-.log-info{
-    color:#51c8ff;
-}
-
-/* =====================================================
-   POPUP
-===================================================== */
+/* POPUP */
 
 .overlay{
     display:none;
-
     position:fixed;
-
     inset:0;
-
     z-index:9999;
-
-    background:
-    rgba(0,0,0,.78);
-
+    background:rgba(0,0,0,.78);
     backdrop-filter:blur(5px);
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
 }
 
 .popup{
     width:100%;
-
-    max-width:430px;
-
-    background:
-    linear-gradient(
-        160deg,
-        #101e30,
-        #182c43
-    );
-
-    border:
-    2px solid
-    #087cff;
-
-    border-radius:25px;
-
+    max-width:400px;
+    background:#102235;
+    border:2px solid #168cff;
+    border-radius:24px;
     padding:25px;
-
     text-align:center;
-
-    animation:popupIn .25s ease;
+    animation:popup .25s ease;
 }
 
-.popup.danger{
-    border-color:#ff465c;
-}
-
-@keyframes popupIn{
-
+@keyframes popup{
     from{
         transform:scale(.7);
         opacity:0;
     }
-
     to{
         transform:scale(1);
         opacity:1;
     }
-
 }
 
 .popup-icon{
-    font-size:65px;
+    font-size:60px;
 }
 
 .popup-title{
-    font-size:24px;
-
+    margin-top:8px;
+    font-size:23px;
     font-weight:bold;
-
-    margin:10px 0;
 }
 
 .popup-message{
-    color:#b8c9d9;
-
-    font-size:14px;
-
-    line-height:1.7;
-
-    margin-bottom:18px;
-}
-
-.popup-close{
-    background:#087cff;
-
-    margin:0;
-}
-
-/* =====================================================
-   ERROR
-===================================================== */
-
-.error{
-    display:none;
-
-    background:#411c27;
-
-    border:
-    1px solid
-    #71313f;
-
-    color:#ffabb8;
-
-    padding:13px;
-
-    border-radius:14px;
-
-    margin-bottom:12px;
-
+    margin-top:10px;
+    color:#b7c9d9;
+    line-height:1.6;
     font-size:13px;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+.close{
+    margin-top:18px;
+    margin-bottom:0;
+    background:#e12f48;
+}
+
+/* ERROR */
+
+.error{
+    display:none;
+    padding:12px;
+    border-radius:13px;
+    margin-bottom:12px;
+    background:#481c28;
+    border:1px solid #8b3042;
+    color:#ffb4bf;
+    font-size:12px;
+}
+
+/* FOOTER */
 
 .footer{
     text-align:center;
-
-    color:#627990;
-
-    font-size:11px;
-
+    padding:18px;
+    color:#657c91;
+    font-size:10px;
     line-height:1.7;
-
-    padding:15px;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* MOBILE */
 
-@media(max-width:380px){
+@media(max-width:500px){
 
-    .user-grid{
+    .users{
         grid-template-columns:1fr;
     }
 
-    .header h1{
-        font-size:20px;
+    .statusbar{
+        grid-template-columns:1fr 1fr 1fr;
     }
 
+    .statusbox strong{
+        font-size:14px;
+    }
 }
-
 </style>
 </head>
 
@@ -717,372 +499,295 @@ button:active{
 
 <div class="container">
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <div class="header">
+    <h1>🤖 myROBOT NETWORK TOPOLOGY</h1>
+    <p>
+        FLOW TOWER • GPS • STATUS • SPEED • DATA USAGE
+    </p>
+</div>
 
-<h1>
-📡 myROBOT NETWORK TOPOLOGY
-</h1>
+<div id="error" class="error"></div>
 
-<p>
-MikroTik • User • GPS • Online/Offline • Speed Monitor
-</p>
+<div class="statusbar">
+
+    <div class="statusbox">
+        <small>STATUS</small>
+        <strong id="globalStatus">CHECKING</strong>
+    </div>
+
+    <div class="statusbox">
+        <small>USERS</small>
+        <strong id="userCount">1</strong>
+    </div>
+
+    <div class="statusbox">
+        <small>UPTIME</small>
+        <strong id="uptime">0s</strong>
+    </div>
 
 </div>
 
-
-<!-- =====================================================
-     WARNING
-===================================================== -->
-
-<div id="warning"
-     class="warning">
-
-<div class="warning-title">
-🚨 PERUBAHAN JARINGAN
-</div>
-
-<div id="warningMessage"
-     class="warning-message">
--
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     ERROR
-===================================================== -->
-
-<div id="error"
-     class="error">
-</div>
-
-
-<!-- =====================================================
-     MIKROTIK STATUS
-===================================================== -->
+<!-- TOPOLOGY -->
 
 <div class="card">
 
 <div class="title">
-🛜 STATUS ROUTER MIKROTIK
+    📡 TOPOLOGI JARINGAN
 </div>
 
-<div class="status-main">
+<div class="topology">
 
-<div id="routerDot"
-     class="status-dot">
+<div class="tower">
+
+    <div class="tower-node">
+
+        <div class="tower-icon">📡</div>
+
+        <div class="tower-title">
+            NETWORK TOWER
+        </div>
+
+        <div id="towerStatus"
+             class="tower-status">
+            🟢 ONLINE
+        </div>
+
+    </div>
+
+    <div class="connection"></div>
+
+    <div id="users"
+         class="users">
+    </div>
+
+    <div class="connection"></div>
+
+    <div class="tower-base"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DEVICE -->
+
+<div class="card">
+
+<div class="title">
+    📱 PERANGKAT SAYA
+</div>
+
+<div class="info">
+
+<div>
+<small>DEVICE</small>
+<strong id="device">-</strong>
 </div>
 
 <div>
-
-<div id="routerStatus"
-     class="status-online">
-🟢 ONLINE
+<small>OS</small>
+<strong id="os">-</strong>
 </div>
 
-<div id="routerTime"
-     style="font-size:11px;color:#8298ad;margin-top:4px;">
-Monitoring aktif
+<div>
+<small>BROWSER</small>
+<strong id="browser">-</strong>
 </div>
 
+<div>
+<small>NETWORK</small>
+<strong id="network">-</strong>
 </div>
 
+<div>
+<small>IP LOKAL</small>
+<strong id="localIP">Tidak tersedia</strong>
 </div>
 
-</div>
-
-
-<!-- =====================================================
-     TOPOLOGY
-===================================================== -->
-
-<div class="card topology">
-
-<div class="title">
-🌐 TOPOLOGI JARINGAN
-</div>
-
-<div class="router">
-
-<div class="router-icon">
-🛜
-</div>
-
-<div class="router-name">
-MIKROTIK
-</div>
-
-<div class="router-ip">
-Router • Gateway
+<div>
+<small>ONLINE</small>
+<strong id="onlineTime">0 detik</strong>
 </div>
 
 </div>
 
-<div class="connection">
 </div>
 
-<div id="userList"
-     class="user-list">
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     GPS PERANGKAT
-===================================================== -->
+<!-- GPS -->
 
 <div class="card">
 
 <div class="title">
-📍 GPS PERANGKAT YANG SEDANG MEMBUKA
+    📍 GPS PER USER
 </div>
 
-<div class="gps-box">
-
-<div class="gps-icon">
-📍
+<div class="gps">
+    Latitude:
+    <strong id="myLat">---</strong>
+    <br>
+    Longitude:
+    <strong id="myLon">---</strong>
+    <br>
+    Akurasi:
+    <strong id="myAccuracy">---</strong>
 </div>
 
-<div id="gpsLocation"
-     class="gps-location">
-Mencari lokasi...
-</div>
-
-<div class="gps-data">
-
-Latitude:
-<span id="gpsLat"
-      class="coords">
----
-</span>
-
-<br>
-
-Longitude:
-<span id="gpsLon"
-      class="coords">
----
-</span>
-
-<br>
-
-Akurasi:
-<span id="gpsAccuracy">
----
-</span>
-
-</div>
-
-<a id="maps"
-   class="maps-button"
+<a id="mapButton"
+   class="mapbtn"
    href="#"
    target="_blank">
-
-🗺️ BUKA GOOGLE MAPS
-
+   🗺️ BUKA LOKASI DI GOOGLE MAPS
 </a>
 
 </div>
 
-</div>
-
-
-<!-- =====================================================
-     SOUND
-===================================================== -->
+<!-- SPEED -->
 
 <div class="card">
 
 <div class="title">
-🔊 SISTEM NOTIFIKASI
+    ⚡ TES KECEPATAN INTERNET
 </div>
 
-<button id="soundButton"
-        class="sound-off"
-        onclick="toggleSound()">
+<div class="speed-grid">
 
-🔇 AKTIFKAN SUARA
-
-</button>
-
-<div id="soundStatus"
-     class="status">
-
-Suara belum diaktifkan.
-
+<div class="speedbox">
+    <div id="download"
+         class="speed-number">
+        --
+    </div>
+    <div class="speed-label">
+        DOWNLOAD Mbps
+    </div>
 </div>
 
-</div>
-
-
-<!-- =====================================================
-     SPEED TEST
-===================================================== -->
-
-<div class="card">
-
-<div class="title">
-⚡ TES KECEPATAN JARINGAN
-</div>
-
-<div class="speed-test">
-
-<div id="speedNumber"
-     class="speed-number">
---
-</div>
-
-<div class="speed-unit">
-Mbps DOWNLOAD
+<div class="speedbox">
+    <div id="upload"
+         class="speed-number">
+        --
+    </div>
+    <div class="speed-label">
+        UPLOAD Mbps
+    </div>
 </div>
 
 </div>
 
 <br>
 
-<button onclick="speedTest()">
-
-⚡ MULAI TES SPEED
-
+<button onclick="runSpeedTest()"
+        class="orange">
+    ⚡ MULAI TES SPEED
 </button>
 
-</div>
-
-
-<!-- =====================================================
-     USER DETAIL
-===================================================== -->
-
-<div class="card">
-
-<div class="title">
-👥 USER TERDETEKSI
-</div>
-
-<div id="userSummary"
+<div id="speedStatus"
      class="status">
-Memuat user...
+    Belum melakukan speed test.
 </div>
 
 </div>
 
-
-<!-- =====================================================
-     LOG
-===================================================== -->
+<!-- USAGE -->
 
 <div class="card">
 
 <div class="title">
-📜 RIWAYAT PERUBAHAN
+    📊 PEMAKAIAN DATA HALAMAN
+</div>
+
+<div class="usage">
+
+<div>
+    Download:
+    <strong id="downloadUsage">
+        0 KB
+    </strong>
+</div>
+
+<div style="margin-top:7px">
+    Upload:
+    <strong id="uploadUsage">
+        0 KB
+    </strong>
+</div>
+
+<div style="margin-top:7px">
+    Total:
+    <strong id="totalUsage">
+        0 KB
+    </strong>
+</div>
+
+<div class="progress">
+    <div id="usageBar"
+         class="progress-bar">
+    </div>
+</div>
+
+</div>
+
+</div>
+
+<!-- LOG -->
+
+<div class="card">
+
+<div class="title">
+    📜 RIWAYAT JARINGAN
 </div>
 
 <div id="log"
      class="log">
-
-<span class="log-info">
-Sistem monitoring dimulai...
-</span>
-
-<br>
-
 </div>
 
-</div>
-
-
-<!-- =====================================================
-     BUTTON
-===================================================== -->
-
-<button onclick="refreshNetwork()">
-
-🔄 REFRESH JARINGAN
-
+<button onclick="clearLog()"
+        class="green">
+    🗑️ HAPUS RIWAYAT
 </button>
 
-
-<button class="secondary"
-        onclick="testOffline()">
-
-🔴 SIMULASI USER OFFLINE
-
-</button>
-
-
-<div id="status"
-     class="status">
-
-Monitoring aktif
-
 </div>
-
 
 <div class="footer">
 
-<strong>
-myROBOT NETWORK TOPOLOGY
-</strong>
-
-<br>
-
-Monitoring jaringan MikroTik
-
-<br>
-
-GPS menggunakan izin lokasi perangkat
-
-<br>
-
-Versi demo — siap dihubungkan ke API MikroTik
+    myROBOT NETWORK TOPOLOGY<br>
+    Browser Network Monitor<br>
+    GPS • Connection • Speed • Data Usage
 
 </div>
 
 </div>
 
-
-<!-- =====================================================
-     POPUP
-===================================================== -->
+<!-- POPUP -->
 
 <div id="overlay"
      class="overlay">
 
-<div id="popup"
-     class="popup">
+<div class="popup">
 
 <div id="popupIcon"
      class="popup-icon">
-📡
+    📡
 </div>
 
 <div id="popupTitle"
      class="popup-title">
-STATUS JARINGAN
+    STATUS
 </div>
 
 <div id="popupMessage"
      class="popup-message">
--
+    -
 </div>
 
-<button class="popup-close"
-        onclick="closePopup()">
-
-TUTUP
-
+<button onclick="closePopup()"
+        class="close">
+    TUTUP
 </button>
 
 </div>
 
 </div>
-
 
 <script>
 
@@ -1090,670 +795,311 @@ TUTUP
    CONFIG
 ===================================================== */
 
-let soundEnabled=false;
+const APP_START = Date.now();
 
-let gpsLat=null;
-let gpsLon=null;
+let online = navigator.onLine;
 
-let previousUsers={};
+let previousOnline = online;
+
+let lastLat = null;
+let lastLon = null;
+
+let downloadBytes = 0;
+let uploadBytes = 0;
+
+let audioContext = null;
 
 
 /* =====================================================
-   DATA USER DEMO
-   NANTI DIGANTI API MIKROTIK
+   DEVICE INFO
 ===================================================== */
 
-let users=[
+function getDeviceInfo(){
 
-{
-    name:"ASEP",
-    username:"asep",
-    ip:"192.168.88.10",
-    mac:"AA:BB:CC:11:22:33",
-    interface:"wifi-home",
-    online:true,
-    download:18.5,
-    upload:4.2,
-    uptime:"2h 15m",
-    gps:"GPS perangkat"
-},
+    const ua = navigator.userAgent;
 
-{
-    name:"ISTRI",
-    username:"istri",
-    ip:"192.168.88.11",
-    mac:"AA:BB:CC:44:55:66",
-    interface:"wifi-home",
-    online:true,
-    download:12.4,
-    upload:2.8,
-    uptime:"1h 42m",
-    gps:"GPS perangkat"
-},
+    let device = "Perangkat";
 
-{
-    name:"USER 3",
-    username:"user3",
-    ip:"192.168.88.12",
-    mac:"AA:BB:CC:77:88:99",
-    interface:"wifi-home",
-    online:false,
-    download:0,
-    upload:0,
-    uptime:"-",
-    gps:"-"
+    if(/Android/i.test(ua))
+        device = "Android";
+
+    if(/iPhone/i.test(ua))
+        device = "iPhone";
+
+    let os = "Unknown";
+
+    if(/Android/i.test(ua))
+        os = "Android";
+
+    else if(/Windows/i.test(ua))
+        os = "Windows";
+
+    else if(/iPhone|iPad/i.test(ua))
+        os = "iOS";
+
+    let browser = "Browser";
+
+    if(/Chrome/i.test(ua))
+        browser = "Chrome";
+
+    else if(/Firefox/i.test(ua))
+        browser = "Firefox";
+
+    else if(/Safari/i.test(ua))
+        browser = "Safari";
+
+    document.getElementById(
+        "device"
+    ).textContent = device;
+
+    document.getElementById(
+        "os"
+    ).textContent = os;
+
+    document.getElementById(
+        "browser"
+    ).textContent = browser;
+
+    if(navigator.connection){
+
+        const c = navigator.connection;
+
+        document.getElementById(
+            "network"
+        ).textContent =
+            (c.type || "network")
+            +" "
+            +(c.effectiveType || "");
+
+    }else{
+
+        document.getElementById(
+            "network"
+        ).textContent =
+            online ? "ONLINE" : "OFFLINE";
+
+    }
 }
 
-];
-
 
 /* =====================================================
-   DISPLAY USERS
+   NETWORK STATUS
 ===================================================== */
 
-function displayUsers(){
+function updateNetwork(){
 
-    const box=
-    document.getElementById(
-        "userList"
-    );
+    online = navigator.onLine;
 
-    box.innerHTML="";
+    const status =
+        document.getElementById(
+            "globalStatus"
+        );
 
-    let online=0;
+    const tower =
+        document.getElementById(
+            "towerStatus"
+        );
 
-    users.forEach(
-        user=>{
+    if(online){
 
-            if(user.online)
-                online++;
+        status.textContent =
+            "🟢 ONLINE";
 
-            const div=
-            document.createElement(
-                "div"
+        tower.textContent =
+            "🟢 ONLINE";
+
+    }else{
+
+        status.textContent =
+            "🔴 OFFLINE";
+
+        tower.textContent =
+            "🔴 OFFLINE";
+
+    }
+
+    if(previousOnline !== online){
+
+        if(online){
+
+            addLog(
+                "🟢 INTERNET KEMBALI ONLINE"
             );
 
-            div.className=
-                "user-card "
-                +(user.online
-                    ?"online"
-                    :"offline");
+            showPopup(
+                "🟢",
+                "KONEKSI ONLINE",
+                "Koneksi internet kembali aktif."
+            );
 
-            div.innerHTML=`
+            speak(
+                "Koneksi internet kembali online."
+            );
 
-                <div class="user-header">
+        }else{
 
-                    <div class="user-name">
+            addLog(
+                "🔴 INTERNET OFFLINE"
+            );
 
-                        👤 ${user.name}
+            showPopup(
+                "🔴",
+                "KONEKSI OFFLINE",
+                "Koneksi internet terputus."
+            );
 
-                    </div>
-
-                    <div class="user-status
-                    ${user.online
-                        ?"online"
-                        :"offline"}">
-
-                        ${user.online
-                            ?"🟢 ONLINE"
-                            :"🔴 OFFLINE"}
-
-                    </div>
-
-                </div>
-
-
-                <div class="user-grid">
-
-                    <div class="user-item">
-
-                        <div class="user-label">
-                            USERNAME
-                        </div>
-
-                        <div class="user-value">
-                            ${user.username}
-                        </div>
-
-                    </div>
-
-
-                    <div class="user-item">
-
-                        <div class="user-label">
-                            IP ADDRESS
-                        </div>
-
-                        <div class="user-value">
-                            ${user.ip}
-                        </div>
-
-                    </div>
-
-
-                    <div class="user-item">
-
-                        <div class="user-label">
-                            MAC ADDRESS
-                        </div>
-
-                        <div class="user-value">
-                            ${user.mac}
-                        </div>
-
-                    </div>
-
-
-                    <div class="user-item">
-
-                        <div class="user-label">
-                            INTERFACE
-                        </div>
-
-                        <div class="user-value">
-                            ${user.interface}
-                        </div>
-
-                    </div>
-
-
-                    <div class="user-item">
-
-                        <div class="user-label">
-                            UPTIME
-                        </div>
-
-                        <div class="user-value">
-                            ${user.uptime}
-                        </div>
-
-                    </div>
-
-
-                    <div class="user-item">
-
-                        <div class="user-label">
-                            GPS
-                        </div>
-
-                        <div class="user-value gps-value">
-                            ${user.online
-                                ?"📍 Tersedia jika user memberikan izin"
-                                :"—"}
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="speed-box">
-
-                    <div class="speed">
-
-                        <div class="speed-title">
-                            DOWNLOAD
-                        </div>
-
-                        <div class="speed-value download">
-
-                            ${user.download}
-                            Mbps
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="speed">
-
-                        <div class="speed-title">
-                            UPLOAD
-                        </div>
-
-                        <div class="speed-value upload">
-
-                            ${user.upload}
-                            Mbps
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            `;
-
-            box.appendChild(div);
+            speak(
+                "Peringatan. Koneksi internet offline."
+            );
 
         }
-    );
-
-
-    document.getElementById(
-        "userSummary"
-    ).textContent=
-
-        online
-        +" online • "
-        +(users.length-online)
-        +" offline • "
-        +users.length
-        +" total";
-
-}
-
-
-/* =====================================================
-   SOUND
-===================================================== */
-
-function toggleSound(){
-
-    soundEnabled=
-        !soundEnabled;
-
-    const button=
-        document.getElementById(
-            "soundButton"
-        );
-
-    if(soundEnabled){
-
-        button.textContent=
-            "🔊 SUARA AKTIF";
-
-        button.className=
-            "sound-on";
-
-        document.getElementById(
-            "soundStatus"
-        ).textContent=
-            "Popup dan suara perubahan status aktif.";
-
-        speak(
-            "Sistem monitoring jaringan aktif."
-        );
-
-    }
-    else{
-
-        button.textContent=
-            "🔇 AKTIFKAN SUARA";
-
-        button.className=
-            "sound-off";
-
-        document.getElementById(
-            "soundStatus"
-        ).textContent=
-            "Suara dimatikan.";
 
     }
 
+    previousOnline = online;
+
+    renderUser();
 }
+
+window.addEventListener(
+    "online",
+    updateNetwork
+);
+
+window.addEventListener(
+    "offline",
+    updateNetwork
+);
 
 
 /* =====================================================
-   SPEECH
+   USER NODE
 ===================================================== */
 
-function speak(text){
+function renderUser(){
 
-    if(
-        !soundEnabled ||
-        !("speechSynthesis" in window)
-    )
-        return;
-
-    speechSynthesis.cancel();
-
-    const speech=
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-    speech.lang="id-ID";
-
-    speech.rate=.9;
-
-    speech.volume=1;
-
-    speechSynthesis.speak(
-        speech
-    );
-
-}
-
-
-/* =====================================================
-   BEEP
-===================================================== */
-
-function beep(){
-
-    try{
-
-        const AudioContext=
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        const ctx=
-            new AudioContext();
-
-        const osc=
-            ctx.createOscillator();
-
-        const gain=
-            ctx.createGain();
-
-        osc.frequency.value=850;
-
-        osc.type="square";
-
-        gain.gain.value=.2;
-
-        osc.connect(gain);
-
-        gain.connect(
-            ctx.destination
-        );
-
-        osc.start();
-
-        osc.stop(
-            ctx.currentTime+.4
-        );
-
-    }
-    catch(e){}
-
-}
-
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-function showPopup(
-    icon,
-    title,
-    message,
-    danger=false
-){
-
-    document.getElementById(
-        "popupIcon"
-    ).textContent=icon;
-
-    document.getElementById(
-        "popupTitle"
-    ).textContent=title;
-
-    document.getElementById(
-        "popupMessage"
-    ).textContent=message;
-
-    document.getElementById(
-        "popup"
-    ).className=
-        danger
-        ?"popup danger"
-        :"popup";
-
-    document.getElementById(
-        "overlay"
-    ).style.display="flex";
-
-    if(soundEnabled){
-
-        beep();
-
-        speak(
-            title+
-            ". "+
-            message
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CLOSE POPUP
-===================================================== */
-
-function closePopup(){
-
-    document.getElementById(
-        "overlay"
-    ).style.display="none";
-
-}
-
-
-/* =====================================================
-   WARNING
-===================================================== */
-
-function warning(
-    message
-){
-
-    document.getElementById(
-        "warningMessage"
-    ).textContent=
-        message;
-
-    document.getElementById(
-        "warning"
-    ).style.display=
-        "block";
-
-}
-
-
-/* =====================================================
-   LOG
-===================================================== */
-
-function addLog(
-    message,
-    type="info"
-){
-
-    const log=
+    const box =
         document.getElementById(
-            "log"
+            "users"
         );
 
-    const time=
-        new Date()
-        .toLocaleTimeString(
-            "id-ID"
-        );
+    box.innerHTML = "";
 
-    const span=
+    const user =
         document.createElement(
-            "span"
+            "div"
         );
 
-    span.className=
-        "log-"+
-        type;
+    user.className =
+        "user-node "
+        +(online ? "online" : "offline");
 
-    span.textContent=
-        "["+
-        time+
-        "] "+
-        message;
+    const lat =
+        lastLat ?
+        lastLat.toFixed(6)
+        :
+        "---";
 
-    log.prepend(span);
+    const lon =
+        lastLon ?
+        lastLon.toFixed(6)
+        :
+        "---";
 
-    log.prepend(
-        document.createElement(
-            "br"
-        )
-    );
+    const map =
+        lastLat && lastLon
+        ?
+        `https://www.google.com/maps/search/?api=1&query=${lastLat},${lastLon}`
+        :
+        "#";
 
-}
+    user.innerHTML = `
 
+        <div class="user-head">
 
-/* =====================================================
-   CHECK USER CHANGES
-===================================================== */
+            <div class="avatar">
+                📱
+            </div>
 
-function checkUserChanges(){
+            <div>
 
-    users.forEach(
-        user=>{
+                <div class="user-name">
+                    USER SAYA
+                </div>
 
-            const old=
-                previousUsers[
-                    user.username
-                ];
+                <div class="user-state">
+                    ${online ? "🟢 ONLINE" : "🔴 OFFLINE"}
+                </div>
 
-            if(old!==undefined){
+            </div>
 
-                if(
-                    old!==user.online
-                ){
+        </div>
 
-                    if(user.online){
+        <div class="info">
 
-                        showPopup(
-                            "🟢",
-                            "USER ONLINE",
-                            user.name+
-                            " sekarang terhubung ke jaringan.",
-                            false
-                        );
+            <div>
+                <small>NETWORK</small>
+                <strong>
+                    ${navigator.connection ?
+                    navigator.connection.effectiveType || "-"
+                    :
+                    online ? "ONLINE" : "OFFLINE"}
+                </strong>
+            </div>
 
-                        warning(
-                            "🟢 "+
-                            user.name+
-                            " kembali ONLINE."
-                        );
+            <div>
+                <small>DOWNLINK</small>
+                <strong>
+                    ${navigator.connection &&
+                    navigator.connection.downlink
+                    ?
+                    navigator.connection.downlink+" Mbps"
+                    :
+                    "-"}
+                </strong>
+            </div>
 
-                        addLog(
-                            user.name+
-                            " berubah menjadi ONLINE.",
-                            "online"
-                        );
+            <div>
+                <small>DATA</small>
+                <strong>
+                    ${formatBytes(
+                        downloadBytes+
+                        uploadBytes
+                    )}
+                </strong>
+            </div>
 
-                    }
-                    else{
+            <div>
+                <small>GPS</small>
+                <strong>
+                    ${lastLat ? "AKTIF" : "BELUM"}
+                </strong>
+            </div>
 
-                        showPopup(
-                            "🔴",
-                            "USER OFFLINE",
-                            user.name+
-                            " terputus dari jaringan.",
-                            true
-                        );
+        </div>
 
-                        warning(
-                            "🔴 "+
-                            user.name+
-                            " OFFLINE."
-                        );
+        <div class="gps">
 
-                        addLog(
-                            user.name+
-                            " berubah menjadi OFFLINE.",
-                            "offline"
-                        );
+            📍 ${lat},
+            ${lon}
 
-                    }
+        </div>
 
-                }
+        <a class="mapbtn"
+           href="${map}"
+           target="_blank">
 
-            }
+           🗺️ LOKASI USER
 
-            previousUsers[
-                user.username
-            ]=
-                user.online;
+        </a>
 
-        }
-    );
+    `;
 
-}
-
-
-/* =====================================================
-   REFRESH NETWORK
-===================================================== */
-
-function refreshNetwork(){
+    box.appendChild(user);
 
     document.getElementById(
-        "status"
-    ).textContent=
-        "🔄 Memperbarui jaringan...";
-
-    setTimeout(
-        ()=>{
-
-            displayUsers();
-
-            checkUserChanges();
-
-            document.getElementById(
-                "status"
-            ).textContent=
-                "🟢 Monitoring jaringan aktif • "+
-                new Date()
-                .toLocaleTimeString(
-                    "id-ID"
-                );
-
-        },
-        700
-    );
-
-}
-
-
-/* =====================================================
-   SIMULASI OFFLINE
-===================================================== */
-
-function testOffline(){
-
-    const user=
-        users[0];
-
-    user.online=
-        !user.online;
-
-    if(user.online){
-
-        user.download=
-            18.5;
-
-        user.upload=
-            4.2;
-
-        user.uptime=
-            "baru terhubung";
-
-    }
-    else{
-
-        user.download=0;
-
-        user.upload=0;
-
-        user.uptime="-";
-
-    }
-
-    displayUsers();
-
-    checkUserChanges();
-
+        "userCount"
+    ).textContent = "1";
 }
 
 
@@ -1763,23 +1109,72 @@ function testOffline(){
 
 function startGPS(){
 
-    if(
-        !navigator.geolocation
-    ){
+    if(!navigator.geolocation){
 
         showError(
             "Browser tidak mendukung GPS."
         );
 
         return;
-
     }
 
     navigator.geolocation.getCurrentPosition(
 
-        gpsSuccess,
+        function(position){
 
-        gpsError,
+            lastLat =
+                position.coords.latitude;
+
+            lastLon =
+                position.coords.longitude;
+
+            const accuracy =
+                position.coords.accuracy;
+
+            document.getElementById(
+                "myLat"
+            ).textContent =
+                lastLat.toFixed(6);
+
+            document.getElementById(
+                "myLon"
+            ).textContent =
+                lastLon.toFixed(6);
+
+            document.getElementById(
+                "myAccuracy"
+            ).textContent =
+                Math.round(
+                    accuracy
+                )
+                +" meter";
+
+            document.getElementById(
+                "mapButton"
+            ).href =
+                "https://www.google.com/maps/search/?api=1&query="
+                +lastLat
+                +","
+                +lastLon;
+
+            addLog(
+                "📍 GPS diperbarui: "
+                +lastLat.toFixed(5)
+                +" , "
+                +lastLon.toFixed(5)
+            );
+
+            renderUser();
+
+        },
+
+        function(error){
+
+            showError(
+                "GPS gagal. Izinkan akses lokasi."
+            );
+
+        },
 
         {
             enableHighAccuracy:true,
@@ -1793,269 +1188,439 @@ function startGPS(){
 
 
 /* =====================================================
-   GPS SUCCESS
-===================================================== */
-
-function gpsSuccess(
-    position
-){
-
-    gpsLat=
-        position.coords.latitude;
-
-    gpsLon=
-        position.coords.longitude;
-
-    const accuracy=
-        position.coords.accuracy;
-
-
-    document.getElementById(
-        "gpsLat"
-    ).textContent=
-        gpsLat.toFixed(6);
-
-
-    document.getElementById(
-        "gpsLon"
-    ).textContent=
-        gpsLon.toFixed(6);
-
-
-    document.getElementById(
-        "gpsAccuracy"
-    ).textContent=
-        Math.round(
-            accuracy
-        )+
-        " meter";
-
-
-    document.getElementById(
-        "maps"
-    ).href=
-        "https://www.google.com/maps/search/?api=1&query="+
-        gpsLat+
-        ","+
-        gpsLon;
-
-
-    reverseGPS();
-
-}
-
-
-/* =====================================================
-   REVERSE GPS
-===================================================== */
-
-async function reverseGPS(){
-
-    try{
-
-        const url=
-            "https://nominatim.openstreetmap.org/reverse?"+
-            new URLSearchParams({
-
-                lat:gpsLat,
-
-                lon:gpsLon,
-
-                format:"json",
-
-                zoom:18,
-
-                addressdetails:1
-
-            });
-
-
-        const response=
-            await fetch(
-                url,
-                {
-                    headers:{
-                        "Accept":
-                        "application/json"
-                    }
-                }
-            );
-
-
-        const data=
-            await response.json();
-
-
-        if(
-            data &&
-            data.address
-        ){
-
-            const a=
-                data.address;
-
-
-            const desa=
-                a.village ||
-                a.hamlet ||
-                a.suburb ||
-                a.town ||
-                a.city_district ||
-                a.city ||
-                "Lokasi GPS";
-
-
-            const kecamatan=
-                a.municipality ||
-                a.county ||
-                "";
-
-
-            document.getElementById(
-                "gpsLocation"
-            ).textContent=
-                desa+
-                (
-                    kecamatan
-                    ?", "+
-                    kecamatan
-                    :""
-                );
-
-        }
-
-    }
-    catch(error){
-
-        document.getElementById(
-            "gpsLocation"
-        ).textContent=
-            "Lokasi GPS ditemukan";
-
-    }
-
-}
-
-
-/* =====================================================
-   GPS ERROR
-===================================================== */
-
-function gpsError(error){
-
-    let message=
-        "GPS gagal ditemukan.";
-
-    if(error.code===1){
-
-        message=
-            "Izin lokasi ditolak. Aktifkan izin GPS.";
-
-    }
-
-    if(error.code===2){
-
-        message=
-            "Lokasi tidak tersedia.";
-
-    }
-
-    if(error.code===3){
-
-        message=
-            "GPS timeout. Coba lagi.";
-
-    }
-
-    showError(
-        message
-    );
-
-}
-
-
-/* =====================================================
    SPEED TEST
 ===================================================== */
 
-async function speedTest(){
+async function runSpeedTest(){
 
-    const number=
-        document.getElementById(
-            "speedNumber"
+    if(!navigator.onLine){
+
+        showPopup(
+            "🔴",
+            "OFFLINE",
+            "Tidak dapat melakukan speed test karena internet offline."
         );
 
-    number.textContent=
-        "TEST...";
+        return;
+    }
 
-    addLog(
-        "Tes kecepatan jaringan dimulai.",
-        "info"
-    );
+    document.getElementById(
+        "speedStatus"
+    ).textContent =
+        "⏳ Mengukur download...";
 
+    document.getElementById(
+        "download"
+    ).textContent =
+        "--";
+
+    document.getElementById(
+        "upload"
+    ).textContent =
+        "--";
 
     try{
 
-        const start=
+        /*
+         Download test menggunakan
+         file publik Cloudflare.
+        */
+
+        const size =
+            5 * 1024 * 1024;
+
+        const url =
+            "https://speed.cloudflare.com/__down?bytes="
+            +size
+            +"&cache="
+            +Date.now();
+
+        const start =
             performance.now();
 
-
-        const response=
+        const response =
             await fetch(
-                "https://speed.cloudflare.com/__down?bytes=1000000",
+                url,
                 {
                     cache:"no-store"
                 }
             );
 
+        const buffer =
+            await response.arrayBuffer();
 
-        const blob=
-            await response.blob();
+        const seconds =
+            (performance.now()-start)
+            /1000;
 
+        const bytes =
+            buffer.byteLength;
 
-        const end=
+        downloadBytes += bytes;
+
+        const mbps =
+            (bytes*8)
+            /
+            seconds
+            /
+            1000000;
+
+        document.getElementById(
+            "download"
+        ).textContent =
+            mbps.toFixed(2);
+
+        document.getElementById(
+            "speedStatus"
+        ).textContent =
+            "⏳ Mengukur upload...";
+
+        /*
+         Upload test ke endpoint
+         HTTP testing.
+        */
+
+        const uploadSize =
+            1024 * 1024;
+
+        const uploadData =
+            new Uint8Array(
+                uploadSize
+            );
+
+        const uploadStart =
             performance.now();
 
+        try{
 
-        const seconds=
-            (end-start)/1000;
+            await fetch(
+                "https://speed.cloudflare.com/__up",
+                {
+                    method:"POST",
+                    body:uploadData,
+                    cache:"no-store"
+                }
+            );
 
+            const uploadSeconds =
+                (
+                    performance.now()
+                    -
+                    uploadStart
+                )/1000;
 
-        const bits=
-            blob.size*8;
+            uploadBytes +=
+                uploadSize;
 
+            const uploadMbps =
+                (
+                    uploadSize*8
+                )
+                /
+                uploadSeconds
+                /
+                1000000;
 
-        const mbps=
-            (
-                bits/
-                seconds/
-                1000000
-            ).toFixed(2);
+            document.getElementById(
+                "upload"
+            ).textContent =
+                uploadMbps.toFixed(2);
 
+        }
+        catch(e){
 
-        number.textContent=
-            mbps;
+            document.getElementById(
+                "upload"
+            ).textContent =
+                "N/A";
 
+        }
+
+        document.getElementById(
+            "speedStatus"
+        ).textContent =
+            "✅ Speed test selesai";
 
         addLog(
-            "Tes speed selesai: "+
-            mbps+
-            " Mbps.",
-            "online"
+            "⚡ Speed test: Download "
+            +mbps.toFixed(2)
+            +" Mbps"
         );
+
+        updateUsage();
+
+        renderUser();
 
     }
     catch(error){
 
-        number.textContent=
-            "ERR";
+        document.getElementById(
+            "speedStatus"
+        ).textContent =
+            "❌ Speed test gagal";
 
-        addLog(
-            "Tes speed gagal.",
-            "offline"
+        showError(
+            "Speed test gagal atau server pengujian tidak dapat diakses."
         );
 
     }
+
+}
+
+
+/* =====================================================
+   DATA USAGE
+===================================================== */
+
+function updateUsage(){
+
+    const total =
+        downloadBytes+
+        uploadBytes;
+
+    document.getElementById(
+        "downloadUsage"
+    ).textContent =
+        formatBytes(
+            downloadBytes
+        );
+
+    document.getElementById(
+        "uploadUsage"
+    ).textContent =
+        formatBytes(
+            uploadBytes
+        );
+
+    document.getElementById(
+        "totalUsage"
+    ).textContent =
+        formatBytes(
+            total
+        );
+
+    /*
+     progress hanya visual.
+    */
+
+    const percent =
+        Math.min(
+            (total/(50*1024*1024))*100,
+            100
+        );
+
+    document.getElementById(
+        "usageBar"
+    ).style.width =
+        percent+"%";
+
+}
+
+
+/* =====================================================
+   FORMAT BYTES
+===================================================== */
+
+function formatBytes(bytes){
+
+    if(bytes===0)
+        return "0 KB";
+
+    const units =
+        ["B","KB","MB","GB"];
+
+    const i =
+        Math.floor(
+            Math.log(bytes)
+            /
+            Math.log(1024)
+        );
+
+    return (
+        bytes/
+        Math.pow(1024,i)
+    ).toFixed(2)
+    +" "
+    +units[i];
+
+}
+
+
+/* =====================================================
+   UPTIME
+===================================================== */
+
+function updateUptime(){
+
+    const seconds =
+        Math.floor(
+            (Date.now()-APP_START)
+            /1000
+        );
+
+    let text =
+        seconds+"s";
+
+    if(seconds>=60){
+
+        const min =
+            Math.floor(
+                seconds/60
+            );
+
+        const sec =
+            seconds%60;
+
+        text =
+            min+"m "
+            +sec+"s";
+
+    }
+
+    document.getElementById(
+        "uptime"
+    ).textContent =
+        text;
+
+    document.getElementById(
+        "onlineTime"
+    ).textContent =
+        text;
+
+}
+
+
+/* =====================================================
+   LOG
+===================================================== */
+
+function addLog(message){
+
+    const log =
+        document.getElementById(
+            "log"
+        );
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+    item.className =
+        "log-item";
+
+    item.textContent =
+        "["+
+        new Date()
+        .toLocaleTimeString(
+            "id-ID"
+        )
+        +"] "
+        +message;
+
+    log.prepend(item);
+
+    while(log.children.length>50){
+
+        log.removeChild(
+            log.lastChild
+        );
+
+    }
+
+}
+
+function clearLog(){
+
+    document.getElementById(
+        "log"
+    ).innerHTML = "";
+
+    addLog(
+        "Riwayat dibersihkan."
+    );
+
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+function showPopup(
+    icon,
+    title,
+    message
+){
+
+    document.getElementById(
+        "popupIcon"
+    ).textContent =
+        icon;
+
+    document.getElementById(
+        "popupTitle"
+    ).textContent =
+        title;
+
+    document.getElementById(
+        "popupMessage"
+    ).textContent =
+        message;
+
+    document.getElementById(
+        "overlay"
+    ).style.display =
+        "flex";
+
+}
+
+function closePopup(){
+
+    document.getElementById(
+        "overlay"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   SOUND
+===================================================== */
+
+function speak(text){
+
+    if(
+        !("speechSynthesis" in window)
+    )
+        return;
+
+    try{
+
+        window.speechSynthesis.cancel();
+
+        const speech =
+            new SpeechSynthesisUtterance(
+                text
+            );
+
+        speech.lang =
+            "id-ID";
+
+        speech.rate =
+            .9;
+
+        speech.volume =
+            1;
+
+        window.speechSynthesis
+            .speak(
+                speech
+            );
+
+    }
+    catch(e){}
 
 }
 
@@ -2064,88 +1629,124 @@ async function speedTest(){
    ERROR
 ===================================================== */
 
-function showError(
-    message
-){
+function showError(message){
 
-    const box=
+    const box =
         document.getElementById(
             "error"
         );
 
-    box.textContent=
+    box.textContent =
         message;
 
-    box.style.display=
+    box.style.display =
         "block";
+
+    setTimeout(
+        function(){
+
+            box.style.display =
+                "none";
+
+        },
+        5000
+    );
 
 }
 
 
 /* =====================================================
-   INIT
+   CONNECTION INFORMATION
 ===================================================== */
 
-window.addEventListener(
-    "load",
-    function(){
+function connectionMonitor(){
 
-        displayUsers();
+    if(navigator.connection){
 
-        users.forEach(
-            user=>{
+        const c =
+            navigator.connection;
 
-                previousUsers[
-                    user.username
-                ]=
-                    user.online;
+        document.getElementById(
+            "network"
+        ).textContent =
+            (
+                c.type ||
+                ""
+            )
+            +" "
+            +
+            (
+                c.effectiveType ||
+                ""
+            );
+
+        c.addEventListener(
+            "change",
+            function(){
+
+                addLog(
+                    "📶 Network berubah menjadi "
+                    +
+                    (
+                        c.effectiveType ||
+                        "unknown"
+                    )
+                );
+
+                renderUser();
 
             }
         );
 
-        startGPS();
-
-        addLog(
-            "myROBOT NETWORK TOPOLOGY aktif.",
-            "info"
-        );
-
     }
-);
+
+}
 
 
 /* =====================================================
-   AUTO REFRESH
+   INITIALIZE
 ===================================================== */
 
-setInterval(
-    function(){
+function init(){
 
-        refreshNetwork();
+    getDeviceInfo();
 
-    },
-    30000
-);
+    connectionMonitor();
 
+    startGPS();
 
-/* =====================================================
-   CLOCK
-===================================================== */
+    updateNetwork();
 
-setInterval(
-    function(){
+    renderUser();
 
-        document.getElementById(
-            "routerTime"
-        ).textContent=
-            "Update "+
-            new Date()
-            .toLocaleTimeString(
-                "id-ID"
-            );
+    addLog(
+        "🤖 myROBOT Network Topology dimulai."
+    );
 
-    },
-    1000
+    setInterval(
+        updateUptime,
+        1000
+    );
+
+    setInterval(
+        updateUsage,
+        1000
+    );
+
+    /*
+     Cek status jaringan secara berkala.
+    */
+
+    setInterval(
+        updateNetwork,
+        3000
+    );
+
+}
+
+window.addEventListener(
+    "load",
+    init
 );
 
 </script>
