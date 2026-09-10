@@ -2,1320 +2,1334 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>myROBOT-V12 | AI Future Dashboard</title>
 
-<meta name="theme-color" content="#06111f">
-<meta name="description" content="myROBOT-V12 Professional AI Future Dashboard">
+<meta name="theme-color" content="#020817">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
+rel="stylesheet">
 
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
-/* =========================================================
-   myROBOT-V12
-   AI FUTURE DASHBOARD
-   Asep Pudin New 2026
-========================================================= */
-
 :root{
-    --bg:#020817;
-    --bg2:#061426;
-    --card:rgba(9,25,45,.72);
-    --card2:rgba(13,34,58,.86);
-
-    --cyan:#00d9ff;
-    --blue:#168cff;
-    --green:#00ffa3;
-    --purple:#9b5cff;
-    --yellow:#ffd43b;
-    --red:#ff416c;
-
-    --text:#f5fbff;
-    --muted:#8da6bd;
-    --border:rgba(255,255,255,.09);
-
-    --shadow:
-        0 20px 60px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.05);
-
-    --radius:22px;
+--bg:#020817;
+--bg2:#061426;
+--card:rgba(9,25,45,.78);
+--cyan:#00d9ff;
+--blue:#168cff;
+--green:#00ffa3;
+--purple:#9b5cff;
+--yellow:#ffd43b;
+--red:#ff416c;
+--text:#f5fbff;
+--muted:#8da6bd;
+--border:rgba(255,255,255,.09);
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Inter,Arial,sans-serif;
-    -webkit-tap-highlight-color:transparent;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 15% 10%,rgba(0,217,255,.12),transparent 30%),
-        radial-gradient(circle at 90% 20%,rgba(155,92,255,.13),transparent 28%),
-        radial-gradient(circle at 50% 90%,rgba(0,255,163,.08),transparent 35%),
-        var(--bg);
-
-    color:var(--text);
-    overflow-x:hidden;
+min-height:100vh;
+background:
+radial-gradient(circle at 15% 10%,rgba(0,217,255,.12),transparent 30%),
+radial-gradient(circle at 90% 20%,rgba(155,92,255,.13),transparent 28%),
+radial-gradient(circle at 50% 90%,rgba(0,255,163,.08),transparent 35%),
+var(--bg);
+color:var(--text);
+overflow-x:hidden;
 }
 
-/* =========================================================
-   BACKGROUND AI EFFECT
-========================================================= */
-
 #particles{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:0;
 }
 
 .scan-line{
-    position:fixed;
-    left:0;
-    right:0;
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,217,255,.35),
-        transparent
-    );
-    box-shadow:0 0 20px var(--cyan);
-    animation:scan 7s linear infinite;
-    z-index:1;
-    opacity:.35;
+position:fixed;
+left:0;
+right:0;
+height:1px;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(0,217,255,.35),
+transparent
+);
+box-shadow:0 0 20px var(--cyan);
+animation:scan 7s linear infinite;
+z-index:1;
+opacity:.35;
 }
 
 @keyframes scan{
-    from{top:-5%}
-    to{top:105%}
+from{top:-5%}
+to{top:105%}
 }
-
-/* =========================================================
-   APP
-========================================================= */
 
 .app-container{
-    width:100%;
-    max-width:480px;
-    min-height:100vh;
-    margin:auto;
-    position:relative;
-    z-index:2;
-    padding-bottom:110px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(5,17,31,.94),
-            rgba(2,8,23,.98)
-        );
-
-    box-shadow:
-        0 0 100px rgba(0,217,255,.06);
-
-    overflow:hidden;
+width:100%;
+max-width:480px;
+min-height:100vh;
+margin:auto;
+position:relative;
+z-index:2;
+padding-bottom:115px;
+background:
+linear-gradient(
+180deg,
+rgba(5,17,31,.94),
+rgba(2,8,23,.98)
+);
+overflow:hidden;
 }
 
-/* =========================================================
-   TOP SYSTEM BAR
-========================================================= */
-
 .system-bar{
-    height:38px;
-    padding:0 17px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    background:rgba(2,8,23,.72);
-    border-bottom:1px solid var(--border);
-
-    backdrop-filter:blur(18px);
+height:38px;
+padding:0 17px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(2,8,23,.72);
+border-bottom:1px solid var(--border);
+backdrop-filter:blur(18px);
 }
 
 .system-left{
-    display:flex;
-    align-items:center;
-    gap:7px;
-
-    font-size:10px;
-    color:#a8c3d8;
+display:flex;
+align-items:center;
+gap:7px;
+font-size:9px;
+color:#a8c3d8;
 }
 
 .live-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
-    animation:pulse 1.5s infinite;
+width:7px;
+height:7px;
+border-radius:50%;
+background:var(--green);
+box-shadow:0 0 12px var(--green);
+animation:pulse 1.5s infinite;
 }
 
 @keyframes pulse{
-    50%{
-        transform:scale(1.5);
-        opacity:.5;
-    }
+50%{
+transform:scale(1.5);
+opacity:.5;
+}
 }
 
 .system-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#9ab3c9;
-    font-size:11px;
+display:flex;
+align-items:center;
+gap:10px;
+color:#9ab3c9;
+font-size:10px;
 }
 
-/* =========================================================
-   FUTURE HEADER
-========================================================= */
-
 .header-banner{
-    position:relative;
-    padding:23px 17px 35px;
-
-    background:
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(0,217,255,.23),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #071e35,
-            #063b5d 45%,
-            #06213c
-        );
-
-    border-bottom-left-radius:32px;
-    border-bottom-right-radius:32px;
-
-    border-bottom:1px solid rgba(0,217,255,.2);
-
-    overflow:hidden;
+position:relative;
+padding:23px 17px 35px;
+background:
+radial-gradient(
+circle at 90% 10%,
+rgba(0,217,255,.23),
+transparent 35%
+),
+linear-gradient(
+135deg,
+#071e35,
+#063b5d 45%,
+#06213c
+);
+border-bottom-left-radius:32px;
+border-bottom-right-radius:32px;
+border-bottom:1px solid rgba(0,217,255,.2);
+overflow:hidden;
 }
 
 .header-banner:before{
-    content:"";
-    position:absolute;
-    width:230px;
-    height:230px;
-    right:-100px;
-    top:-100px;
-
-    border:1px solid rgba(0,217,255,.25);
-    border-radius:50%;
-
-    box-shadow:
-        0 0 30px rgba(0,217,255,.08),
-        inset 0 0 30px rgba(0,217,255,.05);
-
-    animation:rotate 12s linear infinite;
+content:"";
+position:absolute;
+width:230px;
+height:230px;
+right:-100px;
+top:-100px;
+border:1px solid rgba(0,217,255,.25);
+border-radius:50%;
+box-shadow:
+0 0 30px rgba(0,217,255,.08),
+inset 0 0 30px rgba(0,217,255,.05);
+animation:rotate 12s linear infinite;
 }
 
 .header-banner:after{
-    content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    right:-60px;
-    top:-60px;
-
-    border:1px dashed rgba(0,255,163,.25);
-    border-radius:50%;
-
-    animation:rotate 8s linear infinite reverse;
+content:"";
+position:absolute;
+width:150px;
+height:150px;
+right:-60px;
+top:-60px;
+border:1px dashed rgba(0,255,163,.25);
+border-radius:50%;
+animation:rotate 8s linear infinite reverse;
 }
 
 @keyframes rotate{
-    to{transform:rotate(360deg)}
+to{transform:rotate(360deg)}
 }
 
 .header-top{
-    position:relative;
-    z-index:3;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+position:relative;
+z-index:3;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
+display:flex;
+align-items:center;
+gap:11px;
 }
 
 .brand-logo{
-    width:43px;
-    height:43px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:14px;
-
-    background:
-        linear-gradient(135deg,var(--cyan),var(--blue));
-
-    color:white;
-    font-size:20px;
-
-    box-shadow:
-        0 0 25px rgba(0,217,255,.35),
-        inset 0 1px 0 rgba(255,255,255,.4);
+width:43px;
+height:43px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:14px;
+background:linear-gradient(
+135deg,
+var(--cyan),
+var(--blue)
+);
+color:white;
+font-size:20px;
+box-shadow:
+0 0 25px rgba(0,217,255,.35),
+inset 0 1px 0 rgba(255,255,255,.4);
 }
 
 .brand-text h1{
-    font-size:16px;
-    font-weight:900;
-    letter-spacing:.4px;
+font-size:16px;
+font-weight:900;
 }
 
 .brand-text p{
-    margin-top:3px;
-    font-size:9px;
-    color:#8eeaff;
-    letter-spacing:1px;
-    text-transform:uppercase;
+margin-top:3px;
+font-size:8px;
+color:#8eeaff;
+letter-spacing:1px;
+text-transform:uppercase;
 }
 
 .header-actions{
-    display:flex;
-    gap:8px;
+display:flex;
+gap:8px;
 }
 
 .icon-btn{
-    width:37px;
-    height:37px;
-
-    border-radius:12px;
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.06);
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    cursor:pointer;
-    position:relative;
-
-    backdrop-filter:blur(10px);
-
-    transition:.25s;
+width:37px;
+height:37px;
+border-radius:12px;
+border:1px solid var(--border);
+background:rgba(255,255,255,.06);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+position:relative;
+backdrop-filter:blur(10px);
+transition:.25s;
 }
 
 .icon-btn:active{
-    transform:scale(.9);
+transform:scale(.9);
 }
 
 .notification-badge{
-    position:absolute;
-    top:-4px;
-    right:-3px;
-
-    min-width:17px;
-    height:17px;
-
-    padding:0 4px;
-
-    border-radius:20px;
-
-    background:var(--red);
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:8px;
-    font-weight:900;
-
-    border:2px solid #07213a;
+position:absolute;
+top:-4px;
+right:-3px;
+min-width:17px;
+height:17px;
+padding:0 4px;
+border-radius:20px;
+background:var(--red);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:8px;
+font-weight:900;
+border:2px solid #07213a;
 }
 
-/* =========================================================
-   GREETING
-========================================================= */
-
 .banner-content{
-    position:relative;
-    z-index:2;
-    margin-top:23px;
+position:relative;
+z-index:2;
+margin-top:23px;
 }
 
 .banner-content small{
-    color:#77b8d7;
-    font-size:10px;
+color:#77b8d7;
+font-size:10px;
 }
 
 .banner-content h2{
-    margin-top:5px;
-
-    font-size:25px;
-    line-height:1.15;
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            90deg,
-            white,
-            #8deaff,
-            white
-        );
-
-    -webkit-background-clip:text;
-    color:transparent;
+margin-top:5px;
+font-size:25px;
+line-height:1.15;
+font-weight:900;
+background:
+linear-gradient(
+90deg,
+white,
+#8deaff,
+white
+);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 .banner-content p{
-    margin-top:8px;
-    color:#8eabc0;
-    font-size:10px;
+margin-top:8px;
+color:#8eabc0;
+font-size:9px;
+line-height:1.6;
 }
 
-/* AI STATUS */
-
 .ai-status{
-    margin-top:17px;
-
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:7px 11px;
-
-    border:1px solid rgba(0,255,163,.18);
-    background:rgba(0,255,163,.06);
-
-    border-radius:30px;
-
-    color:#7fffc6;
-    font-size:9px;
-    font-weight:700;
-
-    letter-spacing:.5px;
+margin-top:17px;
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:7px 11px;
+border:1px solid rgba(0,255,163,.18);
+background:rgba(0,255,163,.06);
+border-radius:30px;
+color:#7fffc6;
+font-size:8px;
+font-weight:700;
+letter-spacing:.5px;
 }
 
 .ai-status i{
-    font-size:8px;
-    animation:pulse 1.5s infinite;
+font-size:8px;
+animation:pulse 1.5s infinite;
 }
 
-/* =========================================================
-   ELECTRIC CARD
-========================================================= */
+/* =========================
+   ENERGY CARD
+========================= */
 
 .card-info{
-    position:relative;
-    z-index:10;
-
-    margin:-21px 15px 15px;
-    padding:17px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(16,42,68,.95),
-            rgba(5,20,37,.95)
-        );
-
-    border:1px solid rgba(0,217,255,.14);
-
-    border-radius:24px;
-
-    box-shadow:var(--shadow);
-
-    overflow:hidden;
-}
-
-.card-info:before{
-    content:"";
-    position:absolute;
-
-    width:120px;
-    height:120px;
-
-    right:-50px;
-    top:-50px;
-
-    background:var(--cyan);
-    opacity:.08;
-
-    filter:blur(30px);
-    border-radius:50%;
+position:relative;
+z-index:10;
+margin:-21px 15px 15px;
+padding:17px;
+background:
+linear-gradient(
+145deg,
+rgba(16,42,68,.95),
+rgba(5,20,37,.95)
+);
+border:1px solid rgba(0,217,255,.14);
+border-radius:24px;
+box-shadow:
+0 20px 60px rgba(0,0,0,.45),
+inset 0 1px 0 rgba(255,255,255,.05);
+overflow:hidden;
 }
 
 .card-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .user-name{
-    display:flex;
-    align-items:center;
-    gap:9px;
-
-    font-size:12px;
-    font-weight:800;
+display:flex;
+align-items:center;
+gap:9px;
+font-size:11px;
+font-weight:800;
 }
 
 .user-name i{
-    width:31px;
-    height:31px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:10px;
-
-    color:var(--cyan);
-    background:rgba(0,217,255,.09);
+width:31px;
+height:31px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+color:var(--cyan);
+background:rgba(0,217,255,.09);
 }
 
 .type-badge{
-    padding:6px 8px;
-
-    border-radius:10px;
-
-    background:rgba(0,255,163,.08);
-    border:1px solid rgba(0,255,163,.16);
-
-    color:#67fbc0;
-
-    font-size:8px;
-    font-weight:700;
+padding:6px 8px;
+border-radius:10px;
+background:rgba(0,255,163,.08);
+border:1px solid rgba(0,255,163,.16);
+color:#67fbc0;
+font-size:7px;
+font-weight:700;
 }
 
-/* ENERGY DISPLAY */
-
 .energy-display{
-    margin-top:17px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+margin-top:17px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .energy-number{
-    display:flex;
-    align-items:baseline;
-    gap:5px;
+display:flex;
+align-items:baseline;
+gap:5px;
 }
 
 .energy-number strong{
-    font-size:34px;
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff,
-            var(--cyan)
-        );
-
-    -webkit-background-clip:text;
-    color:transparent;
+font-size:34px;
+font-weight:900;
+background:
+linear-gradient(
+135deg,
+#fff,
+var(--cyan)
+);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 .energy-number span{
-    font-size:10px;
-    color:#7693aa;
+font-size:10px;
+color:#7693aa;
 }
 
-/* ENERGY RING */
-
 .energy-ring{
-    width:73px;
-    height:73px;
-
-    border-radius:50%;
-
-    background:
-        conic-gradient(
-            var(--cyan) 0deg 286deg,
-            rgba(255,255,255,.06) 286deg 360deg
-        );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:
-        0 0 25px rgba(0,217,255,.12);
-
-    position:relative;
+width:73px;
+height:73px;
+border-radius:50%;
+background:
+conic-gradient(
+var(--cyan) 0deg 286deg,
+rgba(255,255,255,.06) 286deg 360deg
+);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:
+0 0 25px rgba(0,217,255,.12);
+position:relative;
 }
 
 .energy-ring:after{
-    content:"";
-    position:absolute;
-
-    width:57px;
-    height:57px;
-
-    background:#081b2d;
-    border-radius:50%;
+content:"";
+position:absolute;
+width:57px;
+height:57px;
+background:#081b2d;
+border-radius:50%;
 }
 
 .energy-ring span{
-    position:relative;
-    z-index:2;
-
-    font-size:10px;
-    font-weight:800;
-    color:#9defff;
+position:relative;
+z-index:2;
+font-size:10px;
+font-weight:800;
+color:#9defff;
 }
 
-/* CHART */
-
 .chart-container{
-    margin-top:10px;
-    height:67px;
-    position:relative;
+margin-top:10px;
+height:67px;
+position:relative;
 }
 
 .chart-svg{
-    width:100%;
-    height:100%;
+width:100%;
+height:100%;
 }
 
 .chart-grid{
-    stroke:rgba(255,255,255,.055);
-    stroke-width:1;
+stroke:rgba(255,255,255,.055);
+stroke-width:1;
 }
 
 .chart-line{
-    fill:none;
-    stroke:var(--cyan);
-    stroke-width:2.5;
-
-    filter:
-        drop-shadow(
-            0 0 5px rgba(0,217,255,.6)
-        );
+fill:none;
+stroke:var(--cyan);
+stroke-width:2.5;
+filter:
+drop-shadow(
+0 0 5px rgba(0,217,255,.6)
+);
 }
 
 .chart-area{
-    fill:url(#energyGradient);
-    opacity:.25;
+fill:url(#energyGradient);
+opacity:.25;
 }
 
 .chart-dot{
-    fill:#fff;
-    stroke:var(--cyan);
-    stroke-width:3;
-
-    filter:
-        drop-shadow(
-            0 0 6px var(--cyan)
-        );
+fill:#fff;
+stroke:var(--cyan);
+stroke-width:3;
+filter:
+drop-shadow(
+0 0 6px var(--cyan)
+);
 }
 
 .status-bill{
-    margin-top:10px;
-
-    padding:10px 11px;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    border-radius:12px;
-
-    background:rgba(0,255,163,.055);
-    border:1px solid rgba(0,255,163,.10);
-
-    font-size:9px;
-    color:#a5c2d5;
+margin-top:10px;
+padding:10px 11px;
+display:flex;
+align-items:center;
+gap:8px;
+border-radius:12px;
+background:rgba(0,255,163,.055);
+border:1px solid rgba(0,255,163,.10);
+font-size:8px;
+color:#a5c2d5;
 }
 
 .status-bill i{
-    color:var(--green);
+color:var(--green);
 }
 
-/* =========================================================
-   ACTION STRIP
-========================================================= */
+/* =========================
+   ACTION
+========================= */
 
 .action-strip{
-    margin:0 15px 15px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:11px 13px;
-
-    border-radius:16px;
-
-    background:rgba(0,217,255,.045);
-    border:1px solid rgba(0,217,255,.09);
+margin:0 15px 15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:11px 13px;
+border-radius:16px;
+background:rgba(0,217,255,.045);
+border:1px solid rgba(0,217,255,.09);
 }
 
 .action-strip span{
-    font-size:9px;
-    color:#7592a8;
+font-size:8px;
+color:#7592a8;
 }
 
 .action-strip strong{
-    display:block;
-    color:#d9f7ff;
-    font-size:10px;
-    margin-top:2px;
+display:block;
+color:#d9f7ff;
+font-size:9px;
+margin-top:2px;
 }
 
 .see-all-btn{
-    display:flex;
-    align-items:center;
-    gap:6px;
-
-    color:var(--cyan);
-    font-size:9px;
-    font-weight:800;
-
-    cursor:pointer;
+display:flex;
+align-items:center;
+gap:6px;
+color:var(--cyan);
+font-size:8px;
+font-weight:800;
+cursor:pointer;
 }
 
-/* =========================================================
+/* =========================
    WALLET
-========================================================= */
+========================= */
 
 .wallet-section{
-    display:flex;
-    gap:9px;
-
-    padding:0 15px 17px;
-
-    overflow-x:auto;
-
-    scrollbar-width:none;
+display:flex;
+gap:9px;
+padding:0 15px 17px;
+overflow-x:auto;
+scrollbar-width:none;
 }
 
 .wallet-section::-webkit-scrollbar{
-    display:none;
+display:none;
 }
 
 .wallet-card{
-    min-width:148px;
-
-    padding:12px;
-
-    display:flex;
-    align-items:center;
-    gap:9px;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,42,67,.85),
-            rgba(7,22,39,.9)
-        );
-
-    border:1px solid var(--border);
-
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
-
-    transition:.25s;
-}
-
-.wallet-card:active{
-    transform:scale(.97);
+min-width:148px;
+padding:12px;
+display:flex;
+align-items:center;
+gap:9px;
+border-radius:16px;
+background:
+linear-gradient(
+145deg,
+rgba(18,42,67,.85),
+rgba(7,22,39,.9)
+);
+border:1px solid var(--border);
+box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
 .wallet-icon{
-    width:31px;
-    height:31px;
-
-    flex:none;
-
-    border-radius:10px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:13px;
+width:31px;
+height:31px;
+flex:none;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:13px;
 }
 
 .wallet-text{
-    min-width:0;
+min-width:0;
 }
 
 .wallet-title{
-    display:block;
-
-    font-size:9px;
-    font-weight:800;
-    color:#d8e9f4;
-
-    white-space:nowrap;
+display:block;
+font-size:8px;
+font-weight:800;
+color:#d8e9f4;
+white-space:nowrap;
 }
 
 .wallet-value{
-    display:block;
-
-    margin-top:3px;
-
-    font-size:8px;
-    color:#7190a7;
+display:block;
+margin-top:3px;
+font-size:7px;
+color:#7190a7;
 }
 
-/* =========================================================
-   SECTION TITLE
-========================================================= */
+/* =========================
+   SECTION
+========================= */
 
 .section-title{
-    padding:3px 17px 10px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+padding:3px 17px 10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .section-title h3{
-    font-size:13px;
-    font-weight:900;
+font-size:13px;
+font-weight:900;
 }
 
 .section-title span{
-    font-size:8px;
-    color:#668399;
+font-size:7px;
+color:#668399;
 }
 
-/* =========================================================
+/* =========================
    SEARCH
-========================================================= */
+========================= */
 
 .search-box{
-    margin:0 15px 15px;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    padding:11px 13px;
-
-    background:rgba(255,255,255,.045);
-    border:1px solid var(--border);
-
-    border-radius:15px;
+margin:0 15px 15px;
+display:flex;
+align-items:center;
+gap:10px;
+padding:11px 13px;
+background:rgba(255,255,255,.045);
+border:1px solid var(--border);
+border-radius:15px;
 }
 
 .search-box i{
-    color:#66869c;
-    font-size:12px;
+color:#66869c;
+font-size:11px;
 }
 
 .search-box input{
-    width:100%;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    color:white;
-    font-size:10px;
+width:100%;
+border:0;
+outline:0;
+background:transparent;
+color:white;
+font-size:9px;
 }
 
 .search-box input::placeholder{
-    color:#587185;
+color:#587185;
 }
 
-/* =========================================================
-   MENU GRID
-========================================================= */
+/* =========================
+   MENU
+========================= */
 
 .menu-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    gap:13px 8px;
-
-    padding:0 15px 15px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:13px 8px;
+padding:0 15px 15px;
 }
 
 .menu-item{
-    min-width:0;
-
-    text-decoration:none;
-    color:white;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    gap:7px;
-
-    cursor:pointer;
+min-width:0;
+text-decoration:none;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:7px;
+cursor:pointer;
 }
 
 .menu-icon{
-    width:52px;
-    height:52px;
-
-    border-radius:17px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:19px;
-
-    border:1px solid rgba(255,255,255,.07);
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.2),
-        inset 0 1px 0 rgba(255,255,255,.07);
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
+width:52px;
+height:52px;
+border-radius:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:19px;
+border:1px solid rgba(255,255,255,.07);
+box-shadow:
+0 8px 20px rgba(0,0,0,.2),
+inset 0 1px 0 rgba(255,255,255,.07);
+transition:.2s;
 }
 
 .menu-item:active .menu-icon{
-    transform:scale(.88);
+transform:scale(.88);
 }
 
 .menu-label{
-    font-size:8px;
-    font-weight:600;
-
-    color:#9bb2c4;
-
-    text-align:center;
-    line-height:1.2;
+font-size:8px;
+font-weight:600;
+color:#9bb2c4;
+text-align:center;
+line-height:1.2;
 }
 
-/* individual glow */
-
 .menu-item:nth-child(1) .menu-icon{
-    color:#ffd43b;
-    background:rgba(255,212,59,.08);
+color:#ffd43b;
+background:rgba(255,212,59,.08);
 }
 
 .menu-item:nth-child(2) .menu-icon{
-    color:#55bfff;
-    background:rgba(22,140,255,.08);
+color:#55bfff;
+background:rgba(22,140,255,.08);
 }
 
 .menu-item:nth-child(3) .menu-icon{
-    color:#b17cff;
-    background:rgba(155,92,255,.08);
+color:#b17cff;
+background:rgba(155,92,255,.08);
 }
 
 .menu-item:nth-child(4) .menu-icon{
-    color:#ff6b81;
-    background:rgba(255,65,108,.08);
+color:#ff6b81;
+background:rgba(255,65,108,.08);
 }
 
 .menu-item:nth-child(5) .menu-icon{
-    color:#00d9ff;
-    background:rgba(0,217,255,.08);
+color:#00d9ff;
+background:rgba(0,217,255,.08);
 }
 
 .menu-item:nth-child(6) .menu-icon{
-    color:#65d9ff;
-    background:rgba(0,217,255,.07);
+color:#65d9ff;
+background:rgba(0,217,255,.07);
 }
 
 .menu-item:nth-child(7) .menu-icon{
-    color:#8ba9ff;
-    background:rgba(100,120,255,.08);
+color:#8ba9ff;
+background:rgba(100,120,255,.08);
 }
 
 .menu-item:nth-child(8) .menu-icon{
-    color:#00ffa3;
-    background:rgba(0,255,163,.08);
+color:#00ffa3;
+background:rgba(0,255,163,.08);
 }
 
 /* =========================================================
-   AI TERMINAL
+   AI VOICE CENTER
 ========================================================= */
 
+.voice-panel{
+margin:5px 15px 20px;
+padding:16px;
+border-radius:22px;
+
+background:
+linear-gradient(
+145deg,
+rgba(13,39,63,.95),
+rgba(4,16,30,.98)
+);
+
+border:1px solid rgba(0,217,255,.15);
+
+box-shadow:
+0 15px 45px rgba(0,0,0,.35),
+inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.voice-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:13px;
+}
+
+.voice-title{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.voice-logo{
+width:39px;
+height:39px;
+border-radius:13px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(
+135deg,
+#9b5cff,
+#168cff
+);
+
+box-shadow:
+0 0 22px rgba(155,92,255,.25);
+
+font-size:16px;
+}
+
+.voice-title strong{
+display:block;
+font-size:11px;
+}
+
+.voice-title small{
+display:block;
+margin-top:3px;
+font-size:7px;
+color:#6f8ca2;
+}
+
+.voice-online{
+font-size:7px;
+font-weight:800;
+color:var(--green);
+}
+
+/* TEXT AREA */
+
+.voice-input{
+width:100%;
+min-height:85px;
+
+resize:none;
+
+border:1px solid rgba(0,217,255,.1);
+outline:none;
+
+border-radius:15px;
+
+padding:11px;
+
+background:
+rgba(0,0,0,.25);
+
+color:#e9faff;
+
+font-size:9px;
+line-height:1.6;
+}
+
+.voice-input::placeholder{
+color:#557188;
+}
+
+.voice-input:focus{
+border-color:rgba(0,217,255,.35);
+
+box-shadow:
+0 0 20px rgba(0,217,255,.06);
+}
+
+/* VOICE SELECTOR */
+
+.voice-selector{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:7px;
+margin-top:10px;
+}
+
+.voice-choice{
+padding:10px 5px;
+
+border-radius:13px;
+
+border:1px solid rgba(255,255,255,.06);
+
+background:rgba(255,255,255,.035);
+
+color:#8ea8ba;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.2s;
+}
+
+.voice-choice i{
+display:block;
+font-size:17px;
+margin-bottom:5px;
+}
+
+.voice-choice span{
+font-size:7px;
+font-weight:800;
+}
+
+.voice-choice.active{
+color:#fff;
+
+border-color:rgba(0,217,255,.35);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,217,255,.13),
+rgba(155,92,255,.13)
+);
+
+box-shadow:
+0 0 18px rgba(0,217,255,.08);
+}
+
+/* CONTROLS */
+
+.voice-controls{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px;
+margin-top:10px;
+}
+
+.voice-btn{
+height:39px;
+
+border:1px solid rgba(255,255,255,.07);
+
+border-radius:12px;
+
+background:rgba(255,255,255,.04);
+
+color:#a7c2d4;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:11px;
+
+cursor:pointer;
+
+transition:.2s;
+}
+
+.voice-btn:active{
+transform:scale(.92);
+}
+
+.voice-btn.primary{
+background:
+linear-gradient(
+135deg,
+var(--cyan),
+var(--blue)
+);
+
+color:white;
+
+border:0;
+
+box-shadow:
+0 5px 20px rgba(0,217,255,.2);
+}
+
+/* SLIDERS */
+
+.voice-settings{
+margin-top:13px;
+display:grid;
+gap:8px;
+}
+
+.slider-row{
+display:grid;
+grid-template-columns:65px 1fr 34px;
+align-items:center;
+gap:7px;
+}
+
+.slider-row label{
+font-size:7px;
+color:#718ca1;
+}
+
+.slider-row output{
+font-size:7px;
+color:#8feaff;
+text-align:right;
+}
+
+input[type=range]{
+width:100%;
+accent-color:var(--cyan);
+height:3px;
+}
+
+/* QUICK VOICE */
+
+.quick-voice{
+margin-top:12px;
+
+display:flex;
+gap:7px;
+overflow-x:auto;
+
+scrollbar-width:none;
+}
+
+.quick-voice::-webkit-scrollbar{
+display:none;
+}
+
+.quick-btn{
+white-space:nowrap;
+
+padding:7px 10px;
+
+border-radius:10px;
+
+border:1px solid rgba(0,217,255,.08);
+
+background:rgba(0,217,255,.04);
+
+color:#76a0b9;
+
+font-size:7px;
+
+cursor:pointer;
+}
+
+/* =========================
+   TERMINAL
+========================= */
+
 .ai-terminal{
-    margin:3px 15px 20px;
-
-    padding:13px;
-
-    border-radius:18px;
-
-    background:#020c17;
-
-    border:1px solid rgba(0,217,255,.13);
-
-    box-shadow:
-        inset 0 0 30px rgba(0,217,255,.025);
+margin:3px 15px 20px;
+padding:13px;
+border-radius:18px;
+background:#020c17;
+border:1px solid rgba(0,217,255,.13);
+box-shadow:
+inset 0 0 30px rgba(0,217,255,.025);
 }
 
 .terminal-head{
-    display:flex;
-    align-items:center;
-    gap:6px;
-
-    padding-bottom:9px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-
-    font-size:8px;
-    color:#6e8ba0;
+display:flex;
+align-items:center;
+gap:6px;
+padding-bottom:9px;
+border-bottom:1px solid rgba(255,255,255,.06);
+font-size:7px;
+color:#6e8ba0;
 }
 
 .terminal-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
+width:6px;
+height:6px;
+border-radius:50%;
 }
 
 .terminal-body{
-    padding-top:9px;
-
-    color:#73e8ff;
-
-    font-family:monospace;
-    font-size:8px;
-    line-height:1.8;
+padding-top:9px;
+color:#73e8ff;
+font-family:monospace;
+font-size:7px;
+line-height:1.8;
 }
 
 .cursor{
-    display:inline-block;
-    width:5px;
-    height:9px;
-    background:var(--cyan);
-    animation:blink .8s infinite;
+display:inline-block;
+width:5px;
+height:9px;
+background:var(--cyan);
+animation:blink .8s infinite;
 }
 
 @keyframes blink{
-    50%{opacity:0}
+50%{opacity:0}
 }
 
-/* =========================================================
-   BOTTOM NAV
-========================================================= */
-
-.bottom-nav{
-    position:fixed;
-
-    bottom:10px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:min(450px,calc(100% - 20px));
-
-    height:67px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
-
-    padding:7px 5px;
-
-    border-radius:23px;
-
-    background:
-        rgba(5,18,32,.88);
-
-    border:1px solid rgba(0,217,255,.12);
-
-    backdrop-filter:blur(25px);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.55),
-        0 0 25px rgba(0,217,255,.05);
-
-    z-index:100;
-}
-
-.nav-item{
-    min-width:48px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-
-    text-decoration:none;
-
-    color:#597388;
-
-    font-size:8px;
-    font-weight:600;
-
-    transition:.2s;
-}
-
-.nav-item i{
-    font-size:16px;
-}
-
-.nav-item.active{
-    color:var(--cyan);
-}
-
-.nav-item.active i{
-    filter:drop-shadow(0 0 6px var(--cyan));
-}
-
-/* =========================================================
-   CENTER AI BUTTON
-========================================================= */
-
-.center-button-wrap{
-    width:65px;
-    height:65px;
-
-    margin-top:-31px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.fab-charge{
-    width:58px;
-    height:58px;
-
-    border-radius:20px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--cyan),
-            var(--blue)
-        );
-
-    color:white;
-
-    font-size:21px;
-
-    border:4px solid #061426;
-
-    box-shadow:
-        0 0 25px rgba(0,217,255,.35),
-        0 10px 30px rgba(0,0,0,.4);
-
-    cursor:pointer;
-
-    animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-    50%{
-        transform:translateY(-4px);
-    }
-}
-
-/* =========================================================
-   NOTIFICATION PANEL
-========================================================= */
+/* =========================
+   NOTIFICATION
+========================= */
 
 .notification-panel{
-    position:fixed;
-
-    top:65px;
-    right:12px;
-
-    width:290px;
-
-    padding:14px;
-
-    background:
-        rgba(5,20,35,.95);
-
-    border:1px solid rgba(0,217,255,.15);
-
-    border-radius:19px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.55);
-
-    backdrop-filter:blur(25px);
-
-    transform:
-        translateY(-15px)
-        scale(.95);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:.25s;
-
-    z-index:200;
+position:fixed;
+top:65px;
+right:12px;
+width:290px;
+padding:14px;
+background:rgba(5,20,35,.96);
+border:1px solid rgba(0,217,255,.15);
+border-radius:19px;
+box-shadow:0 20px 60px rgba(0,0,0,.55);
+backdrop-filter:blur(25px);
+transform:translateY(-15px) scale(.95);
+opacity:0;
+pointer-events:none;
+transition:.25s;
+z-index:200;
 }
 
 .notification-panel.show{
-    transform:translateY(0) scale(1);
-    opacity:1;
-    pointer-events:auto;
+transform:translateY(0) scale(1);
+opacity:1;
+pointer-events:auto;
 }
 
 .panel-title{
-    display:flex;
-    justify-content:space-between;
-
-    font-size:10px;
-    font-weight:800;
-
-    padding-bottom:10px;
-    border-bottom:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+font-size:9px;
+font-weight:800;
+padding-bottom:10px;
+border-bottom:1px solid var(--border);
 }
 
 .notification{
-    padding:11px 0;
-
-    display:flex;
-    gap:10px;
-
-    border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.notification:last-child{
-    border-bottom:0;
+padding:11px 0;
+display:flex;
+gap:10px;
+border-bottom:1px solid rgba(255,255,255,.04);
 }
 
 .notification i{
-    color:var(--cyan);
+color:var(--cyan);
 }
 
 .notification strong{
-    display:block;
-    font-size:9px;
+display:block;
+font-size:8px;
 }
 
 .notification p{
-    margin-top:3px;
-    font-size:8px;
-    color:#70899d;
+margin-top:3px;
+font-size:7px;
+color:#70899d;
 }
 
-/* =========================================================
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+position:fixed;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+width:min(450px,calc(100% - 20px));
+height:67px;
+display:flex;
+align-items:center;
+justify-content:space-around;
+padding:7px 5px;
+border-radius:23px;
+background:rgba(5,18,32,.88);
+border:1px solid rgba(0,217,255,.12);
+backdrop-filter:blur(25px);
+box-shadow:
+0 15px 45px rgba(0,0,0,.55),
+0 0 25px rgba(0,217,255,.05);
+z-index:100;
+}
+
+.nav-item{
+min-width:48px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:4px;
+text-decoration:none;
+color:#597388;
+font-size:8px;
+font-weight:600;
+}
+
+.nav-item i{
+font-size:16px;
+}
+
+.nav-item.active{
+color:var(--cyan);
+}
+
+.nav-item.active i{
+filter:drop-shadow(0 0 6px var(--cyan));
+}
+
+.center-button-wrap{
+width:65px;
+height:65px;
+margin-top:-31px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.fab-charge{
+width:58px;
+height:58px;
+border-radius:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(
+135deg,
+var(--cyan),
+var(--blue)
+);
+color:white;
+font-size:21px;
+border:4px solid #061426;
+box-shadow:
+0 0 25px rgba(0,217,255,.35),
+0 10px 30px rgba(0,0,0,.4);
+cursor:pointer;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+50%{
+transform:translateY(-4px);
+}
+}
+
+/* =========================
    TOAST
-========================================================= */
+========================= */
 
 .toast{
-    position:fixed;
-
-    left:50%;
-    bottom:90px;
-
-    transform:
-        translate(-50%,20px);
-
-    padding:10px 14px;
-
-    border-radius:13px;
-
-    background:#081c30;
-    border:1px solid rgba(0,217,255,.18);
-
-    color:#b9edff;
-
-    font-size:9px;
-    font-weight:600;
-
-    opacity:0;
-    pointer-events:none;
-
-    z-index:300;
-
-    transition:.3s;
-
-    white-space:nowrap;
+position:fixed;
+left:50%;
+bottom:90px;
+transform:translate(-50%,20px);
+padding:10px 14px;
+border-radius:13px;
+background:#081c30;
+border:1px solid rgba(0,217,255,.18);
+color:#b9edff;
+font-size:8px;
+font-weight:600;
+opacity:0;
+pointer-events:none;
+z-index:300;
+transition:.3s;
+white-space:nowrap;
 }
 
 .toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+opacity:1;
+transform:translate(-50%,0);
 }
 
-/* =========================================================
+/* =========================
    LIGHT MODE
-========================================================= */
+========================= */
 
 body.light{
-    --bg:#eef7fc;
-    --bg2:#ffffff;
-    --card:#ffffff;
-    --card2:#ffffff;
-    --text:#102235;
-    --muted:#61798d;
-    --border:rgba(0,80,130,.1);
+--bg:#eef7fc;
+--text:#102235;
+--muted:#61798d;
+--border:rgba(0,80,130,.1);
 }
 
 body.light .app-container{
-    background:#f5faff;
+background:#f5faff;
 }
 
 body.light .header-banner{
-    background:
-        linear-gradient(
-            135deg,
-            #008fbe,
-            #0067a3
-        );
+background:
+linear-gradient(
+135deg,
+#008fbe,
+#0067a3
+);
 }
 
 body.light .card-info,
 body.light .wallet-card,
+body.light .voice-panel,
 body.light .ai-terminal{
-    background:#ffffff;
-    color:#102235;
+background:#fff;
 }
 
 body.light .bottom-nav{
-    background:rgba(255,255,255,.9);
+background:rgba(255,255,255,.9);
 }
 
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
 @media(max-width:360px){
 
-    .menu-icon{
-        width:46px;
-        height:46px;
-        font-size:17px;
-    }
+.menu-icon{
+width:46px;
+height:46px;
+font-size:17px;
+}
 
-    .banner-content h2{
-        font-size:22px;
-    }
+.banner-content h2{
+font-size:22px;
+}
 
-    .energy-number strong{
-        font-size:30px;
-    }
+.energy-number strong{
+font-size:30px;
+}
+
+.voice-choice i{
+font-size:15px;
+}
+
 }
 
 </style>
@@ -1329,738 +1343,1049 @@ body.light .bottom-nav{
 <div class="app-container">
 
 <!-- =====================================================
-     SYSTEM BAR
+SYSTEM BAR
 ===================================================== -->
 
 <div class="system-bar">
 
-    <div class="system-left">
-        <span class="live-dot"></span>
-        <span>MYROBOT AI CORE • ONLINE</span>
-    </div>
+<div class="system-left">
+<span class="live-dot"></span>
+<span>MYROBOT AI CORE • ONLINE</span>
+</div>
 
-    <div class="system-right">
-        <span id="clock">00:00</span>
-        <i class="fa-solid fa-wifi"></i>
-        <i class="fa-solid fa-battery-three-quarters"></i>
-    </div>
+<div class="system-right">
+<span id="clock">00:00:00</span>
+<i class="fa-solid fa-wifi"></i>
+<i id="batteryIcon"
+class="fa-solid fa-battery-three-quarters"></i>
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     HEADER
+HEADER
 ===================================================== -->
 
 <div class="header-banner">
 
-    <div class="header-top">
+<div class="header-top">
 
-        <div class="brand">
+<div class="brand">
 
-            <div class="brand-logo">
-                <i class="fa-solid fa-robot"></i>
-            </div>
+<div class="brand-logo">
+<i class="fa-solid fa-robot"></i>
+</div>
 
-            <div class="brand-text">
-                <h1>myROBOT-V12</h1>
-                <p>Professional AI System</p>
-            </div>
+<div class="brand-text">
 
-        </div>
+<h1>myROBOT-V12</h1>
 
-        <div class="header-actions">
+<p>Professional AI System</p>
 
-            <button class="icon-btn"
-                    onclick="toggleTheme()"
-                    aria-label="Tema">
+</div>
 
-                <i class="fa-solid fa-moon"></i>
-
-            </button>
-
-            <button class="icon-btn"
-                    onclick="toggleNotifications()"
-                    aria-label="Notifikasi">
-
-                <i class="fa-solid fa-bell"></i>
-
-                <span class="notification-badge">99</span>
-
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="banner-content">
+<div class="header-actions">
 
-        <small id="greeting">Selamat Datang</small>
+<button
+class="icon-btn"
+onclick="toggleTheme()">
 
-        <h2>
-            Asep Pudin New
-        </h2>
+<i class="fa-solid fa-moon"></i>
 
-        <p>
-            Sistem AI masa depan Anda siap digunakan.
-            Semua modul berjalan normal.
-        </p>
+</button>
 
-        <div class="ai-status">
 
-            <i class="fa-solid fa-circle"></i>
+<button
+class="icon-btn"
+onclick="toggleNotifications()">
 
-            AI CORE ACTIVE • PROFESSIONAL IS LIVE
+<i class="fa-solid fa-bell"></i>
 
-        </div>
+<span class="notification-badge">
+99
+</span>
 
-    </div>
+</button>
+
+</div>
+
+</div>
+
+
+<div class="banner-content">
+
+<small id="greeting">
+Selamat Datang
+</small>
+
+<h2>
+Asep Pudin New
+</h2>
+
+<p>
+Sistem AI masa depan Anda siap digunakan.
+Semua modul berjalan normal.
+</p>
+
+<div class="ai-status">
+
+<i class="fa-solid fa-circle"></i>
+
+AI CORE ACTIVE • PROFESSIONAL IS LIVE
+
+</div>
+
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     NOTIFICATION PANEL
+NOTIFICATION
 ===================================================== -->
 
-<div class="notification-panel" id="notificationPanel">
+<div
+class="notification-panel"
+id="notificationPanel">
 
-    <div class="panel-title">
+<div class="panel-title">
 
-        <span>
-            <i class="fa-solid fa-bell"></i>
-            Pusat Notifikasi
-        </span>
+<span>
+<i class="fa-solid fa-bell"></i>
+Pusat Notifikasi
+</span>
 
-        <span style="color:#00d9ff">
-            99+
-        </span>
+<span style="color:#00d9ff">
+99+
+</span>
 
-    </div>
+</div>
 
-    <div class="notification">
 
-        <i class="fa-solid fa-robot"></i>
+<div class="notification">
 
-        <div>
-            <strong>AI Core Aktif</strong>
-            <p>myROBOT-V12 siap menjalankan sistem.</p>
-        </div>
+<i class="fa-solid fa-robot"></i>
 
-    </div>
+<div>
 
-    <div class="notification">
+<strong>AI Core Aktif</strong>
 
-        <i class="fa-solid fa-bolt"></i>
+<p>
+myROBOT-V12 siap menjalankan sistem.
+</p>
 
-        <div>
-            <strong>Monitoring Energi</strong>
-            <p>Pemakaian listrik sedang dipantau.</p>
-        </div>
+</div>
 
-    </div>
+</div>
 
-    <div class="notification">
 
-        <i class="fa-solid fa-shield-halved"></i>
+<div class="notification">
 
-        <div>
-            <strong>System Secure</strong>
-            <p>Status keamanan sistem normal.</p>
-        </div>
+<i class="fa-solid fa-microphone"></i>
 
-    </div>
+<div>
+
+<strong>AI Voice Ready</strong>
+
+<p>
+Text-to-Speech siap digunakan.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="notification">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<div>
+
+<strong>System Secure</strong>
+
+<p>
+Status keamanan sistem normal.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     ENERGY CARD
+ENERGY
 ===================================================== -->
 
 <div class="card-info">
 
-    <div class="card-title">
+<div class="card-title">
 
-        <div class="user-name">
+<div class="user-name">
 
-            <i class="fa-solid fa-house"></i>
+<i class="fa-solid fa-house"></i>
 
-            <span>myROBOT Smart Home</span>
+<span>myROBOT Smart Home</span>
 
-        </div>
+</div>
 
-        <div class="type-badge">
+<div class="type-badge">
 
-            <i class="fa-solid fa-bolt"></i>
+<i class="fa-solid fa-bolt"></i>
 
-            R1M • 900 VA
+R1M • 900 VA
 
-        </div>
+</div>
 
-    </div>
-
-
-    <div class="energy-display">
-
-        <div>
-
-            <div class="energy-number">
-
-                <strong>222</strong>
-
-                <span>kWh</span>
-
-            </div>
-
-            <div style="
-                margin-top:5px;
-                color:#7190a7;
-                font-size:8px;
-            ">
-                TOTAL PEMAKAIAN
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="energy-ring">
+<div class="energy-display">
 
-            <span>79%</span>
+<div>
 
-        </div>
+<div class="energy-number">
 
-    </div>
+<strong>222</strong>
 
+<span>kWh</span>
 
-    <div class="chart-container">
+</div>
 
-        <svg class="chart-svg"
-             viewBox="0 0 320 70"
-             preserveAspectRatio="none">
+<div style="
+margin-top:5px;
+color:#7190a7;
+font-size:7px;
+">
 
-            <defs>
+TOTAL PEMAKAIAN
 
-                <linearGradient
-                    id="energyGradient"
-                    x1="0"
-                    x2="0"
-                    y1="0"
-                    y2="1">
+</div>
 
-                    <stop
-                        offset="0"
-                        stop-color="#00d9ff"/>
-
-                    <stop
-                        offset="1"
-                        stop-color="#00d9ff"
-                        stop-opacity="0"/>
-
-                </linearGradient>
-
-            </defs>
-
-            <line
-                x1="0"
-                y1="15"
-                x2="320"
-                y2="15"
-                class="chart-grid"/>
-
-            <line
-                x1="0"
-                y1="35"
-                x2="320"
-                y2="35"
-                class="chart-grid"/>
-
-            <line
-                x1="0"
-                y1="55"
-                x2="320"
-                y2="55"
-                class="chart-grid"/>
+</div>
 
 
-            <path
-                d="
-                M0 54
-                C35 48 50 27 82 32
-                S130 55 157 35
-                S195 13 218 28
-                S260 51 285 29
-                S310 20 320 17
-                L320 70
-                L0 70 Z
-                "
-                class="chart-area"/>
+<div class="energy-ring">
+
+<span>79%</span>
+
+</div>
+
+</div>
 
 
-            <path
-                d="
-                M0 54
-                C35 48 50 27 82 32
-                S130 55 157 35
-                S195 13 218 28
-                S260 51 285 29
-                S310 20 320 17
-                "
-                class="chart-line"/>
+<div class="chart-container">
 
-            <circle
-                cx="320"
-                cy="17"
-                r="4"
-                class="chart-dot"/>
+<svg
+class="chart-svg"
+viewBox="0 0 320 70"
+preserveAspectRatio="none">
 
-        </svg>
+<defs>
 
-    </div>
+<linearGradient
+id="energyGradient"
+x1="0"
+x2="0"
+y1="0"
+y2="1">
+
+<stop
+offset="0"
+stop-color="#00d9ff"/>
+
+<stop
+offset="1"
+stop-color="#00d9ff"
+stop-opacity="0"/>
+
+</linearGradient>
+
+</defs>
 
 
-    <div class="status-bill">
+<line
+x1="0"
+y1="15"
+x2="320"
+y2="15"
+class="chart-grid"/>
 
-        <i class="fa-solid fa-circle-check"></i>
+<line
+x1="0"
+y1="35"
+x2="320"
+y2="35"
+class="chart-grid"/>
 
-        <span>
-            Sistem normal • Belum ada tagihan yang perlu dibayar
-        </span>
+<line
+x1="0"
+y1="55"
+x2="320"
+y2="55"
+class="chart-grid"/>
 
-    </div>
+
+<path
+d="
+M0 54
+C35 48 50 27 82 32
+S130 55 157 35
+S195 13 218 28
+S260 51 285 29
+S310 20 320 17
+L320 70
+L0 70 Z
+"
+class="chart-area"/>
+
+
+<path
+d="
+M0 54
+C35 48 50 27 82 32
+S130 55 157 35
+S195 13 218 28
+S260 51 285 29
+S310 20 320 17
+"
+class="chart-line"/>
+
+
+<circle
+cx="320"
+cy="17"
+r="4"
+class="chart-dot"/>
+
+</svg>
+
+</div>
+
+
+<div class="status-bill">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<span>
+Sistem normal • Belum ada tagihan yang perlu dibayar
+</span>
+
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     ACTION
+ACTION
 ===================================================== -->
 
 <div class="action-strip">
 
-    <div>
+<div>
 
-        <span>STATUS SISTEM</span>
+<span>STATUS SISTEM</span>
 
-        <strong>
-            <i class="fa-solid fa-circle"
-               style="font-size:6px;color:#00ffa3"></i>
+<strong>
 
-            Semua modul online
-        </strong>
+<i
+class="fa-solid fa-circle"
+style="font-size:5px;color:#00ffa3">
+</i>
 
-    </div>
+Semua modul online
 
-    <div class="see-all-btn"
-         onclick="showToast('Membuka seluruh aktivitas...')">
+</strong>
 
-        LIHAT SEMUA
+</div>
 
-        <i class="fa-solid fa-arrow-right"></i>
 
-    </div>
+<div
+class="see-all-btn"
+onclick="showToast('Membuka seluruh aktivitas...')">
+
+LIHAT SEMUA
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     WALLET
+WALLET
 ===================================================== -->
 
 <div class="wallet-section">
 
-    <div class="wallet-card">
+<div class="wallet-card">
 
-        <div class="wallet-icon"
-             style="
-             background:rgba(0,255,163,.08);
-             color:#00ffa3;
-             ">
+<div
+class="wallet-icon"
+style="
+background:rgba(0,255,163,.08);
+color:#00ffa3;
+">
 
-            <i class="fa-solid fa-wallet"></i>
+<i class="fa-solid fa-wallet"></i>
 
-        </div>
+</div>
 
-        <div class="wallet-text">
+<div class="wallet-text">
 
-            <span class="wallet-title">
-                Saldo Rp.999.000.000.000
-            </span>
+<span class="wallet-title">
+Saldo Rp.999.000.000.000
+</span>
 
-            <span class="wallet-value">
-                DOMPET DIGITAL
-            </span>
+<span class="wallet-value">
+DOMPET DIGITAL
+</span>
 
-        </div>
+</div>
 
-        <i class="fa-regular fa-eye"
-           style="
-           font-size:10px;
-           color:#7892a7;
-           margin-left:auto;
-           "></i>
-
-    </div>
+</div>
 
 
-    <div class="wallet-card">
+<div class="wallet-card">
 
-        <div class="wallet-icon"
-             style="
-             background:rgba(255,212,59,.08);
-             color:#ffd43b;
-             ">
+<div
+class="wallet-icon"
+style="
+background:rgba(255,212,59,.08);
+color:#ffd43b;
+">
 
-            <i class="fa-solid fa-coins"></i>
+<i class="fa-solid fa-coins"></i>
 
-        </div>
+</div>
 
-        <div class="wallet-text">
+<div class="wallet-text">
 
-            <span class="wallet-title">
-                999.000.000 Point
-            </span>
+<span class="wallet-title">
+999.000.000 Point
+</span>
 
-            <span class="wallet-value">
-                REWARD POINT
-            </span>
+<span class="wallet-value">
+REWARD POINT
+</span>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 
-    <div class="wallet-card">
+<div class="wallet-card">
 
-        <div class="wallet-icon"
-             style="
-             background:rgba(0,217,255,.08);
-             color:#00d9ff;
-             ">
+<div
+class="wallet-icon"
+style="
+background:rgba(0,217,255,.08);
+color:#00d9ff;
+">
 
-            <i class="fa-solid fa-ticket"></i>
+<i class="fa-solid fa-ticket"></i>
 
-        </div>
+</div>
 
-        <div class="wallet-text">
+<div class="wallet-text">
 
-            <span class="wallet-title">
-                Voucher
-            </span>
+<span class="wallet-title">
+Voucher
+</span>
 
-            <span class="wallet-value">
-                AVAILABLE
-            </span>
+<span class="wallet-value">
+AVAILABLE
+</span>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     MENU
+MENU
 ===================================================== -->
 
 <div class="section-title">
 
-    <h3>AI Smart Services</h3>
+<h3>AI Smart Services</h3>
 
-    <span>8 MODULES</span>
+<span>8 MODULES</span>
 
 </div>
 
 
 <div class="search-box">
 
-    <i class="fa-solid fa-magnifying-glass"></i>
+<i class="fa-solid fa-magnifying-glass"></i>
 
-    <input
-        id="menuSearch"
-        type="search"
-        placeholder="Cari fitur myROBOT-V12..."
-        oninput="searchMenu()">
+<input
+id="menuSearch"
+type="search"
+placeholder="Cari fitur myROBOT-V12..."
+oninput="searchMenu()">
 
 </div>
 
 
-<div class="menu-grid" id="menuGrid">
-
-    <!-- E-SOSIAL -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html"
-        class="menu-item">
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-bolt"></i>
-        </div>
-
-        <span class="menu-label">
-            E-Sosial
-        </span>
-
-    </a>
+<div
+class="menu-grid"
+id="menuGrid">
 
 
-    <!-- E-KEUANGAN -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html"
-        class="menu-item">
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html"
+class="menu-item">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-car"></i>
-        </div>
+<div class="menu-icon">
+<i class="fa-solid fa-bolt"></i>
+</div>
 
-        <span class="menu-label">
-            E-Keuangan
-        </span>
+<span class="menu-label">
+E-Sosial
+</span>
 
-    </a>
-
-
-    <!-- WIDGET -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html"
-        class="menu-item">
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-calculator"></i>
-        </div>
-
-        <span class="menu-label">
-            Widget
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- KESEHATAN -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html"
-        class="menu-item">
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html"
+class="menu-item">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-heart-pulse"></i>
-        </div>
+<div class="menu-icon">
+<i class="fa-solid fa-car"></i>
+</div>
 
-        <span class="menu-label">
-            E-Kesehatan
-        </span>
+<span class="menu-label">
+E-Keuangan
+</span>
 
-    </a>
-
-
-    <!-- CUACA -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html"
-        class="menu-item">
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-cloud-sun"></i>
-        </div>
-
-        <span class="menu-label">
-            Baca Suhu
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- INTERNET -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html"
-        class="menu-item">
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html"
+class="menu-item">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-wifi"></i>
-        </div>
+<div class="menu-icon">
+<i class="fa-solid fa-calculator"></i>
+</div>
 
-        <span class="menu-label">
-            Baca Internet
-        </span>
+<span class="menu-label">
+Widget
+</span>
 
-    </a>
-
-
-    <!-- SUPPORT -->
-    <a
-        href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png"
-        class="menu-item">
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-headset"></i>
-        </div>
-
-        <span class="menu-label">
-            Support
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- GPX -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html"
-        class="menu-item">
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html"
+class="menu-item">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-location-crosshairs"></i>
-        </div>
+<div class="menu-icon">
+<i class="fa-solid fa-heart-pulse"></i>
+</div>
 
-        <span class="menu-label">
-            Lacak GPX
-        </span>
+<span class="menu-label">
+E-Kesehatan
+</span>
 
-    </a>
+</a>
+
+
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html"
+class="menu-item">
+
+<div class="menu-icon">
+<i class="fa-solid fa-cloud-sun"></i>
+</div>
+
+<span class="menu-label">
+Baca Suhu
+</span>
+
+</a>
+
+
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html"
+class="menu-item">
+
+<div class="menu-icon">
+<i class="fa-solid fa-wifi"></i>
+</div>
+
+<span class="menu-label">
+Baca Internet
+</span>
+
+</a>
+
+
+<a
+href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png"
+class="menu-item">
+
+<div class="menu-icon">
+<i class="fa-solid fa-headset"></i>
+</div>
+
+<span class="menu-label">
+Support
+</span>
+
+</a>
+
+
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html"
+class="menu-item">
+
+<div class="menu-icon">
+<i class="fa-solid fa-location-crosshairs"></i>
+</div>
+
+<span class="menu-label">
+Lacak GPX
+</span>
+
+</a>
 
 </div>
 
 
 <!-- =====================================================
-     AI TERMINAL
+AI VOICE
 ===================================================== -->
 
 <div class="section-title">
 
-    <h3>AI Core Monitor</h3>
+<h3>AI Voice Center</h3>
 
-    <span>REALTIME</span>
+<span id="voiceStatus">
+READY
+</span>
+
+</div>
+
+
+<div class="voice-panel">
+
+<div class="voice-header">
+
+<div class="voice-title">
+
+<div class="voice-logo">
+
+<i class="fa-solid fa-microphone-lines"></i>
+
+</div>
+
+<div>
+
+<strong>
+Text → Speech AI
+</strong>
+
+<small>
+Suara langsung dari browser/perangkat
+</small>
+
+</div>
+
+</div>
+
+
+<div class="voice-online">
+
+● ONLINE
+
+</div>
+
+</div>
+
+
+<textarea
+id="voiceText"
+class="voice-input"
+placeholder="Tulis teks yang ingin dibacakan oleh myROBOT-V12...">Halo Asep Pudin New. Selamat datang di myROBOT-V12 Professional. Sistem AI Anda saat ini aktif dan siap digunakan.</textarea>
+
+
+<!-- VOICE CHOICE -->
+
+<div class="voice-selector">
+
+<div
+class="voice-choice active"
+data-type="female"
+onclick="selectVoiceType('female')">
+
+<i class="fa-solid fa-person-dress"></i>
+
+<span>
+SUARA CEWEK
+</span>
+
+</div>
+
+
+<div
+class="voice-choice"
+data-type="male"
+onclick="selectVoiceType('male')">
+
+<i class="fa-solid fa-person"></i>
+
+<span>
+SUARA COWOK
+</span>
+
+</div>
+
+
+<div
+class="voice-choice"
+data-type="baby"
+onclick="selectVoiceType('baby')">
+
+<i class="fa-solid fa-baby"></i>
+
+<span>
+SUARA BAYI
+</span>
+
+</div>
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div class="voice-controls">
+
+<button
+class="voice-btn primary"
+onclick="speakText()"
+title="Bicara">
+
+<i class="fa-solid fa-play"></i>
+
+</button>
+
+
+<button
+class="voice-btn"
+onclick="pauseSpeech()"
+title="Pause">
+
+<i class="fa-solid fa-pause"></i>
+
+</button>
+
+
+<button
+class="voice-btn"
+onclick="resumeSpeech()"
+title="Lanjut">
+
+<i class="fa-solid fa-play"></i>
+
+</button>
+
+
+<button
+class="voice-btn"
+onclick="stopSpeech()"
+title="Stop">
+
+<i class="fa-solid fa-stop"></i>
+
+</button>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<div class="voice-settings">
+
+<div class="slider-row">
+
+<label>
+KECEPATAN
+</label>
+
+<input
+id="rate"
+type="range"
+min="0.5"
+max="2"
+step="0.05"
+value="1"
+oninput="updateSlider('rate')">
+
+<output id="rateValue">
+1.00
+</output>
+
+</div>
+
+
+<div class="slider-row">
+
+<label>
+NADA
+</label>
+
+<input
+id="pitch"
+type="range"
+min="0"
+max="2"
+step="0.05"
+value="1"
+oninput="updateSlider('pitch')">
+
+<output id="pitchValue">
+1.00
+</output>
+
+</div>
+
+
+<div class="slider-row">
+
+<label>
+VOLUME
+</label>
+
+<input
+id="volume"
+type="range"
+min="0"
+max="1"
+step="0.05"
+value="1"
+oninput="updateSlider('volume')">
+
+<output id="volumeValue">
+100%
+</output>
+
+</div>
+
+</div>
+
+
+<!-- QUICK PHRASES -->
+
+<div class="quick-voice">
+
+<button
+class="quick-btn"
+onclick="quickText('Selamat datang di myROBOT-V12 Professional.')">
+
+▶ Selamat Datang
+
+</button>
+
+
+<button
+class="quick-btn"
+onclick="quickText('Sistem AI myROBOT-V12 aktif dan semua modul berjalan normal.')">
+
+▶ System Status
+
+</button>
+
+
+<button
+class="quick-btn"
+onclick="quickText('Koneksi internet terdeteksi dan sistem siap digunakan.')">
+
+▶ Internet
+
+</button>
+
+
+<button
+class="quick-btn"
+onclick="quickText('Monitoring sistem selesai. Tidak ditemukan masalah.')">
+
+▶ Monitoring
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+AI TERMINAL
+===================================================== -->
+
+<div class="section-title">
+
+<h3>AI Core Monitor</h3>
+
+<span>REALTIME</span>
 
 </div>
 
 
 <div class="ai-terminal">
 
-    <div class="terminal-head">
+<div class="terminal-head">
 
-        <span class="terminal-dot"
-              style="background:#ff5f56"></span>
+<span
+class="terminal-dot"
+style="background:#ff5f56">
+</span>
 
-        <span class="terminal-dot"
-              style="background:#ffbd2e"></span>
+<span
+class="terminal-dot"
+style="background:#ffbd2e">
+</span>
 
-        <span class="terminal-dot"
-              style="background:#27c93f"></span>
+<span
+class="terminal-dot"
+style="background:#27c93f">
+</span>
 
-        <span style="margin-left:4px">
-            MYROBOT_AI_CORE
-        </span>
+<span style="margin-left:4px">
+MYROBOT_AI_CORE
+</span>
 
-    </div>
+</div>
 
-    <div class="terminal-body" id="terminal">
 
-        > Initializing AI core...<br>
-        > System integrity: <b>100%</b><br>
-        > Network interface: <b>ONLINE</b><br>
-        > Smart modules: <b>8/8 ACTIVE</b><br>
-        > Security layer: <b>PROTECTED</b><br>
-        > Waiting for command<span class="cursor"></span>
+<div
+class="terminal-body"
+id="terminal">
 
-    </div>
+&gt; Initializing AI core...<br>
+&gt; System integrity: <b>100%</b><br>
+&gt; Network interface: <b>ONLINE</b><br>
+&gt; AI Voice engine: <b>READY</b><br>
+&gt; Smart modules: <b>8/8 ACTIVE</b><br>
+&gt; Security layer: <b>PROTECTED</b><br>
+&gt; Waiting for command<span class="cursor"></span>
+
+</div>
 
 </div>
 
 
 <!-- =====================================================
-     BOTTOM NAV
+BOTTOM NAV
 ===================================================== -->
 
 <div class="bottom-nav">
 
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#"
-        class="nav-item active">
 
-        <i class="fa-solid fa-house"></i>
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#"
+class="nav-item active">
 
-        <span>Beranda</span>
+<i class="fa-solid fa-house"></i>
 
-    </a>
+<span>Beranda</span>
 
-
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/"
-        class="nav-item">
-
-        <i class="fa-solid fa-file-lines"></i>
-
-        <span>V.08</span>
-
-    </a>
+</a>
 
 
-    <div
-        class="center-button-wrap"
-        onclick="showToast('AI QR Center aktif')">
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/"
+class="nav-item">
 
-        <div class="fab-charge">
+<i class="fa-solid fa-file-lines"></i>
 
-            <i class="fa-solid fa-qrcode"></i>
+<span>V.08</span>
 
-        </div>
-
-    </div>
+</a>
 
 
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/"
-        class="nav-item">
+<div
+class="center-button-wrap"
+onclick="voiceFromAI()">
 
-        <i class="fa-solid fa-ticket"></i>
+<div
+class="fab-charge"
+title="AI Voice">
 
-        <span>V.12</span>
-
-    </a>
-
-
-    <a
-        href="https://github.com/aseppudinnew-pro"
-        class="nav-item">
-
-        <i class="fa-solid fa-user-astronaut"></i>
-
-        <span>Profile</span>
-
-    </a>
+<i class="fa-solid fa-microphone"></i>
 
 </div>
 
 </div>
 
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<a
+href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/"
+class="nav-item">
 
-<div class="toast" id="toast">
-    Sistem myROBOT-V12
+<i class="fa-solid fa-ticket"></i>
+
+<span>V.12</span>
+
+</a>
+
+
+<a
+href="https://github.com/aseppudinnew-pro"
+class="nav-item">
+
+<i class="fa-solid fa-user-astronaut"></i>
+
+<span>Profile</span>
+
+</a>
+
+</div>
+
+</div>
+
+
+<div
+class="toast"
+id="toast">
+
+myROBOT-V12
+
 </div>
 
 
 <script>
 
 /* =========================================================
-   REALTIME CLOCK
+CLOCK
 ========================================================= */
 
 function updateClock(){
 
-    const now = new Date();
+const now=new Date();
 
-    const time =
-        now.toLocaleTimeString(
-            'id-ID',
-            {
-                hour:'2-digit',
-                minute:'2-digit',
-                second:'2-digit'
-            }
-        );
-
-    document.getElementById('clock').textContent = time;
+document.getElementById("clock")
+.textContent=
+now.toLocaleTimeString(
+"id-ID",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+}
+);
 
 }
 
@@ -2070,30 +2395,30 @@ setInterval(updateClock,1000);
 
 
 /* =========================================================
-   DYNAMIC GREETING
+GREETING
 ========================================================= */
 
 function updateGreeting(){
 
-    const hour = new Date().getHours();
+const hour=new Date().getHours();
 
-    let greeting;
+let greeting;
 
-    if(hour >= 4 && hour < 11){
-        greeting = "Selamat Pagi ☀️";
-    }
-    else if(hour >= 11 && hour < 15){
-        greeting = "Selamat Siang 🌤️";
-    }
-    else if(hour >= 15 && hour < 18){
-        greeting = "Selamat Sore 🌇";
-    }
-    else{
-        greeting = "Selamat Malam 🌙";
-    }
+if(hour>=4 && hour<11)
+greeting="Selamat Pagi ☀️";
 
-    document.getElementById('greeting').textContent =
-        greeting + " • AI SYSTEM";
+else if(hour>=11 && hour<15)
+greeting="Selamat Siang 🌤️";
+
+else if(hour>=15 && hour<18)
+greeting="Selamat Sore 🌇";
+
+else
+greeting="Selamat Malam 🌙";
+
+document.getElementById("greeting")
+.textContent=
+greeting+" • AI SYSTEM";
 
 }
 
@@ -2101,457 +2426,918 @@ updateGreeting();
 
 
 /* =========================================================
-   NOTIFICATION
-========================================================= */
-
-function toggleNotifications(){
-
-    const panel =
-        document.getElementById(
-            'notificationPanel'
-        );
-
-    panel.classList.toggle('show');
-
-}
-
-
-/* =========================================================
-   CLOSE NOTIFICATION OUTSIDE
-========================================================= */
-
-document.addEventListener(
-    'click',
-    function(e){
-
-        const panel =
-            document.getElementById(
-                'notificationPanel'
-            );
-
-        const button =
-            e.target.closest(
-                '.header-actions'
-            );
-
-        if(
-            !panel.contains(e.target) &&
-            !button
-        ){
-            panel.classList.remove('show');
-        }
-
-    }
-);
-
-
-/* =========================================================
-   THEME
+THEME
 ========================================================= */
 
 function toggleTheme(){
 
-    document.body.classList.toggle('light');
+document.body.classList.toggle("light");
 
-    const light =
-        document.body.classList.contains('light');
+const light=
+document.body.classList.contains("light");
 
-    localStorage.setItem(
-        'myrobot-theme',
-        light ? 'light' : 'dark'
-    );
+localStorage.setItem(
+"myrobot-theme",
+light?"light":"dark"
+);
 
-    showToast(
-        light
-        ? 'Light Mode aktif'
-        : 'AI Dark Mode aktif'
-    );
+showToast(
+light?
+"Light Mode aktif":
+"AI Dark Mode aktif"
+);
 
 }
 
 if(
-    localStorage.getItem('myrobot-theme')
-    === 'light'
+localStorage.getItem("myrobot-theme")
+==="light"
 ){
-    document.body.classList.add('light');
+
+document.body.classList.add("light");
+
 }
 
 
 /* =========================================================
-   SEARCH MENU
+NOTIFICATION
+========================================================= */
+
+function toggleNotifications(){
+
+document
+.getElementById("notificationPanel")
+.classList.toggle("show");
+
+}
+
+
+document.addEventListener(
+"click",
+function(e){
+
+const panel=
+document.getElementById(
+"notificationPanel"
+);
+
+const button=
+e.target.closest(
+".header-actions"
+);
+
+if(
+!panel.contains(e.target)
+&&!button
+){
+
+panel.classList.remove("show");
+
+}
+
+}
+);
+
+
+/* =========================================================
+SEARCH
 ========================================================= */
 
 function searchMenu(){
 
-    const input =
-        document.getElementById(
-            'menuSearch'
-        ).value.toLowerCase();
+const value=
+document.getElementById(
+"menuSearch"
+).value.toLowerCase();
 
-    const items =
-        document.querySelectorAll(
-            '#menuGrid .menu-item'
-        );
+document
+.querySelectorAll(
+"#menuGrid .menu-item"
+)
+.forEach(item=>{
 
-    items.forEach(item => {
+item.style.display=
+item.innerText
+.toLowerCase()
+.includes(value)
+?"flex"
+:"none";
 
-        const text =
-            item.innerText.toLowerCase();
-
-        item.style.display =
-            text.includes(input)
-            ? 'flex'
-            : 'none';
-
-    });
+});
 
 }
 
 
 /* =========================================================
-   TOAST
+TOAST
 ========================================================= */
 
 let toastTimer;
 
 function showToast(message){
 
-    const toast =
-        document.getElementById('toast');
+const toast=
+document.getElementById("toast");
 
-    toast.textContent = message;
+toast.textContent=message;
 
-    toast.classList.add('show');
+toast.classList.add("show");
 
-    clearTimeout(toastTimer);
+clearTimeout(toastTimer);
 
-    toastTimer =
-        setTimeout(
-            () => toast.classList.remove('show'),
-            2200
-        );
+toastTimer=setTimeout(
+()=>{
+toast.classList.remove("show");
+},
+2200
+);
 
 }
 
 
 /* =========================================================
-   PARTICLE SYSTEM
+PARTICLES
 ========================================================= */
 
-const particleContainer =
-    document.getElementById('particles');
+const particleContainer=
+document.getElementById("particles");
 
 for(let i=0;i<28;i++){
 
-    const p =
-        document.createElement('div');
+const p=
+document.createElement("div");
 
-    p.style.position = 'absolute';
+p.style.position="absolute";
 
-    p.style.width =
-        Math.random()*2+1+'px';
+p.style.width=
+Math.random()*2+1+"px";
 
-    p.style.height =
-        p.style.width;
+p.style.height=p.style.width;
 
-    p.style.borderRadius =
-        '50%';
+p.style.borderRadius="50%";
 
-    p.style.background =
-        '#00d9ff';
+p.style.background="#00d9ff";
 
-    p.style.opacity =
-        Math.random()*.35;
+p.style.opacity=
+Math.random()*.35;
 
-    p.style.left =
-        Math.random()*100+'%';
+p.style.left=
+Math.random()*100+"%";
 
-    p.style.top =
-        Math.random()*100+'%';
+p.style.top=
+Math.random()*100+"%";
 
-    p.style.boxShadow =
-        '0 0 8px #00d9ff';
+p.style.boxShadow=
+"0 0 8px #00d9ff";
 
-    const duration =
-        Math.random()*15+10;
+p.animate(
+[
+{
+transform:"translateY(0)",
+opacity:.1
+},
+{
+transform:
+`translateY(${Math.random()*-180-50}px)`,
+opacity:.6
+},
+{
+transform:"translateY(0)",
+opacity:.1
+}
+],
+{
+duration:
+(Math.random()*15+10)*1000,
+iterations:Infinity,
+easing:"ease-in-out",
+delay:Math.random()*-10000
+}
+);
 
-    p.animate(
-        [
-            {
-                transform:'translateY(0)',
-                opacity:.1
-            },
-            {
-                transform:
-                    `translateY(${
-                        Math.random()*-180-50
-                    }px)`,
-                opacity:.6
-            },
-            {
-                transform:'translateY(0)',
-                opacity:.1
-            }
-        ],
-        {
-            duration:duration*1000,
-            iterations:Infinity,
-            easing:'ease-in-out',
-            delay:Math.random()*-10000
-        }
-    );
-
-    particleContainer.appendChild(p);
+particleContainer.appendChild(p);
 
 }
 
 
 /* =========================================================
-   NETWORK STATUS
+NETWORK
 ========================================================= */
 
 function updateNetwork(){
 
-    const wifi =
-        document.querySelector(
-            '.system-right .fa-wifi'
-        );
+const wifi=
+document.querySelector(
+".system-right .fa-wifi"
+);
 
-    if(
-        navigator.onLine
-    ){
+if(navigator.onLine){
 
-        wifi.style.color =
-            '#00ffa3';
+wifi.style.color="#00ffa3";
 
-        wifi.title =
-            'Internet Online';
+}else{
 
-    }else{
+wifi.style.color="#ff416c";
 
-        wifi.style.color =
-            '#ff416c';
+showToast(
+"Koneksi internet terputus"
+);
 
-        wifi.title =
-            'Offline';
-
-        showToast(
-            'Koneksi internet terputus'
-        );
-
-    }
+}
 
 }
 
 updateNetwork();
 
 window.addEventListener(
-    'online',
-    updateNetwork
+"online",
+updateNetwork
 );
 
 window.addEventListener(
-    'offline',
-    updateNetwork
+"offline",
+updateNetwork
 );
 
 
 /* =========================================================
-   BATTERY STATUS
+BATTERY
 ========================================================= */
 
-if(
-    navigator.getBattery
-){
+if(navigator.getBattery){
 
-    navigator
-    .getBattery()
-    .then(
-        battery => {
+navigator
+.getBattery()
+.then(
+battery=>{
 
-            function batteryUpdate(){
+function updateBattery(){
 
-                const icon =
-                    document.querySelector(
-                        '.fa-battery-three-quarters'
-                    );
+const icon=
+document.getElementById(
+"batteryIcon"
+);
 
-                const level =
-                    Math.round(
-                        battery.level * 100
-                    );
+const level=
+Math.round(
+battery.level*100
+);
 
-                icon.title =
-                    'Battery ' + level + '%';
+icon.title=
+"Battery "+level+"%";
 
-                if(level < 20){
+if(level<20){
 
-                    icon.className =
-                        'fa-solid fa-battery-quarter';
+icon.className=
+"fa-solid fa-battery-quarter";
 
-                }
-                else if(level < 50){
+}
+else if(level<50){
 
-                    icon.className =
-                        'fa-solid fa-battery-half';
+icon.className=
+"fa-solid fa-battery-half";
 
-                }
-                else{
+}
+else{
 
-                    icon.className =
-                        'fa-solid fa-battery-three-quarters';
+icon.className=
+"fa-solid fa-battery-three-quarters";
 
-                }
+}
 
-            }
+}
 
-            batteryUpdate();
+updateBattery();
 
-            battery.addEventListener(
-                'levelchange',
-                batteryUpdate
-            );
+battery.addEventListener(
+"levelchange",
+updateBattery
+);
 
-        }
-    );
+}
+);
 
 }
 
 
 /* =========================================================
-   AI TERMINAL ROTATION
+TTS ENGINE
 ========================================================= */
 
-const aiMessages = [
+let voices=[];
 
-    'AI neural engine synchronized',
-    'Monitoring environmental sensors',
-    'Checking network topology',
-    'Optimizing system performance',
-    'Scanning smart modules',
-    'Security firewall active',
-    'GPS tracking interface ready',
-    'Weather intelligence ready'
+let selectedVoiceType="female";
+
+let selectedVoice=null;
+
+
+/*
+Browser akan menyediakan voice
+sesuai Android/Chrome/OS.
+*/
+
+function loadVoices(){
+
+voices=
+window.speechSynthesis
+.getVoices();
+
+selectBestVoice();
+
+}
+
+window.speechSynthesis
+.onvoiceschanged=
+loadVoices;
+
+loadVoices();
+
+
+/* =========================================================
+VOICE SELECTION
+========================================================= */
+
+function selectVoiceType(type){
+
+selectedVoiceType=type;
+
+document
+.querySelectorAll(".voice-choice")
+.forEach(el=>{
+
+el.classList.toggle(
+"active",
+el.dataset.type===type
+);
+
+});
+
+selectBestVoice();
+
+showToast(
+"Mode suara: "+
+type.toUpperCase()
+);
+
+}
+
+
+/* =========================================================
+SMART VOICE DETECTION
+========================================================= */
+
+function selectBestVoice(){
+
+if(!voices.length)
+return;
+
+
+/*
+Prioritaskan Bahasa Indonesia.
+*/
+
+const indo=
+voices.filter(v=>
+v.lang &&
+v.lang.toLowerCase()
+.startsWith("id")
+);
+
+
+/*
+Kata kunci gender.
+*/
+
+const femaleWords=[
+"female",
+"woman",
+"perempuan",
+"girl",
+"google indonesia"
+];
+
+const maleWords=[
+"male",
+"man",
+"laki",
+"cowok",
+"boy"
+];
+
+
+let candidates=
+indo.length?indo:voices;
+
+
+/*
+SUARA CEWEK
+*/
+
+if(selectedVoiceType==="female"){
+
+selectedVoice=
+candidates.find(v=>
+femaleWords.some(
+word=>
+v.name
+.toLowerCase()
+.includes(word)
+)
+);
+
+}
+
+
+/*
+SUARA COWOK
+*/
+
+else if(selectedVoiceType==="male"){
+
+selectedVoice=
+candidates.find(v=>
+maleWords.some(
+word=>
+v.name
+.toLowerCase()
+.includes(word)
+)
+);
+
+}
+
+
+/*
+SUARA BAYI
+*/
+
+else if(selectedVoiceType==="baby"){
+
+/*
+Tidak semua browser menyediakan
+voice bayi.
+
+Gunakan voice yang tersedia
+dengan pitch tinggi.
+*/
+
+selectedVoice=
+candidates.find(v=>
+/female|girl|woman/i
+.test(v.name)
+);
+
+}
+
+
+/*
+Fallback
+*/
+
+if(!selectedVoice){
+
+selectedVoice=
+candidates[0];
+
+}
+
+}
+
+
+/* =========================================================
+SPEAK
+========================================================= */
+
+function speakText(){
+
+if(
+!("speechSynthesis" in window)
+){
+
+showToast(
+"Browser tidak mendukung Text-to-Speech"
+);
+
+return;
+
+}
+
+
+const text=
+document
+.getElementById("voiceText")
+.value
+.trim();
+
+
+if(!text){
+
+showToast(
+"Tulis teks terlebih dahulu"
+);
+
+return;
+
+}
+
+
+window.speechSynthesis.cancel();
+
+
+selectBestVoice();
+
+
+const utterance=
+new SpeechSynthesisUtterance(
+text
+);
+
+
+if(selectedVoice){
+
+utterance.voice=
+selectedVoice;
+
+utterance.lang=
+selectedVoice.lang||"id-ID";
+
+}else{
+
+utterance.lang="id-ID";
+
+}
+
+
+/*
+KECEPATAN
+*/
+
+utterance.rate=
+parseFloat(
+document.getElementById(
+"rate"
+).value
+);
+
+
+/*
+PITCH
+
+Untuk mode bayi,
+pitch otomatis dinaikkan.
+*/
+
+let pitch=
+parseFloat(
+document.getElementById(
+"pitch"
+).value
+);
+
+
+if(
+selectedVoiceType==="baby"
+){
+
+pitch=Math.max(
+pitch,
+1.7
+);
+
+}
+
+utterance.pitch=pitch;
+
+
+/*
+VOLUME
+*/
+
+utterance.volume=
+parseFloat(
+document.getElementById(
+"volume"
+).value
+);
+
+
+utterance.onstart=
+function(){
+
+document.getElementById(
+"voiceStatus"
+).textContent=
+"SPEAKING";
+
+showToast(
+"AI Voice sedang berbicara..."
+);
+
+};
+
+
+utterance.onend=
+function(){
+
+document.getElementById(
+"voiceStatus"
+).textContent=
+"READY";
+
+};
+
+
+utterance.onerror=
+function(){
+
+document.getElementById(
+"voiceStatus"
+).textContent=
+"ERROR";
+
+showToast(
+"Gagal menjalankan suara"
+);
+
+};
+
+
+window.speechSynthesis
+.speak(utterance);
+
+}
+
+
+/* =========================================================
+PAUSE
+========================================================= */
+
+function pauseSpeech(){
+
+if(
+window.speechSynthesis.speaking
+){
+
+window.speechSynthesis.pause();
+
+document.getElementById(
+"voiceStatus"
+).textContent=
+"PAUSED";
+
+showToast(
+"AI Voice dijeda"
+);
+
+}
+
+}
+
+
+/* =========================================================
+RESUME
+========================================================= */
+
+function resumeSpeech(){
+
+if(
+window.speechSynthesis.paused
+){
+
+window.speechSynthesis.resume();
+
+document.getElementById(
+"voiceStatus"
+).textContent=
+"SPEAKING";
+
+}
+
+}
+
+
+/* =========================================================
+STOP
+========================================================= */
+
+function stopSpeech(){
+
+window.speechSynthesis.cancel();
+
+document.getElementById(
+"voiceStatus"
+).textContent=
+"READY";
+
+showToast(
+"AI Voice dihentikan"
+);
+
+}
+
+
+/* =========================================================
+SLIDER
+========================================================= */
+
+function updateSlider(type){
+
+const value=
+document.getElementById(
+type
+).value;
+
+if(type==="volume"){
+
+document.getElementById(
+"volumeValue"
+).textContent=
+Math.round(value*100)+"%";
+
+}
+
+else{
+
+document.getElementById(
+type+"Value"
+).textContent=
+Number(value).toFixed(2);
+
+}
+
+}
+
+
+/* =========================================================
+QUICK TEXT
+========================================================= */
+
+function quickText(text){
+
+document.getElementById(
+"voiceText"
+).value=text;
+
+speakText();
+
+}
+
+
+/* =========================================================
+AI CENTER BUTTON
+========================================================= */
+
+function voiceFromAI(){
+
+document.getElementById(
+"voiceText"
+).value=
+"Selamat datang di myROBOT-V12 Professional. "+
+"AI Core aktif. "+
+"Semua modul sistem sedang online. "+
+"Koneksi internet terdeteksi. "+
+"Text to Speech siap digunakan.";
+
+speakText();
+
+}
+
+
+/* =========================================================
+AI TERMINAL
+========================================================= */
+
+const aiMessages=[
+
+"AI neural engine synchronized",
+
+"Monitoring environmental sensors",
+
+"Checking network topology",
+
+"AI Voice engine ready",
+
+"Optimizing system performance",
+
+"Scanning smart modules",
+
+"Security firewall active",
+
+"GPS tracking interface ready"
 
 ];
 
-let aiIndex = 0;
+let aiIndex=0;
 
 setInterval(
-    () => {
+()=>{
 
-        const terminal =
-            document.getElementById(
-                'terminal'
-            );
+const terminal=
+document.getElementById(
+"terminal"
+);
 
-        aiIndex =
-            (aiIndex + 1)
-            % aiMessages.length;
+aiIndex=
+(aiIndex+1)
+%aiMessages.length;
 
-        terminal.innerHTML =
+terminal.innerHTML=
 
-            '> AI CORE :: ' +
-            aiMessages[aiIndex] +
-            '<br>' +
+"> AI CORE :: "+
+aiMessages[aiIndex]+
+"<br>"+
 
-            '> System status: ' +
-            '<b>OPTIMAL</b><br>' +
+"> System status: "+
+"<b>OPTIMAL</b><br>"+
 
-            '> Processing level: ' +
-            '<b>ACTIVE</b><br>' +
+"> Voice engine: "+
+"<b>READY</b><br>"+
 
-            '> myROBOT-V12 ready' +
-            '<span class="cursor"></span>';
+"> myROBOT-V12 ready"+
+'<span class="cursor"></span>';
 
-    },
-    4000
+},
+4000
 );
 
 
 /* =========================================================
-   CLICK RIPPLE
-========================================================= */
-
-document.addEventListener(
-    'click',
-    function(e){
-
-        const target =
-            e.target.closest(
-                '.menu-item,.nav-item,.icon-btn,.fab-charge'
-            );
-
-        if(!target) return;
-
-        const ripple =
-            document.createElement('span');
-
-        ripple.style.position =
-            'fixed';
-
-        ripple.style.width =
-            '8px';
-
-        ripple.style.height =
-            '8px';
-
-        ripple.style.borderRadius =
-            '50%';
-
-        ripple.style.background =
-            'rgba(0,217,255,.45)';
-
-        ripple.style.pointerEvents =
-            'none';
-
-        ripple.style.left =
-            e.clientX + 'px';
-
-        ripple.style.top =
-            e.clientY + 'px';
-
-        ripple.style.zIndex =
-            '9999';
-
-        document.body.appendChild(ripple);
-
-        ripple.animate(
-            [
-                {
-                    transform:'scale(1)',
-                    opacity:.7
-                },
-                {
-                    transform:'scale(18)',
-                    opacity:0
-                }
-            ],
-            {
-                duration:500,
-                easing:'ease-out'
-            }
-        ).onfinish =
-            () => ripple.remove();
-
-    }
-);
-
-
-/* =========================================================
-   WELCOME
+WELCOME
 ========================================================= */
 
 setTimeout(
-    () => {
+()=>{
 
-        showToast(
-            'myROBOT-V12 AI Core siap digunakan 🤖'
-        );
-
-    },
-    900
+showToast(
+"myROBOT-V12 AI Voice siap 🤖🔊"
 );
+
+},
+1000
+);
+
+
+/* =========================================================
+RIPPLE EFFECT
+========================================================= */
+
+document.addEventListener(
+"click",
+function(e){
+
+const target=
+e.target.closest(
+".menu-item,.nav-item,.icon-btn,.fab-charge,.voice-btn,.voice-choice,.quick-btn"
+);
+
+if(!target)
+return;
+
+const ripple=
+document.createElement("span");
+
+ripple.style.position="fixed";
+
+ripple.style.width="8px";
+
+ripple.style.height="8px";
+
+ripple.style.borderRadius="50%";
+
+ripple.style.background=
+"rgba(0,217,255,.45)";
+
+ripple.style.pointerEvents="none";
+
+ripple.style.left=
+e.clientX+"px";
+
+ripple.style.top=
+e.clientY+"px";
+
+ripple.style.zIndex="9999";
+
+document.body.appendChild(ripple);
+
+ripple.animate(
+[
+{
+transform:"scale(1)",
+opacity:.7
+},
+{
+transform:"scale(18)",
+opacity:0
+}
+],
+{
+duration:500,
+easing:"ease-out"
+}
+).onfinish=
+()=>ripple.remove();
+
+});
 
 </script>
 
