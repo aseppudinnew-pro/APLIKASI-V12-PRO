@@ -1,530 +1,2559 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myROBOT-V12</title>
-    <!-- FontAwesome & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-        body {
-            background-color: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<title>myROBOT-V12 | AI Future Dashboard</title>
 
-        .app-container {
-            width: 100%;
-            max-width: 414px; /* Ukuran standar layar HP */
-            background-color: #f8fafc;
-            min-height: 100vh;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            overflow-x: hidden;
-            padding-bottom: 70px;
-        }
+<meta name="theme-color" content="#06111f">
+<meta name="description" content="myROBOT-V12 Professional AI Future Dashboard">
 
-        /* Status Bar Simulated */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 16px;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 600;
-            background: #11a2d6;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-        /* Header Banner */
-        .header-banner {
-            background: linear-gradient(180deg, #11a2d6 0%, #008ebf 60%, #0073a5 100%);
-            padding: 15px;
-            position: relative;
-            color: white;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            padding-bottom: 25px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
 
-        .banner-title {
-            text-align: left;
-            margin-bottom: 15px;
-        }
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        .banner-title h2 {
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 1.2;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
+<style>
 
-        .banner-title p {
-            font-size: 10px;
-            opacity: 0.9;
-            margin-top: 4px;
-        }
+/* =========================================================
+   myROBOT-V12
+   AI FUTURE DASHBOARD
+   Asep Pudin New 2026
+========================================================= */
 
-        .notification-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #ef4444;
-            color: white;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
-        }
+:root{
+    --bg:#020817;
+    --bg2:#061426;
+    --card:rgba(9,25,45,.72);
+    --card2:rgba(13,34,58,.86);
 
-        /* Card Informasi Tagihan / Meter */
-        .card-info {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 15px;
-            margin: -20px 15px 15px 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: relative;
-            z-index: 10;
-        }
+    --cyan:#00d9ff;
+    --blue:#168cff;
+    --green:#00ffa3;
+    --purple:#9b5cff;
+    --yellow:#ffd43b;
+    --red:#ff416c;
 
-        .user-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
+    --text:#f5fbff;
+    --muted:#8da6bd;
+    --border:rgba(255,255,255,.09);
 
-        .user-name {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            color: #1e293b;
-        }
+    --shadow:
+        0 20px 60px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.05);
 
-        .user-name i {
-            color: #008ebf;
-        }
+    --radius:22px;
+}
 
-        .type-badge {
-            background-color: #ecfdf5;
-            color: #047857;
-            border: 1px solid #a7f3d0;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Arial,sans-serif;
+    -webkit-tap-highlight-color:transparent;
+}
 
-        /* Chart SVG Graphic */
-        .chart-container {
-            margin: 10px 0;
-            position: relative;
-            height: 60px;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        .chart-svg {
-            width: 100%;
-            height: 100%;
-        }
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(0,217,255,.12),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(155,92,255,.13),transparent 28%),
+        radial-gradient(circle at 50% 90%,rgba(0,255,163,.08),transparent 35%),
+        var(--bg);
 
-        .chart-labels {
-            display: flex;
-            justify-content: flex-end;
-            flex-direction: column;
-            align-items: flex-end;
-            font-size: 10px;
-            color: #64748b;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
+    color:var(--text);
+    overflow-x:hidden;
+}
 
-        .kwh-usage {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: #334155;
-            margin: 10px 0;
-            font-weight: 500;
-        }
+/* =========================================================
+   BACKGROUND AI EFFECT
+========================================================= */
 
-        .status-bill {
-            background-color: #f1f5f9;
-            padding: 8px 12px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            color: #0f172a;
-            margin-top: 10px;
-        }
+#particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
 
-        .status-bill i {
-            color: #0284c7;
-        }
+.scan-line{
+    position:fixed;
+    left:0;
+    right:0;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,217,255,.35),
+        transparent
+    );
+    box-shadow:0 0 20px var(--cyan);
+    animation:scan 7s linear infinite;
+    z-index:1;
+    opacity:.35;
+}
 
-        .see-all-btn {
-            text-align: right;
-            padding: 0 15px 10px 15px;
-            font-size: 12px;
-            color: #ffffff;
-            font-weight: 600;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 5px;
-            background: transparent;
-            margin-top: -5px;
-        }
-        
-        .see-all-container {
-            background: linear-gradient(180deg, #0073a5 0%, #005880 100%);
-            margin-top: -30px;
-            padding-top: 25px;
-            padding-bottom: 5px;
-        }
+@keyframes scan{
+    from{top:-5%}
+    to{top:105%}
+}
 
-        /* Wallet Section */
-        .wallet-section {
-            display: flex;
-            gap: 8px;
-            padding: 10px 15px;
-            overflow-x: auto;
-        }
+/* =========================================================
+   APP
+========================================================= */
 
-        .wallet-card {
-            background: #ffffff;
-            padding: 10px 12px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-            min-width: 110px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            border: 1px solid #f1f5f9;
-        }
+.app-container{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    margin:auto;
+    position:relative;
+    z-index:2;
+    padding-bottom:110px;
 
-        .wallet-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,17,31,.94),
+            rgba(2,8,23,.98)
+        );
 
-        .wallet-text {
-            display: flex;
-            flex-direction: column;
-        }
+    box-shadow:
+        0 0 100px rgba(0,217,255,.06);
 
-        .wallet-title {
-            font-size: 11px;
-            font-weight: 600;
-            color: #1e293b;
-        }
+    overflow:hidden;
+}
 
-        /* Main Menu Grid */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px 10px;
-            padding: 15px;
-            text-align: center;
-        }
+/* =========================================================
+   TOP SYSTEM BAR
+========================================================= */
 
-        .menu-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
+.system-bar{
+    height:38px;
+    padding:0 17px;
 
-        .menu-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: #f0fdf4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-        .menu-label {
-            font-size: 10px;
-            color: #334155;
-            font-weight: 500;
-            line-height: 1.2;
-        }
+    background:rgba(2,8,23,.72);
+    border-bottom:1px solid var(--border);
 
-        /* Bottom Navigation */
-        .bottom-nav {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: #ffffff;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 0;
-            border-top: 1px solid #e2e8f0;
-        }
+    backdrop-filter:blur(18px);
+}
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            color: #94a3b8;
-            font-size: 10px;
-            text-decoration: none;
-        }
+.system-left{
+    display:flex;
+    align-items:center;
+    gap:7px;
 
-        .nav-item.active {
-            color: #008ebf;
-        }
+    font-size:10px;
+    color:#a8c3d8;
+}
 
-        .nav-item i {
-            font-size: 18px;
-        }
+.live-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+    animation:pulse 1.5s infinite;
+}
 
-        /* FAB Charge EV */
-        .fab-charge {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 56px;
-            height: 56px;
-            background: #0d9488;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.4);
-            border: 3px solid #ffffff;
-        }
-        
-        .fab-label {
-            position: absolute;
-            bottom: 6px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 9px;
-            color: #0d9488;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-    </style>
+@keyframes pulse{
+    50%{
+        transform:scale(1.5);
+        opacity:.5;
+    }
+}
+
+.system-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#9ab3c9;
+    font-size:11px;
+}
+
+/* =========================================================
+   FUTURE HEADER
+========================================================= */
+
+.header-banner{
+    position:relative;
+    padding:23px 17px 35px;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(0,217,255,.23),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #071e35,
+            #063b5d 45%,
+            #06213c
+        );
+
+    border-bottom-left-radius:32px;
+    border-bottom-right-radius:32px;
+
+    border-bottom:1px solid rgba(0,217,255,.2);
+
+    overflow:hidden;
+}
+
+.header-banner:before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    right:-100px;
+    top:-100px;
+
+    border:1px solid rgba(0,217,255,.25);
+    border-radius:50%;
+
+    box-shadow:
+        0 0 30px rgba(0,217,255,.08),
+        inset 0 0 30px rgba(0,217,255,.05);
+
+    animation:rotate 12s linear infinite;
+}
+
+.header-banner:after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    right:-60px;
+    top:-60px;
+
+    border:1px dashed rgba(0,255,163,.25);
+    border-radius:50%;
+
+    animation:rotate 8s linear infinite reverse;
+}
+
+@keyframes rotate{
+    to{transform:rotate(360deg)}
+}
+
+.header-top{
+    position:relative;
+    z-index:3;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.brand-logo{
+    width:43px;
+    height:43px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(135deg,var(--cyan),var(--blue));
+
+    color:white;
+    font-size:20px;
+
+    box-shadow:
+        0 0 25px rgba(0,217,255,.35),
+        inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.brand-text h1{
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:.4px;
+}
+
+.brand-text p{
+    margin-top:3px;
+    font-size:9px;
+    color:#8eeaff;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.header-actions{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    width:37px;
+    height:37px;
+
+    border-radius:12px;
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.06);
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+    position:relative;
+
+    backdrop-filter:blur(10px);
+
+    transition:.25s;
+}
+
+.icon-btn:active{
+    transform:scale(.9);
+}
+
+.notification-badge{
+    position:absolute;
+    top:-4px;
+    right:-3px;
+
+    min-width:17px;
+    height:17px;
+
+    padding:0 4px;
+
+    border-radius:20px;
+
+    background:var(--red);
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:8px;
+    font-weight:900;
+
+    border:2px solid #07213a;
+}
+
+/* =========================================================
+   GREETING
+========================================================= */
+
+.banner-content{
+    position:relative;
+    z-index:2;
+    margin-top:23px;
+}
+
+.banner-content small{
+    color:#77b8d7;
+    font-size:10px;
+}
+
+.banner-content h2{
+    margin-top:5px;
+
+    font-size:25px;
+    line-height:1.15;
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            90deg,
+            white,
+            #8deaff,
+            white
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.banner-content p{
+    margin-top:8px;
+    color:#8eabc0;
+    font-size:10px;
+}
+
+/* AI STATUS */
+
+.ai-status{
+    margin-top:17px;
+
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:7px 11px;
+
+    border:1px solid rgba(0,255,163,.18);
+    background:rgba(0,255,163,.06);
+
+    border-radius:30px;
+
+    color:#7fffc6;
+    font-size:9px;
+    font-weight:700;
+
+    letter-spacing:.5px;
+}
+
+.ai-status i{
+    font-size:8px;
+    animation:pulse 1.5s infinite;
+}
+
+/* =========================================================
+   ELECTRIC CARD
+========================================================= */
+
+.card-info{
+    position:relative;
+    z-index:10;
+
+    margin:-21px 15px 15px;
+    padding:17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,42,68,.95),
+            rgba(5,20,37,.95)
+        );
+
+    border:1px solid rgba(0,217,255,.14);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+}
+
+.card-info:before{
+    content:"";
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-50px;
+    top:-50px;
+
+    background:var(--cyan);
+    opacity:.08;
+
+    filter:blur(30px);
+    border-radius:50%;
+}
+
+.card-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.user-name{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+.user-name i{
+    width:31px;
+    height:31px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    color:var(--cyan);
+    background:rgba(0,217,255,.09);
+}
+
+.type-badge{
+    padding:6px 8px;
+
+    border-radius:10px;
+
+    background:rgba(0,255,163,.08);
+    border:1px solid rgba(0,255,163,.16);
+
+    color:#67fbc0;
+
+    font-size:8px;
+    font-weight:700;
+}
+
+/* ENERGY DISPLAY */
+
+.energy-display{
+    margin-top:17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.energy-number{
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+}
+
+.energy-number strong{
+    font-size:34px;
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            var(--cyan)
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.energy-number span{
+    font-size:10px;
+    color:#7693aa;
+}
+
+/* ENERGY RING */
+
+.energy-ring{
+    width:73px;
+    height:73px;
+
+    border-radius:50%;
+
+    background:
+        conic-gradient(
+            var(--cyan) 0deg 286deg,
+            rgba(255,255,255,.06) 286deg 360deg
+        );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 0 25px rgba(0,217,255,.12);
+
+    position:relative;
+}
+
+.energy-ring:after{
+    content:"";
+    position:absolute;
+
+    width:57px;
+    height:57px;
+
+    background:#081b2d;
+    border-radius:50%;
+}
+
+.energy-ring span{
+    position:relative;
+    z-index:2;
+
+    font-size:10px;
+    font-weight:800;
+    color:#9defff;
+}
+
+/* CHART */
+
+.chart-container{
+    margin-top:10px;
+    height:67px;
+    position:relative;
+}
+
+.chart-svg{
+    width:100%;
+    height:100%;
+}
+
+.chart-grid{
+    stroke:rgba(255,255,255,.055);
+    stroke-width:1;
+}
+
+.chart-line{
+    fill:none;
+    stroke:var(--cyan);
+    stroke-width:2.5;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(0,217,255,.6)
+        );
+}
+
+.chart-area{
+    fill:url(#energyGradient);
+    opacity:.25;
+}
+
+.chart-dot{
+    fill:#fff;
+    stroke:var(--cyan);
+    stroke-width:3;
+
+    filter:
+        drop-shadow(
+            0 0 6px var(--cyan)
+        );
+}
+
+.status-bill{
+    margin-top:10px;
+
+    padding:10px 11px;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    border-radius:12px;
+
+    background:rgba(0,255,163,.055);
+    border:1px solid rgba(0,255,163,.10);
+
+    font-size:9px;
+    color:#a5c2d5;
+}
+
+.status-bill i{
+    color:var(--green);
+}
+
+/* =========================================================
+   ACTION STRIP
+========================================================= */
+
+.action-strip{
+    margin:0 15px 15px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:11px 13px;
+
+    border-radius:16px;
+
+    background:rgba(0,217,255,.045);
+    border:1px solid rgba(0,217,255,.09);
+}
+
+.action-strip span{
+    font-size:9px;
+    color:#7592a8;
+}
+
+.action-strip strong{
+    display:block;
+    color:#d9f7ff;
+    font-size:10px;
+    margin-top:2px;
+}
+
+.see-all-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    color:var(--cyan);
+    font-size:9px;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   WALLET
+========================================================= */
+
+.wallet-section{
+    display:flex;
+    gap:9px;
+
+    padding:0 15px 17px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+}
+
+.wallet-section::-webkit-scrollbar{
+    display:none;
+}
+
+.wallet-card{
+    min-width:148px;
+
+    padding:12px;
+
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,42,67,.85),
+            rgba(7,22,39,.9)
+        );
+
+    border:1px solid var(--border);
+
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+
+    transition:.25s;
+}
+
+.wallet-card:active{
+    transform:scale(.97);
+}
+
+.wallet-icon{
+    width:31px;
+    height:31px;
+
+    flex:none;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+}
+
+.wallet-text{
+    min-width:0;
+}
+
+.wallet-title{
+    display:block;
+
+    font-size:9px;
+    font-weight:800;
+    color:#d8e9f4;
+
+    white-space:nowrap;
+}
+
+.wallet-value{
+    display:block;
+
+    margin-top:3px;
+
+    font-size:8px;
+    color:#7190a7;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title{
+    padding:3px 17px 10px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.section-title h3{
+    font-size:13px;
+    font-weight:900;
+}
+
+.section-title span{
+    font-size:8px;
+    color:#668399;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box{
+    margin:0 15px 15px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:11px 13px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--border);
+
+    border-radius:15px;
+}
+
+.search-box i{
+    color:#66869c;
+    font-size:12px;
+}
+
+.search-box input{
+    width:100%;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    color:white;
+    font-size:10px;
+}
+
+.search-box input::placeholder{
+    color:#587185;
+}
+
+/* =========================================================
+   MENU GRID
+========================================================= */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:13px 8px;
+
+    padding:0 15px 15px;
+}
+
+.menu-item{
+    min-width:0;
+
+    text-decoration:none;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:7px;
+
+    cursor:pointer;
+}
+
+.menu-icon{
+    width:52px;
+    height:52px;
+
+    border-radius:17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:19px;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.2),
+        inset 0 1px 0 rgba(255,255,255,.07);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.menu-item:active .menu-icon{
+    transform:scale(.88);
+}
+
+.menu-label{
+    font-size:8px;
+    font-weight:600;
+
+    color:#9bb2c4;
+
+    text-align:center;
+    line-height:1.2;
+}
+
+/* individual glow */
+
+.menu-item:nth-child(1) .menu-icon{
+    color:#ffd43b;
+    background:rgba(255,212,59,.08);
+}
+
+.menu-item:nth-child(2) .menu-icon{
+    color:#55bfff;
+    background:rgba(22,140,255,.08);
+}
+
+.menu-item:nth-child(3) .menu-icon{
+    color:#b17cff;
+    background:rgba(155,92,255,.08);
+}
+
+.menu-item:nth-child(4) .menu-icon{
+    color:#ff6b81;
+    background:rgba(255,65,108,.08);
+}
+
+.menu-item:nth-child(5) .menu-icon{
+    color:#00d9ff;
+    background:rgba(0,217,255,.08);
+}
+
+.menu-item:nth-child(6) .menu-icon{
+    color:#65d9ff;
+    background:rgba(0,217,255,.07);
+}
+
+.menu-item:nth-child(7) .menu-icon{
+    color:#8ba9ff;
+    background:rgba(100,120,255,.08);
+}
+
+.menu-item:nth-child(8) .menu-icon{
+    color:#00ffa3;
+    background:rgba(0,255,163,.08);
+}
+
+/* =========================================================
+   AI TERMINAL
+========================================================= */
+
+.ai-terminal{
+    margin:3px 15px 20px;
+
+    padding:13px;
+
+    border-radius:18px;
+
+    background:#020c17;
+
+    border:1px solid rgba(0,217,255,.13);
+
+    box-shadow:
+        inset 0 0 30px rgba(0,217,255,.025);
+}
+
+.terminal-head{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding-bottom:9px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    font-size:8px;
+    color:#6e8ba0;
+}
+
+.terminal-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+}
+
+.terminal-body{
+    padding-top:9px;
+
+    color:#73e8ff;
+
+    font-family:monospace;
+    font-size:8px;
+    line-height:1.8;
+}
+
+.cursor{
+    display:inline-block;
+    width:5px;
+    height:9px;
+    background:var(--cyan);
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0}
+}
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
+
+.bottom-nav{
+    position:fixed;
+
+    bottom:10px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(450px,calc(100% - 20px));
+
+    height:67px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+
+    padding:7px 5px;
+
+    border-radius:23px;
+
+    background:
+        rgba(5,18,32,.88);
+
+    border:1px solid rgba(0,217,255,.12);
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.55),
+        0 0 25px rgba(0,217,255,.05);
+
+    z-index:100;
+}
+
+.nav-item{
+    min-width:48px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+
+    text-decoration:none;
+
+    color:#597388;
+
+    font-size:8px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.nav-item i{
+    font-size:16px;
+}
+
+.nav-item.active{
+    color:var(--cyan);
+}
+
+.nav-item.active i{
+    filter:drop-shadow(0 0 6px var(--cyan));
+}
+
+/* =========================================================
+   CENTER AI BUTTON
+========================================================= */
+
+.center-button-wrap{
+    width:65px;
+    height:65px;
+
+    margin-top:-31px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.fab-charge{
+    width:58px;
+    height:58px;
+
+    border-radius:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--blue)
+        );
+
+    color:white;
+
+    font-size:21px;
+
+    border:4px solid #061426;
+
+    box-shadow:
+        0 0 25px rgba(0,217,255,.35),
+        0 10px 30px rgba(0,0,0,.4);
+
+    cursor:pointer;
+
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-4px);
+    }
+}
+
+/* =========================================================
+   NOTIFICATION PANEL
+========================================================= */
+
+.notification-panel{
+    position:fixed;
+
+    top:65px;
+    right:12px;
+
+    width:290px;
+
+    padding:14px;
+
+    background:
+        rgba(5,20,35,.95);
+
+    border:1px solid rgba(0,217,255,.15);
+
+    border-radius:19px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.55);
+
+    backdrop-filter:blur(25px);
+
+    transform:
+        translateY(-15px)
+        scale(.95);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.25s;
+
+    z-index:200;
+}
+
+.notification-panel.show{
+    transform:translateY(0) scale(1);
+    opacity:1;
+    pointer-events:auto;
+}
+
+.panel-title{
+    display:flex;
+    justify-content:space-between;
+
+    font-size:10px;
+    font-weight:800;
+
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+}
+
+.notification{
+    padding:11px 0;
+
+    display:flex;
+    gap:10px;
+
+    border-bottom:1px solid rgba(255,255,255,.04);
+}
+
+.notification:last-child{
+    border-bottom:0;
+}
+
+.notification i{
+    color:var(--cyan);
+}
+
+.notification strong{
+    display:block;
+    font-size:9px;
+}
+
+.notification p{
+    margin-top:3px;
+    font-size:8px;
+    color:#70899d;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:90px;
+
+    transform:
+        translate(-50%,20px);
+
+    padding:10px 14px;
+
+    border-radius:13px;
+
+    background:#081c30;
+    border:1px solid rgba(0,217,255,.18);
+
+    color:#b9edff;
+
+    font-size:9px;
+    font-weight:600;
+
+    opacity:0;
+    pointer-events:none;
+
+    z-index:300;
+
+    transition:.3s;
+
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================================================
+   LIGHT MODE
+========================================================= */
+
+body.light{
+    --bg:#eef7fc;
+    --bg2:#ffffff;
+    --card:#ffffff;
+    --card2:#ffffff;
+    --text:#102235;
+    --muted:#61798d;
+    --border:rgba(0,80,130,.1);
+}
+
+body.light .app-container{
+    background:#f5faff;
+}
+
+body.light .header-banner{
+    background:
+        linear-gradient(
+            135deg,
+            #008fbe,
+            #0067a3
+        );
+}
+
+body.light .card-info,
+body.light .wallet-card,
+body.light .ai-terminal{
+    background:#ffffff;
+    color:#102235;
+}
+
+body.light .bottom-nav{
+    background:rgba(255,255,255,.9);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:360px){
+
+    .menu-icon{
+        width:46px;
+        height:46px;
+        font-size:17px;
+    }
+
+    .banner-content h2{
+        font-size:22px;
+    }
+
+    .energy-number strong{
+        font-size:30px;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="app-container">
-        <!-- Status Bar Simulated -->
-        
+<div id="particles"></div>
+<div class="scan-line"></div>
 
-        <!-- Header / Banner Section -->
-        <div class="header-banner">
-            <div class="notification-badge">99</div>
-            <div class="banner-title">
-                <h2>Selamat<br>Asep Pudin New</h2>
-                <p>myROBOT-V12<br>Professional Is Live</p>
-            </div>
-        </div>
+<div class="app-container">
 
-        <!-- Card Informasi Tagihan & Grafik Usage -->
-        <div class="card-info">
-            <div class="user-header">
-                <div class="user-name">
-                    <i class="fa-solid fa-house"></i>
-                    <span>myROBOT...</span>
-                </div>
-                <div class="type-badge">
-                    <i class="fa-solid fa-bolt" style="font-size: 9px;"></i>
-                    Pascabayar / R1M 900 VA
-                </div>
-            </div>
+<!-- =====================================================
+     SYSTEM BAR
+===================================================== -->
 
-            <!-- Area Grafik Sederhana (SVG) -->
-            <div class="chart-container">
-                <div class="chart-labels">
-                    <span>253 kWh</span>
-                    <span style="margin-top: 15px;">222 kWh</span>
-                </div>
-                <svg class="chart-svg" viewBox="0 0 300 60" preserveAspectRatio="none">
-                    <path d="M 0 45 Q 60 20, 120 18 T 240 45" fill="none" stroke="#0284c7" stroke-width="2.5" />
-                </svg>
-            </div>
+<div class="system-bar">
 
-            <div class="kwh-usage">
-                <i class="fa-solid fa-bolt-lightning" style="color: #0284c7;"></i>
-                <span><strong>222 kWh</strong> Pemakaian listrik</span>
-            </div>
-
-            <div class="status-bill">
-                <i class="fa-solid fa-circle-info"></i>
-                <span>Belum ada tagihan yang perlu dibayar</span>
-            </div>
-        </div>
-
-        <!-- Container Lanjutan Warna Biru -->
-        <div class="see-all-container">
-            <div class="see-all-btn">
-                Lihat Semua <i class="fa-solid fa-chevron-right"></i>
-            </div>
-        </div>
-
-        <!-- Wallet / Dompet Digital Section -->
-        <div class="wallet-section">
-            <div class="wallet-card">
-                <div class="wallet-icon" style="background: #dcfce7; color: #16a34a;">
-                    <i class="fa-solid fa-money-bill-wave"></i>
-                </div>
-                <div class="wallet-text">
-                    <span class="wallet-title">Saldo Rp.999.000.000.000</span>
-                </div>
-                <i class="fa-regular fa-eye" style="font-size: 11px; color: #64748b; margin-left: auto;"></i>
-            </div>
-
-            <div class="wallet-card">
-                <div class="wallet-icon" style="background: #fef9c3; color: #ca8a04;">
-                    <i class="fa-solid fa-coins"></i>
-                </div>
-                <div class="wallet-text">
-                    <span class="wallet-title">Point 999.000.000</span>
-                </div>
-            </div>
-
-            <div class="wallet-card">
-                <div class="wallet-icon" style="background: #e0f2fe; color: #0284c7;">
-                    <i class="fa-solid fa-ticket"></i>
-                </div>
-                <div class="wallet-text">
-                    <span class="wallet-title">Voucher</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Menu Grid Baris 1 -->
-        <div class="menu-grid">
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html" class="menu-item">
-                <div class="menu-icon" style="background: #fef3c7; color: #d97706;">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-                <span class="menu-label">E-Sosial</span>
-            </a>
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html" class="menu-item">
-                <div class="menu-icon" style="background: #e0f2fe; color: #0284c7;">
-                    <i class="fa-solid fa-car"></i>
-                </div>
-                <span class="menu-label">E-Keuangan</span>
-            </a>
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html" class="menu-item">
-                <div class="menu-icon" style="background: #fef3c7; color: #d97706;">
-                    <i class="fa-solid fa-calculator"></i>
-                </div>
-                <span class="menu-label">Widget</span>
-            </a>
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html" class="menu-item">
-                <div class="menu-icon" style="background: #fee2e2; color: #dc2626;">
-                    <i class="fa-solid fa-flag"></i>
-                </div>
-                <span class="menu-label">E-Kesehatan</span>
-            </a>
-        </div>
-
-        <!-- Main Menu Grid Baris 2 -->
-        <div class="menu-grid" style="padding-top: 0;">
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html" class="menu-item">
-                <div class="menu-icon" style="background: #e0f2fe; color: #0891b2;">
-                    <i class="fa-solid fa-cash-register"></i>
-                </div>
-                <span class="menu-label">Baca Suhu</span>
-            </a>
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html" class="menu-item">
-                <div class="menu-icon" style="background: #e0f2fe; color: #0284c7;">
-                    <i class="fa-solid fa-wifi"></i>
-                </div>
-                <span class="menu-label">Baca Internet</span>
-            </a>
-
-            <a href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png" class="menu-item">
-                <div class="menu-icon" style="background: #e0f2fe; color: #0284c7;">
-                    <i class="fa-solid fa-wifi"></i>
-                </div>
-                <span class="menu-label">Support</span>
-            </a>
-            
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html" class="menu-item">
-                <div class="menu-icon" style="background: #f0fdf4; color: #16a34a;">
-                    <i class="fa-solid fa-receipt"></i>
-                </div>
-                <span class="menu-label">Lacak GPX</span>
-            </a>
-            <a href="#" class="menu-item">
-                <!-- Placeholder untuk menjaga layout tetap 4 kolom -->
-            </a>
-        </div>
-
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#" class="nav-item active">
-                <i class="fa-solid fa-house"></i>
-                <span>Beranda</span>
-            </a>
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/" class="nav-item" style="margin-right: 25px;">
-                <i class="fa-solid fa-file-lines"></i>
-                <span>V.08</span>
-            </a>
-            
-            <!-- Floating Button Tengah -->
-            <div style="position: relative; text-align: center;">
-                <div class="fab-charge">
-                    <i class="fa-solid fa-qrcode"></i>
-                </div>
-            </div>
-
-            <a href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/" class="nav-item" style="margin-left: 25px;">
-                <i class="fa-solid fa-ticket"></i>
-                <span>V.12</span>
-            </a>
-            <a href="https://github.com/aseppudinnew-pro" class="nav-item">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </div>
-        <span class="fab-label"></span>
+    <div class="system-left">
+        <span class="live-dot"></span>
+        <span>MYROBOT AI CORE • ONLINE</span>
     </div>
 
+    <div class="system-right">
+        <span id="clock">00:00</span>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-three-quarters"></i>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header-banner">
+
+    <div class="header-top">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div class="brand-text">
+                <h1>myROBOT-V12</h1>
+                <p>Professional AI System</p>
+            </div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button class="icon-btn"
+                    onclick="toggleTheme()"
+                    aria-label="Tema">
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+            <button class="icon-btn"
+                    onclick="toggleNotifications()"
+                    aria-label="Notifikasi">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span class="notification-badge">99</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="banner-content">
+
+        <small id="greeting">Selamat Datang</small>
+
+        <h2>
+            Asep Pudin New
+        </h2>
+
+        <p>
+            Sistem AI masa depan Anda siap digunakan.
+            Semua modul berjalan normal.
+        </p>
+
+        <div class="ai-status">
+
+            <i class="fa-solid fa-circle"></i>
+
+            AI CORE ACTIVE • PROFESSIONAL IS LIVE
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NOTIFICATION PANEL
+===================================================== -->
+
+<div class="notification-panel" id="notificationPanel">
+
+    <div class="panel-title">
+
+        <span>
+            <i class="fa-solid fa-bell"></i>
+            Pusat Notifikasi
+        </span>
+
+        <span style="color:#00d9ff">
+            99+
+        </span>
+
+    </div>
+
+    <div class="notification">
+
+        <i class="fa-solid fa-robot"></i>
+
+        <div>
+            <strong>AI Core Aktif</strong>
+            <p>myROBOT-V12 siap menjalankan sistem.</p>
+        </div>
+
+    </div>
+
+    <div class="notification">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <div>
+            <strong>Monitoring Energi</strong>
+            <p>Pemakaian listrik sedang dipantau.</p>
+        </div>
+
+    </div>
+
+    <div class="notification">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <div>
+            <strong>System Secure</strong>
+            <p>Status keamanan sistem normal.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ENERGY CARD
+===================================================== -->
+
+<div class="card-info">
+
+    <div class="card-title">
+
+        <div class="user-name">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>myROBOT Smart Home</span>
+
+        </div>
+
+        <div class="type-badge">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            R1M • 900 VA
+
+        </div>
+
+    </div>
+
+
+    <div class="energy-display">
+
+        <div>
+
+            <div class="energy-number">
+
+                <strong>222</strong>
+
+                <span>kWh</span>
+
+            </div>
+
+            <div style="
+                margin-top:5px;
+                color:#7190a7;
+                font-size:8px;
+            ">
+                TOTAL PEMAKAIAN
+            </div>
+
+        </div>
+
+
+        <div class="energy-ring">
+
+            <span>79%</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="chart-container">
+
+        <svg class="chart-svg"
+             viewBox="0 0 320 70"
+             preserveAspectRatio="none">
+
+            <defs>
+
+                <linearGradient
+                    id="energyGradient"
+                    x1="0"
+                    x2="0"
+                    y1="0"
+                    y2="1">
+
+                    <stop
+                        offset="0"
+                        stop-color="#00d9ff"/>
+
+                    <stop
+                        offset="1"
+                        stop-color="#00d9ff"
+                        stop-opacity="0"/>
+
+                </linearGradient>
+
+            </defs>
+
+            <line
+                x1="0"
+                y1="15"
+                x2="320"
+                y2="15"
+                class="chart-grid"/>
+
+            <line
+                x1="0"
+                y1="35"
+                x2="320"
+                y2="35"
+                class="chart-grid"/>
+
+            <line
+                x1="0"
+                y1="55"
+                x2="320"
+                y2="55"
+                class="chart-grid"/>
+
+
+            <path
+                d="
+                M0 54
+                C35 48 50 27 82 32
+                S130 55 157 35
+                S195 13 218 28
+                S260 51 285 29
+                S310 20 320 17
+                L320 70
+                L0 70 Z
+                "
+                class="chart-area"/>
+
+
+            <path
+                d="
+                M0 54
+                C35 48 50 27 82 32
+                S130 55 157 35
+                S195 13 218 28
+                S260 51 285 29
+                S310 20 320 17
+                "
+                class="chart-line"/>
+
+            <circle
+                cx="320"
+                cy="17"
+                r="4"
+                class="chart-dot"/>
+
+        </svg>
+
+    </div>
+
+
+    <div class="status-bill">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span>
+            Sistem normal • Belum ada tagihan yang perlu dibayar
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ACTION
+===================================================== -->
+
+<div class="action-strip">
+
+    <div>
+
+        <span>STATUS SISTEM</span>
+
+        <strong>
+            <i class="fa-solid fa-circle"
+               style="font-size:6px;color:#00ffa3"></i>
+
+            Semua modul online
+        </strong>
+
+    </div>
+
+    <div class="see-all-btn"
+         onclick="showToast('Membuka seluruh aktivitas...')">
+
+        LIHAT SEMUA
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     WALLET
+===================================================== -->
+
+<div class="wallet-section">
+
+    <div class="wallet-card">
+
+        <div class="wallet-icon"
+             style="
+             background:rgba(0,255,163,.08);
+             color:#00ffa3;
+             ">
+
+            <i class="fa-solid fa-wallet"></i>
+
+        </div>
+
+        <div class="wallet-text">
+
+            <span class="wallet-title">
+                Saldo Rp.999.000.000.000
+            </span>
+
+            <span class="wallet-value">
+                DOMPET DIGITAL
+            </span>
+
+        </div>
+
+        <i class="fa-regular fa-eye"
+           style="
+           font-size:10px;
+           color:#7892a7;
+           margin-left:auto;
+           "></i>
+
+    </div>
+
+
+    <div class="wallet-card">
+
+        <div class="wallet-icon"
+             style="
+             background:rgba(255,212,59,.08);
+             color:#ffd43b;
+             ">
+
+            <i class="fa-solid fa-coins"></i>
+
+        </div>
+
+        <div class="wallet-text">
+
+            <span class="wallet-title">
+                999.000.000 Point
+            </span>
+
+            <span class="wallet-value">
+                REWARD POINT
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="wallet-card">
+
+        <div class="wallet-icon"
+             style="
+             background:rgba(0,217,255,.08);
+             color:#00d9ff;
+             ">
+
+            <i class="fa-solid fa-ticket"></i>
+
+        </div>
+
+        <div class="wallet-text">
+
+            <span class="wallet-title">
+                Voucher
+            </span>
+
+            <span class="wallet-value">
+                AVAILABLE
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<div class="section-title">
+
+    <h3>AI Smart Services</h3>
+
+    <span>8 MODULES</span>
+
+</div>
+
+
+<div class="search-box">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+        id="menuSearch"
+        type="search"
+        placeholder="Cari fitur myROBOT-V12..."
+        oninput="searchMenu()">
+
+</div>
+
+
+<div class="menu-grid" id="menuGrid">
+
+    <!-- E-SOSIAL -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-bolt"></i>
+        </div>
+
+        <span class="menu-label">
+            E-Sosial
+        </span>
+
+    </a>
+
+
+    <!-- E-KEUANGAN -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-car"></i>
+        </div>
+
+        <span class="menu-label">
+            E-Keuangan
+        </span>
+
+    </a>
+
+
+    <!-- WIDGET -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-calculator"></i>
+        </div>
+
+        <span class="menu-label">
+            Widget
+        </span>
+
+    </a>
+
+
+    <!-- KESEHATAN -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+
+        <span class="menu-label">
+            E-Kesehatan
+        </span>
+
+    </a>
+
+
+    <!-- CUACA -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-cloud-sun"></i>
+        </div>
+
+        <span class="menu-label">
+            Baca Suhu
+        </span>
+
+    </a>
+
+
+    <!-- INTERNET -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-wifi"></i>
+        </div>
+
+        <span class="menu-label">
+            Baca Internet
+        </span>
+
+    </a>
+
+
+    <!-- SUPPORT -->
+    <a
+        href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-headset"></i>
+        </div>
+
+        <span class="menu-label">
+            Support
+        </span>
+
+    </a>
+
+
+    <!-- GPX -->
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html"
+        class="menu-item">
+
+        <div class="menu-icon">
+            <i class="fa-solid fa-location-crosshairs"></i>
+        </div>
+
+        <span class="menu-label">
+            Lacak GPX
+        </span>
+
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     AI TERMINAL
+===================================================== -->
+
+<div class="section-title">
+
+    <h3>AI Core Monitor</h3>
+
+    <span>REALTIME</span>
+
+</div>
+
+
+<div class="ai-terminal">
+
+    <div class="terminal-head">
+
+        <span class="terminal-dot"
+              style="background:#ff5f56"></span>
+
+        <span class="terminal-dot"
+              style="background:#ffbd2e"></span>
+
+        <span class="terminal-dot"
+              style="background:#27c93f"></span>
+
+        <span style="margin-left:4px">
+            MYROBOT_AI_CORE
+        </span>
+
+    </div>
+
+    <div class="terminal-body" id="terminal">
+
+        > Initializing AI core...<br>
+        > System integrity: <b>100%</b><br>
+        > Network interface: <b>ONLINE</b><br>
+        > Smart modules: <b>8/8 ACTIVE</b><br>
+        > Security layer: <b>PROTECTED</b><br>
+        > Waiting for command<span class="cursor"></span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<div class="bottom-nav">
+
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#"
+        class="nav-item active">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>Beranda</span>
+
+    </a>
+
+
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/"
+        class="nav-item">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <span>V.08</span>
+
+    </a>
+
+
+    <div
+        class="center-button-wrap"
+        onclick="showToast('AI QR Center aktif')">
+
+        <div class="fab-charge">
+
+            <i class="fa-solid fa-qrcode"></i>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/"
+        class="nav-item">
+
+        <i class="fa-solid fa-ticket"></i>
+
+        <span>V.12</span>
+
+    </a>
+
+
+    <a
+        href="https://github.com/aseppudinnew-pro"
+        class="nav-item">
+
+        <i class="fa-solid fa-user-astronaut"></i>
+
+        <span>Profile</span>
+
+    </a>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div class="toast" id="toast">
+    Sistem myROBOT-V12
+</div>
+
+
+<script>
+
+/* =========================================================
+   REALTIME CLOCK
+========================================================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    const time =
+        now.toLocaleTimeString(
+            'id-ID',
+            {
+                hour:'2-digit',
+                minute:'2-digit',
+                second:'2-digit'
+            }
+        );
+
+    document.getElementById('clock').textContent = time;
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* =========================================================
+   DYNAMIC GREETING
+========================================================= */
+
+function updateGreeting(){
+
+    const hour = new Date().getHours();
+
+    let greeting;
+
+    if(hour >= 4 && hour < 11){
+        greeting = "Selamat Pagi ☀️";
+    }
+    else if(hour >= 11 && hour < 15){
+        greeting = "Selamat Siang 🌤️";
+    }
+    else if(hour >= 15 && hour < 18){
+        greeting = "Selamat Sore 🌇";
+    }
+    else{
+        greeting = "Selamat Malam 🌙";
+    }
+
+    document.getElementById('greeting').textContent =
+        greeting + " • AI SYSTEM";
+
+}
+
+updateGreeting();
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+function toggleNotifications(){
+
+    const panel =
+        document.getElementById(
+            'notificationPanel'
+        );
+
+    panel.classList.toggle('show');
+
+}
+
+
+/* =========================================================
+   CLOSE NOTIFICATION OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    'click',
+    function(e){
+
+        const panel =
+            document.getElementById(
+                'notificationPanel'
+            );
+
+        const button =
+            e.target.closest(
+                '.header-actions'
+            );
+
+        if(
+            !panel.contains(e.target) &&
+            !button
+        ){
+            panel.classList.remove('show');
+        }
+
+    }
+);
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function toggleTheme(){
+
+    document.body.classList.toggle('light');
+
+    const light =
+        document.body.classList.contains('light');
+
+    localStorage.setItem(
+        'myrobot-theme',
+        light ? 'light' : 'dark'
+    );
+
+    showToast(
+        light
+        ? 'Light Mode aktif'
+        : 'AI Dark Mode aktif'
+    );
+
+}
+
+if(
+    localStorage.getItem('myrobot-theme')
+    === 'light'
+){
+    document.body.classList.add('light');
+}
+
+
+/* =========================================================
+   SEARCH MENU
+========================================================= */
+
+function searchMenu(){
+
+    const input =
+        document.getElementById(
+            'menuSearch'
+        ).value.toLowerCase();
+
+    const items =
+        document.querySelectorAll(
+            '#menuGrid .menu-item'
+        );
+
+    items.forEach(item => {
+
+        const text =
+            item.innerText.toLowerCase();
+
+        item.style.display =
+            text.includes(input)
+            ? 'flex'
+            : 'none';
+
+    });
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById('toast');
+
+    toast.textContent = message;
+
+    toast.classList.add('show');
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(
+            () => toast.classList.remove('show'),
+            2200
+        );
+
+}
+
+
+/* =========================================================
+   PARTICLE SYSTEM
+========================================================= */
+
+const particleContainer =
+    document.getElementById('particles');
+
+for(let i=0;i<28;i++){
+
+    const p =
+        document.createElement('div');
+
+    p.style.position = 'absolute';
+
+    p.style.width =
+        Math.random()*2+1+'px';
+
+    p.style.height =
+        p.style.width;
+
+    p.style.borderRadius =
+        '50%';
+
+    p.style.background =
+        '#00d9ff';
+
+    p.style.opacity =
+        Math.random()*.35;
+
+    p.style.left =
+        Math.random()*100+'%';
+
+    p.style.top =
+        Math.random()*100+'%';
+
+    p.style.boxShadow =
+        '0 0 8px #00d9ff';
+
+    const duration =
+        Math.random()*15+10;
+
+    p.animate(
+        [
+            {
+                transform:'translateY(0)',
+                opacity:.1
+            },
+            {
+                transform:
+                    `translateY(${
+                        Math.random()*-180-50
+                    }px)`,
+                opacity:.6
+            },
+            {
+                transform:'translateY(0)',
+                opacity:.1
+            }
+        ],
+        {
+            duration:duration*1000,
+            iterations:Infinity,
+            easing:'ease-in-out',
+            delay:Math.random()*-10000
+        }
+    );
+
+    particleContainer.appendChild(p);
+
+}
+
+
+/* =========================================================
+   NETWORK STATUS
+========================================================= */
+
+function updateNetwork(){
+
+    const wifi =
+        document.querySelector(
+            '.system-right .fa-wifi'
+        );
+
+    if(
+        navigator.onLine
+    ){
+
+        wifi.style.color =
+            '#00ffa3';
+
+        wifi.title =
+            'Internet Online';
+
+    }else{
+
+        wifi.style.color =
+            '#ff416c';
+
+        wifi.title =
+            'Offline';
+
+        showToast(
+            'Koneksi internet terputus'
+        );
+
+    }
+
+}
+
+updateNetwork();
+
+window.addEventListener(
+    'online',
+    updateNetwork
+);
+
+window.addEventListener(
+    'offline',
+    updateNetwork
+);
+
+
+/* =========================================================
+   BATTERY STATUS
+========================================================= */
+
+if(
+    navigator.getBattery
+){
+
+    navigator
+    .getBattery()
+    .then(
+        battery => {
+
+            function batteryUpdate(){
+
+                const icon =
+                    document.querySelector(
+                        '.fa-battery-three-quarters'
+                    );
+
+                const level =
+                    Math.round(
+                        battery.level * 100
+                    );
+
+                icon.title =
+                    'Battery ' + level + '%';
+
+                if(level < 20){
+
+                    icon.className =
+                        'fa-solid fa-battery-quarter';
+
+                }
+                else if(level < 50){
+
+                    icon.className =
+                        'fa-solid fa-battery-half';
+
+                }
+                else{
+
+                    icon.className =
+                        'fa-solid fa-battery-three-quarters';
+
+                }
+
+            }
+
+            batteryUpdate();
+
+            battery.addEventListener(
+                'levelchange',
+                batteryUpdate
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   AI TERMINAL ROTATION
+========================================================= */
+
+const aiMessages = [
+
+    'AI neural engine synchronized',
+    'Monitoring environmental sensors',
+    'Checking network topology',
+    'Optimizing system performance',
+    'Scanning smart modules',
+    'Security firewall active',
+    'GPS tracking interface ready',
+    'Weather intelligence ready'
+
+];
+
+let aiIndex = 0;
+
+setInterval(
+    () => {
+
+        const terminal =
+            document.getElementById(
+                'terminal'
+            );
+
+        aiIndex =
+            (aiIndex + 1)
+            % aiMessages.length;
+
+        terminal.innerHTML =
+
+            '> AI CORE :: ' +
+            aiMessages[aiIndex] +
+            '<br>' +
+
+            '> System status: ' +
+            '<b>OPTIMAL</b><br>' +
+
+            '> Processing level: ' +
+            '<b>ACTIVE</b><br>' +
+
+            '> myROBOT-V12 ready' +
+            '<span class="cursor"></span>';
+
+    },
+    4000
+);
+
+
+/* =========================================================
+   CLICK RIPPLE
+========================================================= */
+
+document.addEventListener(
+    'click',
+    function(e){
+
+        const target =
+            e.target.closest(
+                '.menu-item,.nav-item,.icon-btn,.fab-charge'
+            );
+
+        if(!target) return;
+
+        const ripple =
+            document.createElement('span');
+
+        ripple.style.position =
+            'fixed';
+
+        ripple.style.width =
+            '8px';
+
+        ripple.style.height =
+            '8px';
+
+        ripple.style.borderRadius =
+            '50%';
+
+        ripple.style.background =
+            'rgba(0,217,255,.45)';
+
+        ripple.style.pointerEvents =
+            'none';
+
+        ripple.style.left =
+            e.clientX + 'px';
+
+        ripple.style.top =
+            e.clientY + 'px';
+
+        ripple.style.zIndex =
+            '9999';
+
+        document.body.appendChild(ripple);
+
+        ripple.animate(
+            [
+                {
+                    transform:'scale(1)',
+                    opacity:.7
+                },
+                {
+                    transform:'scale(18)',
+                    opacity:0
+                }
+            ],
+            {
+                duration:500,
+                easing:'ease-out'
+            }
+        ).onfinish =
+            () => ripple.remove();
+
+    }
+);
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+setTimeout(
+    () => {
+
+        showToast(
+            'myROBOT-V12 AI Core siap digunakan 🤖'
+        );
+
+    },
+    900
+);
+
+</script>
+
 </body>
-  </html>
+</html>
