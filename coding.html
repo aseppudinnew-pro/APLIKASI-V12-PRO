@@ -2,1256 +2,789 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-<title>myROBOT-V12 | AI Future Dashboard</title>
-
-<meta name="theme-color" content="#06111f">
-<meta name="description" content="myROBOT-V12 Professional AI Future Dashboard">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#07111f">
+<title>myROBOT-V12 AI Future Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
-
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   myROBOT-V12
-   AI FUTURE DASHBOARD
-   Asep Pudin New 2026
-========================================================= */
-
-:root{
-    --bg:#020817;
-    --bg2:#061426;
-    --card:rgba(9,25,45,.72);
-    --card2:rgba(13,34,58,.86);
-
-    --cyan:#00d9ff;
-    --blue:#168cff;
-    --green:#00ffa3;
-    --purple:#9b5cff;
-    --yellow:#ffd43b;
-    --red:#ff416c;
-
-    --text:#f5fbff;
-    --muted:#8da6bd;
-    --border:rgba(255,255,255,.09);
-
-    --shadow:
-        0 20px 60px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.05);
-
-    --radius:22px;
-}
-
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
-    font-family:Inter,Arial,sans-serif;
     -webkit-tap-highlight-color:transparent;
 }
 
-html{
-    scroll-behavior:smooth;
+:root{
+    --bg:#050b15;
+    --card:rgba(12,25,43,.78);
+    --card2:rgba(17,34,57,.88);
+    --text:#f5f9ff;
+    --muted:#91a4bc;
+    --cyan:#00eaff;
+    --blue:#1677ff;
+    --purple:#9b5cff;
+    --green:#20e58b;
+    --yellow:#ffd34d;
+    --red:#ff5577;
+    --border:rgba(255,255,255,.10);
+    --shadow:0 20px 60px rgba(0,0,0,.38);
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    background:
+        radial-gradient(circle at 10% 0%,rgba(0,234,255,.12),transparent 28%),
+        radial-gradient(circle at 90% 15%,rgba(155,92,255,.13),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    font-family:Inter,Arial,sans-serif;
 }
 
 body{
     min-height:100vh;
-    background:
-        radial-gradient(circle at 15% 10%,rgba(0,217,255,.12),transparent 30%),
-        radial-gradient(circle at 90% 20%,rgba(155,92,255,.13),transparent 28%),
-        radial-gradient(circle at 50% 90%,rgba(0,255,163,.08),transparent 35%),
-        var(--bg);
-
-    color:var(--text);
     overflow-x:hidden;
 }
 
-/* =========================================================
-   BACKGROUND AI EFFECT
-========================================================= */
-
-#particles{
+body:before{
+    content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:0;
+    opacity:.16;
+    background-image:
+        linear-gradient(rgba(0,234,255,.12) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,234,255,.12) 1px,transparent 1px);
+    background-size:30px 30px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
 }
-
-.scan-line{
-    position:fixed;
-    left:0;
-    right:0;
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,217,255,.35),
-        transparent
-    );
-    box-shadow:0 0 20px var(--cyan);
-    animation:scan 7s linear infinite;
-    z-index:1;
-    opacity:.35;
-}
-
-@keyframes scan{
-    from{top:-5%}
-    to{top:105%}
-}
-
-/* =========================================================
-   APP
-========================================================= */
 
 .app-container{
     width:100%;
-    max-width:480px;
+    max-width:414px;
     min-height:100vh;
     margin:auto;
     position:relative;
-    z-index:2;
     padding-bottom:110px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(5,17,31,.94),
-            rgba(2,8,23,.98)
-        );
-
-    box-shadow:
-        0 0 100px rgba(0,217,255,.06);
-
     overflow:hidden;
 }
 
-/* =========================================================
-   TOP SYSTEM BAR
-========================================================= */
+/* TOP */
+.topbar{
+    position:relative;
+    margin:10px;
+    padding:18px;
+    border-radius:26px;
+    overflow:hidden;
+    background:
+        linear-gradient(135deg,
+        rgba(0,119,255,.95),
+        rgba(0,234,255,.62) 50%,
+        rgba(115,52,255,.90));
+    box-shadow:
+        0 18px 50px rgba(0,119,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.28);
+}
 
-.system-bar{
-    height:38px;
-    padding:0 17px;
+.topbar:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    right:-70px;
+    top:-90px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    filter:blur(2px);
+}
 
+.top-row{
+    position:relative;
+    z-index:2;
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    background:rgba(2,8,23,.72);
-    border-bottom:1px solid var(--border);
-
-    backdrop-filter:blur(18px);
 }
 
-.system-left{
+.logo{
+    width:54px;
+    height:54px;
+    border-radius:18px;
     display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:inset 0 0 20px rgba(255,255,255,.08);
+}
+
+.notification{
+    position:relative;
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:15px;
+    color:white;
+    background:rgba(255,255,255,.13);
+    font-size:19px;
+}
+
+.notification span{
+    position:absolute;
+    right:-5px;
+    top:-6px;
+    min-width:21px;
+    height:21px;
+    padding:0 5px;
+    border-radius:20px;
+    background:#ff315f;
+    color:white;
+    font-size:10px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid #1684ff;
+}
+
+.greeting{
+    position:relative;
+    z-index:2;
+    margin-top:17px;
+}
+
+.greeting small{
+    opacity:.82;
+    font-size:12px;
+}
+
+.greeting h1{
+    margin:5px 0;
+    font-size:23px;
+    letter-spacing:-.8px;
+}
+
+.online{
+    display:inline-flex;
     align-items:center;
     gap:7px;
-
-    font-size:10px;
-    color:#a8c3d8;
-}
-
-.live-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-    50%{
-        transform:scale(1.5);
-        opacity:.5;
-    }
-}
-
-.system-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#9ab3c9;
+    margin-top:6px;
     font-size:11px;
+    font-weight:700;
 }
 
-/* =========================================================
-   FUTURE HEADER
-========================================================= */
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#4dffae;
+    box-shadow:0 0 12px #4dffae;
+}
 
-.header-banner{
+/* AI HERO */
+.ai-hero{
+    margin:12px 10px;
+    padding:18px;
+    border-radius:25px;
+    background:linear-gradient(145deg,
+        rgba(11,30,53,.95),
+        rgba(12,20,39,.90));
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
     position:relative;
-    padding:23px 17px 35px;
-
-    background:
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(0,217,255,.23),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #071e35,
-            #063b5d 45%,
-            #06213c
-        );
-
-    border-bottom-left-radius:32px;
-    border-bottom-right-radius:32px;
-
-    border-bottom:1px solid rgba(0,217,255,.2);
-
     overflow:hidden;
 }
 
-.header-banner:before{
-    content:"";
-    position:absolute;
-    width:230px;
-    height:230px;
-    right:-100px;
-    top:-100px;
-
-    border:1px solid rgba(0,217,255,.25);
-    border-radius:50%;
-
-    box-shadow:
-        0 0 30px rgba(0,217,255,.08),
-        inset 0 0 30px rgba(0,217,255,.05);
-
-    animation:rotate 12s linear infinite;
-}
-
-.header-banner:after{
+.ai-hero:after{
     content:"";
     position:absolute;
     width:150px;
     height:150px;
-    right:-60px;
-    top:-60px;
-
-    border:1px dashed rgba(0,255,163,.25);
     border-radius:50%;
-
-    animation:rotate 8s linear infinite reverse;
+    background:rgba(0,234,255,.08);
+    right:-60px;
+    bottom:-70px;
 }
 
-@keyframes rotate{
-    to{transform:rotate(360deg)}
+.ai-title{
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
-.header-top{
-    position:relative;
-    z-index:3;
+.ai-orb{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 35% 30%,#fff,#00eaff 15%,#1677ff 45%,#741fff 80%);
+    box-shadow:0 0 28px rgba(0,234,255,.55);
+    animation:pulse 2.3s infinite;
+}
 
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+}
+
+.ai-title h2{
+    margin:0;
+    font-size:16px;
+}
+
+.ai-title p{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:10px;
+}
+
+.ai-status{
+    display:flex;
+    gap:6px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.status{
+    padding:7px 9px;
+    border-radius:10px;
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--border);
+    color:#b9cbe0;
+    font-size:9px;
+    font-weight:800;
+}
+
+.status.active{
+    color:#67ffbb;
+}
+
+/* POWER CARD */
+.power-card{
+    margin:12px 10px;
+    padding:18px;
+    border-radius:25px;
+    background:linear-gradient(145deg,rgba(20,40,67,.92),rgba(7,18,32,.94));
+    border:1px solid rgba(0,234,255,.14);
+    box-shadow:var(--shadow);
+}
+
+.power-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
 
-.brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.brand-logo{
-    width:43px;
-    height:43px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:14px;
-
-    background:
-        linear-gradient(135deg,var(--cyan),var(--blue));
-
-    color:white;
-    font-size:20px;
-
-    box-shadow:
-        0 0 25px rgba(0,217,255,.35),
-        inset 0 1px 0 rgba(255,255,255,.4);
-}
-
-.brand-text h1{
-    font-size:16px;
+.power-name{
+    font-size:14px;
     font-weight:900;
-    letter-spacing:.4px;
 }
 
-.brand-text p{
-    margin-top:3px;
+.power-type{
+    font-size:10px;
+    color:#8da2bb;
+    margin-top:4px;
+}
+
+.power-status{
+    padding:7px 10px;
+    border-radius:10px;
+    background:rgba(32,229,139,.10);
+    color:#45f6a3;
     font-size:9px;
-    color:#8eeaff;
-    letter-spacing:1px;
-    text-transform:uppercase;
+    font-weight:900;
 }
 
-.header-actions{
+.power-info{
     display:flex;
-    gap:8px;
+    justify-content:space-between;
+    align-items:end;
+    margin-top:18px;
 }
 
-.icon-btn{
-    width:37px;
-    height:37px;
-
-    border-radius:12px;
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.06);
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    cursor:pointer;
-    position:relative;
-
-    backdrop-filter:blur(10px);
-
-    transition:.25s;
+.kwh{
+    font-size:31px;
+    font-weight:900;
+    letter-spacing:-1px;
 }
 
-.icon-btn:active{
-    transform:scale(.9);
+.kwh small{
+    font-size:11px;
+    color:var(--muted);
 }
 
-.notification-badge{
-    position:absolute;
-    top:-4px;
-    right:-3px;
-
-    min-width:17px;
-    height:17px;
-
-    padding:0 4px;
-
+.meter{
+    margin-top:15px;
+    height:8px;
     border-radius:20px;
-
-    background:var(--red);
-    color:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:8px;
-    font-weight:900;
-
-    border:2px solid #07213a;
-}
-
-/* =========================================================
-   GREETING
-========================================================= */
-
-.banner-content{
-    position:relative;
-    z-index:2;
-    margin-top:23px;
-}
-
-.banner-content small{
-    color:#77b8d7;
-    font-size:10px;
-}
-
-.banner-content h2{
-    margin-top:5px;
-
-    font-size:25px;
-    line-height:1.15;
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            90deg,
-            white,
-            #8deaff,
-            white
-        );
-
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.banner-content p{
-    margin-top:8px;
-    color:#8eabc0;
-    font-size:10px;
-}
-
-/* AI STATUS */
-
-.ai-status{
-    margin-top:17px;
-
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:7px 11px;
-
-    border:1px solid rgba(0,255,163,.18);
-    background:rgba(0,255,163,.06);
-
-    border-radius:30px;
-
-    color:#7fffc6;
-    font-size:9px;
-    font-weight:700;
-
-    letter-spacing:.5px;
-}
-
-.ai-status i{
-    font-size:8px;
-    animation:pulse 1.5s infinite;
-}
-
-/* =========================================================
-   ELECTRIC CARD
-========================================================= */
-
-.card-info{
-    position:relative;
-    z-index:10;
-
-    margin:-21px 15px 15px;
-    padding:17px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(16,42,68,.95),
-            rgba(5,20,37,.95)
-        );
-
-    border:1px solid rgba(0,217,255,.14);
-
-    border-radius:24px;
-
-    box-shadow:var(--shadow);
-
+    background:#091423;
     overflow:hidden;
 }
 
-.card-info:before{
-    content:"";
-    position:absolute;
-
-    width:120px;
-    height:120px;
-
-    right:-50px;
-    top:-50px;
-
-    background:var(--cyan);
-    opacity:.08;
-
-    filter:blur(30px);
-    border-radius:50%;
-}
-
-.card-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.user-name{
-    display:flex;
-    align-items:center;
-    gap:9px;
-
-    font-size:12px;
-    font-weight:800;
-}
-
-.user-name i{
-    width:31px;
-    height:31px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:10px;
-
-    color:var(--cyan);
-    background:rgba(0,217,255,.09);
-}
-
-.type-badge{
-    padding:6px 8px;
-
-    border-radius:10px;
-
-    background:rgba(0,255,163,.08);
-    border:1px solid rgba(0,255,163,.16);
-
-    color:#67fbc0;
-
-    font-size:8px;
-    font-weight:700;
-}
-
-/* ENERGY DISPLAY */
-
-.energy-display{
-    margin-top:17px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.energy-number{
-    display:flex;
-    align-items:baseline;
-    gap:5px;
-}
-
-.energy-number strong{
-    font-size:34px;
-    font-weight:900;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff,
-            var(--cyan)
-        );
-
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.energy-number span{
-    font-size:10px;
-    color:#7693aa;
-}
-
-/* ENERGY RING */
-
-.energy-ring{
-    width:73px;
-    height:73px;
-
-    border-radius:50%;
-
-    background:
-        conic-gradient(
-            var(--cyan) 0deg 286deg,
-            rgba(255,255,255,.06) 286deg 360deg
-        );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:
-        0 0 25px rgba(0,217,255,.12);
-
-    position:relative;
-}
-
-.energy-ring:after{
-    content:"";
-    position:absolute;
-
-    width:57px;
-    height:57px;
-
-    background:#081b2d;
-    border-radius:50%;
-}
-
-.energy-ring span{
-    position:relative;
-    z-index:2;
-
-    font-size:10px;
-    font-weight:800;
-    color:#9defff;
-}
-
-/* CHART */
-
-.chart-container{
-    margin-top:10px;
-    height:67px;
-    position:relative;
-}
-
-.chart-svg{
-    width:100%;
-    height:100%;
-}
-
-.chart-grid{
-    stroke:rgba(255,255,255,.055);
-    stroke-width:1;
-}
-
-.chart-line{
-    fill:none;
-    stroke:var(--cyan);
-    stroke-width:2.5;
-
-    filter:
-        drop-shadow(
-            0 0 5px rgba(0,217,255,.6)
-        );
-}
-
-.chart-area{
-    fill:url(#energyGradient);
-    opacity:.25;
-}
-
-.chart-dot{
-    fill:#fff;
-    stroke:var(--cyan);
-    stroke-width:3;
-
-    filter:
-        drop-shadow(
-            0 0 6px var(--cyan)
-        );
-}
-
-.status-bill{
-    margin-top:10px;
-
-    padding:10px 11px;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    border-radius:12px;
-
-    background:rgba(0,255,163,.055);
-    border:1px solid rgba(0,255,163,.10);
-
-    font-size:9px;
-    color:#a5c2d5;
-}
-
-.status-bill i{
-    color:var(--green);
-}
-
-/* =========================================================
-   ACTION STRIP
-========================================================= */
-
-.action-strip{
-    margin:0 15px 15px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:11px 13px;
-
-    border-radius:16px;
-
-    background:rgba(0,217,255,.045);
-    border:1px solid rgba(0,217,255,.09);
-}
-
-.action-strip span{
-    font-size:9px;
-    color:#7592a8;
-}
-
-.action-strip strong{
+.meter span{
     display:block;
-    color:#d9f7ff;
-    font-size:10px;
-    margin-top:2px;
+    width:62%;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    box-shadow:0 0 15px rgba(0,234,255,.55);
 }
 
-.see-all-btn{
-    display:flex;
-    align-items:center;
-    gap:6px;
-
-    color:var(--cyan);
-    font-size:9px;
-    font-weight:800;
-
-    cursor:pointer;
+/* WALLET */
+.wallet-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:12px 10px;
 }
 
-/* =========================================================
-   WALLET
-========================================================= */
-
-.wallet-section{
-    display:flex;
-    gap:9px;
-
-    padding:0 15px 17px;
-
-    overflow-x:auto;
-
-    scrollbar-width:none;
-}
-
-.wallet-section::-webkit-scrollbar{
-    display:none;
-}
-
-.wallet-card{
-    min-width:148px;
-
-    padding:12px;
-
-    display:flex;
-    align-items:center;
-    gap:9px;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,42,67,.85),
-            rgba(7,22,39,.9)
-        );
-
+.wallet{
+    min-height:115px;
+    padding:15px;
+    border-radius:21px;
+    background:var(--card);
     border:1px solid var(--border);
-
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
-
-    transition:.25s;
-}
-
-.wallet-card:active{
-    transform:scale(.97);
+    box-shadow:var(--shadow);
 }
 
 .wallet-icon{
-    width:31px;
-    height:31px;
-
-    flex:none;
-
-    border-radius:10px;
-
+    width:34px;
+    height:34px;
+    border-radius:11px;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    font-size:13px;
+    background:rgba(0,234,255,.09);
+    color:var(--cyan);
+    font-size:15px;
 }
 
-.wallet-text{
-    min-width:0;
-}
-
-.wallet-title{
+.wallet small{
     display:block;
-
+    color:var(--muted);
     font-size:9px;
-    font-weight:800;
-    color:#d8e9f4;
-
-    white-space:nowrap;
+    margin-top:12px;
 }
 
-.wallet-value{
+.wallet strong{
     display:block;
-
-    margin-top:3px;
-
-    font-size:8px;
-    color:#7190a7;
+    font-size:15px;
+    margin-top:4px;
 }
 
-/* =========================================================
-   SECTION TITLE
-========================================================= */
-
+/* SECTION */
 .section-title{
-    padding:3px 17px 10px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
+    padding:5px 12px 8px;
 }
 
 .section-title h3{
-    font-size:13px;
-    font-weight:900;
+    margin:0;
+    font-size:14px;
 }
 
 .section-title span{
-    font-size:8px;
-    color:#668399;
+    font-size:9px;
+    color:var(--cyan);
 }
 
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-box{
-    margin:0 15px 15px;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    padding:11px 13px;
-
-    background:rgba(255,255,255,.045);
-    border:1px solid var(--border);
-
-    border-radius:15px;
-}
-
-.search-box i{
-    color:#66869c;
-    font-size:12px;
-}
-
-.search-box input{
-    width:100%;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    color:white;
-    font-size:10px;
-}
-
-.search-box input::placeholder{
-    color:#587185;
-}
-
-/* =========================================================
-   MENU GRID
-========================================================= */
-
+/* MENU */
 .menu-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-
-    gap:13px 8px;
-
-    padding:0 15px 15px;
+    gap:9px;
+    padding:0 10px;
 }
 
 .menu-item{
-    min-width:0;
-
+    min-height:92px;
     text-decoration:none;
     color:white;
-
+    padding:11px 6px;
+    border-radius:19px;
+    background:rgba(10,23,40,.86);
+    border:1px solid rgba(255,255,255,.08);
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:.18s;
+}
 
-    gap:7px;
-
-    cursor:pointer;
+.menu-item:active{
+    transform:scale(.94);
+    border-color:var(--cyan);
 }
 
 .menu-icon{
-    width:52px;
-    height:52px;
-
-    border-radius:17px;
-
+    width:40px;
+    height:40px;
+    border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:19px;
-
-    border:1px solid rgba(255,255,255,.07);
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.2),
-        inset 0 1px 0 rgba(255,255,255,.07);
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
+    margin-bottom:7px;
+    background:linear-gradient(145deg,rgba(0,234,255,.13),rgba(115,52,255,.15));
+    box-shadow:inset 0 0 15px rgba(255,255,255,.025);
 }
 
-.menu-item:active .menu-icon{
-    transform:scale(.88);
+.menu-item b{
+    font-size:9px;
+    font-weight:800;
 }
 
-.menu-label{
-    font-size:8px;
-    font-weight:600;
-
-    color:#9bb2c4;
-
-    text-align:center;
-    line-height:1.2;
+.menu-item small{
+    font-size:7px;
+    color:#73879e;
+    margin-top:3px;
 }
 
-/* individual glow */
-
-.menu-item:nth-child(1) .menu-icon{
-    color:#ffd43b;
-    background:rgba(255,212,59,.08);
+/* VOICE CENTER */
+.voice-card{
+    margin:14px 10px;
+    padding:17px;
+    border-radius:25px;
+    background:
+        linear-gradient(145deg,
+        rgba(20,30,52,.95),
+        rgba(8,18,32,.96));
+    border:1px solid rgba(155,92,255,.25);
+    box-shadow:var(--shadow);
 }
 
-.menu-item:nth-child(2) .menu-icon{
-    color:#55bfff;
-    background:rgba(22,140,255,.08);
-}
-
-.menu-item:nth-child(3) .menu-icon{
-    color:#b17cff;
-    background:rgba(155,92,255,.08);
-}
-
-.menu-item:nth-child(4) .menu-icon{
-    color:#ff6b81;
-    background:rgba(255,65,108,.08);
-}
-
-.menu-item:nth-child(5) .menu-icon{
-    color:#00d9ff;
-    background:rgba(0,217,255,.08);
-}
-
-.menu-item:nth-child(6) .menu-icon{
-    color:#65d9ff;
-    background:rgba(0,217,255,.07);
-}
-
-.menu-item:nth-child(7) .menu-icon{
-    color:#8ba9ff;
-    background:rgba(100,120,255,.08);
-}
-
-.menu-item:nth-child(8) .menu-icon{
-    color:#00ffa3;
-    background:rgba(0,255,163,.08);
-}
-
-/* =========================================================
-   AI TERMINAL
-========================================================= */
-
-.ai-terminal{
-    margin:3px 15px 20px;
-
-    padding:13px;
-
-    border-radius:18px;
-
-    background:#020c17;
-
-    border:1px solid rgba(0,217,255,.13);
-
-    box-shadow:
-        inset 0 0 30px rgba(0,217,255,.025);
-}
-
-.terminal-head{
+.voice-head{
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:12px;
+}
 
-    padding-bottom:9px;
-    border-bottom:1px solid rgba(255,255,255,.06);
+.voice-head .mic{
+    width:45px;
+    height:45px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#7b3fff,#00c8ff);
+    font-size:19px;
+}
 
+.voice-head h3{
+    margin:0;
+    font-size:14px;
+}
+
+.voice-head p{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:9px;
+}
+
+.voice-select{
+    width:100%;
+    margin-top:14px;
+    padding:13px;
+    border-radius:14px;
+    color:white;
+    background:#091525;
+    border:1px solid rgba(255,255,255,.10);
+    outline:none;
+    font-weight:700;
+}
+
+textarea{
+    width:100%;
+    min-height:92px;
+    margin-top:9px;
+    padding:13px;
+    resize:none;
+    border-radius:14px;
+    color:white;
+    background:#07111e;
+    border:1px solid rgba(255,255,255,.09);
+    outline:none;
+    font-family:inherit;
+    font-size:12px;
+}
+
+.voice-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:9px;
+}
+
+.btn{
+    border:0;
+    border-radius:13px;
+    padding:12px 8px;
+    color:white;
+    background:#14263d;
+    font-weight:800;
+    font-size:10px;
+}
+
+.btn.primary{
+    background:linear-gradient(135deg,#007cff,#7c42ff);
+}
+
+.btn.danger{
+    background:#45152a;
+}
+
+.btn.record{
+    background:linear-gradient(135deg,#e72b60,#8c2eff);
+}
+
+.voice-info{
+    margin-top:10px;
+    padding:10px;
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+    color:#8ea3bc;
     font-size:8px;
-    color:#6e8ba0;
+    line-height:1.5;
 }
 
-.terminal-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
+/* RECORDING */
+.record-panel{
+    margin-top:12px;
+    padding:13px;
+    border-radius:17px;
+    background:rgba(0,234,255,.045);
+    border:1px solid rgba(0,234,255,.10);
 }
 
-.terminal-body{
-    padding-top:9px;
-
-    color:#73e8ff;
-
-    font-family:monospace;
-    font-size:8px;
-    line-height:1.8;
+.record-state{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:10px;
 }
 
-.cursor{
-    display:inline-block;
-    width:5px;
+.record-dot{
+    width:9px;
     height:9px;
-    background:var(--cyan);
-    animation:blink .8s infinite;
+    display:inline-block;
+    border-radius:50%;
+    background:#66778c;
+    margin-right:6px;
 }
 
-@keyframes blink{
-    50%{opacity:0}
+.record-dot.on{
+    background:#ff3767;
+    box-shadow:0 0 15px #ff3767;
+    animation:recordPulse .8s infinite;
 }
 
-/* =========================================================
-   BOTTOM NAV
-========================================================= */
+@keyframes recordPulse{
+    50%{transform:scale(1.5)}
+}
 
+.record-text{
+    margin-top:9px;
+    min-height:42px;
+    padding:10px;
+    border-radius:11px;
+    background:#06101d;
+    font-size:10px;
+    color:#d8e6f6;
+}
+
+/* AI COMMAND */
+.command-card{
+    margin:12px 10px;
+    padding:17px;
+    border-radius:24px;
+    background:rgba(13,27,47,.84);
+    border:1px solid var(--border);
+}
+
+.command-input{
+    display:flex;
+    gap:7px;
+}
+
+.command-input input{
+    flex:1;
+    min-width:0;
+    padding:12px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:#071321;
+    color:white;
+    outline:none;
+}
+
+.command-input button{
+    width:48px;
+    border:0;
+    border-radius:13px;
+    color:white;
+    background:linear-gradient(135deg,#00b7ff,#7e3cff);
+    font-size:17px;
+}
+
+.quick{
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    margin-top:9px;
+    scrollbar-width:none;
+}
+
+.quick::-webkit-scrollbar{
+    display:none;
+}
+
+.quick button{
+    white-space:nowrap;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:#adc0d6;
+    border-radius:10px;
+    padding:7px 9px;
+    font-size:8px;
+}
+
+/* BOTTOM NAV */
 .bottom-nav{
     position:fixed;
-
-    bottom:10px;
+    z-index:50;
+    bottom:8px;
     left:50%;
-
     transform:translateX(-50%);
-
-    width:min(450px,calc(100% - 20px));
-
+    width:calc(100% - 20px);
+    max-width:394px;
     height:67px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
-
-    padding:7px 5px;
-
     border-radius:23px;
-
-    background:
-        rgba(5,18,32,.88);
-
-    border:1px solid rgba(0,217,255,.12);
-
-    backdrop-filter:blur(25px);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.55),
-        0 0 25px rgba(0,217,255,.05);
-
-    z-index:100;
+    background:rgba(7,17,30,.92);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 18px 50px rgba(0,0,0,.55);
+    display:grid;
+    grid-template-columns:1fr 1fr 1.25fr 1fr 1fr;
+    align-items:center;
 }
 
 .nav-item{
-    min-width:48px;
-
+    height:100%;
+    color:#72869d;
+    text-decoration:none;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:4px;
-
-    text-decoration:none;
-
-    color:#597388;
-
+    justify-content:center;
     font-size:8px;
-    font-weight:600;
-
-    transition:.2s;
-}
-
-.nav-item i{
-    font-size:16px;
+    font-weight:800;
 }
 
 .nav-item.active{
     color:var(--cyan);
 }
 
-.nav-item.active i{
-    filter:drop-shadow(0 0 6px var(--cyan));
+.nav-item i{
+    font-size:17px;
+    margin-bottom:4px;
 }
 
-/* =========================================================
-   CENTER AI BUTTON
-========================================================= */
-
-.center-button-wrap{
-    width:65px;
-    height:65px;
-
-    margin-top:-31px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.fab-charge{
-    width:58px;
-    height:58px;
-
-    border-radius:20px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--cyan),
-            var(--blue)
-        );
-
-    color:white;
-
-    font-size:21px;
-
-    border:4px solid #061426;
-
-    box-shadow:
-        0 0 25px rgba(0,217,255,.35),
-        0 10px 30px rgba(0,0,0,.4);
-
-    cursor:pointer;
-
-    animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-    50%{
-        transform:translateY(-4px);
-    }
-}
-
-/* =========================================================
-   NOTIFICATION PANEL
-========================================================= */
-
-.notification-panel{
-    position:fixed;
-
-    top:65px;
-    right:12px;
-
-    width:290px;
-
-    padding:14px;
-
-    background:
-        rgba(5,20,35,.95);
-
-    border:1px solid rgba(0,217,255,.15);
-
+.fab{
+    width:57px;
+    height:57px;
+    margin:auto;
+    margin-top:-22px;
     border-radius:19px;
-
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#00d9ff,#6e35ff);
+    color:white;
+    font-size:23px;
     box-shadow:
-        0 20px 60px rgba(0,0,0,.55);
-
-    backdrop-filter:blur(25px);
-
-    transform:
-        translateY(-15px)
-        scale(.95);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:.25s;
-
-    z-index:200;
+        0 10px 30px rgba(0,174,255,.32),
+        0 0 30px rgba(125,55,255,.25);
+    border:4px solid #081321;
 }
 
-.notification-panel.show{
-    transform:translateY(0) scale(1);
-    opacity:1;
-    pointer-events:auto;
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    background:rgba(0,0,0,.66);
+    backdrop-filter:blur(8px);
 }
 
-.panel-title{
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(414px,100%);
+    max-height:82vh;
+    overflow:auto;
+    padding:20px;
+    border-radius:28px 28px 0 0;
+    background:#081525;
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 -20px 80px rgba(0,0,0,.55);
+}
+
+.modal-top{
     display:flex;
     justify-content:space-between;
-
-    font-size:10px;
-    font-weight:800;
-
-    padding-bottom:10px;
-    border-bottom:1px solid var(--border);
+    align-items:center;
 }
 
-.notification{
-    padding:11px 0;
-
-    display:flex;
-    gap:10px;
-
-    border-bottom:1px solid rgba(255,255,255,.04);
+.modal-top h3{
+    margin:0;
+    font-size:16px;
 }
 
-.notification:last-child{
-    border-bottom:0;
+.close{
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:12px;
+    background:#14263c;
+    color:white;
+    font-size:17px;
 }
 
-.notification i{
-    color:var(--cyan);
-}
-
-.notification strong{
-    display:block;
-    font-size:9px;
-}
-
-.notification p{
-    margin-top:3px;
-    font-size:8px;
-    color:#70899d;
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-
+/* TOAST */
 .toast{
     position:fixed;
-
+    z-index:200;
     left:50%;
-    bottom:90px;
-
-    transform:
-        translate(-50%,20px);
-
-    padding:10px 14px;
-
-    border-radius:13px;
-
-    background:#081c30;
-    border:1px solid rgba(0,217,255,.18);
-
-    color:#b9edff;
-
-    font-size:9px;
-    font-weight:600;
-
+    bottom:88px;
+    transform:translate(-50%,20px);
     opacity:0;
     pointer-events:none;
-
-    z-index:300;
-
-    transition:.3s;
-
-    white-space:nowrap;
+    max-width:370px;
+    width:calc(100% - 35px);
+    padding:12px 15px;
+    border-radius:14px;
+    background:rgba(7,18,31,.96);
+    border:1px solid rgba(0,234,255,.20);
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+    color:white;
+    text-align:center;
+    font-size:10px;
+    transition:.25s;
 }
 
 .toast.show{
@@ -1259,501 +792,222 @@ body{
     transform:translate(-50%,0);
 }
 
-/* =========================================================
-   LIGHT MODE
-========================================================= */
-
+/* LIGHT */
 body.light{
-    --bg:#eef7fc;
-    --bg2:#ffffff;
-    --card:#ffffff;
-    --card2:#ffffff;
-    --text:#102235;
-    --muted:#61798d;
-    --border:rgba(0,80,130,.1);
+    --bg:#eef6ff;
+    --card:rgba(255,255,255,.82);
+    --card2:#fff;
+    --text:#102033;
+    --muted:#66788d;
+    background:#eef6ff;
 }
 
-body.light .app-container{
-    background:#f5faff;
+body.light .voice-select,
+body.light textarea,
+body.light .command-input input{
+    background:white;
+    color:#102033;
 }
 
-body.light .header-banner{
-    background:
-        linear-gradient(
-            135deg,
-            #008fbe,
-            #0067a3
-        );
-}
-
-body.light .card-info,
-body.light .wallet-card,
-body.light .ai-terminal{
-    background:#ffffff;
-    color:#102235;
+body.light .menu-item,
+body.light .wallet,
+body.light .command-card,
+body.light .power-card,
+body.light .voice-card,
+body.light .ai-hero{
+    background:rgba(255,255,255,.88);
 }
 
 body.light .bottom-nav{
-    background:rgba(255,255,255,.9);
+    background:rgba(255,255,255,.92);
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+body.light .quick button{
+    color:#42556c;
+}
 
 @media(max-width:360px){
+    .menu-grid{
+        grid-template-columns:repeat(4,1fr);
+        gap:6px;
+    }
+
+    .menu-item{
+        min-height:86px;
+    }
 
     .menu-icon{
-        width:46px;
-        height:46px;
-        font-size:17px;
-    }
-
-    .banner-content h2{
-        font-size:22px;
-    }
-
-    .energy-number strong{
-        font-size:30px;
+        width:35px;
+        height:35px;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<div id="particles"></div>
-<div class="scan-line"></div>
-
 <div class="app-container">
-
-<!-- =====================================================
-     SYSTEM BAR
-===================================================== -->
-
-<div class="system-bar">
-
-    <div class="system-left">
-        <span class="live-dot"></span>
-        <span>MYROBOT AI CORE • ONLINE</span>
-    </div>
-
-    <div class="system-right">
-        <span id="clock">00:00</span>
-        <i class="fa-solid fa-wifi"></i>
-        <i class="fa-solid fa-battery-three-quarters"></i>
-    </div>
-
-</div>
-
 
 <!-- =====================================================
      HEADER
 ===================================================== -->
+<header class="topbar">
 
-<div class="header-banner">
+    <div class="top-row">
 
-    <div class="header-top">
+        <div class="logo">🤖</div>
 
-        <div class="brand">
+        <button class="notification" onclick="openNotification()">
+            🔔
+            <span>99</span>
+        </button>
 
-            <div class="brand-logo">
-                <i class="fa-solid fa-robot"></i>
-            </div>
+    </div>
 
-            <div class="brand-text">
-                <h1>myROBOT-V12</h1>
-                <p>Professional AI System</p>
-            </div>
+    <div class="greeting">
 
-        </div>
+        <small>Selamat datang kembali</small>
 
-        <div class="header-actions">
+        <h1>Selamat Asep Pudin New 👋</h1>
 
-            <button class="icon-btn"
-                    onclick="toggleTheme()"
-                    aria-label="Tema">
-
-                <i class="fa-solid fa-moon"></i>
-
-            </button>
-
-            <button class="icon-btn"
-                    onclick="toggleNotifications()"
-                    aria-label="Notifikasi">
-
-                <i class="fa-solid fa-bell"></i>
-
-                <span class="notification-badge">99</span>
-
-            </button>
-
+        <div class="online">
+            <span class="dot"></span>
+            myROBOT-V12 Professional Is Live
         </div>
 
     </div>
 
-
-    <div class="banner-content">
-
-        <small id="greeting">Selamat Datang</small>
-
-        <h2>
-            Asep Pudin New
-        </h2>
-
-        <p>
-            Sistem AI masa depan Anda siap digunakan.
-            Semua modul berjalan normal.
-        </p>
-
-        <div class="ai-status">
-
-            <i class="fa-solid fa-circle"></i>
-
-            AI CORE ACTIVE • PROFESSIONAL IS LIVE
-
-        </div>
-
-    </div>
-
-</div>
+</header>
 
 
 <!-- =====================================================
-     NOTIFICATION PANEL
+     AI HERO
 ===================================================== -->
+<section class="ai-hero">
 
-<div class="notification-panel" id="notificationPanel">
+    <div class="ai-title">
 
-    <div class="panel-title">
-
-        <span>
-            <i class="fa-solid fa-bell"></i>
-            Pusat Notifikasi
-        </span>
-
-        <span style="color:#00d9ff">
-            99+
-        </span>
-
-    </div>
-
-    <div class="notification">
-
-        <i class="fa-solid fa-robot"></i>
+        <div class="ai-orb">✦</div>
 
         <div>
-            <strong>AI Core Aktif</strong>
-            <p>myROBOT-V12 siap menjalankan sistem.</p>
+            <h2>myROBOT-V12 AI CORE</h2>
+            <p>Future Personal Digital Assistant</p>
         </div>
 
     </div>
 
-    <div class="notification">
+    <div class="ai-status">
 
-        <i class="fa-solid fa-bolt"></i>
+        <div class="status active">● AI READY</div>
 
-        <div>
-            <strong>Monitoring Energi</strong>
-            <p>Pemakaian listrik sedang dipantau.</p>
-        </div>
+        <div class="status" id="networkStatus">● NETWORK CHECK</div>
 
-    </div>
-
-    <div class="notification">
-
-        <i class="fa-solid fa-shield-halved"></i>
-
-        <div>
-            <strong>System Secure</strong>
-            <p>Status keamanan sistem normal.</p>
-        </div>
+        <div class="status">● LOCAL ENGINE</div>
 
     </div>
 
-</div>
+</section>
 
 
 <!-- =====================================================
-     ENERGY CARD
+     POWER CARD
 ===================================================== -->
+<section class="power-card">
 
-<div class="card-info">
-
-    <div class="card-title">
-
-        <div class="user-name">
-
-            <i class="fa-solid fa-house"></i>
-
-            <span>myROBOT Smart Home</span>
-
-        </div>
-
-        <div class="type-badge">
-
-            <i class="fa-solid fa-bolt"></i>
-
-            R1M • 900 VA
-
-        </div>
-
-    </div>
-
-
-    <div class="energy-display">
+    <div class="power-head">
 
         <div>
-
-            <div class="energy-number">
-
-                <strong>222</strong>
-
-                <span>kWh</span>
-
+            <div class="power-name">
+                myROBOT-V12 SMART HOME
             </div>
 
-            <div style="
-                margin-top:5px;
-                color:#7190a7;
-                font-size:8px;
-            ">
-                TOTAL PEMAKAIAN
+            <div class="power-type">
+                Pascabayar / R1M 900 VA
             </div>
-
         </div>
 
-
-        <div class="energy-ring">
-
-            <span>79%</span>
-
+        <div class="power-status">
+            AKTIF
         </div>
 
     </div>
 
+    <div class="power-info">
 
-    <div class="chart-container">
+        <div>
+            <div class="kwh">
+                <span id="kwhCounter">222</span>
+                <small>kWh</small>
+            </div>
 
-        <svg class="chart-svg"
-             viewBox="0 0 320 70"
-             preserveAspectRatio="none">
+            <div style="font-size:9px;color:#8295aa;margin-top:3px">
+                Pemakaian energi
+            </div>
+        </div>
 
-            <defs>
-
-                <linearGradient
-                    id="energyGradient"
-                    x1="0"
-                    x2="0"
-                    y1="0"
-                    y2="1">
-
-                    <stop
-                        offset="0"
-                        stop-color="#00d9ff"/>
-
-                    <stop
-                        offset="1"
-                        stop-color="#00d9ff"
-                        stop-opacity="0"/>
-
-                </linearGradient>
-
-            </defs>
-
-            <line
-                x1="0"
-                y1="15"
-                x2="320"
-                y2="15"
-                class="chart-grid"/>
-
-            <line
-                x1="0"
-                y1="35"
-                x2="320"
-                y2="35"
-                class="chart-grid"/>
-
-            <line
-                x1="0"
-                y1="55"
-                x2="320"
-                y2="55"
-                class="chart-grid"/>
-
-
-            <path
-                d="
-                M0 54
-                C35 48 50 27 82 32
-                S130 55 157 35
-                S195 13 218 28
-                S260 51 285 29
-                S310 20 320 17
-                L320 70
-                L0 70 Z
-                "
-                class="chart-area"/>
-
-
-            <path
-                d="
-                M0 54
-                C35 48 50 27 82 32
-                S130 55 157 35
-                S195 13 218 28
-                S260 51 285 29
-                S310 20 320 17
-                "
-                class="chart-line"/>
-
-            <circle
-                cx="320"
-                cy="17"
-                r="4"
-                class="chart-dot"/>
-
-        </svg>
+        <div style="text-align:right">
+            <div style="font-size:9px;color:#8295aa">
+                STATUS TAGIHAN
+            </div>
+            <strong style="font-size:11px;color:#43f3a1">
+                TERKENDALI
+            </strong>
+        </div>
 
     </div>
 
-
-    <div class="status-bill">
-
-        <i class="fa-solid fa-circle-check"></i>
-
-        <span>
-            Sistem normal • Belum ada tagihan yang perlu dibayar
-        </span>
-
+    <div class="meter">
+        <span></span>
     </div>
 
-</div>
-
-
-<!-- =====================================================
-     ACTION
-===================================================== -->
-
-<div class="action-strip">
-
-    <div>
-
-        <span>STATUS SISTEM</span>
-
-        <strong>
-            <i class="fa-solid fa-circle"
-               style="font-size:6px;color:#00ffa3"></i>
-
-            Semua modul online
-        </strong>
-
-    </div>
-
-    <div class="see-all-btn"
-         onclick="showToast('Membuka seluruh aktivitas...')">
-
-        LIHAT SEMUA
-
-        <i class="fa-solid fa-arrow-right"></i>
-
-    </div>
-
-</div>
+</section>
 
 
 <!-- =====================================================
      WALLET
 ===================================================== -->
+<div class="wallet-grid">
 
-<div class="wallet-section">
+    <div class="wallet">
 
-    <div class="wallet-card">
+        <div class="wallet-icon">💳</div>
 
-        <div class="wallet-icon"
-             style="
-             background:rgba(0,255,163,.08);
-             color:#00ffa3;
-             ">
+        <small>Saldo Digital</small>
 
-            <i class="fa-solid fa-wallet"></i>
-
-        </div>
-
-        <div class="wallet-text">
-
-            <span class="wallet-title">
-                Saldo Rp.999.000.000.000
-            </span>
-
-            <span class="wallet-value">
-                DOMPET DIGITAL
-            </span>
-
-        </div>
-
-        <i class="fa-regular fa-eye"
-           style="
-           font-size:10px;
-           color:#7892a7;
-           margin-left:auto;
-           "></i>
+        <strong>Rp 12.500.000</strong>
 
     </div>
 
 
-    <div class="wallet-card">
+    <div class="wallet">
 
-        <div class="wallet-icon"
-             style="
-             background:rgba(255,212,59,.08);
-             color:#ffd43b;
-             ">
+        <div class="wallet-icon">⭐</div>
 
-            <i class="fa-solid fa-coins"></i>
+        <small>AI Points</small>
 
-        </div>
-
-        <div class="wallet-text">
-
-            <span class="wallet-title">
-                999.000.000 Point
-            </span>
-
-            <span class="wallet-value">
-                REWARD POINT
-            </span>
-
-        </div>
+        <strong>98.420 Poin</strong>
 
     </div>
 
 
-    <div class="wallet-card">
+    <div class="wallet">
 
-        <div class="wallet-icon"
-             style="
-             background:rgba(0,217,255,.08);
-             color:#00d9ff;
-             ">
+        <div class="wallet-icon">🎁</div>
 
-            <i class="fa-solid fa-ticket"></i>
+        <small>Voucher</small>
 
-        </div>
+        <strong>24 Voucher</strong>
 
-        <div class="wallet-text">
+    </div>
 
-            <span class="wallet-title">
-                Voucher
-            </span>
 
-            <span class="wallet-value">
-                AVAILABLE
-            </span>
+    <div class="wallet">
 
-        </div>
+        <div class="wallet-icon">⚡</div>
+
+        <small>Energy Score</small>
+
+        <strong>92 / 100</strong>
 
     </div>
 
@@ -1763,155 +1017,93 @@ body.light .bottom-nav{
 <!-- =====================================================
      MENU
 ===================================================== -->
-
 <div class="section-title">
 
     <h3>AI Smart Services</h3>
 
-    <span>8 MODULES</span>
+    <span>ALL SYSTEMS</span>
 
 </div>
 
 
-<div class="search-box">
+<div class="menu-grid">
 
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html">
 
-    <input
-        id="menuSearch"
-        type="search"
-        placeholder="Cari fitur myROBOT-V12..."
-        oninput="searchMenu()">
-
-</div>
-
-
-<div class="menu-grid" id="menuGrid">
-
-    <!-- E-SOSIAL -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html"
-        class="menu-item">
-
-        <div class="menu-icon">
-            <i class="fa-solid fa-bolt"></i>
-        </div>
-
-        <span class="menu-label">
-            E-Sosial
-        </span>
+        <div class="menu-icon">🤝</div>
+        <b>E-Sosial</b>
+        <small>Community</small>
 
     </a>
 
 
-    <!-- E-KEUANGAN -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-car"></i>
-        </div>
-
-        <span class="menu-label">
-            E-Keuangan
-        </span>
+        <div class="menu-icon">💰</div>
+        <b>E-Keuangan</b>
+        <small>Finance</small>
 
     </a>
 
 
-    <!-- WIDGET -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-calculator"></i>
-        </div>
-
-        <span class="menu-label">
-            Widget
-        </span>
+        <div class="menu-icon">🧩</div>
+        <b>Widget</b>
+        <small>Smart Tools</small>
 
     </a>
 
 
-    <!-- KESEHATAN -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-heart-pulse"></i>
-        </div>
-
-        <span class="menu-label">
-            E-Kesehatan
-        </span>
+        <div class="menu-icon">❤️</div>
+        <b>E-Kesehatan</b>
+        <small>Health</small>
 
     </a>
 
 
-    <!-- CUACA -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-cloud-sun"></i>
-        </div>
-
-        <span class="menu-label">
-            Baca Suhu
-        </span>
+        <div class="menu-icon">🌦️</div>
+        <b>Baca Suhu</b>
+        <small>Weather</small>
 
     </a>
 
 
-    <!-- INTERNET -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-wifi"></i>
-        </div>
-
-        <span class="menu-label">
-            Baca Internet
-        </span>
+        <div class="menu-icon">🌐</div>
+        <b>Baca Internet</b>
+        <small>Network</small>
 
     </a>
 
 
-    <!-- SUPPORT -->
-    <a
-        href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-headset"></i>
-        </div>
-
-        <span class="menu-label">
-            Support
-        </span>
+        <div class="menu-icon">🛠️</div>
+        <b>Support</b>
+        <small>Technical</small>
 
     </a>
 
 
-    <!-- GPX -->
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html"
-        class="menu-item">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html">
 
-        <div class="menu-icon">
-            <i class="fa-solid fa-location-crosshairs"></i>
-        </div>
-
-        <span class="menu-label">
-            Lacak GPX
-        </span>
+        <div class="menu-icon">📡</div>
+        <b>Lacak GPX</b>
+        <small>GPS Tracker</small>
 
     </a>
 
@@ -1919,47 +1111,247 @@ body.light .bottom-nav{
 
 
 <!-- =====================================================
-     AI TERMINAL
+     VOICE AI CENTER
 ===================================================== -->
+<section class="voice-card">
 
+    <div class="voice-head">
+
+        <div class="mic">🎙️</div>
+
+        <div>
+            <h3>AI Voice Center</h3>
+            <p>Indonesia • Sunda • Voice Recording</p>
+        </div>
+
+    </div>
+
+
+    <select id="voiceMode" class="voice-select">
+
+        <option value="female">
+            👩 Suara Perempuan — Indonesia
+        </option>
+
+        <option value="male">
+            👨 Suara Laki-laki — Indonesia
+        </option>
+
+        <option value="baby">
+            👶 Suara Bayi — Simulasi
+        </option>
+
+    </select>
+
+
+    <select id="languageMode" class="voice-select">
+
+        <option value="id-ID">
+            🇮🇩 Bahasa Indonesia
+        </option>
+
+        <option value="su-ID">
+            🌾 Bahasa Sunda / Indonesia
+        </option>
+
+    </select>
+
+
+    <textarea
+        id="ttsText"
+        placeholder="Tulis kalimat yang ingin dibacakan..."
+    >Halo Asep Pudin New. Selamat datang di myROBOT-V12.</textarea>
+
+
+    <div class="voice-buttons">
+
+        <button class="btn primary" onclick="speakText()">
+            🔊 PUTAR SUARA
+        </button>
+
+        <button class="btn danger" onclick="stopSpeech()">
+            ⏹ STOP
+        </button>
+
+    </div>
+
+
+    <!-- RECORD YOUR VOICE -->
+
+    <div class="record-panel">
+
+        <div class="record-state">
+
+            <div>
+                <span id="recordDot" class="record-dot"></span>
+                <span id="recordStatus">
+                    Siap merekam suara Anda
+                </span>
+            </div>
+
+            <span id="recordTimer">00:00</span>
+
+        </div>
+
+
+        <div class="voice-buttons">
+
+            <button
+                id="recordButton"
+                class="btn record"
+                onclick="toggleRecording()">
+                🎙️ TEKAN & BICARA
+            </button>
+
+            <button
+                class="btn"
+                onclick="playMyVoice()">
+                ▶️ PUTAR SUARA SAYA
+            </button>
+
+        </div>
+
+
+        <div class="record-text" id="recognizedText">
+            Hasil suara → teks akan muncul di sini.
+        </div>
+
+
+        <div class="voice-buttons">
+
+            <button
+                class="btn primary"
+                onclick="useRecognizedText()">
+                📝 PAKAI TEKS
+            </button>
+
+            <button
+                class="btn"
+                onclick="clearVoiceData()">
+                🗑️ HAPUS
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="voice-info">
+
+        🎙️ <b>Suara Saya:</b>
+        tekan tombol lalu bicara.
+        Browser akan mencoba mengubah ucapan menjadi teks.
+        Rekaman audio asli Anda juga disimpan sementara di memori halaman
+        dan dapat diputar kembali.
+
+        <br><br>
+
+        👶 Mode bayi adalah <b>simulasi pitch</b>, bukan cloning suara bayi asli.
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AI COMMAND
+===================================================== -->
+<section class="command-card">
+
+    <div class="section-title" style="padding:0 0 10px">
+
+        <h3>AI Quick Command</h3>
+
+        <span>VOICE READY</span>
+
+    </div>
+
+
+    <div class="command-input">
+
+        <input
+            id="commandInput"
+            placeholder="Contoh: bacakan dashboard..."
+            onkeydown="if(event.key==='Enter')runCommand()"
+        >
+
+        <button onclick="runCommand()">➤</button>
+
+    </div>
+
+
+    <div class="quick">
+
+        <button onclick="quickCommand('Bacakan dashboard saya')">
+            🔊 Dashboard
+        </button>
+
+        <button onclick="quickCommand('Selamat pagi Asep')">
+            👋 Greeting
+        </button>
+
+        <button onclick="quickCommand('Status sistem myROBOT V12')">
+            🤖 System
+        </button>
+
+        <button onclick="quickCommand('Bacakan pemakaian listrik')">
+            ⚡ Listrik
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EXTRA LINKS
+===================================================== -->
 <div class="section-title">
-
-    <h3>AI Core Monitor</h3>
-
-    <span>REALTIME</span>
-
+    <h3>myROBOT Ecosystem</h3>
+    <span>V12 / V80</span>
 </div>
 
 
-<div class="ai-terminal">
+<div class="menu-grid">
 
-    <div class="terminal-head">
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#">
 
-        <span class="terminal-dot"
-              style="background:#ff5f56"></span>
+        <div class="menu-icon">🔄</div>
+        <b>Update</b>
+        <small>System Update</small>
 
-        <span class="terminal-dot"
-              style="background:#ffbd2e"></span>
+    </a>
 
-        <span class="terminal-dot"
-              style="background:#27c93f"></span>
 
-        <span style="margin-left:4px">
-            MYROBOT_AI_CORE
-        </span>
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/">
 
-    </div>
+        <div class="menu-icon">🤖</div>
+        <b>Robot V80</b>
+        <small>Robot Center</small>
 
-    <div class="terminal-body" id="terminal">
+    </a>
 
-        > Initializing AI core...<br>
-        > System integrity: <b>100%</b><br>
-        > Network interface: <b>ONLINE</b><br>
-        > Smart modules: <b>8/8 ACTIVE</b><br>
-        > Security layer: <b>PROTECTED</b><br>
-        > Waiting for command<span class="cursor"></span>
 
-    </div>
+    <a class="menu-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
+
+        <div class="menu-icon">🚀</div>
+        <b>myROBOT V12</b>
+        <small>Official App</small>
+
+    </a>
+
+
+    <a class="menu-item"
+       href="https://github.com/aseppudinnew-pro">
+
+        <div class="menu-icon">💻</div>
+        <b>GitHub</b>
+        <small>Developer</small>
+
+    </a>
 
 </div>
 
@@ -1967,590 +1359,1291 @@ body.light .bottom-nav{
 <!-- =====================================================
      BOTTOM NAV
 ===================================================== -->
+<nav class="bottom-nav">
 
-<div class="bottom-nav">
+    <a class="nav-item active"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
 
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#"
-        class="nav-item active">
-
-        <i class="fa-solid fa-house"></i>
-
-        <span>Beranda</span>
+        <i>⌂</i>
+        Beranda
 
     </a>
 
 
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/"
-        class="nav-item">
+    <a class="nav-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/">
 
-        <i class="fa-solid fa-file-lines"></i>
-
-        <span>V.08</span>
+        <i>⚡</i>
+        V.08
 
     </a>
 
 
-    <div
-        class="center-button-wrap"
-        onclick="showToast('AI QR Center aktif')">
-
-        <div class="fab-charge">
-
-            <i class="fa-solid fa-qrcode"></i>
-
-        </div>
-
-    </div>
+    <button class="fab" onclick="openAIControl()">
+        ✦
+    </button>
 
 
-    <a
-        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/"
-        class="nav-item">
+    <a class="nav-item"
+       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
 
-        <i class="fa-solid fa-ticket"></i>
-
-        <span>V.12</span>
+        <i>🤖</i>
+        V.12
 
     </a>
 
 
-    <a
-        href="https://github.com/aseppudinnew-pro"
-        class="nav-item">
+    <button
+        class="nav-item"
+        style="border:0;background:none;font-family:inherit"
+        onclick="toggleTheme()">
 
-        <i class="fa-solid fa-user-astronaut"></i>
+        <i>◐</i>
+        Mode
 
-        <span>Profile</span>
+    </button>
 
-    </a>
-
-</div>
+</nav>
 
 </div>
 
 
 <!-- =====================================================
-     TOAST
+     AI MODAL
 ===================================================== -->
+<div class="modal" id="aiModal">
 
-<div class="toast" id="toast">
-    Sistem myROBOT-V12
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h3>✦ myROBOT AI Control Center</h3>
+
+            <button class="close" onclick="closeModal('aiModal')">
+                ×
+            </button>
+
+        </div>
+
+        <br>
+
+        <button
+            class="btn primary"
+            style="width:100%"
+            onclick="speakDashboard();closeModal('aiModal')">
+
+            🔊 Bacakan Dashboard
+
+        </button>
+
+        <br><br>
+
+        <button
+            class="btn"
+            style="width:100%"
+            onclick="startListening()">
+
+            🎙️ Bicara ke myROBOT
+
+        </button>
+
+        <br><br>
+
+        <button
+            class="btn"
+            style="width:100%"
+            onclick="toggleTheme();closeModal('aiModal')">
+
+            🌙 Ganti Mode Tampilan
+
+        </button>
+
+        <br><br>
+
+        <div class="voice-info">
+
+            Sistem suara menggunakan teknologi browser
+            <b>Speech Synthesis</b> dan
+            <b>Speech Recognition</b>.
+
+            <br><br>
+
+            Jika perangkat memiliki voice Indonesia yang berbeda,
+            sistem otomatis memilih voice yang tersedia.
+
+        </div>
+
+    </div>
+
 </div>
 
 
+<!-- =====================================================
+     NOTIFICATION MODAL
+===================================================== -->
+<div class="modal" id="notificationModal">
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h3>🔔 Notifikasi</h3>
+
+            <button class="close"
+                    onclick="closeModal('notificationModal')">
+                ×
+            </button>
+
+        </div>
+
+        <br>
+
+        <div class="wallet">
+
+            <strong>🤖 myROBOT-V12 aktif</strong>
+
+            <small>
+                Semua modul dashboard siap digunakan.
+            </small>
+
+        </div>
+
+        <br>
+
+        <div class="wallet">
+
+            <strong>🎙️ AI Voice Center</strong>
+
+            <small>
+                Mode Perempuan, Laki-laki, Bayi dan Suara Saya tersedia.
+            </small>
+
+        </div>
+
+        <br>
+
+        <div class="wallet">
+
+            <strong>🌐 Sistem Online</strong>
+
+            <small id="notificationNetwork">
+                Memeriksa koneksi...
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
 <script>
+/* =====================================================
+   myROBOT-V12 FUTURE ENGINE
+===================================================== */
 
-/* =========================================================
-   REALTIME CLOCK
-========================================================= */
+let voices = [];
+let mediaRecorder = null;
+let audioChunks = [];
+let recordedAudioURL = null;
+let recordingTimer = null;
+let recordingSeconds = 0;
+let recognition = null;
+let isRecording = false;
 
-function updateClock(){
 
-    const now = new Date();
+/* =====================================================
+   TOAST
+===================================================== */
 
-    const time =
-        now.toLocaleTimeString(
-            'id-ID',
-            {
-                hour:'2-digit',
-                minute:'2-digit',
-                second:'2-digit'
-            }
+function toast(message){
+
+    const el = document.getElementById("toast");
+
+    el.textContent = message;
+
+    el.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(()=>{
+        el.classList.remove("show");
+    },2800);
+}
+
+
+/* =====================================================
+   LOAD BROWSER VOICES
+===================================================== */
+
+function loadVoices(){
+
+    if(!("speechSynthesis" in window)){
+        toast("Speech Synthesis tidak didukung browser ini.");
+        return;
+    }
+
+    voices = speechSynthesis.getVoices() || [];
+
+    console.log("VOICE TERSEDIA:", voices);
+
+}
+
+loadVoices();
+
+if("speechSynthesis" in window){
+
+    speechSynthesis.onvoiceschanged = function(){
+
+        loadVoices();
+
+    };
+
+}
+
+
+/* =====================================================
+   FIND INDONESIAN VOICE
+===================================================== */
+
+function getIndonesianVoices(){
+
+    const list = voices || [];
+
+    return list.filter(v => {
+
+        const lang = (v.lang || "").toLowerCase();
+
+        return (
+            lang === "id-id" ||
+            lang.startsWith("id")
         );
-
-    document.getElementById('clock').textContent = time;
-
-}
-
-updateClock();
-
-setInterval(updateClock,1000);
-
-
-/* =========================================================
-   DYNAMIC GREETING
-========================================================= */
-
-function updateGreeting(){
-
-    const hour = new Date().getHours();
-
-    let greeting;
-
-    if(hour >= 4 && hour < 11){
-        greeting = "Selamat Pagi ☀️";
-    }
-    else if(hour >= 11 && hour < 15){
-        greeting = "Selamat Siang 🌤️";
-    }
-    else if(hour >= 15 && hour < 18){
-        greeting = "Selamat Sore 🌇";
-    }
-    else{
-        greeting = "Selamat Malam 🌙";
-    }
-
-    document.getElementById('greeting').textContent =
-        greeting + " • AI SYSTEM";
-
-}
-
-updateGreeting();
-
-
-/* =========================================================
-   NOTIFICATION
-========================================================= */
-
-function toggleNotifications(){
-
-    const panel =
-        document.getElementById(
-            'notificationPanel'
-        );
-
-    panel.classList.toggle('show');
-
-}
-
-
-/* =========================================================
-   CLOSE NOTIFICATION OUTSIDE
-========================================================= */
-
-document.addEventListener(
-    'click',
-    function(e){
-
-        const panel =
-            document.getElementById(
-                'notificationPanel'
-            );
-
-        const button =
-            e.target.closest(
-                '.header-actions'
-            );
-
-        if(
-            !panel.contains(e.target) &&
-            !button
-        ){
-            panel.classList.remove('show');
-        }
-
-    }
-);
-
-
-/* =========================================================
-   THEME
-========================================================= */
-
-function toggleTheme(){
-
-    document.body.classList.toggle('light');
-
-    const light =
-        document.body.classList.contains('light');
-
-    localStorage.setItem(
-        'myrobot-theme',
-        light ? 'light' : 'dark'
-    );
-
-    showToast(
-        light
-        ? 'Light Mode aktif'
-        : 'AI Dark Mode aktif'
-    );
-
-}
-
-if(
-    localStorage.getItem('myrobot-theme')
-    === 'light'
-){
-    document.body.classList.add('light');
-}
-
-
-/* =========================================================
-   SEARCH MENU
-========================================================= */
-
-function searchMenu(){
-
-    const input =
-        document.getElementById(
-            'menuSearch'
-        ).value.toLowerCase();
-
-    const items =
-        document.querySelectorAll(
-            '#menuGrid .menu-item'
-        );
-
-    items.forEach(item => {
-
-        const text =
-            item.innerText.toLowerCase();
-
-        item.style.display =
-            text.includes(input)
-            ? 'flex'
-            : 'none';
 
     });
 
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* =====================================================
+   FIND VOICE PEREMPUAN
+===================================================== */
 
-let toastTimer;
+function findFemaleVoice(){
 
-function showToast(message){
+    const indo = getIndonesianVoices();
 
-    const toast =
-        document.getElementById('toast');
+    const femaleWords = [
+        "female",
+        "woman",
+        "girl",
+        "perempuan",
+        "wanita",
+        "google bahasa indonesia female",
+        "gadis"
+    ];
 
-    toast.textContent = message;
+    let voice = indo.find(v => {
 
-    toast.classList.add('show');
+        const name = (v.name || "").toLowerCase();
 
-    clearTimeout(toastTimer);
-
-    toastTimer =
-        setTimeout(
-            () => toast.classList.remove('show'),
-            2200
+        return femaleWords.some(word =>
+            name.includes(word)
         );
 
+    });
+
+    /*
+      Jika Android tidak memberi nama gender,
+      gunakan voice Indonesia pertama sebagai fallback.
+    */
+
+    if(!voice){
+        voice = indo[0];
+    }
+
+    /*
+      Fallback terakhir.
+    */
+
+    if(!voice){
+        voice = voices.find(v =>
+            (v.lang || "").toLowerCase().startsWith("id")
+        );
+    }
+
+    return voice || null;
 }
 
 
-/* =========================================================
-   PARTICLE SYSTEM
-========================================================= */
+/* =====================================================
+   FIND VOICE LAKI-LAKI
+===================================================== */
 
-const particleContainer =
-    document.getElementById('particles');
+function findMaleVoice(){
 
-for(let i=0;i<28;i++){
+    const indo = getIndonesianVoices();
 
-    const p =
-        document.createElement('div');
+    const maleWords = [
+        "male",
+        "man",
+        "boy",
+        "laki",
+        "pria",
+        "bapak",
+        "david",
+        "ricky",
+        "andika"
+    ];
 
-    p.style.position = 'absolute';
+    let voice = indo.find(v => {
 
-    p.style.width =
-        Math.random()*2+1+'px';
+        const name = (v.name || "").toLowerCase();
 
-    p.style.height =
-        p.style.width;
+        return maleWords.some(word =>
+            name.includes(word)
+        );
 
-    p.style.borderRadius =
-        '50%';
+    });
 
-    p.style.background =
-        '#00d9ff';
+    /*
+      Beberapa Android hanya memiliki satu voice
+      Indonesia. Gunakan fallback voice lain bila ada.
+    */
 
-    p.style.opacity =
-        Math.random()*.35;
+    if(!voice && indo.length > 1){
+        voice = indo[1];
+    }
 
-    p.style.left =
-        Math.random()*100+'%';
+    if(!voice){
+        voice = indo[0];
+    }
 
-    p.style.top =
-        Math.random()*100+'%';
+    if(!voice){
+        voice = voices.find(v =>
+            (v.lang || "").toLowerCase().startsWith("id")
+        );
+    }
 
-    p.style.boxShadow =
-        '0 0 8px #00d9ff';
-
-    const duration =
-        Math.random()*15+10;
-
-    p.animate(
-        [
-            {
-                transform:'translateY(0)',
-                opacity:.1
-            },
-            {
-                transform:
-                    `translateY(${
-                        Math.random()*-180-50
-                    }px)`,
-                opacity:.6
-            },
-            {
-                transform:'translateY(0)',
-                opacity:.1
-            }
-        ],
-        {
-            duration:duration*1000,
-            iterations:Infinity,
-            easing:'ease-in-out',
-            delay:Math.random()*-10000
-        }
-    );
-
-    particleContainer.appendChild(p);
-
+    return voice || null;
 }
 
 
-/* =========================================================
-   NETWORK STATUS
-========================================================= */
+/* =====================================================
+   SPEAK
+===================================================== */
 
-function updateNetwork(){
+function speakText(){
 
-    const wifi =
-        document.querySelector(
-            '.system-right .fa-wifi'
-        );
+    const text =
+        document.getElementById("ttsText").value.trim();
 
-    if(
-        navigator.onLine
-    ){
+    if(!text){
 
-        wifi.style.color =
-            '#00ffa3';
+        toast("Masukkan teks terlebih dahulu.");
 
-        wifi.title =
-            'Internet Online';
+        return;
+    }
+
+    if(!("speechSynthesis" in window)){
+
+        toast("Browser tidak mendukung Text-to-Speech.");
+
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    /*
+      Android kadang belum selesai memuat voice.
+      Kita refresh daftar sebelum speak.
+    */
+
+    loadVoices();
+
+    const mode =
+        document.getElementById("voiceMode").value;
+
+    const language =
+        document.getElementById("languageMode").value;
+
+    const utterance =
+        new SpeechSynthesisUtterance(text);
+
+
+    /* =================================================
+       BAHASA
+    ================================================= */
+
+    if(language === "su-ID"){
+
+        /*
+          Tidak semua perangkat memiliki voice Sunda.
+          id-ID digunakan sebagai fallback.
+        */
+
+        utterance.lang = "id-ID";
 
     }else{
 
-        wifi.style.color =
-            '#ff416c';
+        utterance.lang = "id-ID";
 
-        wifi.title =
-            'Offline';
+    }
 
-        showToast(
-            'Koneksi internet terputus'
+
+    /* =================================================
+       MODE SUARA
+    ================================================= */
+
+    if(mode === "female"){
+
+        const voice = findFemaleVoice();
+
+        if(voice){
+            utterance.voice = voice;
+        }
+
+        utterance.pitch = 1.15;
+        utterance.rate = .94;
+        utterance.volume = 1;
+
+        toast(
+            "🔊 Memutar suara perempuan Indonesia"
+        );
+
+    }
+
+
+    else if(mode === "male"){
+
+        const voice = findMaleVoice();
+
+        if(voice){
+            utterance.voice = voice;
+        }
+
+        utterance.pitch = .82;
+        utterance.rate = .95;
+        utterance.volume = 1;
+
+        toast(
+            "🔊 Memutar suara laki-laki Indonesia"
+        );
+
+    }
+
+
+    else if(mode === "baby"){
+
+        const voice =
+            findFemaleVoice() ||
+            findMaleVoice();
+
+        if(voice){
+            utterance.voice = voice;
+        }
+
+        /*
+          Simulasi bayi.
+          Tidak bisa menghasilkan bayi asli
+          jika OS tidak menyediakan voice bayi.
+        */
+
+        utterance.pitch = 1.85;
+        utterance.rate = 1.08;
+        utterance.volume = 1;
+
+        toast(
+            "👶 Memutar mode suara bayi simulasi"
+        );
+
+    }
+
+
+    speechSynthesis.speak(utterance);
+
+}
+
+
+/* =====================================================
+   STOP
+===================================================== */
+
+function stopSpeech(){
+
+    if("speechSynthesis" in window){
+
+        speechSynthesis.cancel();
+
+        toast("⏹ Suara dihentikan.");
+
+    }
+
+}
+
+
+/* =====================================================
+   RECORD MICROPHONE
+===================================================== */
+
+async function toggleRecording(){
+
+    if(isRecording){
+
+        stopRecording();
+
+    }else{
+
+        await startRecording();
+
+    }
+
+}
+
+
+async function startRecording(){
+
+    if(!navigator.mediaDevices ||
+       !navigator.mediaDevices.getUserMedia){
+
+        toast(
+            "Browser tidak mendukung akses microphone."
+        );
+
+        return;
+    }
+
+    try{
+
+        const stream =
+            await navigator.mediaDevices.getUserMedia({
+                audio:true
+            });
+
+
+        audioChunks = [];
+
+
+        mediaRecorder =
+            new MediaRecorder(stream);
+
+
+        mediaRecorder.ondataavailable =
+            function(event){
+
+                if(event.data.size > 0){
+
+                    audioChunks.push(event.data);
+
+                }
+
+            };
+
+
+        mediaRecorder.onstop =
+            function(){
+
+                const blob =
+                    new Blob(
+                        audioChunks,
+                        {type:"audio/webm"}
+                    );
+
+
+                if(recordedAudioURL){
+
+                    URL.revokeObjectURL(
+                        recordedAudioURL
+                    );
+
+                }
+
+
+                recordedAudioURL =
+                    URL.createObjectURL(blob);
+
+
+                stream.getTracks().forEach(track =>
+                    track.stop()
+                );
+
+
+                toast(
+                    "🎙️ Rekaman suara Anda siap diputar."
+                );
+
+            };
+
+
+        mediaRecorder.start();
+
+        isRecording = true;
+
+        recordingSeconds = 0;
+
+        document.getElementById("recordButton")
+            .textContent = "⏹ SELESAI REKAM";
+
+        document.getElementById("recordDot")
+            .classList.add("on");
+
+        document.getElementById("recordStatus")
+            .textContent =
+            "Sedang merekam suara Anda...";
+
+
+        recordingTimer =
+            setInterval(()=>{
+
+                recordingSeconds++;
+
+                const min =
+                    String(
+                        Math.floor(recordingSeconds / 60)
+                    ).padStart(2,"0");
+
+                const sec =
+                    String(
+                        recordingSeconds % 60
+                    ).padStart(2,"0");
+
+                document.getElementById("recordTimer")
+                    .textContent =
+                    min + ":" + sec;
+
+            },1000);
+
+
+        /*
+          Jalankan speech recognition
+          secara paralel jika tersedia.
+        */
+
+        startRecognition();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Microphone ditolak/tidak tersedia."
         );
 
     }
 
 }
 
-updateNetwork();
 
-window.addEventListener(
-    'online',
-    updateNetwork
-);
+function stopRecording(){
 
-window.addEventListener(
-    'offline',
-    updateNetwork
-);
+    if(mediaRecorder &&
+       mediaRecorder.state !== "inactive"){
+
+        mediaRecorder.stop();
+
+    }
+
+    isRecording = false;
+
+    clearInterval(recordingTimer);
+
+    document.getElementById("recordButton")
+        .textContent = "🎙️ TEKAN & BICARA";
+
+    document.getElementById("recordDot")
+        .classList.remove("on");
+
+    document.getElementById("recordStatus")
+        .textContent =
+        "Rekaman selesai.";
+
+    if(recognition){
+
+        try{
+            recognition.stop();
+        }catch(e){}
+
+    }
+
+}
 
 
-/* =========================================================
-   BATTERY STATUS
-========================================================= */
+/* =====================================================
+   PLAY YOUR ORIGINAL VOICE
+===================================================== */
 
-if(
-    navigator.getBattery
-){
+function playMyVoice(){
 
-    navigator
-    .getBattery()
-    .then(
-        battery => {
+    if(!recordedAudioURL){
 
-            function batteryUpdate(){
+        toast(
+            "Belum ada rekaman suara. Tekan TEKAN & BICARA."
+        );
 
-                const icon =
-                    document.querySelector(
-                        '.fa-battery-three-quarters'
-                    );
+        return;
+    }
 
-                const level =
-                    Math.round(
-                        battery.level * 100
-                    );
+    const audio =
+        new Audio(recordedAudioURL);
 
-                icon.title =
-                    'Battery ' + level + '%';
+    audio.play();
 
-                if(level < 20){
-
-                    icon.className =
-                        'fa-solid fa-battery-quarter';
-
-                }
-                else if(level < 50){
-
-                    icon.className =
-                        'fa-solid fa-battery-half';
-
-                }
-                else{
-
-                    icon.className =
-                        'fa-solid fa-battery-three-quarters';
-
-                }
-
-            }
-
-            batteryUpdate();
-
-            battery.addEventListener(
-                'levelchange',
-                batteryUpdate
-            );
-
-        }
+    toast(
+        "▶️ Memutar suara asli Anda."
     );
 
 }
 
 
-/* =========================================================
-   AI TERMINAL ROTATION
-========================================================= */
+/* =====================================================
+   SPEECH RECOGNITION
+===================================================== */
 
-const aiMessages = [
+function getRecognition(){
 
-    'AI neural engine synchronized',
-    'Monitoring environmental sensors',
-    'Checking network topology',
-    'Optimizing system performance',
-    'Scanning smart modules',
-    'Security firewall active',
-    'GPS tracking interface ready',
-    'Weather intelligence ready'
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
 
-];
+    return SpeechRecognition || null;
 
-let aiIndex = 0;
-
-setInterval(
-    () => {
-
-        const terminal =
-            document.getElementById(
-                'terminal'
-            );
-
-        aiIndex =
-            (aiIndex + 1)
-            % aiMessages.length;
-
-        terminal.innerHTML =
-
-            '> AI CORE :: ' +
-            aiMessages[aiIndex] +
-            '<br>' +
-
-            '> System status: ' +
-            '<b>OPTIMAL</b><br>' +
-
-            '> Processing level: ' +
-            '<b>ACTIVE</b><br>' +
-
-            '> myROBOT-V12 ready' +
-            '<span class="cursor"></span>';
-
-    },
-    4000
-);
+}
 
 
-/* =========================================================
-   CLICK RIPPLE
-========================================================= */
+function startRecognition(){
 
-document.addEventListener(
-    'click',
-    function(e){
+    const SpeechRecognition =
+        getRecognition();
 
-        const target =
-            e.target.closest(
-                '.menu-item,.nav-item,.icon-btn,.fab-charge'
-            );
+    if(!SpeechRecognition){
 
-        if(!target) return;
+        document.getElementById("recognizedText")
+            .textContent =
+            "Speech Recognition tidak tersedia. Rekaman suara tetap dapat diputar.";
 
-        const ripple =
-            document.createElement('span');
-
-        ripple.style.position =
-            'fixed';
-
-        ripple.style.width =
-            '8px';
-
-        ripple.style.height =
-            '8px';
-
-        ripple.style.borderRadius =
-            '50%';
-
-        ripple.style.background =
-            'rgba(0,217,255,.45)';
-
-        ripple.style.pointerEvents =
-            'none';
-
-        ripple.style.left =
-            e.clientX + 'px';
-
-        ripple.style.top =
-            e.clientY + 'px';
-
-        ripple.style.zIndex =
-            '9999';
-
-        document.body.appendChild(ripple);
-
-        ripple.animate(
-            [
-                {
-                    transform:'scale(1)',
-                    opacity:.7
-                },
-                {
-                    transform:'scale(18)',
-                    opacity:0
-                }
-            ],
-            {
-                duration:500,
-                easing:'ease-out'
-            }
-        ).onfinish =
-            () => ripple.remove();
+        return;
 
     }
-);
 
 
-/* =========================================================
-   WELCOME
-========================================================= */
+    recognition =
+        new SpeechRecognition();
 
-setTimeout(
-    () => {
 
-        showToast(
-            'myROBOT-V12 AI Core siap digunakan 🤖'
+    recognition.lang = "id-ID";
+
+    recognition.continuous = true;
+
+    recognition.interimResults = true;
+
+
+    let finalText = "";
+
+
+    recognition.onresult =
+        function(event){
+
+            let interim = "";
+
+
+            for(
+                let i = event.resultIndex;
+                i < event.results.length;
+                i++
+            ){
+
+                const transcript =
+                    event.results[i][0].transcript;
+
+
+                if(event.results[i].isFinal){
+
+                    finalText += transcript + " ";
+
+                }else{
+
+                    interim += transcript;
+
+                }
+
+            }
+
+
+            document.getElementById("recognizedText")
+                .textContent =
+                (finalText + interim).trim();
+
+
+            window.lastRecognizedText =
+                (finalText + interim).trim();
+
+        };
+
+
+    recognition.onerror =
+        function(event){
+
+            console.log(
+                "Speech Recognition:",
+                event.error
+            );
+
+        };
+
+
+    try{
+
+        recognition.start();
+
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+}
+
+
+/* =====================================================
+   USE RECOGNIZED TEXT
+===================================================== */
+
+function useRecognizedText(){
+
+    const text =
+        window.lastRecognizedText || "";
+
+
+    if(!text){
+
+        toast(
+            "Belum ada teks hasil suara."
         );
 
-    },
-    900
+        return;
+
+    }
+
+
+    document.getElementById("ttsText")
+        .value = text;
+
+
+    toast(
+        "📝 Teks suara dimasukkan ke Text-to-Speech."
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR VOICE
+===================================================== */
+
+function clearVoiceData(){
+
+    window.lastRecognizedText = "";
+
+    document.getElementById("recognizedText")
+        .textContent =
+        "Hasil suara → teks akan muncul di sini.";
+
+
+    if(recordedAudioURL){
+
+        URL.revokeObjectURL(
+            recordedAudioURL
+        );
+
+        recordedAudioURL = null;
+
+    }
+
+
+    document.getElementById("recordTimer")
+        .textContent = "00:00";
+
+
+    toast("Data suara dihapus dari halaman.");
+
+}
+
+
+/* =====================================================
+   AI DASHBOARD VOICE
+===================================================== */
+
+function speakDashboard(){
+
+    const text =
+        "Halo Asep Pudin New. " +
+        "Selamat datang di myROBOT V12. " +
+        "Sistem dashboard aktif. " +
+        "Pemakaian energi tercatat 222 kilowatt jam. " +
+        "Status sistem siap digunakan.";
+
+    document.getElementById("ttsText")
+        .value = text;
+
+    speakText();
+
+}
+
+
+/* =====================================================
+   COMMAND
+===================================================== */
+
+function runCommand(){
+
+    const input =
+        document.getElementById("commandInput")
+        .value.trim();
+
+
+    if(!input){
+
+        toast("Silakan masukkan perintah.");
+
+        return;
+
+    }
+
+
+    const lower =
+        input.toLowerCase();
+
+
+    if(
+        lower.includes("dashboard") ||
+        lower.includes("sistem")
+    ){
+
+        document.getElementById("ttsText")
+            .value =
+            "myROBOT V12 aktif. " +
+            "Semua sistem dashboard siap digunakan.";
+
+        speakText();
+
+    }
+
+    else if(
+        lower.includes("listrik") ||
+        lower.includes("energi")
+    ){
+
+        document.getElementById("ttsText")
+            .value =
+            "Pemakaian listrik saat ini " +
+            "tercatat 222 kilowatt jam.";
+
+        speakText();
+
+    }
+
+    else if(
+        lower.includes("selamat") ||
+        lower.includes("pagi") ||
+        lower.includes("halo")
+    ){
+
+        document.getElementById("ttsText")
+            .value =
+            "Halo Asep Pudin New. " +
+            "Selamat datang di myROBOT V12.";
+
+        speakText();
+
+    }
+
+    else{
+
+        document.getElementById("ttsText")
+            .value = input;
+
+        speakText();
+
+    }
+
+}
+
+
+function quickCommand(text){
+
+    document.getElementById("commandInput")
+        .value = text;
+
+    runCommand();
+
+}
+
+
+/* =====================================================
+   LISTENING COMMAND
+===================================================== */
+
+function startListening(){
+
+    const SpeechRecognition =
+        getRecognition();
+
+
+    if(!SpeechRecognition){
+
+        toast(
+            "Speech Recognition tidak tersedia di browser ini."
+        );
+
+        return;
+
+    }
+
+
+    const rec =
+        new SpeechRecognition();
+
+
+    rec.lang = "id-ID";
+
+    rec.continuous = false;
+
+    rec.interimResults = false;
+
+
+    toast(
+        "🎙️ Silakan bicara..."
+    );
+
+
+    rec.onresult =
+        function(event){
+
+            const text =
+                event.results[0][0].transcript;
+
+
+            document.getElementById("commandInput")
+                .value = text;
+
+
+            document.getElementById("ttsText")
+                .value = text;
+
+
+            toast(
+                "📝 Perintah diterima: " + text
+            );
+
+
+            setTimeout(()=>{
+
+                speakText();
+
+            },400);
+
+        };
+
+
+    rec.onerror =
+        function(){
+
+            toast(
+                "Suara tidak berhasil dikenali."
+            );
+
+        };
+
+
+    rec.start();
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openAIControl(){
+
+    document.getElementById("aiModal")
+        .classList.add("show");
+
+}
+
+
+function openNotification(){
+
+    const status =
+        navigator.onLine
+        ? "Internet terdeteksi ONLINE."
+        : "Perangkat sedang OFFLINE.";
+
+    document.getElementById("notificationNetwork")
+        .textContent = status;
+
+
+    document.getElementById("notificationModal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+document.querySelectorAll(".modal")
+.forEach(modal => {
+
+    modal.addEventListener("click",function(e){
+
+        if(e.target === modal){
+
+            modal.classList.remove("show");
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    const isLight =
+        document.body.classList.contains("light");
+
+    localStorage.setItem(
+        "myrobot-theme",
+        isLight ? "light" : "dark"
+    );
+
+    toast(
+        isLight
+        ? "☀️ Mode terang aktif."
+        : "🌙 Mode futuristik aktif."
+    );
+
+}
+
+
+if(
+    localStorage.getItem("myrobot-theme")
+    === "light"
+){
+
+    document.body.classList.add("light");
+
+}
+
+
+/* =====================================================
+   NETWORK STATUS
+===================================================== */
+
+function updateNetwork(){
+
+    const el =
+        document.getElementById("networkStatus");
+
+    if(navigator.onLine){
+
+        el.textContent = "● ONLINE";
+
+        el.classList.add("active");
+
+    }else{
+
+        el.textContent = "● OFFLINE";
+
+        el.classList.remove("active");
+
+    }
+
+}
+
+
+window.addEventListener(
+    "online",
+    updateNetwork
+);
+
+window.addEventListener(
+    "offline",
+    updateNetwork
+);
+
+updateNetwork();
+
+
+/* =====================================================
+   KWH ANIMATION
+===================================================== */
+
+function animateKWH(){
+
+    const el =
+        document.getElementById("kwhCounter");
+
+    let current = 0;
+
+    const target = 222;
+
+    const timer =
+        setInterval(()=>{
+
+            current += 6;
+
+            if(current >= target){
+
+                current = target;
+
+                clearInterval(timer);
+
+            }
+
+            el.textContent = current;
+
+        },18);
+
+}
+
+animateKWH();
+
+
+/* =====================================================
+   SERVICE WORKER SAFE CHECK
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        console.log(
+            "myROBOT-V12 Future Engine loaded."
+        );
+
+        console.log(
+            "Speech voices:",
+            speechSynthesis.getVoices()
+        );
+
+    }
 );
 
 </script>
