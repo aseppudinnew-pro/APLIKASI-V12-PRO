@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#07111f">
+<meta name="theme-color" content="#050b15">
+<meta name="mobile-web-app-capable" content="yes">
+
 <title>myROBOT-V12 AI Future Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,8 +20,8 @@
 
 :root{
     --bg:#050b15;
-    --card:rgba(12,25,43,.78);
-    --card2:rgba(17,34,57,.88);
+    --card:rgba(12,25,43,.82);
+    --card2:#0c1b2e;
     --text:#f5f9ff;
     --muted:#91a4bc;
     --cyan:#00eaff;
@@ -32,9 +34,11 @@
     --shadow:0 20px 60px rgba(0,0,0,.38);
 }
 
-html,body{
+html,
+body{
     margin:0;
     padding:0;
+    min-height:100%;
     background:
         radial-gradient(circle at 10% 0%,rgba(0,234,255,.12),transparent 28%),
         radial-gradient(circle at 90% 15%,rgba(155,92,255,.13),transparent 30%),
@@ -53,12 +57,11 @@ body:before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    opacity:.16;
+    opacity:.13;
     background-image:
         linear-gradient(rgba(0,234,255,.12) 1px,transparent 1px),
         linear-gradient(90deg,rgba(0,234,255,.12) 1px,transparent 1px);
     background-size:30px 30px;
-    mask-image:linear-gradient(to bottom,black,transparent 90%);
 }
 
 .app-container{
@@ -68,21 +71,25 @@ body:before{
     margin:auto;
     position:relative;
     padding-bottom:110px;
-    overflow:hidden;
 }
 
-/* TOP */
+/* ======================================================
+   HEADER
+====================================================== */
+
 .topbar{
     position:relative;
     margin:10px;
     padding:18px;
-    border-radius:26px;
+    border-radius:27px;
     overflow:hidden;
     background:
-        linear-gradient(135deg,
-        rgba(0,119,255,.95),
-        rgba(0,234,255,.62) 50%,
-        rgba(115,52,255,.90));
+        linear-gradient(
+            135deg,
+            rgba(0,119,255,.96),
+            rgba(0,234,255,.64) 50%,
+            rgba(115,52,255,.92)
+        );
     box-shadow:
         0 18px 50px rgba(0,119,255,.25),
         inset 0 1px 0 rgba(255,255,255,.28);
@@ -91,43 +98,41 @@ body:before{
 .topbar:before{
     content:"";
     position:absolute;
-    width:180px;
-    height:180px;
-    right:-70px;
-    top:-90px;
+    width:190px;
+    height:190px;
+    right:-75px;
+    top:-95px;
     border-radius:50%;
-    background:rgba(255,255,255,.18);
-    filter:blur(2px);
+    background:rgba(255,255,255,.17);
 }
 
 .top-row{
     position:relative;
     z-index:2;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
 }
 
 .logo{
-    width:54px;
-    height:54px;
+    width:55px;
+    height:55px;
     border-radius:18px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:25px;
+    font-size:26px;
     background:rgba(255,255,255,.16);
     border:1px solid rgba(255,255,255,.25);
-    box-shadow:inset 0 0 20px rgba(255,255,255,.08);
 }
 
 .notification{
     position:relative;
-    width:43px;
-    height:43px;
+    width:44px;
+    height:44px;
     border:0;
     border-radius:15px;
-    color:white;
+    color:#fff;
     background:rgba(255,255,255,.13);
     font-size:19px;
 }
@@ -141,13 +146,12 @@ body:before{
     padding:0 5px;
     border-radius:20px;
     background:#ff315f;
-    color:white;
-    font-size:10px;
+    border:2px solid #1684ff;
+    font-size:9px;
     font-weight:900;
     display:flex;
-    align-items:center;
     justify-content:center;
-    border:2px solid #1684ff;
+    align-items:center;
 }
 
 .greeting{
@@ -158,13 +162,13 @@ body:before{
 
 .greeting small{
     opacity:.82;
-    font-size:12px;
+    font-size:11px;
 }
 
 .greeting h1{
     margin:5px 0;
-    font-size:23px;
-    letter-spacing:-.8px;
+    font-size:22px;
+    letter-spacing:-.7px;
 }
 
 .online{
@@ -172,8 +176,8 @@ body:before{
     align-items:center;
     gap:7px;
     margin-top:6px;
-    font-size:11px;
-    font-weight:700;
+    font-size:10px;
+    font-weight:800;
 }
 
 .dot{
@@ -184,29 +188,35 @@ body:before{
     box-shadow:0 0 12px #4dffae;
 }
 
-/* AI HERO */
+/* ======================================================
+   AI HERO
+====================================================== */
+
 .ai-hero{
     margin:12px 10px;
     padding:18px;
     border-radius:25px;
-    background:linear-gradient(145deg,
-        rgba(11,30,53,.95),
-        rgba(12,20,39,.90));
+    background:
+        linear-gradient(
+            145deg,
+            rgba(11,30,53,.95),
+            rgba(12,20,39,.92)
+        );
     border:1px solid var(--border);
     box-shadow:var(--shadow);
-    position:relative;
     overflow:hidden;
+    position:relative;
 }
 
 .ai-hero:after{
     content:"";
     position:absolute;
-    width:150px;
-    height:150px;
+    width:160px;
+    height:160px;
     border-radius:50%;
-    background:rgba(0,234,255,.08);
-    right:-60px;
-    bottom:-70px;
+    right:-70px;
+    bottom:-80px;
+    background:rgba(0,234,255,.07);
 }
 
 .ai-title{
@@ -216,39 +226,50 @@ body:before{
 }
 
 .ai-orb{
-    width:48px;
-    height:48px;
+    width:49px;
+    height:49px;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:21px;
     background:
-        radial-gradient(circle at 35% 30%,#fff,#00eaff 15%,#1677ff 45%,#741fff 80%);
+        radial-gradient(
+            circle at 35% 30%,
+            #fff,
+            #00eaff 15%,
+            #1677ff 45%,
+            #741fff 80%
+        );
     box-shadow:0 0 28px rgba(0,234,255,.55);
-    animation:pulse 2.3s infinite;
+    animation:orbPulse 2.3s infinite;
 }
 
-@keyframes pulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
+@keyframes orbPulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
 }
 
 .ai-title h2{
     margin:0;
-    font-size:16px;
+    font-size:15px;
 }
 
 .ai-title p{
     margin:4px 0 0;
     color:var(--muted);
-    font-size:10px;
+    font-size:9px;
 }
 
 .ai-status{
     display:flex;
+    flex-wrap:wrap;
     gap:6px;
     margin-top:15px;
-    flex-wrap:wrap;
 }
 
 .status{
@@ -256,8 +277,8 @@ body:before{
     border-radius:10px;
     background:rgba(255,255,255,.05);
     border:1px solid var(--border);
-    color:#b9cbe0;
-    font-size:9px;
+    color:#9eb1c7;
+    font-size:8px;
     font-weight:800;
 }
 
@@ -265,12 +286,20 @@ body:before{
     color:#67ffbb;
 }
 
-/* POWER CARD */
+/* ======================================================
+   MAIN CARD
+====================================================== */
+
 .power-card{
     margin:12px 10px;
     padding:18px;
     border-radius:25px;
-    background:linear-gradient(145deg,rgba(20,40,67,.92),rgba(7,18,32,.94));
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,40,67,.92),
+            rgba(7,18,32,.94)
+        );
     border:1px solid rgba(0,234,255,.14);
     box-shadow:var(--shadow);
 }
@@ -287,7 +316,7 @@ body:before{
 }
 
 .power-type{
-    font-size:10px;
+    font-size:9px;
     color:#8da2bb;
     margin-top:4px;
 }
@@ -297,7 +326,7 @@ body:before{
     border-radius:10px;
     background:rgba(32,229,139,.10);
     color:#45f6a3;
-    font-size:9px;
+    font-size:8px;
     font-weight:900;
 }
 
@@ -308,35 +337,66 @@ body:before{
     margin-top:18px;
 }
 
-.kwh{
-    font-size:31px;
+.battery-number{
+    font-size:34px;
     font-weight:900;
     letter-spacing:-1px;
 }
 
-.kwh small{
-    font-size:11px;
+.battery-number small{
+    font-size:12px;
     color:var(--muted);
 }
 
-.meter{
-    margin-top:15px;
-    height:8px;
-    border-radius:20px;
-    background:#091423;
-    overflow:hidden;
+.battery-state{
+    margin-top:4px;
+    font-size:9px;
+    color:#8295aa;
 }
 
-.meter span{
+.battery-right{
+    text-align:right;
+}
+
+.battery-right small{
     display:block;
-    width:62%;
+    color:#8295aa;
+    font-size:8px;
+}
+
+.battery-right strong{
+    display:block;
+    margin-top:4px;
+    color:#43f3a1;
+    font-size:10px;
+}
+
+.battery-bar{
+    height:10px;
+    margin-top:15px;
+    padding:2px;
+    border-radius:20px;
+    background:#07111e;
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.battery-fill{
+    width:80%;
     height:100%;
     border-radius:20px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    box-shadow:0 0 15px rgba(0,234,255,.55);
+    background:linear-gradient(
+        90deg,
+        #00eaff,
+        #20e58b
+    );
+    box-shadow:0 0 15px rgba(0,234,255,.5);
+    transition:width .7s ease;
 }
 
-/* WALLET */
+/* ======================================================
+   WALLET
+====================================================== */
+
 .wallet-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -345,7 +405,7 @@ body:before{
 }
 
 .wallet{
-    min-height:115px;
+    min-height:118px;
     padding:15px;
     border-radius:21px;
     background:var(--card);
@@ -353,16 +413,32 @@ body:before{
     box-shadow:var(--shadow);
 }
 
+.wallet-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
 .wallet-icon{
-    width:34px;
-    height:34px;
+    width:35px;
+    height:35px;
     border-radius:11px;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     background:rgba(0,234,255,.09);
     color:var(--cyan);
     font-size:15px;
+}
+
+.eye-button{
+    border:0;
+    background:rgba(255,255,255,.05);
+    width:31px;
+    height:31px;
+    border-radius:10px;
+    color:#9eb3ca;
+    font-size:14px;
 }
 
 .wallet small{
@@ -374,29 +450,41 @@ body:before{
 
 .wallet strong{
     display:block;
-    font-size:15px;
+    font-size:14px;
     margin-top:4px;
+    letter-spacing:.1px;
 }
 
-/* SECTION */
+.secret{
+    letter-spacing:3px !important;
+}
+
+/* ======================================================
+   SECTION
+====================================================== */
+
 .section-title{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     padding:5px 12px 8px;
 }
 
 .section-title h3{
     margin:0;
-    font-size:14px;
+    font-size:13px;
 }
 
 .section-title span{
-    font-size:9px;
     color:var(--cyan);
+    font-size:8px;
+    font-weight:800;
 }
 
-/* MENU */
+/* ======================================================
+   MENU
+====================================================== */
+
 .menu-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -406,12 +494,12 @@ body:before{
 
 .menu-item{
     min-height:92px;
-    text-decoration:none;
-    color:white;
-    padding:11px 6px;
+    padding:11px 5px;
     border-radius:19px;
     background:rgba(10,23,40,.86);
     border:1px solid rgba(255,255,255,.08);
+    color:white;
+    text-decoration:none;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -430,16 +518,20 @@ body:before{
     height:40px;
     border-radius:14px;
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:19px;
+    align-items:center;
+    font-size:18px;
     margin-bottom:7px;
-    background:linear-gradient(145deg,rgba(0,234,255,.13),rgba(115,52,255,.15));
-    box-shadow:inset 0 0 15px rgba(255,255,255,.025);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,234,255,.13),
+            rgba(115,52,255,.15)
+        );
 }
 
 .menu-item b{
-    font-size:9px;
+    font-size:8px;
     font-weight:800;
 }
 
@@ -449,15 +541,20 @@ body:before{
     margin-top:3px;
 }
 
-/* VOICE CENTER */
+/* ======================================================
+   VOICE
+====================================================== */
+
 .voice-card{
     margin:14px 10px;
     padding:17px;
     border-radius:25px;
     background:
-        linear-gradient(145deg,
-        rgba(20,30,52,.95),
-        rgba(8,18,32,.96));
+        linear-gradient(
+            145deg,
+            rgba(20,30,52,.95),
+            rgba(8,18,32,.96)
+        );
     border:1px solid rgba(155,92,255,.25);
     box-shadow:var(--shadow);
 }
@@ -473,9 +570,14 @@ body:before{
     height:45px;
     border-radius:15px;
     display:flex;
-    align-items:center;
     justify-content:center;
-    background:linear-gradient(145deg,#7b3fff,#00c8ff);
+    align-items:center;
+    background:
+        linear-gradient(
+            145deg,
+            #7b3fff,
+            #00c8ff
+        );
     font-size:19px;
 }
 
@@ -500,11 +602,12 @@ body:before{
     border:1px solid rgba(255,255,255,.10);
     outline:none;
     font-weight:700;
+    font-size:11px;
 }
 
 textarea{
     width:100%;
-    min-height:92px;
+    min-height:95px;
     margin-top:9px;
     padding:13px;
     resize:none;
@@ -531,11 +634,16 @@ textarea{
     color:white;
     background:#14263d;
     font-weight:800;
-    font-size:10px;
+    font-size:9px;
 }
 
 .btn.primary{
-    background:linear-gradient(135deg,#007cff,#7c42ff);
+    background:
+        linear-gradient(
+            135deg,
+            #007cff,
+            #7c42ff
+        );
 }
 
 .btn.danger{
@@ -543,7 +651,12 @@ textarea{
 }
 
 .btn.record{
-    background:linear-gradient(135deg,#e72b60,#8c2eff);
+    background:
+        linear-gradient(
+            135deg,
+            #e72b60,
+            #8c2eff
+        );
 }
 
 .voice-info{
@@ -553,10 +666,52 @@ textarea{
     background:rgba(255,255,255,.04);
     color:#8ea3bc;
     font-size:8px;
+    line-height:1.55;
+}
+
+/* ======================================================
+   SPEECH RESULT
+====================================================== */
+
+.result-box{
+    margin-top:11px;
+    padding:12px;
+    border-radius:15px;
+    background:#06111f;
+    border:1px solid rgba(0,234,255,.12);
+}
+
+.result-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#8298b1;
+    font-size:8px;
+    font-weight:800;
+}
+
+.listening{
+    color:#ff4e76 !important;
+    animation:listenBlink .8s infinite;
+}
+
+@keyframes listenBlink{
+    50%{
+        opacity:.35;
+    }
+}
+
+.recognized-text{
+    min-height:55px;
+    margin-top:8px;
+    padding:10px;
+    border-radius:11px;
+    background:#091625;
+    color:#e4effc;
+    font-size:10px;
     line-height:1.5;
 }
 
-/* RECORDING */
 .record-panel{
     margin-top:12px;
     padding:13px;
@@ -567,9 +722,9 @@ textarea{
 
 .record-state{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    font-size:10px;
+    align-items:center;
+    font-size:9px;
 }
 
 .record-dot{
@@ -588,7 +743,9 @@ textarea{
 }
 
 @keyframes recordPulse{
-    50%{transform:scale(1.5)}
+    50%{
+        transform:scale(1.5);
+    }
 }
 
 .record-text{
@@ -597,11 +754,14 @@ textarea{
     padding:10px;
     border-radius:11px;
     background:#06101d;
-    font-size:10px;
     color:#d8e6f6;
+    font-size:10px;
 }
 
-/* AI COMMAND */
+/* ======================================================
+   COMMAND
+====================================================== */
+
 .command-card{
     margin:12px 10px;
     padding:17px;
@@ -631,7 +791,12 @@ textarea{
     border:0;
     border-radius:13px;
     color:white;
-    background:linear-gradient(135deg,#00b7ff,#7e3cff);
+    background:
+        linear-gradient(
+            135deg,
+            #00b7ff,
+            #7e3cff
+        );
     font-size:17px;
 }
 
@@ -657,7 +822,10 @@ textarea{
     font-size:8px;
 }
 
-/* BOTTOM NAV */
+/* ======================================================
+   BOTTOM
+====================================================== */
+
 .bottom-nav{
     position:fixed;
     z-index:50;
@@ -668,7 +836,7 @@ textarea{
     max-width:394px;
     height:67px;
     border-radius:23px;
-    background:rgba(7,17,30,.92);
+    background:rgba(7,17,30,.93);
     backdrop-filter:blur(22px);
     -webkit-backdrop-filter:blur(22px);
     border:1px solid rgba(255,255,255,.10);
@@ -684,8 +852,8 @@ textarea{
     text-decoration:none;
     display:flex;
     flex-direction:column;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     font-size:8px;
     font-weight:800;
 }
@@ -699,25 +867,39 @@ textarea{
     margin-bottom:4px;
 }
 
+.nav-button{
+    border:0;
+    background:none;
+    font-family:inherit;
+}
+
 .fab{
     width:57px;
     height:57px;
     margin:auto;
     margin-top:-22px;
     border-radius:19px;
+    border:4px solid #081321;
     display:flex;
-    align-items:center;
     justify-content:center;
-    background:linear-gradient(145deg,#00d9ff,#6e35ff);
+    align-items:center;
+    background:
+        linear-gradient(
+            145deg,
+            #00d9ff,
+            #6e35ff
+        );
     color:white;
     font-size:23px;
     box-shadow:
         0 10px 30px rgba(0,174,255,.32),
         0 0 30px rgba(125,55,255,.25);
-    border:4px solid #081321;
 }
 
-/* MODAL */
+/* ======================================================
+   MODAL
+====================================================== */
+
 .modal{
     position:fixed;
     inset:0;
@@ -765,7 +947,10 @@ textarea{
     font-size:17px;
 }
 
-/* TOAST */
+/* ======================================================
+   TOAST
+====================================================== */
+
 .toast{
     position:fixed;
     z-index:200;
@@ -774,11 +959,11 @@ textarea{
     transform:translate(-50%,20px);
     opacity:0;
     pointer-events:none;
-    max-width:370px;
     width:calc(100% - 35px);
+    max-width:370px;
     padding:12px 15px;
     border-radius:14px;
-    background:rgba(7,18,31,.96);
+    background:rgba(7,18,31,.97);
     border:1px solid rgba(0,234,255,.20);
     box-shadow:0 15px 40px rgba(0,0,0,.45);
     color:white;
@@ -792,14 +977,25 @@ textarea{
     transform:translate(-50%,0);
 }
 
-/* LIGHT */
+/* ======================================================
+   LIGHT MODE
+====================================================== */
+
 body.light{
     --bg:#eef6ff;
-    --card:rgba(255,255,255,.82);
-    --card2:#fff;
+    --card:rgba(255,255,255,.88);
     --text:#102033;
     --muted:#66788d;
     background:#eef6ff;
+}
+
+body.light .power-card,
+body.light .voice-card,
+body.light .ai-hero,
+body.light .command-card,
+body.light .menu-item,
+body.light .wallet{
+    background:rgba(255,255,255,.92);
 }
 
 body.light .voice-select,
@@ -809,17 +1005,13 @@ body.light .command-input input{
     color:#102033;
 }
 
-body.light .menu-item,
-body.light .wallet,
-body.light .command-card,
-body.light .power-card,
-body.light .voice-card,
-body.light .ai-hero{
-    background:rgba(255,255,255,.88);
+body.light .recognized-text{
+    background:#f4f8fc;
+    color:#172b42;
 }
 
 body.light .bottom-nav{
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.93);
 }
 
 body.light .quick button{
@@ -827,8 +1019,8 @@ body.light .quick button{
 }
 
 @media(max-width:360px){
+
     .menu-grid{
-        grid-template-columns:repeat(4,1fr);
         gap:6px;
     }
 
@@ -840,6 +1032,7 @@ body.light .quick button{
         width:35px;
         height:35px;
     }
+
 }
 </style>
 </head>
@@ -848,21 +1041,27 @@ body.light .quick button{
 
 <div class="app-container">
 
-<!-- =====================================================
+<!-- ======================================================
      HEADER
-===================================================== -->
+====================================================== -->
+
 <header class="topbar">
 
     <div class="top-row">
 
         <div class="logo">🤖</div>
 
-        <button class="notification" onclick="openNotification()">
+        <button
+            class="notification"
+            onclick="openNotification()">
+
             🔔
             <span>99</span>
+
         </button>
 
     </div>
+
 
     <div class="greeting">
 
@@ -871,8 +1070,11 @@ body.light .quick button{
         <h1>Selamat Asep Pudin New 👋</h1>
 
         <div class="online">
+
             <span class="dot"></span>
+
             myROBOT-V12 Professional Is Live
+
         </div>
 
     </div>
@@ -880,9 +1082,10 @@ body.light .quick button{
 </header>
 
 
-<!-- =====================================================
-     AI HERO
-===================================================== -->
+<!-- ======================================================
+     AI CORE
+====================================================== -->
+
 <section class="ai-hero">
 
     <div class="ai-title">
@@ -890,219 +1093,374 @@ body.light .quick button{
         <div class="ai-orb">✦</div>
 
         <div>
+
             <h2>myROBOT-V12 AI CORE</h2>
-            <p>Future Personal Digital Assistant</p>
+
+            <p>
+                Future Personal Digital Assistant
+            </p>
+
         </div>
 
     </div>
 
+
     <div class="ai-status">
 
-        <div class="status active">● AI READY</div>
+        <div class="status active">
+            ● AI READY
+        </div>
 
-        <div class="status" id="networkStatus">● NETWORK CHECK</div>
+        <div
+            id="networkStatus"
+            class="status">
 
-        <div class="status">● LOCAL ENGINE</div>
+            ● NETWORK CHECK
+
+        </div>
+
+        <div class="status">
+            ● VOICE READY
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     POWER CARD
-===================================================== -->
+<!-- ======================================================
+     BATTERY CARD
+====================================================== -->
+
 <section class="power-card">
 
     <div class="power-head">
 
         <div>
+
             <div class="power-name">
-                myROBOT-V12 SMART HOME
+                myROBOT-V12 SMART DEVICE
             </div>
 
             <div class="power-type">
-                Pascabayar / R1M 900 VA
+                Status Daya Baterai Perangkat
             </div>
+
         </div>
 
-        <div class="power-status">
+
+        <div
+            id="batteryStatus"
+            class="power-status">
+
             AKTIF
+
         </div>
 
     </div>
+
 
     <div class="power-info">
 
         <div>
-            <div class="kwh">
-                <span id="kwhCounter">222</span>
-                <small>kWh</small>
+
+            <div class="battery-number">
+
+                <span id="batteryPercent">
+                    --%
+                </span>
+
             </div>
 
-            <div style="font-size:9px;color:#8295aa;margin-top:3px">
-                Pemakaian energi
+            <div
+                id="batteryState"
+                class="battery-state">
+
+                Mengecek baterai perangkat...
+
             </div>
+
         </div>
 
-        <div style="text-align:right">
-            <div style="font-size:9px;color:#8295aa">
-                STATUS TAGIHAN
-            </div>
-            <strong style="font-size:11px;color:#43f3a1">
-                TERKENDALI
+
+        <div class="battery-right">
+
+            <small>STATUS BATERAI</small>
+
+            <strong id="chargingText">
+                CHECKING
             </strong>
+
         </div>
 
     </div>
 
-    <div class="meter">
-        <span></span>
+
+    <div class="battery-bar">
+
+        <div
+            id="batteryFill"
+            class="battery-fill"
+            style="width:50%">
+        </div>
+
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     WALLET
-===================================================== -->
+<!-- ======================================================
+     SALDO / POINT / VOUCHER
+====================================================== -->
+
 <div class="wallet-grid">
 
+
+    <!-- SALDO -->
+
     <div class="wallet">
 
-        <div class="wallet-icon">💳</div>
+        <div class="wallet-top">
 
-        <small>Saldo Digital</small>
+            <div class="wallet-icon">
+                💳
+            </div>
 
-        <strong>Rp 12.500.000</strong>
+            <button
+                class="eye-button"
+                onclick="toggleSecret('saldo','eyeSaldo')">
+
+                <span id="eyeSaldo">👁️</span>
+
+            </button>
+
+        </div>
+
+
+        <small>
+            Saldo Digital
+        </small>
+
+
+        <strong
+            id="saldo"
+            class="secret">
+
+            ••••••••
+
+        </strong>
 
     </div>
 
 
+    <!-- POINT -->
+
     <div class="wallet">
 
-        <div class="wallet-icon">⭐</div>
+        <div class="wallet-top">
 
-        <small>AI Points</small>
+            <div class="wallet-icon">
+                ⭐
+            </div>
 
-        <strong>98.420 Poin</strong>
+            <button
+                class="eye-button"
+                onclick="toggleSecret('poin','eyePoin')">
+
+                <span id="eyePoin">👁️</span>
+
+            </button>
+
+        </div>
+
+
+        <small>
+            AI Points
+        </small>
+
+
+        <strong
+            id="poin"
+            class="secret">
+
+            ••••••••
+
+        </strong>
 
     </div>
 
 
+    <!-- VOUCHER -->
+
     <div class="wallet">
 
-        <div class="wallet-icon">🎁</div>
+        <div class="wallet-top">
 
-        <small>Voucher</small>
+            <div class="wallet-icon">
+                🎁
+            </div>
 
-        <strong>24 Voucher</strong>
+        </div>
+
+
+        <small>
+            Voucher
+        </small>
+
+
+        <strong>
+            24 Voucher
+        </strong>
 
     </div>
 
 
+    <!-- SCORE -->
+
     <div class="wallet">
 
-        <div class="wallet-icon">⚡</div>
+        <div class="wallet-top">
 
-        <small>Energy Score</small>
+            <div class="wallet-icon">
+                ⚡
+            </div>
 
-        <strong>92 / 100</strong>
+        </div>
+
+
+        <small>
+            Device Score
+        </small>
+
+
+        <strong id="deviceScore">
+            92 / 100
+        </strong>
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     MENU
-===================================================== -->
+<!-- ======================================================
+     SERVICES
+====================================================== -->
+
 <div class="section-title">
 
-    <h3>AI Smart Services</h3>
+    <h3>
+        AI Smart Services
+    </h3>
 
-    <span>ALL SYSTEMS</span>
+    <span>
+        ALL SYSTEMS
+    </span>
 
 </div>
 
 
 <div class="menu-grid">
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html">
+
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-4.html">
 
         <div class="menu-icon">🤝</div>
+
         <b>E-Sosial</b>
+
         <small>Community</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-3.html">
 
         <div class="menu-icon">💰</div>
+
         <b>E-Keuangan</b>
+
         <small>Finance</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-5.html">
 
         <div class="menu-icon">🧩</div>
+
         <b>Widget</b>
+
         <small>Smart Tools</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/index-dashboard-2.html">
 
         <div class="menu-icon">❤️</div>
+
         <b>E-Kesehatan</b>
+
         <small>Health</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/cuaca.html">
 
         <div class="menu-icon">🌦️</div>
+
         <b>Baca Suhu</b>
+
         <small>Weather</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/topologi.html">
 
         <div class="menu-icon">🌐</div>
+
         <b>Baca Internet</b>
+
         <small>Network</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png">
+    <a
+        class="menu-item"
+        href="https://raw.githubusercontent.com/aseppudinnew-pro/APLIKASI-V12-PRO/refs/heads/main/G752833562-0703A01-default-1788620726.png">
 
         <div class="menu-icon">🛠️</div>
+
         <b>Support</b>
+
         <small>Technical</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/baca.html">
 
         <div class="menu-icon">📡</div>
+
         <b>Lacak GPX</b>
+
         <small>GPS Tracker</small>
 
     </a>
@@ -1110,24 +1468,38 @@ body.light .quick button{
 </div>
 
 
-<!-- =====================================================
-     VOICE AI CENTER
-===================================================== -->
+<!-- ======================================================
+     VOICE CENTER
+====================================================== -->
+
 <section class="voice-card">
 
     <div class="voice-head">
 
-        <div class="mic">🎙️</div>
+        <div class="mic">
+            🎙️
+        </div>
 
         <div>
-            <h3>AI Voice Center</h3>
-            <p>Indonesia • Sunda • Voice Recording</p>
+
+            <h3>
+                AI Voice Center
+            </h3>
+
+            <p>
+                Indonesia • Sunda • Speech Recognition
+            </p>
+
         </div>
 
     </div>
 
 
-    <select id="voiceMode" class="voice-select">
+    <!-- PILIH SUARA -->
+
+    <select
+        id="voiceMode"
+        class="voice-select">
 
         <option value="female">
             👩 Suara Perempuan — Indonesia
@@ -1144,52 +1516,153 @@ body.light .quick button{
     </select>
 
 
-    <select id="languageMode" class="voice-select">
+    <!-- PILIH BAHASA -->
+
+    <select
+        id="languageMode"
+        class="voice-select">
 
         <option value="id-ID">
             🇮🇩 Bahasa Indonesia
         </option>
 
         <option value="su-ID">
-            🌾 Bahasa Sunda / Indonesia
+            🌾 Bahasa Sunda
         </option>
 
     </select>
 
 
+    <!-- TEXT INPUT -->
+
     <textarea
         id="ttsText"
-        placeholder="Tulis kalimat yang ingin dibacakan..."
-    >Halo Asep Pudin New. Selamat datang di myROBOT-V12.</textarea>
+        placeholder="Tulis teks atau hasil suara di sini...">Halo Asep Pudin New. Selamat datang di myROBOT-V12.</textarea>
 
 
     <div class="voice-buttons">
 
-        <button class="btn primary" onclick="speakText()">
+        <button
+            class="btn primary"
+            onclick="speakText()">
+
             🔊 PUTAR SUARA
+
         </button>
 
-        <button class="btn danger" onclick="stopSpeech()">
+
+        <button
+            class="btn danger"
+            onclick="stopSpeech()">
+
             ⏹ STOP
+
         </button>
 
     </div>
 
 
-    <!-- RECORD YOUR VOICE -->
+    <!-- ==================================================
+         SPEECH TO TEXT
+    ================================================== -->
+
+    <div class="result-box">
+
+        <div class="result-title">
+
+            <span id="speechState">
+                🎙️ SPEECH TO TEXT
+            </span>
+
+            <span>
+                id-ID
+            </span>
+
+        </div>
+
+
+        <div
+            id="recognizedText"
+            class="recognized-text">
+
+            Tekan tombol "BICARA → TEXT", lalu bicara.
+            Hasil ucapan akan muncul di sini.
+
+        </div>
+
+
+        <div class="voice-buttons">
+
+            <button
+                id="speechButton"
+                class="btn record"
+                onclick="startSpeechToText()">
+
+                🎙️ BICARA → TEXT
+
+            </button>
+
+
+            <button
+                class="btn"
+                onclick="stopSpeechToText()">
+
+                ⏹ SELESAI
+
+            </button>
+
+        </div>
+
+
+        <div class="voice-buttons">
+
+            <button
+                class="btn primary"
+                onclick="useRecognizedText()">
+
+                📝 PAKAI TEKS
+
+            </button>
+
+
+            <button
+                class="btn"
+                onclick="clearRecognizedText()">
+
+                🗑️ HAPUS
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         ORIGINAL VOICE RECORD
+    ================================================== -->
 
     <div class="record-panel">
 
         <div class="record-state">
 
             <div>
-                <span id="recordDot" class="record-dot"></span>
-                <span id="recordStatus">
-                    Siap merekam suara Anda
+
+                <span
+                    id="recordDot"
+                    class="record-dot">
                 </span>
+
+                <span id="recordStatus">
+                    Rekam suara asli Anda
+                </span>
+
             </div>
 
-            <span id="recordTimer">00:00</span>
+
+            <span id="recordTimer">
+                00:00
+            </span>
 
         </div>
 
@@ -1200,36 +1673,29 @@ body.light .quick button{
                 id="recordButton"
                 class="btn record"
                 onclick="toggleRecording()">
-                🎙️ TEKAN & BICARA
+
+                🎙️ REKAM SUARA SAYA
+
             </button>
+
 
             <button
                 class="btn"
                 onclick="playMyVoice()">
+
                 ▶️ PUTAR SUARA SAYA
+
             </button>
 
         </div>
 
 
-        <div class="record-text" id="recognizedText">
-            Hasil suara → teks akan muncul di sini.
-        </div>
+        <div
+            class="record-text"
+            id="recordResult">
 
-
-        <div class="voice-buttons">
-
-            <button
-                class="btn primary"
-                onclick="useRecognizedText()">
-                📝 PAKAI TEKS
-            </button>
-
-            <button
-                class="btn"
-                onclick="clearVoiceData()">
-                🗑️ HAPUS
-            </button>
+            Suara asli Anda akan direkam di perangkat
+            dan dapat diputar kembali.
 
         </div>
 
@@ -1238,31 +1704,45 @@ body.light .quick button{
 
     <div class="voice-info">
 
-        🎙️ <b>Suara Saya:</b>
-        tekan tombol lalu bicara.
-        Browser akan mencoba mengubah ucapan menjadi teks.
-        Rekaman audio asli Anda juga disimpan sementara di memori halaman
-        dan dapat diputar kembali.
+        <b>🎙️ Speech-to-Text:</b>
+        tekan BICARA → TEXT, izinkan microphone,
+        kemudian bicara. Teks hasil ucapan langsung muncul
+        di kotak di atas.
 
         <br><br>
 
-        👶 Mode bayi adalah <b>simulasi pitch</b>, bukan cloning suara bayi asli.
+        <b>👶 Suara bayi:</b>
+        menggunakan simulasi pitch tinggi karena browser
+        biasanya tidak menyediakan voice bayi asli.
+
+        <br><br>
+
+        <b>🌾 Bahasa Sunda:</b>
+        apabila perangkat tidak mempunyai voice Sunda,
+        sistem menggunakan voice Indonesia sebagai fallback.
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     AI COMMAND
-===================================================== -->
+<!-- ======================================================
+     COMMAND CENTER
+====================================================== -->
+
 <section class="command-card">
 
-    <div class="section-title" style="padding:0 0 10px">
+    <div
+        class="section-title"
+        style="padding:0 0 10px">
 
-        <h3>AI Quick Command</h3>
+        <h3>
+            AI Quick Command
+        </h3>
 
-        <span>VOICE READY</span>
+        <span>
+            VOICE READY
+        </span>
 
     </div>
 
@@ -1272,30 +1752,53 @@ body.light .quick button{
         <input
             id="commandInput"
             placeholder="Contoh: bacakan dashboard..."
-            onkeydown="if(event.key==='Enter')runCommand()"
-        >
+            onkeydown="
+                if(event.key==='Enter'){
+                    runCommand();
+                }
+            ">
 
-        <button onclick="runCommand()">➤</button>
+        <button
+            onclick="runCommand()">
+
+            ➤
+
+        </button>
 
     </div>
 
 
     <div class="quick">
 
-        <button onclick="quickCommand('Bacakan dashboard saya')">
+        <button
+            onclick="quickCommand('Bacakan dashboard saya')">
+
             🔊 Dashboard
+
         </button>
 
-        <button onclick="quickCommand('Selamat pagi Asep')">
+
+        <button
+            onclick="quickCommand('Halo Asep')">
+
             👋 Greeting
+
         </button>
 
-        <button onclick="quickCommand('Status sistem myROBOT V12')">
+
+        <button
+            onclick="quickCommand('Status sistem myROBOT V12')">
+
             🤖 System
+
         </button>
 
-        <button onclick="quickCommand('Bacakan pemakaian listrik')">
-            ⚡ Listrik
+
+        <button
+            onclick="quickCommand('Bacakan status baterai')">
+
+            🔋 Baterai
+
         </button>
 
     </div>
@@ -1303,52 +1806,73 @@ body.light .quick button{
 </section>
 
 
-<!-- =====================================================
-     EXTRA LINKS
-===================================================== -->
+<!-- ======================================================
+     ECOSYSTEM
+====================================================== -->
+
 <div class="section-title">
-    <h3>myROBOT Ecosystem</h3>
-    <span>V12 / V80</span>
+
+    <h3>
+        myROBOT Ecosystem
+    </h3>
+
+    <span>
+        V12 / V80
+    </span>
+
 </div>
 
 
 <div class="menu-grid">
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#">
+
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/update.html#">
 
         <div class="menu-icon">🔄</div>
+
         <b>Update</b>
+
         <small>System Update</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/ROBOT-GITHUB/">
 
         <div class="menu-icon">🤖</div>
+
         <b>Robot V80</b>
+
         <small>Robot Center</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
+    <a
+        class="menu-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
 
         <div class="menu-icon">🚀</div>
+
         <b>myROBOT V12</b>
+
         <small>Official App</small>
 
     </a>
 
 
-    <a class="menu-item"
-       href="https://github.com/aseppudinnew-pro">
+    <a
+        class="menu-item"
+        href="https://github.com/aseppudinnew-pro">
 
         <div class="menu-icon">💻</div>
+
         <b>GitHub</b>
+
         <small>Developer</small>
 
     </a>
@@ -1356,49 +1880,61 @@ body.light .quick button{
 </div>
 
 
-<!-- =====================================================
+<!-- ======================================================
      BOTTOM NAV
-===================================================== -->
+====================================================== -->
+
 <nav class="bottom-nav">
 
-    <a class="nav-item active"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
+
+    <a
+        class="nav-item active"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
 
         <i>⌂</i>
+
         Beranda
 
     </a>
 
 
-    <a class="nav-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/">
+    <a
+        class="nav-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/">
 
         <i>⚡</i>
+
         V.08
 
     </a>
 
 
-    <button class="fab" onclick="openAIControl()">
+    <button
+        class="fab"
+        onclick="openAIControl()">
+
         ✦
+
     </button>
 
 
-    <a class="nav-item"
-       href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
+    <a
+        class="nav-item"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V12-PRO/">
 
         <i>🤖</i>
+
         V.12
 
     </a>
 
 
     <button
-        class="nav-item"
-        style="border:0;background:none;font-family:inherit"
+        class="nav-item nav-button"
         onclick="toggleTheme()">
 
         <i>◐</i>
+
         Mode
 
     </button>
@@ -1408,68 +1944,88 @@ body.light .quick button{
 </div>
 
 
-<!-- =====================================================
+<!-- ======================================================
      AI MODAL
-===================================================== -->
-<div class="modal" id="aiModal">
+====================================================== -->
+
+<div
+    class="modal"
+    id="aiModal">
 
     <div class="modal-box">
 
         <div class="modal-top">
 
-            <h3>✦ myROBOT AI Control Center</h3>
+            <h3>
+                ✦ myROBOT AI Control Center
+            </h3>
 
-            <button class="close" onclick="closeModal('aiModal')">
+            <button
+                class="close"
+                onclick="closeModal('aiModal')">
+
                 ×
+
             </button>
 
         </div>
 
+
         <br>
+
 
         <button
             class="btn primary"
             style="width:100%"
-            onclick="speakDashboard();closeModal('aiModal')">
+            onclick="
+                speakDashboard();
+                closeModal('aiModal');
+            ">
 
             🔊 Bacakan Dashboard
 
         </button>
 
+
         <br><br>
+
 
         <button
             class="btn"
             style="width:100%"
-            onclick="startListening()">
+            onclick="
+                closeModal('aiModal');
+                startSpeechToText();
+            ">
 
-            🎙️ Bicara ke myROBOT
+            🎙️ Bicara → Text
 
         </button>
 
+
         <br><br>
+
 
         <button
             class="btn"
             style="width:100%"
-            onclick="toggleTheme();closeModal('aiModal')">
+            onclick="
+                toggleTheme();
+                closeModal('aiModal');
+            ">
 
-            🌙 Ganti Mode Tampilan
+            🌙 Ganti Tampilan
 
         </button>
 
+
         <br><br>
+
 
         <div class="voice-info">
 
-            Sistem suara menggunakan teknologi browser
-            <b>Speech Synthesis</b> dan
-            <b>Speech Recognition</b>.
-
-            <br><br>
-
-            Jika perangkat memiliki voice Indonesia yang berbeda,
-            sistem otomatis memilih voice yang tersedia.
+            myROBOT-V12 menggunakan teknologi browser
+            Speech Synthesis dan Speech Recognition.
 
         </div>
 
@@ -1478,56 +2034,79 @@ body.light .quick button{
 </div>
 
 
-<!-- =====================================================
+<!-- ======================================================
      NOTIFICATION MODAL
-===================================================== -->
-<div class="modal" id="notificationModal">
+====================================================== -->
+
+<div
+    class="modal"
+    id="notificationModal">
 
     <div class="modal-box">
 
         <div class="modal-top">
 
-            <h3>🔔 Notifikasi</h3>
+            <h3>
+                🔔 Notifikasi
+            </h3>
 
-            <button class="close"
-                    onclick="closeModal('notificationModal')">
+            <button
+                class="close"
+                onclick="
+                    closeModal('notificationModal')
+                ">
+
                 ×
+
             </button>
 
         </div>
 
+
         <br>
+
 
         <div class="wallet">
 
-            <strong>🤖 myROBOT-V12 aktif</strong>
+            <strong>
+                🤖 myROBOT-V12 aktif
+            </strong>
 
             <small>
-                Semua modul dashboard siap digunakan.
+                Dashboard dan sistem voice siap digunakan.
             </small>
 
         </div>
 
+
         <br>
+
 
         <div class="wallet">
 
-            <strong>🎙️ AI Voice Center</strong>
+            <strong>
+                🎙️ Speech-to-Text
+            </strong>
 
             <small>
-                Mode Perempuan, Laki-laki, Bayi dan Suara Saya tersedia.
+                Gunakan tombol BICARA → TEXT untuk
+                mengubah ucapan menjadi teks.
             </small>
 
         </div>
 
+
         <br>
+
 
         <div class="wallet">
 
-            <strong>🌐 Sistem Online</strong>
+            <strong>
+                🔋 Baterai
+            </strong>
 
             <small id="notificationNetwork">
-                Memeriksa koneksi...
+                Mengecek status perangkat...
             </small>
 
         </div>
@@ -1538,31 +2117,49 @@ body.light .quick button{
 
 
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+
+<div
+    id="toast"
+    class="toast">
+</div>
 
 
 <script>
-/* =====================================================
+/* ==========================================================
    myROBOT-V12 FUTURE ENGINE
-===================================================== */
+========================================================== */
 
 let voices = [];
-let mediaRecorder = null;
-let audioChunks = [];
-let recordedAudioURL = null;
-let recordingTimer = null;
-let recordingSeconds = 0;
+
 let recognition = null;
+
+let isRecognizing = false;
+
+let mediaRecorder = null;
+
+let audioChunks = [];
+
+let recordedAudioURL = null;
+
+let recordingTimer = null;
+
+let recordingSeconds = 0;
+
 let isRecording = false;
 
+let currentBattery = null;
 
-/* =====================================================
+let lastRecognizedText = "";
+
+
+/* ==========================================================
    TOAST
-===================================================== */
+========================================================== */
 
 function toast(message){
 
-    const el = document.getElementById("toast");
+    const el =
+        document.getElementById("toast");
 
     el.textContent = message;
 
@@ -1570,53 +2167,60 @@ function toast(message){
 
     clearTimeout(window.toastTimer);
 
-    window.toastTimer = setTimeout(()=>{
-        el.classList.remove("show");
-    },2800);
+    window.toastTimer =
+        setTimeout(function(){
+
+            el.classList.remove("show");
+
+        },3000);
+
 }
 
 
-/* =====================================================
-   LOAD BROWSER VOICES
-===================================================== */
+/* ==========================================================
+   VOICE ENGINE
+========================================================== */
 
 function loadVoices(){
 
     if(!("speechSynthesis" in window)){
-        toast("Speech Synthesis tidak didukung browser ini.");
+
         return;
+
     }
 
-    voices = speechSynthesis.getVoices() || [];
-
-    console.log("VOICE TERSEDIA:", voices);
+    voices =
+        window.speechSynthesis
+        .getVoices() || [];
 
 }
 
 loadVoices();
 
+
 if("speechSynthesis" in window){
 
-    speechSynthesis.onvoiceschanged = function(){
+    speechSynthesis.onvoiceschanged =
+        function(){
 
-        loadVoices();
+            loadVoices();
 
-    };
+        };
 
 }
 
 
-/* =====================================================
-   FIND INDONESIAN VOICE
-===================================================== */
+/* ==========================================================
+   GET INDONESIAN VOICES
+========================================================== */
 
 function getIndonesianVoices(){
 
-    const list = voices || [];
+    return voices.filter(function(v){
 
-    return list.filter(v => {
-
-        const lang = (v.lang || "").toLowerCase();
+        const lang =
+            (v.lang || "")
+            .toLowerCase();
 
         return (
             lang === "id-id" ||
@@ -1628,66 +2232,96 @@ function getIndonesianVoices(){
 }
 
 
-/* =====================================================
-   FIND VOICE PEREMPUAN
-===================================================== */
+/* ==========================================================
+   FEMALE VOICE
+========================================================== */
 
 function findFemaleVoice(){
 
-    const indo = getIndonesianVoices();
+    loadVoices();
 
-    const femaleWords = [
+    const indo =
+        getIndonesianVoices();
+
+
+    const keywords = [
+
         "female",
         "woman",
         "girl",
         "perempuan",
         "wanita",
-        "google bahasa indonesia female",
-        "gadis"
+        "gadis",
+        "google bahasa indonesia"
+
     ];
 
-    let voice = indo.find(v => {
 
-        const name = (v.name || "").toLowerCase();
+    let voice =
+        indo.find(function(v){
 
-        return femaleWords.some(word =>
-            name.includes(word)
-        );
+            const name =
+                (v.name || "")
+                .toLowerCase();
 
-    });
+            return keywords.some(function(word){
+
+                return name.includes(word);
+
+            });
+
+        });
+
 
     /*
-      Jika Android tidak memberi nama gender,
-      gunakan voice Indonesia pertama sebagai fallback.
+      Jika gender tidak ditulis oleh Android,
+      voice Indonesia pertama digunakan.
     */
 
     if(!voice){
+
         voice = indo[0];
+
     }
 
+
     /*
-      Fallback terakhir.
+      Fallback ke voice lain dengan bahasa Indonesia.
     */
 
     if(!voice){
-        voice = voices.find(v =>
-            (v.lang || "").toLowerCase().startsWith("id")
-        );
+
+        voice =
+            voices.find(function(v){
+
+                return (v.lang || "")
+                    .toLowerCase()
+                    .startsWith("id");
+
+            });
+
     }
+
 
     return voice || null;
+
 }
 
 
-/* =====================================================
-   FIND VOICE LAKI-LAKI
-===================================================== */
+/* ==========================================================
+   MALE VOICE
+========================================================== */
 
 function findMaleVoice(){
 
-    const indo = getIndonesianVoices();
+    loadVoices();
 
-    const maleWords = [
+    const indo =
+        getIndonesianVoices();
+
+
+    const keywords = [
+
         "male",
         "man",
         "boy",
@@ -1697,121 +2331,152 @@ function findMaleVoice(){
         "david",
         "ricky",
         "andika"
+
     ];
 
-    let voice = indo.find(v => {
 
-        const name = (v.name || "").toLowerCase();
+    let voice =
+        indo.find(function(v){
 
-        return maleWords.some(word =>
-            name.includes(word)
-        );
+            const name =
+                (v.name || "")
+                .toLowerCase();
 
-    });
+            return keywords.some(function(word){
+
+                return name.includes(word);
+
+            });
+
+        });
+
 
     /*
-      Beberapa Android hanya memiliki satu voice
-      Indonesia. Gunakan fallback voice lain bila ada.
+      Kalau Android memiliki dua voice Indonesia,
+      voice kedua dicoba.
     */
 
     if(!voice && indo.length > 1){
+
         voice = indo[1];
+
     }
 
+
     if(!voice){
+
         voice = indo[0];
+
     }
 
+
     if(!voice){
-        voice = voices.find(v =>
-            (v.lang || "").toLowerCase().startsWith("id")
-        );
+
+        voice =
+            voices.find(function(v){
+
+                return (v.lang || "")
+                    .toLowerCase()
+                    .startsWith("id");
+
+            });
+
     }
+
 
     return voice || null;
+
 }
 
 
-/* =====================================================
-   SPEAK
-===================================================== */
+/* ==========================================================
+   TEXT TO SPEECH
+========================================================== */
 
 function speakText(){
 
     const text =
-        document.getElementById("ttsText").value.trim();
+        document
+        .getElementById("ttsText")
+        .value
+        .trim();
+
 
     if(!text){
 
-        toast("Masukkan teks terlebih dahulu.");
+        toast(
+            "⚠️ Teks masih kosong."
+        );
 
         return;
+
     }
+
 
     if(!("speechSynthesis" in window)){
 
-        toast("Browser tidak mendukung Text-to-Speech.");
+        toast(
+            "❌ Browser tidak mendukung Text-to-Speech."
+        );
 
         return;
+
     }
+
 
     speechSynthesis.cancel();
 
-    /*
-      Android kadang belum selesai memuat voice.
-      Kita refresh daftar sebelum speak.
-    */
-
     loadVoices();
 
+
     const mode =
-        document.getElementById("voiceMode").value;
+        document
+        .getElementById("voiceMode")
+        .value;
+
 
     const language =
-        document.getElementById("languageMode").value;
+        document
+        .getElementById("languageMode")
+        .value;
+
 
     const utterance =
         new SpeechSynthesisUtterance(text);
 
 
-    /* =================================================
-       BAHASA
-    ================================================= */
+    /*
+      Sunda mungkin tidak tersedia sebagai
+      voice OS. Tetap menggunakan id-ID sebagai
+      fallback yang lebih kompatibel.
+    */
 
-    if(language === "su-ID"){
+    utterance.lang =
+        language === "su-ID"
+        ? "id-ID"
+        : "id-ID";
 
-        /*
-          Tidak semua perangkat memiliki voice Sunda.
-          id-ID digunakan sebagai fallback.
-        */
-
-        utterance.lang = "id-ID";
-
-    }else{
-
-        utterance.lang = "id-ID";
-
-    }
-
-
-    /* =================================================
-       MODE SUARA
-    ================================================= */
 
     if(mode === "female"){
 
-        const voice = findFemaleVoice();
+        const voice =
+            findFemaleVoice();
 
         if(voice){
-            utterance.voice = voice;
+
+            utterance.voice =
+                voice;
+
         }
 
         utterance.pitch = 1.15;
+
         utterance.rate = .94;
+
         utterance.volume = 1;
 
         toast(
-            "🔊 Memutar suara perempuan Indonesia"
+            "👩 Suara perempuan sedang diputar..."
         );
 
     }
@@ -1819,18 +2484,24 @@ function speakText(){
 
     else if(mode === "male"){
 
-        const voice = findMaleVoice();
+        const voice =
+            findMaleVoice();
 
         if(voice){
-            utterance.voice = voice;
+
+            utterance.voice =
+                voice;
+
         }
 
         utterance.pitch = .82;
+
         utterance.rate = .95;
+
         utterance.volume = 1;
 
         toast(
-            "🔊 Memutar suara laki-laki Indonesia"
+            "👨 Suara laki-laki sedang diputar..."
         );
 
     }
@@ -1843,34 +2514,50 @@ function speakText(){
             findMaleVoice();
 
         if(voice){
-            utterance.voice = voice;
+
+            utterance.voice =
+                voice;
+
         }
 
-        /*
-          Simulasi bayi.
-          Tidak bisa menghasilkan bayi asli
-          jika OS tidak menyediakan voice bayi.
-        */
-
         utterance.pitch = 1.85;
+
         utterance.rate = 1.08;
+
         utterance.volume = 1;
 
         toast(
-            "👶 Memutar mode suara bayi simulasi"
+            "👶 Suara bayi simulasi sedang diputar..."
         );
 
     }
 
 
-    speechSynthesis.speak(utterance);
+    utterance.onerror =
+        function(event){
+
+            console.error(
+                "TTS ERROR:",
+                event
+            );
+
+            toast(
+                "❌ Voice gagal diputar. Coba pilih mode suara lain."
+            );
+
+        };
+
+
+    speechSynthesis.speak(
+        utterance
+    );
 
 }
 
 
-/* =====================================================
-   STOP
-===================================================== */
+/* ==========================================================
+   STOP TTS
+========================================================== */
 
 function stopSpeech(){
 
@@ -1878,16 +2565,426 @@ function stopSpeech(){
 
         speechSynthesis.cancel();
 
-        toast("⏹ Suara dihentikan.");
+        toast(
+            "⏹ Suara dihentikan."
+        );
 
     }
 
 }
 
 
-/* =====================================================
-   RECORD MICROPHONE
-===================================================== */
+/* ==========================================================
+   SPEECH TO TEXT ENGINE
+========================================================== */
+
+function createRecognition(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if(!SpeechRecognition){
+
+        return null;
+
+    }
+
+
+    const rec =
+        new SpeechRecognition();
+
+
+    rec.lang = "id-ID";
+
+    rec.continuous = true;
+
+    rec.interimResults = true;
+
+    rec.maxAlternatives = 3;
+
+
+    return rec;
+
+}
+
+
+/* ==========================================================
+   START SPEECH TO TEXT
+========================================================== */
+
+function startSpeechToText(){
+
+    if(isRecognizing){
+
+        toast(
+            "🎙️ Microphone sudah aktif. Silakan bicara."
+        );
+
+        return;
+
+    }
+
+
+    recognition =
+        createRecognition();
+
+
+    if(!recognition){
+
+        toast(
+            "❌ Speech-to-Text tidak didukung browser ini."
+        );
+
+        document
+            .getElementById("recognizedText")
+            .textContent =
+            "Browser ini tidak menyediakan Speech Recognition. Coba Google Chrome Android.";
+
+        return;
+
+    }
+
+
+    lastRecognizedText = "";
+
+
+    const resultBox =
+        document
+        .getElementById("recognizedText");
+
+
+    const state =
+        document
+        .getElementById("speechState");
+
+
+    const button =
+        document
+        .getElementById("speechButton");
+
+
+    resultBox.textContent =
+        "🎙️ Mendengarkan... silakan bicara sekarang.";
+
+
+    state.textContent =
+        "🔴 SEDANG MENDENGARKAN";
+
+    state.classList.add("listening");
+
+
+    button.textContent =
+        "🔴 SEDANG MENDENGAR";
+
+
+    isRecognizing = true;
+
+
+    let finalText = "";
+
+
+    recognition.onstart =
+        function(){
+
+            toast(
+                "🎙️ Microphone aktif. Silakan bicara."
+            );
+
+        };
+
+
+    recognition.onresult =
+        function(event){
+
+            let interimText = "";
+
+
+            for(
+                let i = event.resultIndex;
+                i < event.results.length;
+                i++
+            ){
+
+                const transcript =
+                    event
+                    .results[i][0]
+                    .transcript;
+
+
+                if(
+                    event
+                    .results[i]
+                    .isFinal
+                ){
+
+                    finalText +=
+                        transcript + " ";
+
+                }else{
+
+                    interimText +=
+                        transcript;
+
+                }
+
+            }
+
+
+            const combined =
+                (
+                    finalText +
+                    interimText
+                ).trim();
+
+
+            if(combined){
+
+                lastRecognizedText =
+                    combined;
+
+                resultBox.textContent =
+                    combined;
+
+            }
+
+        };
+
+
+    recognition.onerror =
+        function(event){
+
+            console.error(
+                "STT ERROR:",
+                event.error
+            );
+
+
+            if(
+                event.error ===
+                "not-allowed"
+            ){
+
+                toast(
+                    "❌ Microphone tidak diizinkan."
+                );
+
+            }
+
+            else if(
+                event.error ===
+                "no-speech"
+            ){
+
+                toast(
+                    "⚠️ Tidak terdengar suara."
+                );
+
+            }
+
+            else{
+
+                toast(
+                    "❌ Speech-to-Text error: " +
+                    event.error
+                );
+
+            }
+
+        };
+
+
+    recognition.onend =
+        function(){
+
+            /*
+              Chrome Android kadang menghentikan
+              recognition otomatis setelah beberapa saat.
+              Jika user belum menekan SELESAI,
+              mulai kembali.
+            */
+
+            if(isRecognizing){
+
+                try{
+
+                    recognition.start();
+
+                    return;
+
+                }catch(e){
+
+                    console.log(
+                        "Recognition restart:",
+                        e
+                    );
+
+                }
+
+            }
+
+
+            finishSpeechRecognition();
+
+        };
+
+
+    try{
+
+        recognition.start();
+
+    }catch(error){
+
+        console.error(error);
+
+        finishSpeechRecognition();
+
+        toast(
+            "❌ Gagal mengaktifkan microphone."
+        );
+
+    }
+
+}
+
+
+/* ==========================================================
+   STOP SPEECH TO TEXT
+========================================================== */
+
+function stopSpeechToText(){
+
+    if(!recognition){
+
+        finishSpeechRecognition();
+
+        return;
+
+    }
+
+
+    isRecognizing = false;
+
+
+    try{
+
+        recognition.stop();
+
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+
+    finishSpeechRecognition();
+
+
+    if(lastRecognizedText){
+
+        toast(
+            "✅ Suara berhasil diubah menjadi teks."
+        );
+
+    }
+
+}
+
+
+/* ==========================================================
+   FINISH STT
+========================================================== */
+
+function finishSpeechRecognition(){
+
+    isRecognizing = false;
+
+
+    const state =
+        document
+        .getElementById("speechState");
+
+
+    const button =
+        document
+        .getElementById("speechButton");
+
+
+    state.textContent =
+        "🎙️ SPEECH TO TEXT";
+
+    state.classList.remove(
+        "listening"
+    );
+
+
+    button.textContent =
+        "🎙️ BICARA → TEXT";
+
+}
+
+
+/* ==========================================================
+   USE RECOGNIZED TEXT
+========================================================== */
+
+function useRecognizedText(){
+
+    if(!lastRecognizedText){
+
+        toast(
+            "⚠️ Belum ada hasil suara menjadi teks."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("ttsText")
+        .value =
+        lastRecognizedText;
+
+
+    toast(
+        "📝 Hasil suara sudah dimasukkan ke kotak teks."
+    );
+
+
+    document
+        .getElementById("ttsText")
+        .focus();
+
+}
+
+
+/* ==========================================================
+   CLEAR STT
+========================================================== */
+
+function clearRecognizedText(){
+
+    lastRecognizedText = "";
+
+
+    document
+        .getElementById("recognizedText")
+        .textContent =
+        'Tekan tombol "BICARA → TEXT", lalu bicara. Hasil ucapan akan muncul di sini.';
+
+
+    toast(
+        "🗑️ Hasil suara dihapus."
+    );
+
+}
+
+
+/* ==========================================================
+   RECORD ORIGINAL VOICE
+========================================================== */
 
 async function toggleRecording(){
 
@@ -1906,20 +3003,25 @@ async function toggleRecording(){
 
 async function startRecording(){
 
-    if(!navigator.mediaDevices ||
-       !navigator.mediaDevices.getUserMedia){
+    if(
+        !navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia
+    ){
 
         toast(
-            "Browser tidak mendukung akses microphone."
+            "❌ Browser tidak mendukung microphone."
         );
 
         return;
+
     }
+
 
     try{
 
         const stream =
-            await navigator.mediaDevices.getUserMedia({
+            await navigator.mediaDevices
+            .getUserMedia({
                 audio:true
             });
 
@@ -1928,7 +3030,9 @@ async function startRecording(){
 
 
         mediaRecorder =
-            new MediaRecorder(stream);
+            new MediaRecorder(
+                stream
+            );
 
 
         mediaRecorder.ondataavailable =
@@ -1936,7 +3040,9 @@ async function startRecording(){
 
                 if(event.data.size > 0){
 
-                    audioChunks.push(event.data);
+                    audioChunks.push(
+                        event.data
+                    );
 
                 }
 
@@ -1949,7 +3055,9 @@ async function startRecording(){
                 const blob =
                     new Blob(
                         audioChunks,
-                        {type:"audio/webm"}
+                        {
+                            type:"audio/webm"
+                        }
                     );
 
 
@@ -1963,16 +3071,27 @@ async function startRecording(){
 
 
                 recordedAudioURL =
-                    URL.createObjectURL(blob);
+                    URL.createObjectURL(
+                        blob
+                    );
 
 
-                stream.getTracks().forEach(track =>
-                    track.stop()
-                );
+                stream
+                    .getTracks()
+                    .forEach(function(track){
 
+                        track.stop();
+
+                    });
+
+
+                document
+                    .getElementById("recordResult")
+                    .textContent =
+                    "✅ Rekaman suara Anda siap diputar.";
 
                 toast(
-                    "🎙️ Rekaman suara Anda siap diputar."
+                    "🎙️ Rekaman suara berhasil disimpan sementara."
                 );
 
             };
@@ -1980,49 +3099,56 @@ async function startRecording(){
 
         mediaRecorder.start();
 
+
         isRecording = true;
 
         recordingSeconds = 0;
 
-        document.getElementById("recordButton")
-            .textContent = "⏹ SELESAI REKAM";
 
-        document.getElementById("recordDot")
+        document
+            .getElementById("recordButton")
+            .textContent =
+            "⏹ SELESAI REKAM";
+
+
+        document
+            .getElementById("recordDot")
             .classList.add("on");
 
-        document.getElementById("recordStatus")
+
+        document
+            .getElementById("recordStatus")
             .textContent =
             "Sedang merekam suara Anda...";
 
 
         recordingTimer =
-            setInterval(()=>{
+            setInterval(function(){
 
                 recordingSeconds++;
 
-                const min =
+
+                const minutes =
                     String(
-                        Math.floor(recordingSeconds / 60)
+                        Math.floor(
+                            recordingSeconds / 60
+                        )
                     ).padStart(2,"0");
 
-                const sec =
+
+                const seconds =
                     String(
                         recordingSeconds % 60
                     ).padStart(2,"0");
 
-                document.getElementById("recordTimer")
+
+                document
+                    .getElementById("recordTimer")
                     .textContent =
-                    min + ":" + sec;
+                    minutes + ":" + seconds;
+
 
             },1000);
-
-
-        /*
-          Jalankan speech recognition
-          secara paralel jika tersedia.
-        */
-
-        startRecognition();
 
 
     }catch(error){
@@ -2030,7 +3156,7 @@ async function startRecording(){
         console.error(error);
 
         toast(
-            "Microphone ditolak/tidak tersedia."
+            "❌ Microphone tidak dapat digunakan."
         );
 
     }
@@ -2038,276 +3164,161 @@ async function startRecording(){
 }
 
 
+/* ==========================================================
+   STOP RECORDING
+========================================================== */
+
 function stopRecording(){
 
-    if(mediaRecorder &&
-       mediaRecorder.state !== "inactive"){
+    if(
+        mediaRecorder &&
+        mediaRecorder.state !== "inactive"
+    ){
 
         mediaRecorder.stop();
 
     }
 
+
     isRecording = false;
 
-    clearInterval(recordingTimer);
 
-    document.getElementById("recordButton")
-        .textContent = "🎙️ TEKAN & BICARA";
+    clearInterval(
+        recordingTimer
+    );
 
-    document.getElementById("recordDot")
+
+    document
+        .getElementById("recordButton")
+        .textContent =
+        "🎙️ REKAM SUARA SAYA";
+
+
+    document
+        .getElementById("recordDot")
         .classList.remove("on");
 
-    document.getElementById("recordStatus")
+
+    document
+        .getElementById("recordStatus")
         .textContent =
         "Rekaman selesai.";
-
-    if(recognition){
-
-        try{
-            recognition.stop();
-        }catch(e){}
-
-    }
 
 }
 
 
-/* =====================================================
-   PLAY YOUR ORIGINAL VOICE
-===================================================== */
+/* ==========================================================
+   PLAY ORIGINAL VOICE
+========================================================== */
 
 function playMyVoice(){
 
     if(!recordedAudioURL){
 
         toast(
-            "Belum ada rekaman suara. Tekan TEKAN & BICARA."
+            "⚠️ Belum ada rekaman suara."
         );
 
         return;
+
     }
+
 
     const audio =
-        new Audio(recordedAudioURL);
-
-    audio.play();
-
-    toast(
-        "▶️ Memutar suara asli Anda."
-    );
-
-}
-
-
-/* =====================================================
-   SPEECH RECOGNITION
-===================================================== */
-
-function getRecognition(){
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-    return SpeechRecognition || null;
-
-}
-
-
-function startRecognition(){
-
-    const SpeechRecognition =
-        getRecognition();
-
-    if(!SpeechRecognition){
-
-        document.getElementById("recognizedText")
-            .textContent =
-            "Speech Recognition tidak tersedia. Rekaman suara tetap dapat diputar.";
-
-        return;
-
-    }
-
-
-    recognition =
-        new SpeechRecognition();
-
-
-    recognition.lang = "id-ID";
-
-    recognition.continuous = true;
-
-    recognition.interimResults = true;
-
-
-    let finalText = "";
-
-
-    recognition.onresult =
-        function(event){
-
-            let interim = "";
-
-
-            for(
-                let i = event.resultIndex;
-                i < event.results.length;
-                i++
-            ){
-
-                const transcript =
-                    event.results[i][0].transcript;
-
-
-                if(event.results[i].isFinal){
-
-                    finalText += transcript + " ";
-
-                }else{
-
-                    interim += transcript;
-
-                }
-
-            }
-
-
-            document.getElementById("recognizedText")
-                .textContent =
-                (finalText + interim).trim();
-
-
-            window.lastRecognizedText =
-                (finalText + interim).trim();
-
-        };
-
-
-    recognition.onerror =
-        function(event){
-
-            console.log(
-                "Speech Recognition:",
-                event.error
-            );
-
-        };
-
-
-    try{
-
-        recognition.start();
-
-    }catch(e){
-
-        console.log(e);
-
-    }
-
-}
-
-
-/* =====================================================
-   USE RECOGNIZED TEXT
-===================================================== */
-
-function useRecognizedText(){
-
-    const text =
-        window.lastRecognizedText || "";
-
-
-    if(!text){
-
-        toast(
-            "Belum ada teks hasil suara."
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById("ttsText")
-        .value = text;
-
-
-    toast(
-        "📝 Teks suara dimasukkan ke Text-to-Speech."
-    );
-
-}
-
-
-/* =====================================================
-   CLEAR VOICE
-===================================================== */
-
-function clearVoiceData(){
-
-    window.lastRecognizedText = "";
-
-    document.getElementById("recognizedText")
-        .textContent =
-        "Hasil suara → teks akan muncul di sini.";
-
-
-    if(recordedAudioURL){
-
-        URL.revokeObjectURL(
+        new Audio(
             recordedAudioURL
         );
 
-        recordedAudioURL = null;
 
-    }
+    audio.play()
+        .then(function(){
 
+            toast(
+                "▶️ Memutar suara asli Anda."
+            );
 
-    document.getElementById("recordTimer")
-        .textContent = "00:00";
+        })
+        .catch(function(error){
 
+            console.error(error);
 
-    toast("Data suara dihapus dari halaman.");
+            toast(
+                "❌ Rekaman tidak dapat diputar."
+            );
+
+        });
 
 }
 
 
-/* =====================================================
-   AI DASHBOARD VOICE
-===================================================== */
+/* ==========================================================
+   DASHBOARD TTS
+========================================================== */
 
 function speakDashboard(){
+
+    const battery =
+        document
+        .getElementById("batteryPercent")
+        .textContent;
+
 
     const text =
         "Halo Asep Pudin New. " +
         "Selamat datang di myROBOT V12. " +
         "Sistem dashboard aktif. " +
-        "Pemakaian energi tercatat 222 kilowatt jam. " +
-        "Status sistem siap digunakan.";
+        "Daya baterai perangkat saat ini " +
+        battery +
+        ". " +
+        "Semua sistem siap digunakan.";
 
-    document.getElementById("ttsText")
-        .value = text;
+
+    document
+        .getElementById("ttsText")
+        .value =
+        text;
+
 
     speakText();
 
 }
 
 
-/* =====================================================
-   COMMAND
-===================================================== */
+/* ==========================================================
+   QUICK COMMAND
+========================================================== */
+
+function quickCommand(text){
+
+    document
+        .getElementById("commandInput")
+        .value =
+        text;
+
+
+    runCommand();
+
+}
+
+
+/* ==========================================================
+   COMMAND ENGINE
+========================================================== */
 
 function runCommand(){
 
     const input =
-        document.getElementById("commandInput")
-        .value.trim();
+        document
+        .getElementById("commandInput")
+        .value
+        .trim();
 
 
     if(!input){
 
-        toast("Silakan masukkan perintah.");
+        toast(
+            "Silakan masukkan perintah."
+        );
 
         return;
 
@@ -2323,48 +3334,64 @@ function runCommand(){
         lower.includes("sistem")
     ){
 
-        document.getElementById("ttsText")
+        document
+            .getElementById("ttsText")
             .value =
-            "myROBOT V12 aktif. " +
-            "Semua sistem dashboard siap digunakan.";
+            "myROBOT V12 aktif. Semua sistem dashboard siap digunakan.";
 
         speakText();
 
     }
 
+
     else if(
-        lower.includes("listrik") ||
-        lower.includes("energi")
+        lower.includes("baterai") ||
+        lower.includes("battery")
     ){
 
-        document.getElementById("ttsText")
+        const battery =
+            document
+            .getElementById("batteryPercent")
+            .textContent;
+
+
+        document
+            .getElementById("ttsText")
             .value =
-            "Pemakaian listrik saat ini " +
-            "tercatat 222 kilowatt jam.";
+            "Daya baterai perangkat saat ini " +
+            battery +
+            ".";
+
 
         speakText();
 
     }
 
+
     else if(
+        lower.includes("halo") ||
         lower.includes("selamat") ||
-        lower.includes("pagi") ||
-        lower.includes("halo")
+        lower.includes("pagi")
     ){
 
-        document.getElementById("ttsText")
+        document
+            .getElementById("ttsText")
             .value =
-            "Halo Asep Pudin New. " +
-            "Selamat datang di myROBOT V12.";
+            "Halo Asep Pudin New. Selamat datang di myROBOT V12.";
+
 
         speakText();
 
     }
+
 
     else{
 
-        document.getElementById("ttsText")
-            .value = input;
+        document
+            .getElementById("ttsText")
+            .value =
+            input;
+
 
         speakText();
 
@@ -2373,205 +3400,255 @@ function runCommand(){
 }
 
 
-function quickCommand(text){
+/* ==========================================================
+   BATTERY API
+========================================================== */
 
-    document.getElementById("commandInput")
-        .value = text;
+async function initBattery(){
 
-    runCommand();
-
-}
-
-
-/* =====================================================
-   LISTENING COMMAND
-===================================================== */
-
-function startListening(){
-
-    const SpeechRecognition =
-        getRecognition();
+    const percent =
+        document
+        .getElementById("batteryPercent");
 
 
-    if(!SpeechRecognition){
+    const state =
+        document
+        .getElementById("batteryState");
 
-        toast(
-            "Speech Recognition tidak tersedia di browser ini."
-        );
+
+    const fill =
+        document
+        .getElementById("batteryFill");
+
+
+    const charging =
+        document
+        .getElementById("chargingText");
+
+
+    /*
+      Battery API hanya tersedia pada browser tertentu.
+    */
+
+    if(!navigator.getBattery){
+
+        percent.textContent =
+            "--%";
+
+        state.textContent =
+            "Status baterai tidak tersedia di browser.";
+
+        charging.textContent =
+            "TIDAK TERSEDIA";
+
+        fill.style.width =
+            "50%";
 
         return;
 
     }
 
 
-    const rec =
-        new SpeechRecognition();
+    try{
+
+        currentBattery =
+            await navigator.getBattery();
 
 
-    rec.lang = "id-ID";
+        function updateBattery(){
 
-    rec.continuous = false;
-
-    rec.interimResults = false;
-
-
-    toast(
-        "🎙️ Silakan bicara..."
-    );
+            const value =
+                Math.round(
+                    currentBattery.level * 100
+                );
 
 
-    rec.onresult =
-        function(event){
-
-            const text =
-                event.results[0][0].transcript;
+            percent.textContent =
+                value + "%";
 
 
-            document.getElementById("commandInput")
-                .value = text;
+            fill.style.width =
+                value + "%";
 
 
-            document.getElementById("ttsText")
-                .value = text;
+            if(
+                currentBattery.charging
+            ){
+
+                state.textContent =
+                    "⚡ Sedang mengisi daya";
+
+                charging.textContent =
+                    "CHARGING";
+
+                charging.style.color =
+                    "#ffd34d";
+
+            }else{
+
+                state.textContent =
+                    "🔋 Menggunakan daya baterai";
+
+                charging.textContent =
+                    "DISCHARGING";
+
+                charging.style.color =
+                    "#43f3a1";
+
+            }
 
 
-            toast(
-                "📝 Perintah diterima: " + text
-            );
+            if(value <= 20){
 
+                fill.style.background =
+                    "linear-gradient(90deg,#ff315f,#ff8a3d)";
 
-            setTimeout(()=>{
+            }
 
-                speakText();
+            else{
 
-            },400);
+                fill.style.background =
+                    "linear-gradient(90deg,#00eaff,#20e58b)";
 
-        };
-
-
-    rec.onerror =
-        function(){
-
-            toast(
-                "Suara tidak berhasil dikenali."
-            );
-
-        };
-
-
-    rec.start();
-
-}
-
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-function openAIControl(){
-
-    document.getElementById("aiModal")
-        .classList.add("show");
-
-}
-
-
-function openNotification(){
-
-    const status =
-        navigator.onLine
-        ? "Internet terdeteksi ONLINE."
-        : "Perangkat sedang OFFLINE.";
-
-    document.getElementById("notificationNetwork")
-        .textContent = status;
-
-
-    document.getElementById("notificationModal")
-        .classList.add("show");
-
-}
-
-
-function closeModal(id){
-
-    document.getElementById(id)
-        .classList.remove("show");
-
-}
-
-
-document.querySelectorAll(".modal")
-.forEach(modal => {
-
-    modal.addEventListener("click",function(e){
-
-        if(e.target === modal){
-
-            modal.classList.remove("show");
+            }
 
         }
 
-    });
 
-});
+        updateBattery();
 
 
-/* =====================================================
-   THEME
-===================================================== */
+        currentBattery
+            .addEventListener(
+                "levelchange",
+                updateBattery
+            );
 
-function toggleTheme(){
 
-    document.body.classList.toggle("light");
+        currentBattery
+            .addEventListener(
+                "chargingchange",
+                updateBattery
+            );
 
-    const isLight =
-        document.body.classList.contains("light");
 
-    localStorage.setItem(
-        "myrobot-theme",
-        isLight ? "light" : "dark"
-    );
+    }catch(error){
 
-    toast(
-        isLight
-        ? "☀️ Mode terang aktif."
-        : "🌙 Mode futuristik aktif."
-    );
+        console.error(
+            "Battery API:",
+            error
+        );
+
+        percent.textContent =
+            "--%";
+
+        state.textContent =
+            "Tidak dapat membaca baterai.";
+
+    }
 
 }
 
 
-if(
-    localStorage.getItem("myrobot-theme")
-    === "light"
+initBattery();
+
+
+/* ==========================================================
+   SECRET BALANCE
+========================================================== */
+
+const secretValues = {
+
+    saldo:"Rp 12.500.000",
+
+    poin:"98.420 Poin"
+
+};
+
+
+const secretVisible = {
+
+    saldo:false,
+
+    poin:false
+
+};
+
+
+function toggleSecret(
+    type,
+    eyeId
 ){
 
-    document.body.classList.add("light");
+    const element =
+        document.getElementById(type);
+
+
+    const eye =
+        document.getElementById(eyeId);
+
+
+    secretVisible[type] =
+        !secretVisible[type];
+
+
+    if(secretVisible[type]){
+
+        element.textContent =
+            secretValues[type];
+
+        element.classList.remove(
+            "secret"
+        );
+
+        eye.textContent =
+            "🙈";
+
+    }else{
+
+        element.textContent =
+            "••••••••";
+
+        element.classList.add(
+            "secret"
+        );
+
+        eye.textContent =
+            "👁️";
+
+    }
 
 }
 
 
-/* =====================================================
-   NETWORK STATUS
-===================================================== */
+/* ==========================================================
+   NETWORK
+========================================================== */
 
 function updateNetwork(){
 
     const el =
-        document.getElementById("networkStatus");
+        document
+        .getElementById("networkStatus");
+
 
     if(navigator.onLine){
 
-        el.textContent = "● ONLINE";
+        el.textContent =
+            "● ONLINE";
 
-        el.classList.add("active");
+        el.classList.add(
+            "active"
+        );
 
     }else{
 
-        el.textContent = "● OFFLINE";
+        el.textContent =
+            "● OFFLINE";
 
-        el.classList.remove("active");
+        el.classList.remove(
+            "active"
+        );
 
     }
 
@@ -2583,64 +3660,179 @@ window.addEventListener(
     updateNetwork
 );
 
+
 window.addEventListener(
     "offline",
     updateNetwork
 );
 
+
 updateNetwork();
 
 
-/* =====================================================
-   KWH ANIMATION
-===================================================== */
+/* ==========================================================
+   THEME
+========================================================== */
 
-function animateKWH(){
+function toggleTheme(){
 
-    const el =
-        document.getElementById("kwhCounter");
+    document
+        .body
+        .classList
+        .toggle("light");
 
-    let current = 0;
 
-    const target = 222;
+    const light =
+        document
+        .body
+        .classList
+        .contains("light");
 
-    const timer =
-        setInterval(()=>{
 
-            current += 6;
+    localStorage.setItem(
+        "myrobot-theme",
+        light
+        ? "light"
+        : "dark"
+    );
 
-            if(current >= target){
 
-                current = target;
-
-                clearInterval(timer);
-
-            }
-
-            el.textContent = current;
-
-        },18);
+    toast(
+        light
+        ? "☀️ Mode terang aktif."
+        : "🌙 Mode futuristik aktif."
+    );
 
 }
 
-animateKWH();
+
+if(
+    localStorage.getItem(
+        "myrobot-theme"
+    ) === "light"
+){
+
+    document
+        .body
+        .classList
+        .add("light");
+
+}
 
 
-/* =====================================================
-   SERVICE WORKER SAFE CHECK
-===================================================== */
+/* ==========================================================
+   MODALS
+========================================================== */
+
+function openAIControl(){
+
+    document
+        .getElementById("aiModal")
+        .classList
+        .add("show");
+
+}
+
+
+function openNotification(){
+
+    document
+        .getElementById("notificationNetwork")
+        .textContent =
+        navigator.onLine
+        ? "🌐 Internet terdeteksi ONLINE."
+        : "📴 Perangkat sedang OFFLINE.";
+
+
+    document
+        .getElementById("notificationModal")
+        .classList
+        .add("show");
+
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList
+        .remove("show");
+
+}
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(function(modal){
+
+        modal.addEventListener(
+            "click",
+            function(event){
+
+                if(
+                    event.target === modal
+                ){
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* ==========================================================
+   KEYBOARD ESC
+========================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            document
+                .querySelectorAll(".modal")
+                .forEach(function(modal){
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                });
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   INIT
+========================================================== */
 
 window.addEventListener(
     "load",
     function(){
 
+        loadVoices();
+
+        updateNetwork();
+
+        initBattery();
+
         console.log(
-            "myROBOT-V12 Future Engine loaded."
+            "myROBOT-V12 AI Future Dashboard READY"
         );
 
         console.log(
             "Speech voices:",
-            speechSynthesis.getVoices()
+            voices
         );
 
     }
