@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portal Karir - Asep Pudin</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top left,#173b70 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#401a70 0%,transparent 35%),
+        #080b14;
+    color:#fff;
+}
+
+/* HEADER */
+.header{
+    padding:35px 20px 25px;
+    text-align:center;
+}
+
+.logo{
+    width:65px;
+    height:65px;
+    margin:auto;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#00c6ff,#7b2cff);
+    box-shadow:0 10px 40px rgba(0,198,255,.3);
+}
+
+.header h1{
+    margin-top:18px;
+    font-size:27px;
+}
+
+.header p{
+    margin-top:8px;
+    color:#aeb6ca;
+    font-size:14px;
+}
+
+/* SEARCH */
+.search-box{
+    width:92%;
+    max-width:650px;
+    margin:10px auto 25px;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 20px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.07);
+    color:#fff;
+    outline:none;
+    font-size:15px;
+    backdrop-filter:blur(15px);
+}
+
+.search-box input::placeholder{
+    color:#8e96aa;
+}
+
+/* CONTAINER */
+.container{
+    width:92%;
+    max-width:850px;
+    margin:auto;
+    padding-bottom:40px;
+}
+
+/* CARD */
+.card{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:18px;
+    margin-bottom:14px;
+
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    transition:.3s ease;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    background:#00c6ff;
+    filter:blur(70px);
+    opacity:.12;
+    right:-30px;
+    top:-30px;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(0,198,255,.4);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* ICON */
+.company-icon{
+    width:55px;
+    height:55px;
+    min-width:55px;
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+    font-weight:bold;
+
+    background:linear-gradient(135deg,#182642,#263b65);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+/* INFO */
+.info{
+    flex:1;
+}
+
+.info h2{
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.info p{
+    font-size:12px;
+    color:#929bad;
+}
+
+/* BUTTON */
+.btn{
+    border:none;
+    outline:none;
+    cursor:pointer;
+
+    padding:11px 17px;
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    color:white;
+
+    font-weight:bold;
+    font-size:12px;
+
+    transition:.25s;
+    white-space:nowrap;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 7px 20px rgba(0,150,255,.3);
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:25px 10px 40px;
+    color:#70798e;
+    font-size:12px;
+}
+
+/* POPUP */
+.popup-bg{
+    position:fixed;
+    inset:0;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(8px);
+
+    z-index:999;
+    padding:20px;
+}
+
+.popup{
+    width:100%;
+    max-width:400px;
+
+    background:#111625;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:24px;
+
+    padding:28px;
+
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+
+    animation:popup .25s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.popup-icon{
+    width:55px;
+    height:55px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:17px;
+    background:linear-gradient(135deg,#00c6ff,#7b2cff);
+
+    font-size:25px;
+}
+
+.popup h3{
+    text-align:center;
+    margin-top:17px;
+}
+
+.popup p{
+    text-align:center;
+    color:#9ca5b9;
+    font-size:13px;
+    line-height:1.6;
+    margin-top:10px;
+}
+
+.popup-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.popup-buttons button{
+    flex:1;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.cancel{
+    background:#252b3b;
+    color:white;
+}
+
+.open{
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    color:white;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    .header{
+        padding-top:28px;
+    }
+
+    .header h1{
+        font-size:23px;
+    }
+
+    .card{
+        padding:15px;
+        gap:12px;
+    }
+
+    .company-icon{
+        width:48px;
+        height:48px;
+        min-width:48px;
+        font-size:16px;
+    }
+
+    .info h2{
+        font-size:14px;
+    }
+
+    .info p{
+        font-size:11px;
+    }
+
+    .btn{
+        padding:10px 12px;
+        font-size:11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">💼</div>
+
+    <h1>Portal Karir</h1>
+
+    <p>
+        Kumpulan link resmi rekrutmen & lowongan kerja
+    </p>
+
+</header>
+
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="🔎 Cari perusahaan..."
+        onkeyup="searchCompany()"
+    >
+
+</div>
+
+
+<main class="container" id="companyList">
+
+    <!-- WILMAR -->
+    <div class="card" data-name="wilmar">
+        <div class="company-icon">W</div>
+
+        <div class="info">
+            <h2>Wilmar</h2>
+            <p>E-Recruitment • Job Vacancies</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'Wilmar',
+            'https://e-recruitment.wilmar.co.id/JobVacancies'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- PLN -->
+    <div class="card" data-name="pln">
+        <div class="company-icon">⚡</div>
+
+        <div class="info">
+            <h2>PLN</h2>
+            <p>Rekrutmen PLN • Peluang Karir</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'PLN',
+            'https://rekrutmen.pln.co.id/vacancy/site/indexv'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- HAPINDO -->
+    <div class="card" data-name="hapindo">
+        <div class="company-icon">H</div>
+
+        <div class="info">
+            <h2>Hapindo</h2>
+            <p>Jobs & Recruitment</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'Hapindo',
+            'https://jobs.hapindo.co.id/login.html'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- PKSS -->
+    <div class="card" data-name="pkss">
+        <div class="company-icon">P</div>
+
+        <div class="info">
+            <h2>PKSS</h2>
+            <p>Recruitment • Explore Jobs</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'PKSS',
+            'https://recruitment.ptpkss.com/id/jobs-explore'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- PERTAMINA -->
+    <div class="card" data-name="pertamina">
+        <div class="company-icon">P</div>
+
+        <div class="info">
+            <h2>Pertamina</h2>
+            <p>Official E-Recruitment</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'Pertamina',
+            'https://recruitment.pertamina.com/Identity/Account/Login?ReturnUrl=%2Fobject%2Fpage%2Ff2cb4c2c-b407-48f8-aa10-b075c667147c'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- BRI -->
+    <div class="card" data-name="bri bank bri">
+        <div class="company-icon">BRI</div>
+
+        <div class="info">
+            <h2>Bank BRI</h2>
+            <p>E-Recruitment • Job Vacancies</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'Bank BRI',
+            'https://e-recruitment.bri.co.id/auth/login'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- TALENTICS -->
+    <div class="card" data-name="talentics">
+        <div class="company-icon">T</div>
+
+        <div class="info">
+            <h2>Talentics</h2>
+            <p>Application Portal</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'Talentics',
+            'https://jobs.talentics.id/applications/7060050'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- LINKEDIN -->
+    <div class="card" data-name="linkedin">
+        <div class="company-icon">in</div>
+
+        <div class="info">
+            <h2>LinkedIn</h2>
+            <p>Professional Jobs & Networking</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'LinkedIn',
+            'https://www.linkedin.com/'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- SSCASN -->
+    <div class="card" data-name="sscasn bkn">
+        <div class="company-icon">BKN</div>
+
+        <div class="info">
+            <h2>SSCASN BKN</h2>
+            <p>Portal Seleksi ASN</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'SSCASN BKN',
+            'https://sscasn.bkn.go.id/'
+            )">
+            Buka
+        </button>
+    </div>
+
+
+    <!-- INDOMARET -->
+    <div class="card" data-name="indomaret indomaret group it specialist">
+        <div class="company-icon">I</div>
+
+        <div class="info">
+            <h2>Indomaret Group</h2>
+            <p>Career • IT Specialist</p>
+        </div>
+
+        <button
+            class="btn"
+            onclick="openPopup(
+            'Indomaret Group',
+            'https://career.indomaretgroup.com/jobs/it-specialist/check-nik'
+            )">
+            Buka
+        </button>
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    © 2026 Portal Karir<br>
+    Gunakan portal resmi perusahaan untuk proses lamaran.
+
+</footer>
+
+
+<!-- POPUP -->
+
+<div class="popup-bg" id="popup">
+
+    <div class="popup">
+
+        <div class="popup-icon">
+            🔗
+        </div>
+
+        <h3 id="popupTitle">
+            Buka Website
+        </h3>
+
+        <p>
+            Kamu akan diarahkan ke website rekrutmen
+            perusahaan tersebut.
+        </p>
+
+        <div class="popup-buttons">
+
+            <button
+                class="cancel"
+                onclick="closePopup()">
+                Batal
+            </button>
+
+            <button
+                class="open"
+                onclick="goToWebsite()">
+                Buka Website
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let selectedUrl = "";
+
+
+/* OPEN POPUP */
+
+function openPopup(company,url){
+
+    selectedUrl = url;
+
+    document.getElementById("popupTitle").innerText =
+        "Buka " + company + "?";
+
+    document.getElementById("popup").style.display =
+        "flex";
+}
+
+
+/* CLOSE POPUP */
+
+function closePopup(){
+
+    document.getElementById("popup").style.display =
+        "none";
+}
+
+
+/* OPEN WEBSITE */
+
+function goToWebsite(){
+
+    if(selectedUrl){
+
+        window.open(
+            selectedUrl,
+            "_blank"
+        );
+
+    }
+
+    closePopup();
+}
+
+
+/* SEARCH */
+
+function searchCompany(){
+
+    let input =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document.querySelectorAll(".card");
+
+    cards.forEach(function(card){
+
+        let name =
+            card
+            .getAttribute("data-name")
+            .toLowerCase();
+
+        if(name.includes(input)){
+
+            card.style.display = "flex";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* CLOSE POPUP WHEN CLICK OUTSIDE */
+
+document
+.getElementById("popup")
+.addEventListener("click",function(e){
+
+    if(e.target === this){
+
+        closePopup();
+
+    }
+
+});
+
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closePopup();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
