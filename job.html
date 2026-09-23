@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portal Karir Asep Pudin</title>
+<title>Asep Pudin New - Link Hub</title>
 
 <style>
 * {
@@ -14,150 +14,106 @@
 }
 
 body {
-    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
     color: #fff;
-
     background:
-        radial-gradient(circle at 10% 10%, rgba(0, 153, 255, .20), transparent 30%),
-        radial-gradient(circle at 90% 90%, rgba(130, 60, 255, .20), transparent 30%),
-        #080b13;
+        radial-gradient(circle at top left, #123b55 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #27104d 0%, transparent 35%),
+        linear-gradient(135deg, #050914, #0b1020, #050914);
+    padding: 25px 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
 }
 
 /* HEADER */
 .header {
     text-align: center;
-    padding: 35px 20px 25px;
+    margin-bottom: 25px;
 }
 
 .logo {
-    width: 70px;
-    height: 70px;
+    width: 85px;
+    height: 85px;
     margin: auto;
-
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 22px;
-
-    font-size: 32px;
-
-    background: linear-gradient(
-        135deg,
-        #00c6ff,
-        #0072ff,
-        #7b2cff
-    );
-
-    box-shadow:
-        0 15px 45px rgba(0, 140, 255, .30);
+    font-size: 38px;
+    background: linear-gradient(135deg, #00c6ff, #7b2cff);
+    box-shadow: 0 10px 40px rgba(0,198,255,.35);
 }
 
 .header h1 {
-    margin-top: 18px;
+    margin-top: 15px;
     font-size: 27px;
 }
 
 .header p {
-    margin-top: 8px;
-    color: #969fb2;
+    margin-top: 7px;
+    color: #aab4c8;
     font-size: 14px;
 }
 
 /* SEARCH */
-.search-container {
-    width: 92%;
-    max-width: 700px;
-    margin: 0 auto 25px;
+.search-box {
+    margin-bottom: 20px;
 }
 
-.search {
+.search-box input {
     width: 100%;
     padding: 16px 20px;
-
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 16px;
-
+    border-radius: 18px;
     outline: none;
-
+    border: 1px solid rgba(255,255,255,.1);
     background: rgba(255,255,255,.07);
-    backdrop-filter: blur(15px);
-
     color: white;
     font-size: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
-.search::placeholder {
-    color: #7e879b;
+.search-box input::placeholder {
+    color: #8f9aad;
 }
 
-/* MAIN */
-.container {
-    width: 92%;
-    max-width: 850px;
-    margin: auto;
-    padding-bottom: 35px;
+.search-box input:focus {
+    border-color: #00c6ff;
+    box-shadow: 0 0 20px rgba(0,198,255,.15);
 }
 
 /* CARD */
 .card {
     position: relative;
-
     display: flex;
     align-items: center;
-
     gap: 15px;
-
     width: 100%;
-
     padding: 17px;
-
     margin-bottom: 14px;
-
     text-decoration: none;
-    color: white;
-
+    color: #fff;
     border-radius: 20px;
 
     background: rgba(255,255,255,.065);
-
     border: 1px solid rgba(255,255,255,.09);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    transition: all .25s ease;
-
+    transition: .25s ease;
     overflow: hidden;
-}
-
-/* LIGHT EFFECT */
-.card::before {
-    content: "";
-
-    position: absolute;
-
-    width: 120px;
-    height: 120px;
-
-    right: -50px;
-    top: -50px;
-
-    background: #00c6ff;
-
-    filter: blur(60px);
-
-    opacity: .12;
 }
 
 .card:hover {
     transform: translateY(-4px) scale(1.01);
-
     border-color: rgba(0,198,255,.35);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.35);
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
 }
 
 .card:active {
@@ -166,148 +122,100 @@ body {
 
 /* ICON */
 .company-icon {
-    position: relative;
-    z-index: 2;
-
-    width: 55px;
-    height: 55px;
-
-    min-width: 55px;
+    min-width: 52px;
+    width: 52px;
+    height: 52px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 16px;
+    border-radius: 15px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #182742,
-            #263c65
-        );
+    background: linear-gradient(
+        135deg,
+        rgba(0,198,255,.25),
+        rgba(123,44,255,.25)
+    );
 
-    border: 1px solid rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.1);
 
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 25px;
 }
 
 /* INFO */
 .info {
-    position: relative;
-    z-index: 2;
-
     flex: 1;
     min-width: 0;
 }
 
 .info h2 {
     font-size: 16px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .info p {
-    color: #929bad;
+    color: #9faabd;
     font-size: 12px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.4;
 }
 
 /* ARROW */
 .arrow {
-    position: relative;
-    z-index: 2;
-
-    width: 38px;
-    height: 38px;
-
-    min-width: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    background: rgba(0,198,255,.12);
-
+    font-size: 24px;
     color: #00c6ff;
-
-    font-size: 18px;
-
     transition: .25s;
 }
 
 .card:hover .arrow {
-    background: #00aaff;
-    color: white;
-    transform: translateX(3px);
+    transform: translateX(5px);
+}
+
+/* NO RESULT */
+#noResult {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    color: #8994a8;
 }
 
 /* FOOTER */
 .footer {
     text-align: center;
-
-    padding: 10px 20px 35px;
-
-    color: #697286;
-
-    font-size: 11px;
-
-    line-height: 1.7;
-}
-
-/* NO RESULT */
-.no-result {
-    display: none;
-
-    text-align: center;
-
-    padding: 40px 10px;
-
-    color: #788196;
-
-    font-size: 14px;
+    margin-top: 30px;
+    padding: 15px;
+    color: #69758a;
+    font-size: 12px;
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
-    .header {
-        padding-top: 28px;
-    }
-
-    .logo {
-        width: 62px;
-        height: 62px;
-        border-radius: 19px;
-        font-size: 28px;
+    body {
+        padding: 18px 12px;
     }
 
     .header h1 {
         font-size: 23px;
     }
 
-    .header p {
-        font-size: 13px;
+    .logo {
+        width: 72px;
+        height: 72px;
+        font-size: 32px;
     }
 
     .card {
         padding: 14px;
-        border-radius: 18px;
+        border-radius: 17px;
+        gap: 12px;
     }
 
     .company-icon {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-
-        border-radius: 14px;
-
-        font-size: 15px;
+        width: 47px;
+        min-width: 47px;
+        height: 47px;
+        font-size: 22px;
     }
 
     .info h2 {
@@ -315,489 +223,782 @@ body {
     }
 
     .info p {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .arrow {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
+        font-size: 20px;
     }
 }
 </style>
 </head>
 
-
 <body>
 
+<div class="container">
 
-<!-- HEADER -->
+    <!-- HEADER -->
+    <div class="header">
 
-<header class="header">
+        <div class="logo">
+            🔗
+        </div>
 
-    <div class="logo">
-        💼
+        <h1>ASEP PUDIN NEW</h1>
+
+        <p>Personal Link Hub • Semua Link Dalam Satu Tempat</p>
+
     </div>
 
-    <h1>
-        Portal Karir
-    </h1>
 
-    <p>
-        Kumpulan portal rekrutmen & lowongan kerja
-    </p>
+    <!-- SEARCH -->
+    <div class="search-box">
 
-</header>
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 Cari link..."
+        >
 
-
-<!-- SEARCH -->
-
-<div class="search-container">
-
-    <input
-        type="text"
-        id="search"
-        class="search"
-        placeholder="🔎  Cari perusahaan..."
-        autocomplete="off"
-    >
-
-</div>
+    </div>
 
 
-<!-- COMPANY LIST -->
-
-<main class="container" id="companyList">
-
-
-    <!-- 01 WILMAR -->
+    <!-- ========================= -->
+    <!-- LINK 01 -->
+    <!-- ========================= -->
 
     <a
         class="card"
-        data-name="wilmar"
+        data-name="Wilmar"
         href="https://e-recruitment.wilmar.co.id/JobVacancies"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            W
-        </div>
+        <div class="company-icon">🏢</div>
 
         <div class="info">
-
-            <h2>
-                Wilmar
-            </h2>
-
-            <p>
-                E-Recruitment • Job Vacancies
-            </p>
-
+            <h2>Wilmar</h2>
+            <p>Career • Recruitment</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 02 PLN -->
+    <!-- 02 -->
 
     <a
         class="card"
-        data-name="pln"
+        data-name="PLN"
         href="https://rekrutmen.pln.co.id/vacancy/site/indexv"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            ⚡
-        </div>
+        <div class="company-icon">⚡</div>
 
         <div class="info">
-
-            <h2>
-                PLN
-            </h2>
-
-            <p>
-                Rekrutmen PLN • Vacancy
-            </p>
-
+            <h2>PLN</h2>
+            <p>Recruitment • Career</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 03 HAPINDO -->
+    <!-- 03 -->
 
     <a
         class="card"
-        data-name="hapindo"
+        data-name="Hapindo"
         href="https://jobs.hapindo.co.id/login.html"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            H
-        </div>
+        <div class="company-icon">💼</div>
 
         <div class="info">
-
-            <h2>
-                Hapindo
-            </h2>
-
-            <p>
-                Jobs • Recruitment
-            </p>
-
+            <h2>Hapindo</h2>
+            <p>Job Portal • Login</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 04 PKSS -->
+    <!-- 04 -->
 
     <a
         class="card"
-        data-name="pkss"
+        data-name="PT PKSS"
         href="https://recruitment.ptpkss.com/id/jobs-explore"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            P
-        </div>
+        <div class="company-icon">👔</div>
 
         <div class="info">
-
-            <h2>
-                PKSS
-            </h2>
-
-            <p>
-                Recruitment • Explore Jobs
-            </p>
-
+            <h2>PT PKSS</h2>
+            <p>Recruitment • Job Explore</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 05 PERTAMINA -->
+    <!-- 05 -->
 
     <a
         class="card"
-        data-name="pertamina"
+        data-name="Pertamina"
         href="https://recruitment.pertamina.com/Identity/Account/Login?ReturnUrl=%2Fobject%2Fpage%2Ff2cb4c2c-b407-48f8-aa10-b075c667147c"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            P
-        </div>
+        <div class="company-icon">⛽</div>
 
         <div class="info">
-
-            <h2>
-                Pertamina
-            </h2>
-
-            <p>
-                Recruitment • Career
-            </p>
-
+            <h2>Pertamina</h2>
+            <p>Recruitment • Login</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 06 BRI -->
+    <!-- 06 -->
 
     <a
         class="card"
-        data-name="bri bank bri"
+        data-name="BRI"
         href="https://e-recruitment.bri.co.id/auth/login"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            BRI
-        </div>
+        <div class="company-icon">🏦</div>
 
         <div class="info">
-
-            <h2>
-                Bank BRI
-            </h2>
-
-            <p>
-                E-Recruitment • Login
-            </p>
-
+            <h2>BRI</h2>
+            <p>E-Recruitment • Login</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 07 TALENTICS -->
+    <!-- 07 -->
 
     <a
         class="card"
-        data-name="talentics"
+        data-name="Talentics"
         href="https://jobs.talentics.id/applications/7060050"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            T
-        </div>
+        <div class="company-icon">📋</div>
 
         <div class="info">
-
-            <h2>
-                Talentics
-            </h2>
-
-            <p>
-                Job Application Portal
-            </p>
-
+            <h2>Talentics</h2>
+            <p>Job Application</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 08 LINKEDIN -->
+    <!-- 08 -->
 
     <a
         class="card"
-        data-name="linkedin"
+        data-name="LinkedIn"
         href="https://www.linkedin.com/"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            in
-        </div>
+        <div class="company-icon">💼</div>
 
         <div class="info">
-
-            <h2>
-                LinkedIn
-            </h2>
-
-            <p>
-                Jobs • Networking • Career
-            </p>
-
+            <h2>LinkedIn</h2>
+            <p>Career • Professional Network</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 09 SSCASN -->
+    <!-- 09 -->
 
     <a
         class="card"
-        data-name="sscasn bkn"
+        data-name="SSCASN BKN"
         href="https://sscasn.bkn.go.id/"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            BKN
-        </div>
+        <div class="company-icon">🇮🇩</div>
 
         <div class="info">
-
-            <h2>
-                SSCASN BKN
-            </h2>
-
-            <p>
-                Portal Seleksi ASN
-            </p>
-
+            <h2>SSCASN BKN</h2>
+            <p>CPNS • ASN Recruitment</p>
         </div>
 
-        <div class="arrow">
-            ↗
-        </div>
+        <div class="arrow">↗</div>
 
     </a>
 
 
-    <!-- 10 INDOMARET -->
+    <!-- 10 -->
 
     <a
         class="card"
-        data-name="indomaret indomaret group it specialist"
+        data-name="Indomaret"
         href="https://career.indomaretgroup.com/jobs/it-specialist/check-nik"
         target="_blank"
         rel="noopener noreferrer"
     >
 
-        <div class="company-icon">
-            I
-        </div>
+        <div class="company-icon">🛒</div>
 
         <div class="info">
-
-            <h2>
-                Indomaret Group
-            </h2>
-
-            <p>
-                Career • IT Specialist
-            </p>
-
+            <h2>Indomaret Group</h2>
+            <p>Career • IT Specialist</p>
         </div>
 
-        <div class="arrow">
-            ↗
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 11 -->
+
+    <a
+        class="card"
+        data-name="JDN Info"
+        href="https://my.jdn-info.com/login"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🌐</div>
+
+        <div class="info">
+            <h2>JDN Info</h2>
+            <p>Website • Login</p>
         </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 12 -->
+
+    <a
+        class="card"
+        data-name="Coretax DJP Pajak"
+        href="https://coretaxdjp.pajak.go.id/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🧾</div>
+
+        <div class="info">
+            <h2>Coretax DJP</h2>
+            <p>Pajak • Direktorat Jenderal Pajak</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 13 -->
+
+    <a
+        class="card"
+        data-name="BPJS Kesehatan"
+        href="https://webskrining.bpjs-kesehatan.go.id/skrining"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🏥</div>
+
+        <div class="info">
+            <h2>BPJS Kesehatan</h2>
+            <p>Skrining Kesehatan</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 14 -->
+
+    <a
+        class="card"
+        data-name="Google Gemini"
+        href="https://gemini.google.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">✨</div>
+
+        <div class="info">
+            <h2>Google Gemini</h2>
+            <p>AI Assistant</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 15 -->
+
+    <a
+        class="card"
+        data-name="Google Flow"
+        href="https://flow.google.com/u/6/project/d7c56d77-144c-4b4f-9c06-1490bb40e120"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🎬</div>
+
+        <div class="info">
+            <h2>Google Flow</h2>
+            <p>AI • Creative Project</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 16 -->
+
+    <a
+        class="card"
+        data-name="ChatGPT"
+        href="https://chatgpt.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🤖</div>
+
+        <div class="info">
+            <h2>ChatGPT</h2>
+            <p>AI Assistant</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 17 -->
+
+    <a
+        class="card"
+        data-name="Linktree Asep Pudin New"
+        href="https://linktr.ee/aseppudinnew"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🔗</div>
+
+        <div class="info">
+            <h2>Linktree Asep Pudin New</h2>
+            <p>Social Links • Profile</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 18 -->
+
+    <a
+        class="card"
+        data-name="Aplikasi V80 Pro"
+        href="https://aseppudinnew-pro.github.io/APLIKASI-V80-PRO/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📱</div>
+
+        <div class="info">
+            <h2>Aplikasi V80 PRO</h2>
+            <p>Aplikasi • Web App</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 19 -->
+
+    <a
+        class="card"
+        data-name="Audio Asep Pudin New"
+        href="https://audio.com/asep-pudin-new/upload?fileId=a62536f3-69fd-417f-85a3-d65ee13daf37"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🎵</div>
+
+        <div class="info">
+            <h2>Audio.com</h2>
+            <p>Audio • Upload</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 20 -->
+
+    <a
+        class="card"
+        data-name="Suno Downloader"
+        href="https://usesuno.com/id/tools/downloader/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🎧</div>
+
+        <div class="info">
+            <h2>Suno Downloader</h2>
+            <p>Music • Downloader</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 21 -->
+
+    <a
+        class="card"
+        data-name="Google Search Asep Pudin New"
+        href="https://www.google.com/search?q=asep+pudin+new&oq=asep+pudin+new&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDsyBggCEEUYOzIHCAMQIRiPAjIGCAQQRRhBMgYIBRBFGDwyBggGEEUYPNIBCDI0MzlqMGo0qAIOsAIB8QUm3kH13uMySQ&client=ms-android-transsion&sourceid=chrome-mobile&source=chrome.ob&ie=UTF-8"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🔎</div>
+
+        <div class="info">
+            <h2>Google Search</h2>
+            <p>Asep Pudin New</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 22 -->
+
+    <a
+        class="card"
+        data-name="iLovePDF"
+        href="https://www.ilovepdf.com/id/pdf-ke-word"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📄</div>
+
+        <div class="info">
+            <h2>iLovePDF</h2>
+            <p>PDF → Word</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 23 -->
+
+    <a
+        class="card"
+        data-name="PDF24"
+        href="https://tools.pdf24.org/id/gabung-pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📑</div>
+
+        <div class="info">
+            <h2>PDF24</h2>
+            <p>Gabung PDF • PDF Tools</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 24 -->
+
+    <a
+        class="card"
+        data-name="Y2Mate"
+        href="https://y2mate.gs/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">▶️</div>
+
+        <div class="info">
+            <h2>Y2Mate</h2>
+            <p>Video • Online Tools</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 25 -->
+
+    <a
+        class="card"
+        data-name="TV12 LK21"
+        href="https://tv12.lk21official.cc/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📺</div>
+
+        <div class="info">
+            <h2>TV12</h2>
+            <p>Movie • Entertainment</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 26 -->
+
+    <a
+        class="card"
+        data-name="KlickAud"
+        href="https://www.klickaud.org/en17/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🎶</div>
+
+        <div class="info">
+            <h2>KlickAud</h2>
+            <p>Audio • Music Tools</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 27 -->
+
+    <a
+        class="card"
+        data-name="10.10.40.1"
+        href="http://10.10.40.1/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">🖥️</div>
+
+        <div class="info">
+            <h2>Local Network</h2>
+            <p>10.10.40.1 • Local Network</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 28 -->
+
+    <a
+        class="card"
+        data-name="192.168.1.1 Router Login"
+        href="http://192.168.1.1/login.html"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📡</div>
+
+        <div class="info">
+            <h2>Router Login</h2>
+            <p>192.168.1.1 • Local Network</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 29 -->
+
+    <a
+        class="card"
+        data-name="Google Drive"
+        href="https://drive.google.com/drive/u/0/mobile/folders/1Dv3SxV4QJaCJBvS6-pFEIGEhV9zX_axe?hl=ID"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📁</div>
+
+        <div class="info">
+            <h2>Google Drive</h2>
+            <p>Folder • File Storage</p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+    </a>
+
+
+    <!-- 30 -->
+
+    <a
+        class="card"
+        data-name="Outlook Microsoft Email"
+        href="https://outlook.office.com/mail/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="company-icon">📧</div>
+
+        <div class="info">
+            <h2>Outlook</h2>
+            <p>Microsoft • Email</p>
+        </div>
+
+        <div class="arrow">↗</div>
 
     </a>
 
 
     <!-- NO RESULT -->
 
-    <div
-        class="no-result"
-        id="noResult"
-    >
-        🔎<br><br>
-        Perusahaan tidak ditemukan.
+    <div id="noResult">
+        🔍 Link tidak ditemukan
     </div>
 
 
-</main>
+    <!-- FOOTER -->
 
+    <div class="footer">
+        © 2026 Asep Pudin New
+        <br>
+        Personal Link Hub
+    </div>
 
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    Portal Karir Pribadi<br>
-    Klik card untuk membuka portal rekrutmen.
-
-</footer>
+</div>
 
 
 <script>
 
-/* SEARCH */
+const searchInput = document.getElementById("search");
 
-const searchInput =
-    document.getElementById("search");
+const cards = document.querySelectorAll(".card");
 
-const cards =
-    document.querySelectorAll(".card");
-
-const noResult =
-    document.getElementById("noResult");
+const noResult = document.getElementById("noResult");
 
 
-searchInput.addEventListener(
-    "input",
-    function () {
+searchInput.addEventListener("input", function () {
 
-        const keyword =
-            this.value
-                .toLowerCase()
-                .trim();
+    const keyword =
+        this.value.toLowerCase().trim();
 
-        let found = 0;
+    let found = 0;
 
 
-        cards.forEach(
-            function(card) {
+    cards.forEach(function (card) {
 
-                const name =
-                    card
-                    .getAttribute("data-name")
-                    .toLowerCase();
+        const name =
+            card.getAttribute("data-name")
+            .toLowerCase();
 
-                const text =
-                    card.innerText
-                    .toLowerCase();
+        const text =
+            card.innerText.toLowerCase();
 
 
-                if (
-                    name.includes(keyword) ||
-                    text.includes(keyword)
-                ) {
+        if (
+            name.includes(keyword) ||
+            text.includes(keyword)
+        ) {
 
-                    card.style.display =
-                        "flex";
+            card.style.display = "flex";
 
-                    found++;
-
-                } else {
-
-                    card.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-
-        if (found === 0) {
-
-            noResult.style.display =
-                "block";
+            found++;
 
         } else {
 
-            noResult.style.display =
-                "none";
+            card.style.display = "none";
 
         }
 
+    });
+
+
+    if (found === 0) {
+
+        noResult.style.display = "block";
+
+    } else {
+
+        noResult.style.display = "none";
+
     }
-);
+
+});
 
 </script>
 
